@@ -26,6 +26,11 @@ export const PATCH_LIMITS = {
   newMemories: 1,
   /** 1日に追記できる canon 事実の数 */
   newCanonFacts: 1,
+  /**
+   * 数えているもの（カヤの届けた人数など）の1日あたりの最大増分。
+   * 減らすことはできない——届けた人数は減らない。
+   */
+  counterDelta: 5,
 } as const;
 
 /**
@@ -57,6 +62,8 @@ export const VIOLATION_POLICY = {
   memoryImportanceRange: 'fatal',
   newMemories: 'fatal',
   newCanonFacts: 'fatal',
+  counterDelta: 'fatal',
+  counterUnknown: 'fatal',
   diaryTooShort: 'fatal',
   newConcerns: 'truncate',
   newUnresolvedThoughts: 'truncate',

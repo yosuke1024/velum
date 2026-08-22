@@ -46,6 +46,7 @@ export function applyPatches(
     relationships: [],
     traits: [],
     beliefs: [],
+    counters: [],
     concerns_added: [],
     thoughts_added: [],
     memory_promoted: null,
@@ -85,6 +86,14 @@ export function applyPatches(
     const to = round(clampUnit(from + patch.delta));
     state.beliefs[patch.key] = to;
     applied.beliefs.push({ key: patch.key, from, to });
+  }
+
+  for (const patch of response.counter_patches) {
+    const from = state.counters?.[patch.key];
+    if (from === undefined || !state.counters) continue;
+    const to = from + patch.delta;
+    state.counters[patch.key] = to;
+    applied.counters.push({ key: patch.key, from, to });
   }
 
   for (const concern of response.new_concerns) {

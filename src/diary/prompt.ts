@@ -65,6 +65,10 @@ export function boundsLines(): Array<{ limit: string; text: string }> {
       limit: 'newCanonFacts',
       text: `人生設定へ追記できる新事実は1日に最大 ${PATCH_LIMITS.newCanonFacts} 件。なければ null にする（${fatal('newCanonFacts')}）`,
     },
+    {
+      limit: 'counterDelta',
+      text: `数えているものは1日に最大 +${PATCH_LIMITS.counterDelta} まで増やせる。減らすことはできない。存在しない項目は増やせない（${fatal('counterDelta')}）`,
+    },
   ];
 }
 
@@ -112,6 +116,12 @@ export const DIARY_RESPONSE_SCHEMA = jsonSchema.object(
     ),
     new_concerns: jsonSchema.array(jsonSchema.string()),
     new_unresolved_thoughts: jsonSchema.array(jsonSchema.string()),
+    counter_patches: jsonSchema.array(
+      jsonSchema.object(
+        { key: jsonSchema.string(), delta: jsonSchema.number() },
+        ['key', 'delta'],
+      ),
+    ),
     memory_candidate: jsonSchema.nullable(
       jsonSchema.object(
         { summary: jsonSchema.string(), importance: jsonSchema.number() },
@@ -140,6 +150,7 @@ export const DIARY_RESPONSE_SCHEMA = jsonSchema.object(
     'belief_patches',
     'new_concerns',
     'new_unresolved_thoughts',
+    'counter_patches',
     'memory_candidate',
     'canon_candidate',
     'rare_expression_used',
@@ -201,6 +212,9 @@ export function buildDiarySystemPrompt(context: DiaryContext): string {
   lines.push('- 毎日が転機である必要はない。何も起きない日は、何も起きないまま書く。');
   lines.push('- 過去の出来事を毎回持ち出さない。今日の話を書く。');
   lines.push('- 感情を説明せず、細部で見せる。');
+  lines.push(
+    '- **今日見たことだけを書く。推測を結論として書かない。**「証明している」「明らかになった」「〜に違いない」と書き切らない。疑いは疑いのまま抱えて眠る。',
+  );
   lines.push(
     `- あなたの定型（${profile.voice.tic}）が崩れる日は、めったにない。今日がその日でないなら崩さない。`,
   );
@@ -273,6 +287,16 @@ export function buildDiaryUserPrompt(context: DiaryContext): string {
       .join(' / '),
   );
   lines.push('');
+
+  if (state.counters && Object.keys(state.counters).length) {
+    lines.push('### 数えているもの');
+    lines.push('この数字はあなたが覚えているものです。勝手に変えないでください。');
+    for (const [key, value] of Object.entries(state.counters)) {
+      lines.push(`${key}: ${value}`);
+    }
+    lines.push('今日それが増えたなら counter_patches で増やしてください。');
+    lines.push('');
+  }
 
   lines.push('## 周りの人');
   for (const person of visibleRelationships(context.relationships)) {

@@ -98,6 +98,11 @@ export const CurrentStateSchema = z
     traits: z.record(unit()),
     beliefs: z.record(unit()),
     habits: z.array(z.string().min(1)),
+    /**
+     * 数えているもの。カヤの「届けた人数」など、本人が口に出す数字。
+     * プロンプトへ渡さないと、日記のたびに数が変わってしまう。
+     */
+    counters: z.record(z.number().int().min(0)).optional(),
   })
   .passthrough();
 

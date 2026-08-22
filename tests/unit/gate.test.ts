@@ -22,6 +22,7 @@ function response(overrides: Partial<DiaryResponse> = {}): DiaryResponse {
     belief_patches: [],
     new_concerns: [],
     new_unresolved_thoughts: [],
+    counter_patches: [],
     memory_candidate: null,
     canon_candidate: null,
     rare_expression_used: false,
@@ -251,6 +252,70 @@ describe('差分の適用', () => {
       id: 'vallen',
       trust: [0.7, 0.65],
       wariness: [0.2, 0.25],
+    });
+  });
+});
+
+describe('数えているもの', () => {
+  // カヤの「四十二人。四十三人目は、まだ呼べない」——彼女の物語で一番大事な数字。
+  // プロンプトへ渡していなかった初回の試写では、これが 408 まで飛んだ。
+  const kaya = loadCharacter('kaya');
+
+  const runKaya = (r: DiaryResponse) =>
+    gate(r, kaya.state, kaya.relationships, 'kaya');
+
+  it('カヤは届けた人数を数えている', () => {
+    expect(kaya.state.counters?.delivered).toBe(42);
+  });
+
+  it('上限以内の増分を通す', () => {
+    const result = runKaya(
+      response({ counter_patches: [{ key: 'delivered', delta: 2 }] }),
+    );
+    expect(result.ok).toBe(true);
+  });
+
+  it('上限を超えた増分は破棄する', () => {
+    const result = runKaya(
+      response({ counter_patches: [{ key: 'delivered', delta: 366 }] }),
+    );
+    expect(result.ok).toBe(false);
+    if (result.ok) return;
+    expect(result.violations[0]).toContain('delivered');
+  });
+
+  it('減らせない（届けた人数は減らない）', () => {
+    const result = runKaya(
+      response({ counter_patches: [{ key: 'delivered', delta: -1 }] }),
+    );
+    expect(result.ok).toBe(false);
+    if (result.ok) return;
+    expect(result.violations[0]).toContain('減らせない');
+  });
+
+  it('存在しない項目は増やせない', () => {
+    const result = runKaya(
+      response({ counter_patches: [{ key: 'nonexistent', delta: 1 }] }),
+    );
+    expect(result.ok).toBe(false);
+  });
+
+  it('増分を適用して記録に残す', () => {
+    const result = applyPatches(
+      response({ counter_patches: [{ key: 'delivered', delta: 2 }] }),
+      {
+        state: kaya.state,
+        relationships: kaya.relationships,
+        memories: kaya.memories,
+        canon: kaya.canon,
+      },
+      '2026-09-04',
+    );
+    expect(result.state.counters?.delivered).toBe(44);
+    expect(result.applied.counters[0]).toMatchObject({
+      key: 'delivered',
+      from: 42,
+      to: 44,
     });
   });
 });

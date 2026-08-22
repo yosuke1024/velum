@@ -52,6 +52,14 @@ export const DiaryResponseSchema = z.object({
   new_concerns: z.array(z.string().min(1)),
   new_unresolved_thoughts: z.array(z.string().min(1)),
 
+  /** 数えているものの増分。減らせない。 */
+  counter_patches: z.array(
+    z.object({
+      key: z.string().min(1),
+      delta: z.number().int(),
+    }),
+  ),
+
   /** months 単位で覚えておく価値があるときだけ。なければ null。 */
   memory_candidate: z
     .object({

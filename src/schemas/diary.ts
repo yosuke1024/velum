@@ -50,6 +50,9 @@ export const DiaryEventSchema = z.object({
     beliefs: z.array(
       z.object({ key: z.string(), from: z.number(), to: z.number() }),
     ),
+    counters: z.array(
+      z.object({ key: z.string(), from: z.number(), to: z.number() }),
+    ),
     concerns_added: z.array(z.string()),
     thoughts_added: z.array(z.string()),
     memory_promoted: z.string().nullable(),

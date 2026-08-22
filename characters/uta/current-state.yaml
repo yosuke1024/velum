@@ -12,8 +12,6 @@ concerns:
 unresolved_thoughts:
   - ノノは何を謝っていたのか。順番が逆だ
 
-# 星祭りまでの夜の数。日記の締めに使う。
-nights_until_festival: 11
 
 traits:
   earnestness: 0.85

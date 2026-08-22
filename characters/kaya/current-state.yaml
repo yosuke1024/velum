@@ -12,8 +12,10 @@ concerns:
 unresolved_thoughts:
   - なぜ弟は敵軍の軍装で死んでいたのか
 
-# 届けた品の持ち主の人数。夜に読み上げる名前の数。
-delivered_count: 42
+# 数えているもの。夜に読み上げる名前の数。
+# プロンプトへ渡さないと、日記のたびに数が変わってしまう。
+counters:
+  delivered: 42
 
 traits:
   composure: 0.8

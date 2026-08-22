@@ -108,6 +108,23 @@ export function gate(
     }
   }
 
+  // ── 数えているもの ──────────────────────────────────────
+  for (const patch of response.counter_patches) {
+    if (!state.counters || !(patch.key in state.counters)) {
+      violations.push(`数えているもの ${patch.key} が current-state.yaml に存在しない`);
+      continue;
+    }
+    if (patch.delta < 0) {
+      violations.push(`${patch.key} を ${patch.delta} 減らそうとしている（減らせない）`);
+      continue;
+    }
+    if (patch.delta > PATCH_LIMITS.counterDelta) {
+      violations.push(
+        `${patch.key} の増分が ${patch.delta}（上限 +${PATCH_LIMITS.counterDelta}）`,
+      );
+    }
+  }
+
   // ── 記憶 ────────────────────────────────────────────────
   if (response.memory_candidate) {
     const { importance } = response.memory_candidate;
