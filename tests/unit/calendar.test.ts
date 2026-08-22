@@ -75,44 +75,41 @@ describe('翌日と年の変わり目', () => {
   });
 });
 
-describe('稼働開始時の時計と、既存の記述の整合', () => {
+describe('稼働開始時の設計と、既存の記述の整合', () => {
   // 声のフィクスチャと初期状態は暦より先に書かれた。
-  // 暦はそれらが成立するように設計されている——ここが崩れたら暦の側の退行。
+  // 暦（節目の日付）はそれらが成立するように設計されている——ここが崩れたら暦の側の退行。
+  //
+  // world/clocks.yaml は季の計画のたびに進む可変状態なので、ここでは読まない。
+  // 検証するのは「稼働開始日 = 星の月4日」という設計定数と、節目の配置の関係。
 
-  it('5つの時計すべてが星の月4日から始まる', () => {
-    for (const clock of loadClocks()) {
-      expect({ month: clock.month, day: clock.day }).toEqual({ month: 7, day: 4 });
-    }
-  });
+  const START = { month: 7, day: 4 } as const;
 
   it('ウタ:「星祭りまで、あと十一の夜」', () => {
-    const clock = clockFor('primordial');
-    const festival = upcomingObservances('primordial', clock).find(
+    const festival = upcomingObservances('primordial', START).find(
       (o) => o.id === 'star-festival',
     );
     expect(festival?.inDays).toBe(11);
   });
 
   it('リコ:「北の市まであと六日」', () => {
-    const clock = clockFor('silent');
-    const market = upcomingObservances('silent', clock).find(
+    const market = upcomingObservances('silent', START).find(
       (o) => o.id === 'northern-market',
     );
     expect(market?.inDays).toBe(6);
   });
 
   it('テオ: 仮銘審査は月末（星の月30日）', () => {
-    const clock = clockFor('guilds');
-    const review = upcomingObservances('guilds', clock).find(
+    const review = upcomingObservances('guilds', START).find(
       (o) => o.id === 'provisional-sigil-review',
     );
     expect(review?.inDays).toBe(26);
   });
 
-  it('ギルドと静寂の年の差はちょうど六千年（ヴェスパーの首飾りの糸）', () => {
-    const guilds = clockFor('guilds');
-    const silent = clockFor('silent');
-    expect((silent.year ?? 0) - (guilds.year ?? 0)).toBe(6000);
+  it('時計は妥当な状態を保っている（可変ぶんは中身を固定しない）', () => {
+    const clocks = loadClocks();
+    expect(clocks).toHaveLength(5);
+    expect(clockFor('convergence').year).toBe(4217); // 終わらない年
+    expect(clockFor('primordial').year).toBeNull(); // 年を数えない
   });
 });
 

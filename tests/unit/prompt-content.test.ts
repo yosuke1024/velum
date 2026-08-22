@@ -86,6 +86,19 @@ describe('季の計画のプロンプト', () => {
     expect(buildSeasonUserPrompt(context)).toMatch(/そのまま出来事にしない/);
   });
 
+  it('謎を解決しないよう指示する', () => {
+    // 第1季の生成が、父の改ざん・裂け目の仕組み・奇跡の実在を「判明」させた反省。
+    const prompt = buildSeasonSystemPrompt();
+    expect(prompt).toMatch(/解決することは違う/);
+    expect(prompt).toMatch(/「判明」させる出来事を置かない/);
+    expect(prompt).toMatch(/別の説明が可能な形/);
+    expect(prompt).toMatch(/「偶然だ」と言える余地/);
+  });
+
+  it('現実の世界の名前を使わないよう指示する', () => {
+    expect(buildSeasonSystemPrompt()).toMatch(/現実の世界の名前/);
+  });
+
   it('5話ぶんより多めにカードを引く（使わない札があってよい）', () => {
     expect(context.cards.length).toBeGreaterThan(EPISODES_PER_SEASON);
   });
