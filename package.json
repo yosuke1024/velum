@@ -13,7 +13,8 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "day": "tsx scripts/run-day.ts",
-    "plan": "tsx scripts/plan-season.ts"
+    "plan": "tsx scripts/plan-season.ts",
+    "snapshot": "tsx scripts/compile-snapshot.ts"
   },
   "dependencies": {
     "yaml": "^2.6.1",

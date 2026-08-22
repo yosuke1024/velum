@@ -8,6 +8,7 @@
  *  - アーク・カードデッキが全時代ぶんあるか
  *  - 糸が参照する人物が実在するか
  *  - 推し軸・一人称・締めの型が5人で重複していないか
+ *  - Persona Snapshot が追記のみで、番号が飛んでいないか
  */
 
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
@@ -35,6 +36,7 @@ import {
   MemoriesSchema,
 } from '../src/schemas/character.js';
 import { SeasonPlanSchema, BEATS, EPISODES_PER_SEASON } from '../src/schemas/season.js';
+import { SnapshotSchema, SNAPSHOT_FILE } from '../src/schemas/snapshot.js';
 import { CalendarFileSchema, ClocksFileSchema } from '../src/schemas/world.js';
 import { linearDay } from '../src/lib/calendar.js';
 
@@ -322,6 +324,56 @@ if (existsSync(seasonsRoot)) {
         fail(rel, 'convergence の year_in_world は 4217 です');
       }
     }
+  }
+}
+
+// ── characters/*/snapshots ─────────────────────────────────────
+// PixTale はここをバージョン固定で読む。追記のみで、番号は飛ばない。
+// 番号が飛べば、向こうのピンが存在しないファイルを指しうる。
+
+for (const id of CHARACTER_IDS) {
+  const dir = join(ROOT, 'characters', id, 'snapshots');
+  if (!existsSync(dir)) continue;
+
+  const versions: number[] = [];
+  for (const file of readdirSync(dir)) {
+    const match = SNAPSHOT_FILE.exec(file);
+    if (!match) continue; // README.md など
+
+    const rel = `characters/${id}/snapshots/${file}`;
+    const version = Number(match[1]);
+    versions.push(version);
+
+    let raw: unknown;
+    try {
+      raw = JSON.parse(readFileSync(join(dir, file), 'utf8'));
+    } catch (error) {
+      fail(rel, `JSON を解析できません — ${(error as Error).message}`);
+      continue;
+    }
+    const result = SnapshotSchema.safeParse(raw);
+    checked += 1;
+    if (!result.success) {
+      for (const issue of result.error.issues) {
+        fail(rel, `${issue.path.length ? issue.path.join('.') : '(root)'} — ${issue.message}`);
+      }
+      continue;
+    }
+    if (result.data.version !== version) {
+      fail(rel, `version が ${result.data.version} になっています（ファイル名は v${match[1]}）`);
+    }
+    if (result.data.character !== id) {
+      fail(rel, `character が ${result.data.character} になっています`);
+    }
+  }
+
+  versions.sort((a, b) => a - b);
+  const wanted = versions.map((_, i) => i + 1);
+  if (versions.join(',') !== wanted.join(',')) {
+    fail(
+      `characters/${id}/snapshots`,
+      `バージョンが 1.. の連番になっていません（${versions.join(', ')}）`,
+    );
   }
 }
 

@@ -32,3 +32,12 @@ export const eventPath = (id: string, date: string) =>
 
 export const failurePath = (date: string, stage: string) =>
   join(ROOT, 'world', 'failures', `${date}-${stage}.json`);
+
+/**
+ * Persona Snapshot。追記のみで、既存バージョンは上書きしない。
+ * PixTale Proxy はバージョンを固定して読む（docs/persona-snapshot.md §4）。
+ */
+export const snapshotDir = (id: string) => charPath(id, 'snapshots');
+
+export const snapshotPath = (id: string, version: number) =>
+  join(snapshotDir(id), `v${String(version).padStart(4, '0')}.json`);

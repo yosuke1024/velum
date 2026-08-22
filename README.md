@@ -131,7 +131,11 @@ npm run day                 # 今日の日記を書かせる
 
 構造ゲートに違反した日は、状態ファイルを一切変更せずに `world/failures/` へ失敗記録だけを残します。季の計画は消さないので、同じ日をやり直せば同じ出来事から書き直せます。
 
-Persona Snapshot Compiler は次の段階（M3）で実装します。
+```bash
+npm run snapshot            # Persona Snapshot をコンパイルする
+```
+
+Snapshot は日次では作りません。**追記のみ**で、PixTale はバージョンを固定して読むので、増やすのは人間が「この人格を配ってよい」と判断したときだけです。詳細は [docs/persona-snapshot.md](docs/persona-snapshot.md)。
 
 ---
 

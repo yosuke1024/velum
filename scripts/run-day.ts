@@ -9,11 +9,10 @@
  * 計画がなければ何もせずに終わる——先に npm run plan を実行すること。
  */
 
-import { readdirSync, readFileSync, existsSync } from 'node:fs';
-import { join } from 'node:path';
+import { readFileSync } from 'node:fs';
 import { turnFor } from '../src/lib/rotation.js';
 import { charPath, seasonPath, entryPath } from '../src/lib/paths.js';
-import { readYaml, exists } from '../src/lib/storage.js';
+import { readYaml, exists, listDatedFiles } from '../src/lib/storage.js';
 import { calendarLineFor, formatWorldDate } from '../src/lib/calendar.js';
 import { SeasonPlanSchema } from '../src/schemas/season.js';
 import { generateDiary } from '../src/diary/generate.js';
@@ -29,17 +28,7 @@ const dryRun = args.includes('--dry-run');
  * 日記を再入力して人格を自己更新させると、自己模倣と反復が起きる。
  */
 function recentSummaries(id: string, limit = 4): string[] {
-  const root = charPath(id, 'entries');
-  if (!existsSync(root)) return [];
-
-  const files: string[] = [];
-  for (const year of readdirSync(root).sort()) {
-    for (const month of readdirSync(join(root, year)).sort()) {
-      for (const file of readdirSync(join(root, year, month)).sort()) {
-        if (file.endsWith('.json')) files.push(join(root, year, month, file));
-      }
-    }
-  }
+  const files = listDatedFiles(charPath(id, 'entries'), '.json');
 
   return files.slice(-limit).map((path) => {
     const entry = JSON.parse(readFileSync(path, 'utf8')) as {

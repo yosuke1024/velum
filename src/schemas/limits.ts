@@ -76,3 +76,36 @@ export const TEXT_LIMITS = {
   titleMin: 2,
   titleMax: 40,
 } as const;
+
+/**
+ * Persona Snapshot の生成が返すものの上限。
+ *
+ * PATCH_LIMITS と同じ規律で扱う——ゲートとプロンプトの両者がここを読み、
+ * tests/unit/snapshot.test.ts がキーを走査して、プロンプトに書かれていない上限を検出する。
+ *
+ * Snapshot の中身はすべて PixTale の Tale コメントへ届く。したがって
+ * 切り詰め（truncate）はなく、違反はすべてその回の破棄である。
+ * 切り詰めれば、上限を超えたぶんだけ人格が静かに欠けた Snapshot が
+ * 「それらしく見える形」で PixTale へ流れていく。
+ */
+export const SNAPSHOT_LIMITS = {
+  /** 人生が残した癖として書ける件数 */
+  dispositions: 6,
+  /** 癖ひとつの長さ（文字） */
+  dispositionMaxJa: 60,
+} as const;
+
+/**
+ * Snapshot へ載せる量。
+ *
+ * 上限ではなく選択である——生成が決めるのではなく、こちらが人生から抜き出す数を決める。
+ * プロンプトへ書く必要がないのはこのためで、SNAPSHOT_LIMITS とは別に置いてある。
+ */
+export const SNAPSHOT_SELECTION = {
+  /** importance の高い順に載せる長期記憶の数 */
+  memories: 8,
+  /** 人生の事実として載せる canon の追記の数（新しいものから） */
+  canonFacts: 8,
+  /** いま気にかかっていること・片づいていない考えの、それぞれの件数 */
+  standing: 4,
+} as const;
