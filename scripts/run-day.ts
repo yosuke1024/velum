@@ -12,7 +12,7 @@
 import { readdirSync, readFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { turnFor } from '../src/lib/rotation.js';
-import { charPath, seasonPath } from '../src/lib/paths.js';
+import { charPath, seasonPath, entryPath } from '../src/lib/paths.js';
 import { readYaml, exists } from '../src/lib/storage.js';
 import { calendarLineFor, formatWorldDate } from '../src/lib/calendar.js';
 import { SeasonPlanSchema } from '../src/schemas/season.js';
@@ -56,6 +56,13 @@ async function main(): Promise<void> {
   console.log(
     `${date} — 第${turn.season}季 第${turn.episode}話 / ${turn.era} / ${turn.protagonist}`,
   );
+
+  // 同じ日の二重生成を防ぐ。cron と手動実行が重なっても、
+  // 状態差分が二重に適用されることはない。
+  if (!dryRun && exists(entryPath(turn.protagonist, date))) {
+    console.log('  この日の日記は生成済みです。何もしません。');
+    return;
+  }
 
   const planFile = seasonPath(turn.season, turn.era);
   if (!exists(planFile)) {
