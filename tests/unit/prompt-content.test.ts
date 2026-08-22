@@ -164,3 +164,22 @@ describe('日記のプロンプト', () => {
     expect(buildDiarySystemPrompt(context)).toMatch(/めったにない/);
   });
 });
+
+describe('数字と結論の扱い', () => {
+  const character = loadCharacter('teo');
+  const context = { ...character, day, recentSummaries: [] };
+
+  it('渡された数字を数え直さないよう指示する', () => {
+    // ウタが「あと10夜」と渡されて「あと九の夜」と書いた回の反省。
+    const prompt = buildDiarySystemPrompt(context);
+    expect(prompt).toMatch(/渡された数字は、そのまま使う/);
+    expect(prompt).toMatch(/自分で数え直さない/);
+  });
+
+  it('推測を結論として書かないよう指示する', () => {
+    // テオが「この座金が証明している」と書き切った回の反省。
+    const prompt = buildDiarySystemPrompt(context);
+    expect(prompt).toMatch(/推測を結論として書かない/);
+    expect(prompt).toMatch(/疑いは疑いのまま/);
+  });
+});
