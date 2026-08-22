@@ -1,0 +1,47 @@
+era: fracture
+
+fixed:
+  - id: reclaimers-are-neutral
+    fact: |
+      回収人は中立。白い外套は両軍の協定による不可侵の証であり、武器を持たない。
+      回収人が撃たれた事例は「公式には」ない。
+  - id: reclaimers-are-numbered
+    fact: |
+      組合は回収人を名前ではなく番号で呼ぶ。どちらの軍にも属さないため、
+      出身の分かる名を業務で使わない。カヤは第七号。
+  - id: delivery-protocol
+    fact: |
+      届けの作法は三度の確認。
+      ①遺品を検分し持ち主の人生を読む ②届け先の木札と照合する
+      ③遺族の前で品名を読み上げてから渡す。
+  - id: war-lasts-1800-years
+    fact: |
+      破砕戦争は千八百年続く。終わりは見えていない。
+      カヤの願望「全部届けて戦後に行く」が彼女の一生では叶わないことを、読者だけが知っている。
+
+institutions:
+  - id: reclaimers-guild
+    name:
+      ja: 回収人組合
+      en: The Reclaimers' Guild
+    note: |
+      両軍が手を出さない中立の職能組合。死者の持ち物を遺族へ届ける。
+      中立規約の由来は、大収束期の記録院文書に遡るとされる。
+
+places:
+  - id: burnt-bridge
+    name:
+      ja: 焼けた橋
+      en: The Burnt Bridge
+    note: 停戦線。月に一度、カヤとダリが遺品を交換する。
+  - id: haruna
+    name:
+      ja: ハルナ村
+      en: Haruna
+    note: 峠の向こう。戦線から外れている。カヤの母イサが住む。
+  - id: guild-post
+    name: 回収人組合の詰所
+    note: 依頼を受け、木札を発行する。
+  - id: pass-road
+    name: 峠道
+    note: 雪が来ると閉じる。

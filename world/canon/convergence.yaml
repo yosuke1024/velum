@@ -1,0 +1,52 @@
+era: convergence
+
+fixed:
+  - id: convergence-is-one-year
+    fact: |
+      大収束は4,217年の一年間の出来事であり、いまは進行中。
+      セヴランの日記はリアルタイムの一次資料であり、後世から引用される文書になる。
+  - id: great-clock
+    fact: |
+      アルヴィスの大時計は四時十七分で溶けて止まっている。
+      4,217 という年号との符合を、セヴランは「偶然、要検証」と書き続けている。
+  - id: record-format
+    fact: |
+      記録院の様式では、各項に「確認」「未確認」「要検証」のいずれかを付す。
+      訂正は消さず、見え消し線で残す。
+  - id: rifts-move
+    fact: |
+      裂け目は場所が固定されていない。街の地理が日ごとに変わる。
+  - id: record-house-is-gone
+    fact: |
+      記録院は崩壊し、地下書庫は裂け目に呑まれて千年分の記録が消えた。
+      セヴランは組織として存在しない記録院の、最後の書記である。
+
+institutions:
+  - id: record-house
+    name:
+      ja: 記録院
+      en: The Record House
+    note: |
+      アルヴィスの公的記録を担っていた組織。崩壊済み。
+      セヴランは日記の署名に、いまも「記録院書記」と肩書きを入れる。
+
+places:
+  - id: record-house-ruin
+    name: 記録院の廃墟
+    note: セヴランの住処。本棚の影にフムが住んでいる。
+  - id: alvis-square
+    name: アルヴィス広場
+    note: 大時計がある。四時十七分で止まっている。
+  - id: undercroft
+    name: 地下書庫の跡
+    note: 千年分の記録が消えた場所。フムはここの本を暗唱する。
+  - id: moving-rifts
+    name: 動く裂け目
+    note: 日ごとに位置が変わる。近づくと物の性質が変わる。
+
+cities:
+  - id: alvis
+    name:
+      ja: アルヴィス
+      en: Alvis
+    note: 裂け目の都。収束の中心。

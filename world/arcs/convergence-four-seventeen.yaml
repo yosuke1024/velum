@@ -1,0 +1,23 @@
+id: convergence-four-seventeen
+era: convergence
+protagonist: sevran
+status: active
+name:
+  ja: 四時十七分
+  en: Four Seventeen
+
+premise: |
+  街のあちこちに現れるミルテの筆跡が、すべて同じ時刻を指している。
+  セヴランは「要検証」を付けながら、その時刻の意味を追い始める。
+
+unresolved:
+  - id: what-is-four-seventeen
+    question: 四時十七分は何の時刻か
+  - id: is-milte-alive
+    question: ミルテは生きているのか、記録なのか
+  - id: corrections-come-true
+    question: 自分が訂正した記述が、なぜ後で起きるのか
+  - id: what-hum-waits-for
+    question: フムは何を待っているのか
+  - id: who-will-read-this
+    question: この記録を、誰が読むのか

@@ -1,0 +1,45 @@
+era: guilds
+
+# 生成がこの canon と矛盾したら、その日を破棄する。
+# 条文番号などの細部は生成の即興を許すが、下の fixed と矛盾してはいけない。
+
+fixed:
+  - id: appraisal-ranks
+    fact: |
+      大鑑定院の階級は、無銘（見習い）→ 仮銘 → 銘持ち → 大鑑定官。
+      銘は鑑定書に打つ個人印で、打った鑑定に一生責任を負う。
+  - id: regulation-1
+    fact: 鑑定規約 第1条「物は嘘をつかない。嘘をつくのは目である。」
+  - id: regulation-31
+    fact: 鑑定規約 第31条「鑑定士は、感情を鑑定書に持ち込まない。」
+  - id: regulation-207
+    fact: 鑑定規約 第207条「出自の知れない品を、出自不明と記すことを恥じるな。」
+  - id: provisional-sigil-review
+    fact: 仮銘審査を受けるには、銘持ち一名の推薦状が要る。
+
+institutions:
+  - id: grand-court
+    name:
+      ja: 大鑑定院
+      en: The Grand Court of Appraisal
+    note: |
+      鑑定士を育て、鑑定書に権威を与える制度の中心。
+      のちの時代の「鑑定ギルド」の前身にあたる。
+  - id: vesper-workshop
+    name:
+      ja: ヴェスパー工房
+      en: The Vesper Workshop
+    note: |
+      名の知れた贋作師の一家。「夕べの祈り」の含みを持つ工房銘。
+      テオの実家であり、摘発後は兄ロウが継いでいる。
+
+places:
+  - id: grand-court-hall
+    name: 大鑑定院
+    note: テオが住み込みで働く。審査室、書庫、無銘の相部屋。
+  - id: workshop-street
+    name: 工房通り
+    note: 職人と商人の通り。持ち込み鑑定の依頼はここから来ることが多い。
+  - id: court-gate
+    name: 大鑑定院の門前
+    note: ロウが時折現れる場所。中には入ってこない。

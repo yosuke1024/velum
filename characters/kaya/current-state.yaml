@@ -1,0 +1,32 @@
+id: kaya
+updated_at: null
+
+mood: 静かな疲労と義務感
+immediate_goal: 雪が来る前に峠向こうへ三件届ける
+doubt: 母に弟のことを話すか
+
+concerns:
+  - 峠が雪で閉じるまでの日数
+  - 袋の底の、届け先のない遺品
+
+unresolved_thoughts:
+  - なぜ弟は敵軍の軍装で死んでいたのか
+
+# 届けた品の持ち主の人数。夜に読み上げる名前の数。
+delivered_count: 42
+
+traits:
+  composure: 0.8
+  tenderness: 0.75
+  stubbornness: 0.6
+  self_denial: 0.7
+
+beliefs:
+  預かったものは必ず届く場所がある: 0.8
+  嘘はいつか自分に返る: 0.65
+  新しい物には人生が通っていない: 0.7
+
+habits:
+  - 夜に名前を読み上げる
+  - 外套の破れを必ず繕う
+  - 届ける前に手を洗う

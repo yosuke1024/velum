@@ -1,0 +1,24 @@
+id: primordial-star-festival
+era: primordial
+protagonist: uta
+status: active
+name:
+  ja: 星祭りの継承
+  en: The Succession at the Star Festival
+
+premise: |
+  次の星祭りまでに、ガルドに継承の儀を認めさせなければならない。
+  だが認めさせる唯一の方法は、声を証明すること——
+  ウタ自身が最も信じていないものを。
+
+unresolved:
+  - id: what-nono-apologised-for
+    question: 骨櫛の声は、何を謝っていたのか
+  - id: why-gald-fears
+    question: ガルドはなぜ声を恐れるのか
+  - id: the-singing-stone
+    question: 歌う石を取り返すか
+  - id: who-can-perform-the-rite
+    question: 継承の儀を、誰が執り行えるのか
+  - id: why-the-vale-is-quiet
+    question: 鳴りの谷はなぜ「静か」なのか

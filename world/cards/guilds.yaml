@@ -1,0 +1,43 @@
+era: guilds
+
+# イベントカード。World Tick の入力デッキ。
+# アーク・未解決スレッド・人物の現在状態と組み合わせて、その日の出来事を作る。
+# weight が高いほど引かれやすい。日常カードを厚く、事件カードを薄くする。
+
+cards:
+  - id: appraisal-duty
+    weight: 5
+    prompt: 持ち込み鑑定の当番が回ってくる。誰かが何かを持ってくる。
+  - id: senior-misreads
+    weight: 3
+    prompt: 先輩の鑑定を見ていて、間違いに気づく。言えるか、言えないか。
+  - id: lowe-at-the-gate
+    weight: 2
+    prompt: ロウが門前に現れる。他愛ない話をして帰る。何をしに来たのかは言わない。
+  - id: regulation-amended
+    weight: 2
+    prompt: 規約の改定が告知される。条文番号が変わる。誰も気にしていない。
+  - id: vallen-summons
+    weight: 2
+    prompt: ヴァレンに呼ばれる。用件は鑑定の話かもしれないし、そうでないかもしれない。
+  - id: workshop-street-festival
+    weight: 2
+    prompt: 工房通りで祭り。職人たちが自分の仕事を誇る日。
+  - id: unsigned-work
+    weight: 3
+    prompt: 無銘の品が持ち込まれる。銘がないのに、目を離せない。
+  - id: peer-promoted
+    weight: 2
+    prompt: 同期の誰かが仮銘を得る。祝わなければならない。
+  - id: forgery-suspected
+    weight: 2
+    prompt: 贋作の疑いがある品が院に入る。誰かが鑑定しなければならない。
+  - id: quiet-day-in-the-archive
+    weight: 4
+    prompt: 何も起きない日。書庫で古い鑑定書を読む。
+  - id: gloves-stained
+    weight: 2
+    prompt: 白手袋を汚してしまう。些細なことなのに、動揺する。
+  - id: client-disputes
+    weight: 2
+    prompt: 鑑定結果に依頼人が納得しない。規約は正しいが、相手は怒っている。

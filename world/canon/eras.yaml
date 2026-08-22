@@ -1,0 +1,93 @@
+# Velum の5つの時代
+#
+# era の ID は PixTale 本体の Chronicles 機能で既に使われている値と一致する。
+# 変更してはいけない。鑑定時にアイテムへ付与される時代がこの5つであり、
+# Persona Snapshot のルーティングもこの ID で行う。
+
+eras:
+  - id: primordial
+    name:
+      ja: 原初の沈黙
+      en: Primordial Silence
+    years: "~???–0"
+    order: 1
+    protagonist: uta
+    # 鑑定時にこの時代が付与される基準（PixTale 側の判定）
+    assignment: 原始的、古代的、未加工
+    question:
+      ja: これは何の兆しか
+      en: What omen is this?
+    focus: 素材の声・霊・禁忌
+    humor: 現代物の完全な誤読（バーコードを星図と読む、端子を精霊の口と読む）
+    palette:
+      base: ["#E8E0CF", "#F0EDE4"]
+      accent: "#2B3A67"
+
+  - id: guilds
+    name:
+      ja: ギルドの時代
+      en: Guild Age
+    years: "0–4,000"
+    order: 2
+    protagonist: teo
+    assignment: 制度的、工芸的、学術的
+    question:
+      ja: どう作られたか
+      en: How was this made?
+    focus: 技法・銘・規格・道具痕
+    humor: 官僚的不条理（現代物にも許可証・書式・等級を要求する）
+    palette:
+      base: ["#2F4A3D", "#E8E0CF"]
+      accent: "#B08D57"
+
+  - id: convergence
+    name:
+      ja: 大収束
+      en: Convergence
+    years: "4,217"
+    order: 3
+    protagonist: sevran
+    assignment: 混沌的、次元歪曲、異形
+    question:
+      ja: 何が混ざったか
+      en: What has been mixed into this?
+    focus: 歪み・異界痕・次元の匂い
+    humor: あり得ない事象を完全に事務的な様式で記録する deadpan
+    palette:
+      base: ["#1F2430", "#3A4A63"]
+      accent: "#6B4E8C"
+
+  - id: fracture
+    name:
+      ja: 破砕戦争
+      en: Fracture War
+    years: "4,217–6,000"
+    order: 4
+    protagonist: kaya
+    assignment: 戦闘跡、軍事的、絶望的
+    question:
+      ja: 誰が持っていたか
+      en: Who carried this before?
+    focus: 傷・修理痕・磨り減り・遺された未練
+    humor: 何でも戦傷として読む＋過剰に儀礼的な「お届け」プロトコル
+    palette:
+      base: ["#D6D2C8", "#3E3128"]
+      accent: "#A83A4A"
+
+  - id: silent
+    name:
+      ja: 静寂の時代
+      en: Silent Age
+    years: "6,000–現在"
+    order: 5
+    protagonist: riko
+    # 鑑定で最も一般的に付与される時代。統合後の登板数が最も多い。
+    assignment: 休眠的、日常的、最も一般的
+    question:
+      ja: まだ何ができるか
+      en: What can this still do?
+    focus: 日用品に眠る力・使い道・値段・持ち主
+    humor: 日常品への過剰な畏怖からの、直後の即物的な値付け
+    palette:
+      base: ["#CBB78E", "#3E3128"]
+      accent: "#A8433A"

@@ -1,0 +1,23 @@
+id: guilds-provisional-sigil
+era: guilds
+protagonist: teo
+status: active
+name:
+  ja: 仮銘審査
+  en: The Provisional Sigil Review
+
+premise: |
+  仮銘審査には銘持ち一名の推薦が要る。ヴァレンは推薦を出さない——なぜか。
+  テオは「30年前の誤鑑定書」を握ったまま、その人に推薦を願えるのか。
+
+unresolved:
+  - id: why-no-recommendation
+    question: ヴァレンはなぜ推薦を渋るのか
+  - id: the-old-error
+    question: 30年前の誤鑑定書をどうするか。報告すれば師匠の名が傷つく
+  - id: lowes-purpose
+    question: ロウの来訪の目的は何か
+  - id: vesper-item-in-review
+    question: |
+      （後続アークの種）審査課題にヴェスパー工房の品が出たらどうするか。
+      正しく鑑定すれば出自が疑われ、見逃せば鑑定士失格。

@@ -1,0 +1,88 @@
+# 時代を跨ぐ4本の糸
+#
+# 日記の生成は時代ごとに独立させる。糸は読者だけが横断して発見できる形で仕込む。
+# 生成プロンプトへ「この糸を回収せよ」と指示してはいけない。
+# 人物は自分が糸の一部であることを知らないまま生きる。
+#
+# 静寂の時代に4本すべてが集まるのは、そこが鑑定で最も多く登板する時代だから。
+
+threads:
+  - id: listener-lineage
+    name:
+      ja: 聴き手の系譜
+      en: The Listener Lineage
+    summary: Echo を聴く力の伝播
+    note: |
+      リコだけがこの系譜の外にいる。それが彼女の設計の核。
+      5人で唯一「特別な目を持たない」主人公であり、「目」ではなく「憧れ」で物を見る。
+    touches:
+      - era: primordial
+        who: uta
+        role: 起点。Echo の最初の観測者であり、世界最初の鑑定士。
+      - era: guilds
+        who: teo
+        role: 「作り手の執念」に反応する目。本人は真贋の勘だと思っている。
+      - era: fracture
+        who: kaya
+        role: 遺品に残った残響を聴く。本人は観察眼だと思っている。
+      - era: silent
+        who: mio
+        role: 片耳を物に寄せる癖。ウタの所作の六千年後の反復。
+
+  - id: appraisal-institution
+    name:
+      ja: 鑑定制度の系譜
+      en: The Lineage of the Institution
+    summary: でっち上げ → 規約 → 現行の Artifact Guild
+    note: |
+      世界でいちばん厳格な制度の源が、19歳の女の子のでっち上げだった——
+      という、世界観全体のオチ。
+    touches:
+      - era: primordial
+        who: uta
+        role: 見様見真似で作った儀式の型。半分は自己流。
+      - era: guilds
+        who: grand-court
+        role: 大鑑定院。ウタの所作の遠い子孫としての規約。
+      - era: silent
+        who: garon
+        role: 胸に提げた古い銘印。系譜の最後の末裔の証。
+      - era: present
+        who: artifact-guild
+        role: PixTale 本体に登場する Artifact Guild。
+
+  - id: vesper-necklace
+    name:
+      ja: ヴェスパー工房の首飾り
+      en: The Vesper Necklace
+    summary: 贋作が時を経て本物になる
+    note: |
+      この世界の Echo 観の核心。
+      執念のこもった贋作が、六千年かけて本物の Echo を宿す。
+      リコは知らないまま、世界でいちばん大事な物の番人をしている。
+    touches:
+      - era: guilds
+        who: lowe
+        role: 作る。テオが家出の夜に持ち出した親の贋作と同じ意匠。
+      - era: fracture
+        who: null
+        role: 戦場に流れる。「戦場由来の遺物」として無数に散る。
+      - era: silent
+        who: riko
+        role: 荷車の「一番売れない品」。値札を書き換えるたび、なぜか値段が上がる。
+
+  - id: sevran-record
+    name:
+      ja: セヴランの記録帳
+      en: Sevran's Record
+    summary: 後世唯一の一次資料
+    touches:
+      - era: convergence
+        who: sevran
+        role: 執筆。四時十七分を毎日書き写している。
+      - era: fracture
+        who: reclaimers-guild
+        role: 回収人組合の中立規約が、この記録の古い作法を典拠にしている。
+      - era: silent
+        who: null
+        role: 大収束の伝承の出典。原本は残っていない。

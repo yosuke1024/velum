@@ -1,0 +1,49 @@
+era: primordial
+
+fixed:
+  - id: no-writing
+    fact: |
+      サナ氏族に文字はない。記録の手段はなく、すべては口伝と儀式の所作で伝わる。
+      したがってウタの「日記」は書いたものではなく、夜にひとりで唱える言葉。
+      5人の主人公で唯一、書かない語り手である。
+  - id: succession-at-star-festival
+    fact: |
+      継承の儀は星祭りの夜にしか行えず、先代が執り行う決まり。
+      ノノは儀を行う前に急死した。誰がウタを継がせられるのかが宙に浮いている。
+  - id: singing-vale-is-forbidden
+    fact: |
+      鳴りの谷は禁忌。物がひとりでに鳴る谷。
+      ウタだけが「あそこは静かだ」と言う。
+  - id: the-voice-has-no-fixed-form
+    fact: |
+      「声」に定型はない。物によって単語だったり、感情だったり、匂いのような何かだったりする。
+      ウタは毎回それを自分の言葉に翻訳している。翻訳の癖が彼女の人格そのもの。
+  - id: listener-is-a-role-not-a-rank
+    fact: |
+      氏族はウタを「聴き手」と呼ぶが、それは職能の呼び名であって継承の証ではない。
+
+institutions:
+  - id: sana
+    name:
+      ja: サナ氏族
+      en: The Sana
+    note: 「水を分ける者」の意。文字を持たない。
+
+places:
+  - id: sana-camp
+    name: サナ氏族の野営地
+    note: 季節で移動する。
+  - id: chiefs-tent
+    name: 長の天幕
+    note: ガルドが取り上げた「歌う石」が今もここにある。
+  - id: singing-vale
+    name:
+      ja: 鳴りの谷
+      en: The Singing Vale
+    note: 物がひとりでに鳴る谷。立ち入りは禁忌。
+  - id: star-hill
+    name: 星見の丘
+    note: 星祭りが行われる。継承の儀もここで。
+  - id: water-place
+    name: 水場
+    note: 旱魃の年、ウタが「声」で当てたとされる場所。

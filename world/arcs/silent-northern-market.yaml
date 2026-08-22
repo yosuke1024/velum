@@ -1,0 +1,24 @@
+id: silent-northern-market
+era: silent
+protagonist: riko
+status: active
+name:
+  ja: 北の市と権利書
+  en: The Northern Market and the Deed
+
+premise: |
+  オルバが「目覚めの棚」の権利書を秋の競売にかける。
+  リコは頭金を作るため北の市を目指して在庫を捌く——が、
+  一番高く売れそうな品ほど、なぜか売れない値段を付けてしまう。
+
+unresolved:
+  - id: auction-deadline
+    question: 競売の期日までに頭金が足りるのか
+  - id: cannot-visit-garon
+    question: ガロンに会いに行けないまま、噂だけを聞き続けるのか
+  - id: why-mio-looks
+    question: ミオはなぜ売れない品ばかり見るのか
+  - id: rising-price
+    question: 値札を書き換えるたび、なぜ首飾りの値段が上がるのか
+  - id: the-charm-village
+    question: 偽のお守りが子供の熱を「治した」村へ、金を返しに戻るべきか

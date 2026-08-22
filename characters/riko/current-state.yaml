@@ -1,0 +1,29 @@
+id: riko
+updated_at: null
+
+mood: 軽口の下の焦り（頭金が足りない）
+immediate_goal: 北の市で在庫を捌く
+doubt: ガロンに会いに行く口実
+
+concerns:
+  - 競売の期日までに頭金が足りない
+  - 荷車の車輪が怪しい
+
+unresolved_thoughts:
+  - なぜ首飾りの値札を書き換えるたび、値段を上げてしまうのか
+
+traits:
+  cheer: 0.85
+  showmanship: 0.8
+  sentimentality: 0.7
+  business_sense: 0.5
+
+beliefs:
+  本物はどこかにある: 0.75
+  自分に見る目はない: 0.6
+  嘘も磨けば嘘じゃない: 0.65
+
+habits:
+  - 売り物の値段を先に言う
+  - 存在しない部門の名前を出す
+  - 売れ残りのお守りを首にかける

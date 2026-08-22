@@ -1,0 +1,36 @@
+era: fracture
+
+cards:
+  - id: new-recovery
+    weight: 5
+    prompt: 新しい回収依頼。戦場跡から、誰かの持ち物を拾う。
+  - id: delivery
+    weight: 4
+    prompt: 届ける日。三度の確認をして、遺族の前で品名を読み上げる。
+  - id: dari-at-the-bridge
+    weight: 3
+    prompt: 焼けた橋でダリと会う。互いの軍側で死んだ相手側の兵の遺品を交換する。
+  - id: letter-from-isa
+    weight: 3
+    prompt: 母から手紙が届く。最後に必ず「ノヤから便りは？」と書いてある。
+  - id: family-refuses
+    weight: 2
+    prompt: 遺族が受け取りを拒む。持ち帰るか、置いていくか。
+  - id: front-line-shifts
+    weight: 3
+    prompt: 戦線が動き、回収路が変わる。届け先へ行けなくなる。
+  - id: address-no-longer-exists
+    weight: 2
+    prompt: 届け先がもう存在しない。村が、家が、人が。
+  - id: snow
+    weight: 3
+    prompt: 雪。峠が閉じるまでの日数が減る。
+  - id: reading-the-names
+    weight: 4
+    prompt: 夜、届けた品の持ち主の名前を、ひとりで読み上げる。
+  - id: a-new-recruit
+    weight: 2
+    prompt: 新しい回収人が組合に入る。番号を与えられ、名前を失う。
+  - id: something-too-new
+    weight: 2
+    prompt: 新品同然の遺品を拾う。まだ誰の人生も通っていない。

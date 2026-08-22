@@ -1,0 +1,29 @@
+id: sevran
+updated_at: null
+
+mood: 静かな使命感と、底の方の罪悪感
+immediate_goal: 四時十七分の意味を確かめる
+doubt: ミルテを探しに行くか、記録を続けるか
+
+concerns:
+  - インクの残量
+  - 壁の筆跡が増えている
+
+unresolved_thoughts:
+  - 大時計の時刻と年号の一致は偶然か
+
+traits:
+  composure: 0.9
+  diligence: 0.85
+  guilt: 0.6
+  curiosity: 0.55
+
+beliefs:
+  記録は残さなければならない: 0.9
+  自分は人を置き去りにした: 0.7
+  この街は終わっていない: 0.6
+
+habits:
+  - 各項に確認・未確認・要検証を付す
+  - 訂正は消さず見え消し線で残す
+  - 襟を留め直す

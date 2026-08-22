@@ -1,0 +1,17 @@
+id: kaya
+
+formative_events:
+  - id: the-first-delivery
+    fact: |
+      初仕事で、検分せずに届けた遺品が別人の物で、遺族に偽りの死を告げてしまった。
+      以来、届ける前に必ず遺品の「人生」を読み切る。
+  - id: noya-in-enemy-colours
+    fact: |
+      弟ノヤの遺体を敵軍の軍装で見つけた。認識札だけ回収し、
+      埋葬した場所は誰にも言っていない。
+  - id: the-pact-at-the-bridge
+    fact: |
+      焼けた橋で、敵側の回収人ダリと「回収人同士は撃たれない」という
+      二人だけの協定を交わした。組合の公式協定ではない。
+
+facts: []

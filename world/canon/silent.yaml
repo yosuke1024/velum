@@ -1,0 +1,43 @@
+era: silent
+
+fixed:
+  - id: no-waking-observed
+    fact: |
+      「目覚め」——遺物が力を示す現象——は、公式には百年以上観測されていない。
+      いまや伝承と詐欺の領域であり、リコの願望は世間ではロマンか商売文句でしかない。
+  - id: deed-auction
+    fact: |
+      「目覚めの棚」の権利書は質屋オルバが持っており、秋の競売に出すと告知されている。
+  - id: riko-license
+    fact: |
+      リコの行商許可証の職業欄は「古物商」。本人の自称は「遺物商」。役所は訂正してくれない。
+  - id: riko-trading-is-one-person
+    fact: |
+      「リコ商会」の社員はリコひとり。鑑定部も経理部門も存在しない。
+
+institutions:
+  - id: riko-trading
+    name:
+      ja: リコ商会
+      en: Riko Trading
+    note: |
+      屋号。看板には「WONDERS, WHISPERS, & WHATNOT」。
+      架空の部門を騙るのが彼女の口癖であり、ひとりであることの埋め合わせ。
+
+places:
+  - id: waking-shelf
+    name:
+      ja: 目覚めの棚
+      en: The Waking Shelf
+    note: |
+      ガロンの店だった建物。今は倉庫。
+      10歳のリコが「本物が目覚める瞬間」を見た——と信じている場所。
+  - id: orba-pawnshop
+    name: オルバの質屋
+    note: 権利書を握る金貸し。
+  - id: northern-market
+    name: 北の市
+    note: 巡回路で最大の市。在庫を捌くならここ。
+  - id: circuit-towns
+    name: 巡回路の市場町
+    note: 名前のない小さな市が点在する。雨が降れば客は来ない。

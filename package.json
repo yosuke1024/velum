@@ -1,0 +1,26 @@
+{
+  "name": "velum",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A fictional world whose five inhabitants keep diaries, accumulate memories, and grow into the narrators of PixTale.",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "validate": "tsx scripts/validate.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "yaml": "^2.6.1",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}

@@ -1,0 +1,51 @@
+# 日次の生成。ギルド → 静寂 → 大収束 → 破砕 → 原初 の5日周期で、
+# 番の時代だけ World Tick を進め、その時代の主人公が日記を書く。
+#
+# 生成パイプラインは M2 で実装する。それまでこのワークフローは無効のまま置く。
+# 誤って走らないよう workflow_dispatch のみにしてある。
+
+name: daily
+
+on:
+  workflow_dispatch:
+  # M2 で有効化する:
+  # schedule:
+  #   - cron: '0 21 * * *' # 06:00 JST
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    # フォークからの PR で secrets を使う生成が走らないようにする。
+    # GitHub 標準の secrets 保護に加えて、ここでも明示的に絞る。
+    if: github.repository_owner == 'yosuke1024'
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+
+      - name: Not implemented yet
+        run: |
+          echo "生成パイプラインは M2 で実装する。"
+          echo "docs/world-tick.md と docs/diary.md を参照。"
+          exit 1
+
+      # M2 で有効化する:
+      # - run: npm run tick
+      #   env:
+      #     GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      # - run: npm run diary
+      #   env:
+      #     GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      # - run: npm run validate
+      # - name: Commit the day
+      #   run: |
+      #     git config user.name  'velum'
+      #     git config user.email 'noreply@pixapps.ai'
+      #     git add world/ticks characters
+      #     git diff --staged --quiet || git commit -m "world: $(date -u +%Y-%m-%d)"
+      #     git push

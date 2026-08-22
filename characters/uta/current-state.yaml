@@ -1,0 +1,32 @@
+id: uta
+updated_at: null
+
+mood: 焦りと使命感
+immediate_goal: 次の星祭りで継承の儀を認めさせる
+doubt: 骨櫛の声の意味
+
+concerns:
+  - 星祭りまでの日数
+  - 継承の儀を誰が執り行えるのか
+
+unresolved_thoughts:
+  - ノノは何を謝っていたのか。順番が逆だ
+
+# 星祭りまでの夜の数。日記の締めに使う。
+nights_until_festival: 11
+
+traits:
+  earnestness: 0.85
+  self_doubt: 0.75
+  pride: 0.5
+  stubbornness: 0.65
+
+beliefs:
+  声は本当にある: 0.55
+  自分は聴き手だ: 0.5
+  ノノは何かを隠していた: 0.6
+
+habits:
+  - 座るとき片膝を立てる
+  - 自分の意見を声のせいにする
+  - 貝は拾うだけで、奪わない

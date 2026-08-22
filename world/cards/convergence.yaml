@@ -1,0 +1,36 @@
+era: convergence
+
+cards:
+  - id: rift-moves
+    weight: 4
+    prompt: 裂け目が移動する。昨日通れた道が、今日は通れない。
+  - id: new-handwriting
+    weight: 3
+    prompt: 壁に新しい筆跡が現れる。ミルテの癖がある。
+  - id: hum-recites
+    weight: 4
+    prompt: フムが本を暗唱する。ときどき、存在しないはずの本を暗唱する。
+  - id: survivor-arrives
+    weight: 2
+    prompt: 生存者が記録を求めて訪ねてくる。何かを確かめたがっている。
+  - id: physics-fails
+    weight: 3
+    prompt: 空、光、重さ、音——あり得ないことが起きる。記録様式に従って記す。
+  - id: margin-note
+    weight: 2
+    prompt: 記録帳の余白に、書いた覚えのない行がある。書き間違いとして訂正する。
+  - id: supplies-run-low
+    weight: 3
+    prompt: インクか紙が尽きかける。廃墟を漁って調達する。
+  - id: the-clock-again
+    weight: 2
+    prompt: 大時計を見に行く。四時十七分。今日も書き写す。
+  - id: quiet-cataloguing
+    weight: 4
+    prompt: 何も起きない日。残った記録を整理し、目録を作り直す。
+  - id: hum-does-something-new
+    weight: 2
+    prompt: フムが今までしなかったことをする。善意なのか観察なのか、判定できない。
+  - id: a-name-he-knows
+    weight: 2
+    prompt: 記録の中に、知っている名前を見つける。

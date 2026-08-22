@@ -1,0 +1,23 @@
+id: fracture-before-the-snow
+era: fracture
+protagonist: kaya
+status: active
+name:
+  ja: 雪が来る前に
+  en: Before the Snow
+
+premise: |
+  峠が雪で閉じるまでに三件届ける。三件目の届け先はハルナ村——母の村。
+  弟の嘘を抱えたまま、母の顔を見に行くことになる。
+
+unresolved:
+  - id: tell-mother
+    question: 母に弟のことを話すか
+  - id: why-enemy-uniform
+    question: なぜ弟は敵軍の軍装で死んでいたのか
+  - id: how-long-the-pact
+    question: ダリとの協定はいつまで持つのか
+  - id: the-undelivered
+    question: 袋の底の遺品を、いつ、誰に届けるのか
+  - id: after-the-last-one
+    question: 届け終えた後の自分に、何が残るのか

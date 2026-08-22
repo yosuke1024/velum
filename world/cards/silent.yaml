@@ -1,0 +1,39 @@
+era: silent
+
+cards:
+  - id: market-day
+    weight: 5
+    prompt: 市が立つ。荷車を広げ、口上を張る。売れる日もあれば、売れない日もある。
+  - id: mio-visits
+    weight: 3
+    prompt: ミオが来る。何も買わず、売れない棚ばかり見ていく。
+  - id: orba-demands
+    weight: 2
+    prompt: オルバから督促、または競売の日取りの知らせ。
+  - id: rumour-of-garon
+    weight: 2
+    prompt: ガロンの噂を聞く。会いに行く口実にはならない噂。
+  - id: someone-brings-a-find
+    weight: 3
+    prompt: 掘り出し物が持ち込まれる。安く買えるが、本物とは限らない。
+  - id: rain-no-customers
+    weight: 3
+    prompt: 雨。客が来ない。荷車の中身を数え直す一日。
+  - id: rival-peddler
+    weight: 2
+    prompt: 同業者と縄張りが重なる。揉めるか、分けるか。
+  - id: a-customer-with-a-story
+    weight: 3
+    prompt: 買わないのに長話をしていく客。物より人生の話をされる。
+  - id: repair-the-cart
+    weight: 2
+    prompt: 荷車が壊れる。直せば直すほど、この荷車が自分のものになっていく。
+  - id: the-unsold-necklace
+    weight: 2
+    prompt: 「一番売れない品」の値札を書き換える。なぜか、また値段が上がる。
+  - id: road-between-towns
+    weight: 4
+    prompt: 町から町への道。誰にも会わない。売り物と自分だけ。
+  - id: a-fake-that-worked
+    weight: 1
+    prompt: 自分が売った偽物が、誰かの役に立ったという話が届く。

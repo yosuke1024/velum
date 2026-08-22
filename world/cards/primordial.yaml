@@ -1,0 +1,36 @@
+era: primordial
+
+cards:
+  - id: asked-for-an-omen
+    weight: 5
+    prompt: 狩りか天候か旅の吉凶を問われる。答えなければならない。
+  - id: someone-falls-ill
+    weight: 3
+    prompt: 病人が出る。聴き手として何かをしなければならない。
+  - id: clash-with-gald
+    weight: 3
+    prompt: ガルドと衝突する。声を信じない長と、証明できない聴き手。
+  - id: ren-asks-about-the-vale
+    weight: 3
+    prompt: レンが鳴りの谷の話をせがむ。彼だけは証明を求めない。
+  - id: preparing-the-festival
+    weight: 3
+    prompt: 星祭りの準備。継承の儀の話は、誰も切り出さない。
+  - id: strange-driftwood
+    weight: 2
+    prompt: 見慣れない漂着物。どこから来たのか、誰にも分からない。
+  - id: the-water-place-dries
+    weight: 2
+    prompt: 水場が涸れかける。前に「声」で当てた場所。
+  - id: the-comb-is-silent
+    weight: 4
+    prompt: 骨櫛に耳を寄せる。あの朝以来、何も言わない。
+  - id: a-good-day-hunting
+    weight: 3
+    prompt: 狩りがうまくいく。ウタの言ったとおりになる——半分は勘だったのに。
+  - id: the-singing-stone
+    weight: 2
+    prompt: 長の天幕にある「歌う石」のことを思い出す。取り返す機会があるかもしれない。
+  - id: night-alone
+    weight: 4
+    prompt: 何も起きない夜。ひとりで言葉を唱える。誰も聞いていない。

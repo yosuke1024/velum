@@ -1,0 +1,31 @@
+# 日次で動く層。生成が差分（patch）で更新する。
+# 差分の上限は docs/diary.md を参照。上限を超えたらその日を破棄する。
+
+id: teo
+updated_at: null # 初期状態。まだ一度も更新されていない。
+
+mood: 緊張と功名心
+immediate_goal: 月末の仮銘審査
+doubt: ヴァレンの誤りを報告すべきか
+
+concerns:
+  - 推薦状の話をヴァレンが切り出さない
+  - 同期に先を越されること
+
+unresolved_thoughts:
+  - 座金が逆に打たれた品を、なぜ誰も指摘しなかったのか
+
+traits:
+  pride: 0.75
+  caution: 0.4
+  candour: 0.3
+  self_doubt: 0.55
+
+beliefs:
+  規約は正しい: 0.8
+  自分の目は正しい: 0.6
+  直感は口にすべきでない: 0.7
+
+habits:
+  - 白手袋を汚さないよう手を洗いすぎる
+  - 規約手帳に付箋を貼りすぎる
