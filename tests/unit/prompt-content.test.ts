@@ -17,6 +17,7 @@ const turn: Turn = {
 const episode = EpisodeSchema.parse({
   number: 1,
   beat: '発端',
+  world_date: { month: 7, day: 4 },
   events: [
     {
       summary: '真鍮商が燭台を持ち込み、先輩三人が黄金期の逸品と判定した',
@@ -28,7 +29,14 @@ const episode = EpisodeSchema.parse({
   leaves_open: '座金の向きを誰も見ていない',
 });
 
-const day: Day = { date: '2026-09-01', turn, episode, carriedOver: null };
+const day: Day = {
+  date: '2026-09-01',
+  turn,
+  episode,
+  carriedOver: null,
+  worldYear: 3745,
+  calendarLine: '3,745年 星の月4日（秋）。仮銘審査まであと26日',
+};
 
 describe('季の計画のプロンプト', () => {
   const context = buildSeasonContext(1, 'guilds', 'teo');

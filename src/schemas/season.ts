@@ -20,9 +20,25 @@ export const EPISODES_PER_SEASON = 5;
 /** 5人 × 5話。ローテーション1周が5日なので、1季は25日になる。 */
 export const DAYS_PER_SEASON = EPISODES_PER_SEASON * 5;
 
+/** 世界の暦上の日付。五夜は month: 13（day: 1..5）。 */
+export const WorldDateSchema = z
+  .object({
+    month: z.number().int().min(1).max(13),
+    day: z.number().int().min(1).max(30),
+  })
+  .refine((d) => d.month !== 13 || d.day <= 5, {
+    message: '五夜は5日までです',
+  });
+
 export const EpisodeSchema = z.object({
   number: z.number().int().min(1).max(EPISODES_PER_SEASON),
   beat: Beat,
+
+  /**
+   * この話の、世界の暦上の日付。日付は飛んでよい——日記は毎日つけるものではない。
+   * 季全体で20〜40日ほど進むのが目安（現実の1年 ≈ 世界の1年になる速さ）。
+   */
+  world_date: WorldDateSchema,
 
   /** その日に起きたこと。主観は含めない。 */
   events: z
@@ -50,6 +66,9 @@ export const SeasonPlanSchema = z.object({
   era: EraId,
   protagonist: CharacterId,
   arc: z.string().min(1),
+
+  /** この季が始まる時点の、世界の暦上の年。primordial は null。 */
+  year_in_world: z.number().int().nullable(),
 
   title: z.string().min(1),
   /** 5話でどういう形を描くか。人間が読んで直すための要約。 */

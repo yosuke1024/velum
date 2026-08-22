@@ -1,4 +1,5 @@
 import { generateJson } from '../lib/gemini.js';
+import { formatWorldDate } from '../lib/calendar.js';
 import { charPath, diaryPath, entryPath, eventPath, failurePath } from '../lib/paths.js';
 import { writeYaml, writeJson, writeText } from '../lib/storage.js';
 import { DiaryResponseSchema } from '../schemas/patch.js';
@@ -90,6 +91,7 @@ export async function generateDiary(
     season: turn.season,
     episode: turn.episode,
     beat: day.episode.beat,
+    world_date: formatWorldDate(day.worldYear, day.episode.world_date),
     title: response.title,
     mood: response.mood,
   };
@@ -112,6 +114,7 @@ export async function generateDiary(
       season: turn.season,
       episode: turn.episode,
       beat: day.episode.beat,
+      world_date: { year: day.worldYear, ...day.episode.world_date },
       title: response.title,
       quote: response.quote,
       mood: response.mood,

@@ -67,6 +67,7 @@ describe('人物ごとのプロンプト', () => {
   const episode = EpisodeSchema.parse({
     number: 1,
     beat: '発端',
+    world_date: { month: 7, day: 4 },
     events: [{ summary: '狩りの吉凶を問われた', where: '野営地', who: [] }],
     world_change: null,
     leaves_open: '答えの根拠を誰も訊かなかった',
@@ -77,6 +78,8 @@ describe('人物ごとのプロンプト', () => {
     turn: { era, protagonist: id, dayIndex: 0, season: 1, episode: 1 } as Turn,
     episode,
     carriedOver: null,
+    worldYear: era === 'primordial' ? null : 3745,
+    calendarLine: '星の月4日（秋）',
   });
 
   it('ウタには「書かない語り手」であることを伝える', () => {

@@ -1,7 +1,9 @@
 import { z } from 'zod';
 import { generateJson } from '../lib/gemini.js';
-import { seasonPath } from '../lib/paths.js';
-import { writeYaml } from '../lib/storage.js';
+import { seasonPath, worldPath } from '../lib/paths.js';
+import { writeYaml, readYaml } from '../lib/storage.js';
+import { linearDay, nextDay, type WorldClock } from '../lib/calendar.js';
+import { ClocksFileSchema } from '../schemas/world.js';
 import {
   SeasonPlanSchema,
   BEATS,
@@ -25,6 +27,10 @@ const SeasonResponseSchema = z.object({
       z.object({
         number: z.number().int(),
         beat: z.string(),
+        world_date: z.object({
+          month: z.number().int().min(1).max(13),
+          day: z.number().int().min(1).max(30),
+        }),
         events: z
           .array(
             z.object({
@@ -41,6 +47,32 @@ const SeasonResponseSchema = z.object({
     )
     .length(EPISODES_PER_SEASON),
 });
+
+/** 日付の並びを検証する。単調非減少・開始日以降・季全体で60日以内。 */
+function assertDatesSane(
+  episodes: Array<{ number: number; world_date: { month: number; day: number } }>,
+  clock: { month: number; day: number },
+): void {
+  let previous = linearDay(clock);
+  const start = previous;
+
+  for (const episode of episodes) {
+    const current = linearDay(episode.world_date);
+    if (current < previous) {
+      throw new Error(
+        `第${episode.number}話の日付が前の話より過去です（年内通日 ${current} < ${previous}）。` +
+          '季の計画は年をまたげません。',
+      );
+    }
+    previous = current;
+  }
+
+  if (previous - start > 60) {
+    throw new Error(
+      `季全体で${previous - start}日進んでいます（上限60日）。目安は20〜40日です。`,
+    );
+  }
+}
 
 /**
  * 季の計画を立てる。
@@ -71,16 +103,20 @@ export async function planSeason(
     .map((episode, index) => ({
       number: index + 1,
       beat: BEATS[index] as (typeof BEATS)[number],
+      world_date: episode.world_date,
       events: episode.events,
       world_change: episode.world_change,
       leaves_open: episode.leaves_open,
     }));
+
+  assertDatesSane(episodes, context.clock);
 
   const plan = SeasonPlanSchema.parse({
     season,
     era,
     protagonist,
     arc: context.arc.id,
+    year_in_world: context.clock.year,
     title: data.title,
     shape: data.shape,
     episodes,
@@ -93,5 +129,18 @@ export async function planSeason(
   });
 
   writeYaml(seasonPath(season, era), plan);
+
+  // 時計を、最終話の翌日へ進める。次の季はここから始まる。
+  const last = episodes[episodes.length - 1];
+  if (last) {
+    const clocks = readYaml(worldPath('clocks.yaml'), ClocksFileSchema);
+    const updated = clocks.clocks.map((clock) =>
+      clock.era === era
+        ? nextDay(era, { ...clock, ...last.world_date } as WorldClock)
+        : clock,
+    );
+    writeYaml(worldPath('clocks.yaml'), { clocks: updated });
+  }
+
   return plan;
 }

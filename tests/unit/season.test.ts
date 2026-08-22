@@ -11,6 +11,7 @@ function episode(number: number, beat: (typeof BEATS)[number]) {
   return {
     number,
     beat,
+    world_date: { month: 7, day: 3 + number * 4 },
     events: [{ summary: `第${number}話の出来事`, where: '大鑑定院', who: [] }],
     world_change: null,
     leaves_open: `第${number}話が残したもの`,
@@ -23,6 +24,7 @@ function plan(overrides: Record<string, unknown> = {}) {
     era: 'guilds',
     protagonist: 'teo',
     arc: 'guilds-provisional-sigil',
+    year_in_world: 3745,
     title: '座金の向き',
     shape: '誰も見なかった座金から始まり、推薦状へ届かないまま終わる5話。',
     episodes: BEATS.map((beat, i) => episode(i + 1, beat)),

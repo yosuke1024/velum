@@ -14,6 +14,7 @@ import { join } from 'node:path';
 import { turnFor } from '../src/lib/rotation.js';
 import { charPath, seasonPath } from '../src/lib/paths.js';
 import { readYaml, exists } from '../src/lib/storage.js';
+import { calendarLineFor, formatWorldDate } from '../src/lib/calendar.js';
 import { SeasonPlanSchema } from '../src/schemas/season.js';
 import { generateDiary } from '../src/diary/generate.js';
 import type { Day } from '../src/diary/context.js';
@@ -84,7 +85,8 @@ async function main(): Promise<void> {
     }
   }
 
-  console.log(`  ${plan.title} — ${episode.beat}`);
+  const worldDate = formatWorldDate(plan.year_in_world, episode.world_date);
+  console.log(`  ${plan.title} — ${episode.beat}（${worldDate}）`);
   for (const event of episode.events) {
     console.log(`    ・${event.where}: ${event.summary}`);
   }
@@ -94,7 +96,14 @@ async function main(): Promise<void> {
     return;
   }
 
-  const day: Day = { date, turn, episode, carriedOver };
+  const day: Day = {
+    date,
+    turn,
+    episode,
+    carriedOver,
+    worldYear: plan.year_in_world,
+    calendarLine: calendarLineFor(turn.era, plan.year_in_world, episode.world_date),
+  };
   const outcome = await generateDiary(day, recentSummaries(turn.protagonist));
 
   if (!outcome.ok) {

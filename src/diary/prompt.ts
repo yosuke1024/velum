@@ -184,6 +184,9 @@ export function buildDiarySystemPrompt(context: DiaryContext): string {
       'サナ氏族に文字はない。これは書いたものではなく、夜にひとりで唱える言葉である。',
     );
     lines.push('本文で「書く」「記す」「綴る」といった語を使わない。');
+    lines.push(
+      '年の数字や「◯日」という日付も使わない。時は季節の言葉と、月の呼び名と、夜の数で数える（「星祭りまであと十一の夜」のように）。',
+    );
     lines.push('');
   }
 
@@ -228,7 +231,11 @@ export function buildDiaryUserPrompt(context: DiaryContext): string {
     lines.push('');
   }
 
-  lines.push(`## 今日（${day.date}）起きたこと`);
+  lines.push('## 今日の暦');
+  lines.push(day.calendarLine);
+  lines.push('');
+
+  lines.push('## 今日起きたこと');
   for (const event of day.episode.events) {
     const who = event.who.length ? `［${event.who.join('、')}］` : '';
     lines.push(`- ${event.where}: ${event.summary}${who}`);

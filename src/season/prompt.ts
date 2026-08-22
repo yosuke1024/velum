@@ -13,6 +13,10 @@ export const SEASON_RESPONSE_SCHEMA = jsonSchema.object(
         {
           number: jsonSchema.number(),
           beat: jsonSchema.string(),
+          world_date: jsonSchema.object(
+            { month: jsonSchema.number(), day: jsonSchema.number() },
+            ['month', 'day'],
+          ),
           events: jsonSchema.array(
             jsonSchema.object(
               {
@@ -26,7 +30,7 @@ export const SEASON_RESPONSE_SCHEMA = jsonSchema.object(
           world_change: jsonSchema.nullable(jsonSchema.string()),
           leaves_open: jsonSchema.string(),
         },
-        ['number', 'beat', 'events', 'world_change', 'leaves_open'],
+        ['number', 'beat', 'world_date', 'events', 'world_change', 'leaves_open'],
       ),
     ),
   },
@@ -65,7 +69,22 @@ ${BEATS.map((beat, i) => `第${i + 1}話「${beat}」`).join(' → ')}
   アークと人物の状況に照らして具体化する。使わないカードがあってよい。
 - 固定していない細部（通行人の名前、天候、品物）は自由に作ってよい。
 - leaves_open には、その話が次へ持ち越すものを書く。
-  第5話の leaves_open は、次の季の第1話が拾える形にする。`;
+  第5話の leaves_open は、次の季の第1話が拾える形にする。
+
+## 暦と日付
+
+Velum の1年は、12の月 × 30日 + 「五夜」（どの月にも属さない5日）= 365日である。
+月: 芽の月(1) 雨の月(2) 花の月(3) 風の月(4) 光の月(5) 実の月(6)
+    星の月(7) 穂の月(8) 霧の月(9) 灯の月(10) 雪の月(11) 眠りの月(12) 五夜(13)
+
+- 各話に world_date（month と day）を割り当てる。
+- **日付は飛んでよい。日記は毎日つけるものではない。** 第1話と第2話のあいだに
+  数日過ぎていてよい。
+- 第1話は「いまの日付」以降に置き、以後の話は前の話と同じ日か、それより後にする。
+- ${EPISODES_PER_SEASON}話全体で20〜40日ほど進むのが目安。
+- 節目（祭・審査・市など）が近くにあるなら、話をそこへ向けて組んでよい。
+  ただし義務ではない。節目に触れない季があってよい。
+- 季節の手触り（暑さ、雨、日の長さ、収穫、雪）を出来事の背景に使ってよい。`;
 }
 
 export function buildSeasonUserPrompt(context: SeasonContext): string {
@@ -73,6 +92,22 @@ export function buildSeasonUserPrompt(context: SeasonContext): string {
 
   lines.push(`# 第${context.season}季 — ${context.eraName}`);
   lines.push(`主人公: ${context.protagonistName}（${context.role}）`);
+  lines.push('');
+
+  lines.push('## いまの暦');
+  lines.push(context.calendarLine);
+  if (context.upcoming.length) {
+    lines.push('これから来る節目:');
+    for (const observance of context.upcoming) {
+      const timing =
+        observance.inDays === null
+          ? 'いまの時季'
+          : observance.inDays === 0
+            ? '今日'
+            : `あと${observance.inDays}日`;
+      lines.push(`- ${observance.name}（${timing}）${observance.note ? `: ${observance.note.trim().replace(/\n/g, ' ')}` : ''}`);
+    }
+  }
   lines.push('');
 
   lines.push('## 固定事実（これと矛盾させない）');

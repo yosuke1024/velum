@@ -22,6 +22,10 @@ export type Day = {
   episode: Episode;
   /** 前の話が残したもの。物語の続きであることを本人に思い出させる。 */
   carriedOver: string | null;
+  /** 世界の暦上の年。primordial は null。 */
+  worldYear: number | null;
+  /** 「今日の暦」。時代ごとの声で整形済み（src/lib/calendar.ts）。 */
+  calendarLine: string;
 };
 
 export type DiaryContext = {

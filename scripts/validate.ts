@@ -35,6 +35,8 @@ import {
   MemoriesSchema,
 } from '../src/schemas/character.js';
 import { SeasonPlanSchema, BEATS, EPISODES_PER_SEASON } from '../src/schemas/season.js';
+import { CalendarFileSchema, ClocksFileSchema } from '../src/schemas/world.js';
+import { linearDay } from '../src/lib/calendar.js';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
 
@@ -226,6 +228,35 @@ if (profiles.size === CHARACTER_IDS.length) {
   }
 }
 
+// ── world/canon/calendar.yaml と world/clocks.yaml ─────────────
+
+load(join(ROOT, 'world/canon/calendar.yaml'), CalendarFileSchema, '暦');
+
+const clocks = load<{ clocks: Array<{ era: string; year: number | null }> }>(
+  join(ROOT, 'world/clocks.yaml'),
+  ClocksFileSchema,
+  '時計',
+);
+
+if (clocks) {
+  const eras = new Set(clocks.clocks.map((c) => c.era));
+  for (const era of ERA_IDS) {
+    if (!eras.has(era)) fail('world/clocks.yaml', `時代 ${era} の時計がありません`);
+  }
+  for (const clock of clocks.clocks) {
+    // 年の数え方は時代ごとの canon。primordial は数えず、convergence は終わらない。
+    if (clock.era === 'primordial' && clock.year !== null) {
+      fail('world/clocks.yaml', 'primordial の year は null（サナ氏族は年を数えない）');
+    }
+    if (clock.era !== 'primordial' && clock.year === null) {
+      fail('world/clocks.yaml', `${clock.era} の year が null です`);
+    }
+    if (clock.era === 'convergence' && clock.year !== 4217) {
+      fail('world/clocks.yaml', `convergence の year は 4217 のまま変わりません（いま ${clock.year}）`);
+    }
+  }
+}
+
 // ── world/seasons ──────────────────────────────────────────────
 // 計画は人間が読んで直すファイルなので、直したものが壊れていないかを見る。
 
@@ -269,6 +300,26 @@ if (existsSync(seasonsRoot)) {
       const beats = plan.episodes.map((e) => e.beat);
       if (beats.join(',') !== BEATS.join(',')) {
         fail(rel, `beat の並びが ${BEATS.join(' → ')} になっていません`);
+      }
+
+      // 日付は単調非減少で、季の中で年をまたがない。
+      const typed = plan as unknown as {
+        year_in_world: number | null;
+        episodes: Array<{ number: number; world_date: { month: number; day: number } }>;
+      };
+      let previousDay = -1;
+      for (const episode of typed.episodes) {
+        const current = linearDay(episode.world_date);
+        if (current < previousDay) {
+          fail(rel, `第${episode.number}話の日付が前の話より過去です`);
+        }
+        previousDay = current;
+      }
+      if (era === 'primordial' && typed.year_in_world !== null) {
+        fail(rel, 'primordial の year_in_world は null です');
+      }
+      if (era === 'convergence' && typed.year_in_world !== 4217) {
+        fail(rel, 'convergence の year_in_world は 4217 です');
       }
     }
   }

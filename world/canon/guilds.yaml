@@ -43,3 +43,21 @@ places:
   - id: court-gate
     name: 大鑑定院の門前
     note: ロウが時折現れる場所。中には入ってこない。
+
+observances:
+  - id: provisional-sigil-review
+    name: 仮銘審査
+    when: { month: 7, day: 30 }
+    note: 星の月の末日。推薦状はその前に揃っていなければならない。
+  - id: workshop-fair
+    name: 工房通りの大市
+    when: { month: 8, day: 10 }
+    note: 職人が自分の仕事を誇る日。持ち込み鑑定がいちばん増える。
+  - id: founding-day
+    name: 開院記念日
+    when: { month: 1, day: 1 }
+    note: 芽の月の初日。全員の前で規約第1条が朗読される。
+  - id: inventory-nights
+    name: 棚卸しの五夜
+    when: { intercalary: true }
+    note: 年の外の5日、大鑑定院は全所蔵の棚卸しをする。台帳と現物の名を突き合わせる夜。

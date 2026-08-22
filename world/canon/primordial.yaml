@@ -47,3 +47,22 @@ places:
   - id: water-place
     name: 水場
     note: 旱魃の年、ウタが「声」で当てたとされる場所。
+
+# サナ氏族は年を数えない。月の呼び名と夜の数、季節の匂いで時を測る。
+calendar_note: |
+  文字がないので、日付を「◯日」とは数えない。
+  「星の月」「あと十一の夜」「水の匂いが変わる頃」——それが彼らの暦。
+
+observances:
+  - id: star-festival
+    name: 星祭り
+    when: { month: 7, day: 15 }
+    note: 星の月の満ちる夜。継承の儀はこの夜にしか行えない（fixed 参照）。
+  - id: water-sharing
+    name: 水分けの日
+    when: { month: 5, day: 1 }
+    note: 光の月の初日。水場の配分を決め直す。サナ（水を分ける者）の名の由来の日。
+  - id: counting-nights
+    name: 遡りの五夜
+    when: { intercalary: true }
+    note: 火を絶やさず、先祖の名を口伝で数える5夜。名を落とすと、その人がいなかったことになる。

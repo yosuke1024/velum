@@ -11,6 +11,12 @@ export const DiaryEntrySchema = z.object({
   season: z.number().int().min(1),
   episode: z.number().int().min(1).max(5),
   beat: Beat,
+  /** 世界の暦上の日付。年は primordial では null。 */
+  world_date: z.object({
+    year: z.number().int().nullable(),
+    month: z.number().int().min(1).max(13),
+    day: z.number().int().min(1).max(30),
+  }),
   title: z.string().min(1),
   quote: z.string().min(1),
   mood: z.string().min(1),

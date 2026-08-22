@@ -65,6 +65,31 @@ const NamedEntry = z.object({
   note: z.string().optional(),
 });
 
+/**
+ * 祭・節目の日付指定。3つの形がある:
+ *   { month, day }        月の中の一日
+ *   { months: [...] }     季節帯（峠の閉山期など）
+ *   { intercalary: true } 五夜（どの月にも属さない5日）
+ */
+export const WhenSchema = z
+  .object({
+    month: z.number().int().min(1).max(12).optional(),
+    day: z.number().int().min(1).max(30).optional(),
+    months: z.array(z.number().int().min(1).max(12)).min(1).optional(),
+    intercalary: z.boolean().optional(),
+  })
+  .refine(
+    (w) => w.intercalary === true || w.month !== undefined || w.months !== undefined,
+    { message: 'month / months / intercalary のいずれかが必要です' },
+  );
+
+export const ObservanceSchema = z.object({
+  id: z.string().min(1),
+  name: z.string().min(1),
+  when: WhenSchema,
+  note: z.string().optional(),
+});
+
 export const EraCanonFileSchema = z.object({
   era: EraId,
   fixed: z
@@ -78,6 +103,44 @@ export const EraCanonFileSchema = z.object({
   institutions: z.array(NamedEntry).optional(),
   places: z.array(NamedEntry).optional(),
   cities: z.array(NamedEntry).optional(),
+  calendar_note: z.string().optional(),
+  observances: z.array(ObservanceSchema).optional(),
+});
+
+export const CalendarFileSchema = z.object({
+  year_days: z.literal(365),
+  months: z
+    .array(
+      z.object({
+        number: z.number().int().min(1).max(12),
+        name: Bilingual,
+        season: z.enum(['春', '夏', '秋', '冬']),
+      }),
+    )
+    .length(12),
+  intercalary: z.object({
+    name: Bilingual,
+    days: z.literal(5),
+    note: z.string().optional(),
+  }),
+});
+
+/**
+ * 各時代の「いま」。季の計画が進める。
+ * primordial の year は null（サナ氏族は年を数えない）。
+ * convergence の year は 4,217 のまま変わらない（終わらない年）。
+ */
+export const ClocksFileSchema = z.object({
+  clocks: z
+    .array(
+      z.object({
+        era: EraId,
+        year: z.number().int().nullable(),
+        month: z.number().int().min(1).max(13),
+        day: z.number().int().min(1).max(30),
+      }),
+    )
+    .length(5),
 });
 
 export const ArcFileSchema = z.object({

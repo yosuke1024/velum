@@ -1,0 +1,35 @@
+# 各時代の「いま」。季の計画が立つたびに進む。
+#
+# 稼働開始（2026-09-01）時点では、5つの時代すべてが星の月4日から始まる。
+# 現実の秋と世界の秋がゆるく重なって進むようにするための初期化であり、
+# 以後は各時代の物語の速さで独立に進む（厳密な同期はしない）。
+#
+# 年について:
+# - primordial: サナ氏族は年を数えないので null。
+# - convergence: 4,217 のまま変わらない（大収束の「終わらない年」。canon 参照）。
+# - guilds 3,745 と silent 9,745 の差はちょうど六千年。ヴェスパー工房の首飾りが
+#   「六千年かけて本物の Echo を宿した」という糸（cross-era.yaml）を数字で支える。
+# - fracture 5,330 は開戦（4,217）から1,113年目。戦争は千八百年続くので、
+#   カヤは終わりの見えない中盤を生きている。
+
+clocks:
+  - era: primordial
+    year: null
+    month: 7
+    day: 4
+  - era: guilds
+    year: 3745
+    month: 7
+    day: 4
+  - era: convergence
+    year: 4217
+    month: 7
+    day: 4
+  - era: fracture
+    year: 5330
+    month: 7
+    day: 4
+  - era: silent
+    year: 9745
+    month: 7
+    day: 4

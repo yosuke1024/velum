@@ -17,6 +17,12 @@ import {
   CanonSchema,
 } from '../schemas/character.js';
 import { SeasonPlanSchema, EPISODES_PER_SEASON } from '../schemas/season.js';
+import {
+  clockFor,
+  formatWorldDate,
+  seasonOf,
+  upcomingObservances,
+} from '../lib/calendar.js';
 
 export type SeasonContext = {
   season: number;
@@ -43,6 +49,10 @@ export type SeasonContext = {
   cards: Array<{ id: string; prompt: string }>;
   /** 前の季が残したもの。第1話の起点になる。 */
   carriedOver: string | null;
+  /** 世界の暦。季の始まりの時点。 */
+  clock: { year: number | null; month: number; day: number };
+  calendarLine: string;
+  upcoming: Array<{ name: string; inDays: number | null; note: string | null }>;
 };
 
 /**
@@ -102,6 +112,9 @@ export function buildSeasonContext(
     }
   }
 
+  const clock = clockFor(era);
+  const upcoming = upcomingObservances(era, clock, 60);
+
   return {
     season,
     era,
@@ -134,5 +147,8 @@ export function buildSeasonContext(
     },
     cards,
     carriedOver,
+    clock: { year: clock.year, month: clock.month, day: clock.day },
+    calendarLine: `${formatWorldDate(clock.year, clock)}（${seasonOf(clock.month)}）`,
+    upcoming: upcoming.map((o) => ({ name: o.name, inDays: o.inDays, note: o.note })),
   };
 }

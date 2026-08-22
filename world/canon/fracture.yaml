@@ -45,3 +45,17 @@ places:
   - id: pass-road
     name: 峠道
     note: 雪が来ると閉じる。
+
+observances:
+  - id: lantern-day
+    name: 灯の日
+    when: { month: 10, day: 15 }
+    note: 灯の月の満ちる夜、両軍が一夜だけ砲を止め、死者に灯を流す。回収人には翌朝がいちばん忙しい。
+  - id: pass-closure
+    name: 峠の閉山期
+    when: { months: [11, 12] }
+    note: 雪の月から眠りの月まで、峠は雪で閉じる。届け物はその前に。
+  - id: nameless-nights
+    name: 名なしの五夜
+    when: { intercalary: true }
+    note: 回収人組合が、その年に届けた品の持ち主の名を全員ぶん読み上げる5夜。番号で呼ばれる者たちが、名前だけを読む。

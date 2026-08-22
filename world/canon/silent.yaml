@@ -41,3 +41,21 @@ places:
   - id: circuit-towns
     name: 巡回路の市場町
     note: 名前のない小さな市が点在する。雨が降れば客は来ない。
+
+observances:
+  - id: northern-market
+    name: 北の市
+    when: { month: 7, day: 10 }
+    note: 星の月10日から十日間。巡回路で最大の市。
+  - id: orba-auction
+    name: 権利書の競売
+    when: { month: 8, day: 30 }
+    note: 穂の月の末日。オルバが告知した競売に「目覚めの棚」の権利書が出る。
+  - id: waking-festival
+    name: 目覚めの祭
+    when: { month: 5, day: 20 }
+    note: 伝説の目覚めを再演する夏祭り。誰も本物を見たことがない。
+  - id: leftover-market
+    name: 余り市
+    when: { intercalary: true }
+    note: 年の外の5日に立つ市。「月に属さない日に買った物は持ち主を選ぶ」という迷信がある。

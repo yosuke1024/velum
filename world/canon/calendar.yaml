@@ -1,0 +1,32 @@
+# Velum の暦（全時代共通の天文年）
+#
+# 1年 = 12の月 × 30日 + 「五夜」（どの月にも属さない5日） = 365日。
+#
+# 月の名は原初の「聴き手」の星読みに由来し、形を変えながら六千年を生き延びた
+# 数少ない言葉である。だから全時代で同じ名を使う。読者が時代を跨いで
+# 「同じ月」を見つけられることが、この暦のいちばんの仕事でもある。
+#
+# 機械表現では五夜を month: 13（day: 1..5）として扱う。
+
+year_days: 365
+
+months:
+  - { number: 1, name: { ja: 芽の月, en: the Month of Buds }, season: 春 }
+  - { number: 2, name: { ja: 雨の月, en: the Month of Rains }, season: 春 }
+  - { number: 3, name: { ja: 花の月, en: the Month of Flowers }, season: 春 }
+  - { number: 4, name: { ja: 風の月, en: the Month of Winds }, season: 夏 }
+  - { number: 5, name: { ja: 光の月, en: the Month of Light }, season: 夏 }
+  - { number: 6, name: { ja: 実の月, en: the Month of Fruit }, season: 夏 }
+  - { number: 7, name: { ja: 星の月, en: the Month of Stars }, season: 秋 }
+  - { number: 8, name: { ja: 穂の月, en: the Month of Ears }, season: 秋 }
+  - { number: 9, name: { ja: 霧の月, en: the Month of Mists }, season: 秋 }
+  - { number: 10, name: { ja: 灯の月, en: the Month of Lanterns }, season: 冬 }
+  - { number: 11, name: { ja: 雪の月, en: the Month of Snow }, season: 冬 }
+  - { number: 12, name: { ja: 眠りの月, en: the Month of Sleep }, season: 冬 }
+
+intercalary:
+  name: { ja: 五夜, en: the Five Nights }
+  days: 5
+  note: |
+    眠りの月の終わりから芽の月の初めまでの、どの月にも属さない5日。
+    時代ごとに違う顔を持つ（world/threads/cross-era.yaml の「五夜の糸」）。

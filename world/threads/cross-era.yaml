@@ -86,3 +86,27 @@ threads:
       - era: silent
         who: null
         role: 大収束の伝承の出典。原本は残っていない。
+
+  - id: five-nights
+    name:
+      ja: 五夜の糸
+      en: The Five Nights
+    summary: 年の外の5日が、時代ごとに違う顔で続く
+    note: |
+      どの月にも属さない5日の過ごし方は、時代ごとに変わる——
+      名を数える夜から、台帳の突き合わせへ、名簿の読み上げへ、そして意味を忘れた市へ。
+      「名を数える」という芯だけが、形を変えて六千年残る。
+      大収束のアルヴィスだけは、五夜を含むすべての節目を失っている。
+    touches:
+      - era: primordial
+        who: null
+        role: 遡りの五夜。火を絶やさず、先祖の名を口伝で数える。
+      - era: guilds
+        who: grand-court
+        role: 棚卸しの五夜。所蔵の名を台帳で数える。
+      - era: fracture
+        who: reclaimers-guild
+        role: 名なしの五夜。届けた品の持ち主の名を読み上げる。カヤの夜の読み上げは、この儀式の私的な毎日版。
+      - era: silent
+        who: null
+        role: 余り市。意味は忘れられ、市だけが立つ。「月に属さない日に買った物は持ち主を選ぶ」。
