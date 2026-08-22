@@ -62,7 +62,7 @@ visual:
   key_prop: 首から提げた、まだ何も刻まれていない空の銘印。
   props:
     - 付箋だらけの規約手帳
-    - 真鍮のルーペ
+    - 真鍮のルーペ（シート2枚目には描かれていない。持たせるかは未確定）
   never_drawn: 服の下の、親が作った贋作の首飾り。
   palette:
     base: ["#2F4A3D", "#E8E0CF"]
@@ -72,3 +72,21 @@ visual:
     default: 澄まし顔とドヤ顔
     rare: 目を見開いた素の顔
   acceptance: シルエットだけで「几帳面・生意気・見習い」が伝わること。
+
+  # ── シートで確定した表記 ──────────────────────────────────
+  # 候補2枚目を基準に確定（2026-08-23）。次にシートを描かせるときは、
+  # ここの文面をそのまま渡すこと。理由は docs/visual.md。
+  # シート上の役職・所属の表記は採用しない——このファイルが正である。
+  sheet:
+    base: 候補2枚目（2026-08-23 確定）
+    captions:
+      - "SIGIL TAG (ISSUED) — Blank. To be earned."
+      - "REGULATIONS HANDBOOK — He knows the rules. He quotes the rules. He hides behind them."
+      - "STICKY NOTES — Questions. Connections. The parts the rules don't cover."
+      - "FOLDED CUFFS — Neat. Correct. No exceptions."
+      - "SUPPLIED COAT — The sleeves are long. He folds them back. Still, he stands taller than the coat."
+    expressions:
+      - "SMUG / RULE-QUOTING"
+      - "HIDDEN INSECURITY"
+      - "THOUGHTFULLY OBSERVANT"
+    quote: "Rules are not chains. They are the ladder that fools refuse to climb."

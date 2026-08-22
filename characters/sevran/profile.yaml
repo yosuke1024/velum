@@ -60,6 +60,9 @@ visual:
     - 携行インク壺
     - 四時十七分で止まった懐中時計
     - インクで黒くなった右手
+    - |
+      記録帳のページの間に、インクの届かない何かがいる。
+      描かない。名指さない。注記の書き方だけで示す。
   palette:
     base: ["#1F2430", "#3A4A63"]
     paper: "#E8E0CF"
@@ -70,3 +73,21 @@ visual:
   acceptance: |
     シルエットだけで「記録者・疲弊・几帳面」。
     鎖の記録帳と裂け目の紫の一点で、一目でセヴランと分かること。
+
+  # ── シートで確定した表記 ──────────────────────────────────
+  # 候補2枚目を基準に確定（2026-08-23）。次にシートを描かせるときは、
+  # ここの文面をそのまま渡すこと。理由は docs/visual.md。
+  # シート上の役職・所属の表記は採用しない——このファイルが正である。
+  sheet:
+    base: 候補2枚目（2026-08-23 確定）
+    captions:
+      - "RECORD BOOK (YEAR 4217) — He writes what must be recorded. And what must not."
+      - "POCKET WATCH — Stopped at 4:17. Time is recorded. Time does not move."
+      - "FASTENED COLLAR — Always secured. Discipline is the only anchor."
+      - "BETWEEN THE PAGES — Something lingers where ink cannot reach. It is not named here."
+      - "INK-STAINED HANDS — Every record leaves its mark. Some marks never fade."
+    expressions:
+      - "CLINICAL OBSERVATION"
+      - "FLEETING DISTURBANCE"
+      - "UNSPOKEN REALIZATION"
+    quote: "I record the convergence of all things. Including the one I do not name."

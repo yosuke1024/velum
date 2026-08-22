@@ -97,6 +97,7 @@ world/
   threads/      未解決スレッドと、時代を跨ぐ5本の糸
   cards/        イベントカード（季を組み立てるときの素材）
   seasons/      季の計画。1人5話 × 5人 = 25日分。人間が読んで直せる
+  personas.json いま PixTale へ配っているペルソナのバージョン
 
 characters/<id>/
   profile.yaml        固定層。人格の芯
@@ -140,6 +141,12 @@ Snapshot は日次では作らず、**季の切れ目（25日ごと）**にコ�
 **作ることと、配ることは別です。** Snapshot を書いても PixTale の出力は変わりません。変わるのは `world/personas.json`（いま配っている版を指すピン）が動いたときだけです。人格が変になったら、このファイルの数字ひとつを戻せば元に戻ります——Snapshot は追記のみなので、戻す先は消えていません。
 
 詳細は [docs/persona-snapshot.md](docs/persona-snapshot.md)。
+
+### キャラクターシート
+
+5人のビジュアルは `profile.yaml` の `visual` が正です。**シートに焼き込まれた文字ではありません。**
+
+画像生成は部分修正ができず毎回描き直すので、「ここは維持して」と書いた欄は保持されず引き直されます。確定した表記は `visual.sheet` に置いてあり、次にシートを描かせるときはそこから全項目を書き下します。理由と手順は [docs/visual.md](docs/visual.md)。
 
 ---
 
