@@ -46,6 +46,23 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: npm run day -- ${{ inputs.date }}
 
+      # 季の最終日（25日ごと）だけ、Persona Snapshot をコンパイルする。
+      # 5人全員が第5話を書き終えたあとなので、この日より前に圧縮すると
+      # その季を生きていない人格ができる。
+      #
+      # **配りはしない。** world/personas.json は動かないので、PixTale の出力は
+      # 変わらない。人が読んで「配ってよい」と判断したときに、手元で
+      #
+      #     npm run snapshot -- --publish --season=<季>
+      #
+      # を回す。全自動にするときは、下の run へ --publish を足すだけでよい。
+      # 人が介在する箇所は、構造ではなくこのフラグ1つに閉じてある。
+      - name: Compile the personas at the end of a season
+        if: success()
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: npm run snapshot -- --if-season-end --date=${{ inputs.date }}
+
       # 生成が破棄された日でも、失敗記録は残す。
       - name: Validate the data
         if: always()

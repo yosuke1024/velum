@@ -9,6 +9,7 @@
  *  - 糸が参照する人物が実在するか
  *  - 推し軸・一人称・締めの型が5人で重複していないか
  *  - Persona Snapshot が追記のみで、番号が飛んでいないか
+ *  - 配っているペルソナが、実在する Snapshot を指しているか
  */
 
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
@@ -37,6 +38,7 @@ import {
 } from '../src/schemas/character.js';
 import { SeasonPlanSchema, BEATS, EPISODES_PER_SEASON } from '../src/schemas/season.js';
 import { SnapshotSchema, SNAPSHOT_FILE } from '../src/schemas/snapshot.js';
+import { PersonaManifestSchema } from '../src/schemas/manifest.js';
 import { CalendarFileSchema, ClocksFileSchema } from '../src/schemas/world.js';
 import { linearDay } from '../src/lib/calendar.js';
 
@@ -374,6 +376,32 @@ for (const id of CHARACTER_IDS) {
       `characters/${id}/snapshots`,
       `バージョンが 1.. の連番になっていません（${versions.join(', ')}）`,
     );
+  }
+}
+
+// ── world/personas.json ────────────────────────────────────────
+// PixTale が最初に取りに来る1枚。ここが実在しないファイルを指すと、
+// こちらの CI が緑のまま向こうが 404 を踏む。
+
+{
+  const path = join(ROOT, 'world/personas.json');
+  const manifest = load<{
+    personas: Record<string, { character: string; version: number; path: string }>;
+  }>(path, PersonaManifestSchema, '配っているペルソナ');
+
+  if (manifest) {
+    for (const [id, entry] of Object.entries(manifest.personas)) {
+      if (entry.character !== id) {
+        fail('world/personas.json', `${id} の character が ${entry.character} になっています`);
+      }
+      if (!existsSync(join(ROOT, entry.path))) {
+        fail('world/personas.json', `${id} が指す ${entry.path} が存在しません`);
+      }
+      const expected = `characters/${id}/snapshots/v${String(entry.version).padStart(4, '0')}.json`;
+      if (entry.path !== expected) {
+        fail('world/personas.json', `${id} の path と version が食い違っています（${entry.path}）`);
+      }
+    }
   }
 }
 

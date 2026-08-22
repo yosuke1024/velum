@@ -1,0 +1,6 @@
+{
+  "updated_at": null,
+  "season": null,
+  "note": "PixTale はこのファイルを読み、version の指す Snapshot を取得する。人格を戻すときは version を以前の番号へ書き換える（ファイルは追記のみなので消えていない）。",
+  "personas": {}
+}

@@ -13,6 +13,9 @@ import { buildCompileContext } from '../../src/compile/context.js';
 import { assemble, nextVersion, existingVersions } from '../../src/compile/compile.js';
 import { gateSnapshot, nameNeedles } from '../../src/compile/gate.js';
 import type { Snapshot } from '../../src/schemas/snapshot.js';
+import { nextManifest, emptyManifest } from '../../src/compile/publish.js';
+import { PersonaManifestSchema } from '../../src/schemas/manifest.js';
+import { isSeasonEnd, turnFor } from '../../src/lib/rotation.js';
 
 const GENERATION = { model: 'test', compiled_at: '2026-09-15T00:00:00.000Z' };
 
@@ -249,5 +252,91 @@ describe('バージョン', () => {
 
   it('次の番号は、いちばん大きい番号の次', () => {
     expect(nextVersion('teo')).toBe(existingVersions('teo').length + 1);
+  });
+});
+
+describe('季の切れ目', () => {
+  it('25日目が季の最終日で、24日目はまだ途中', () => {
+    // 2026-09-01 が1日目。第1季は 09-01〜09-25。
+    expect(isSeasonEnd('2026-09-24')).toBe(false);
+    expect(isSeasonEnd('2026-09-25')).toBe(true);
+    expect(isSeasonEnd('2026-09-26')).toBe(false);
+  });
+
+  it('最終日には5人全員が第5話を書き終えている', () => {
+    // これより前に圧縮すると、その季を生きていない人格ができる。
+    const written = new Set<string>();
+    for (let day = 0; day < 25; day += 1) {
+      const date = new Date(Date.UTC(2026, 8, 1 + day)).toISOString().slice(0, 10);
+      const turn = turnFor(date);
+      if (turn.episode === 5) written.add(turn.protagonist);
+      if (isSeasonEnd(date)) expect(written.size).toBe(CHARACTER_IDS.length);
+    }
+  });
+
+  it('第2季も25日ごとに切れる', () => {
+    expect(isSeasonEnd('2026-10-20')).toBe(true);
+    expect(turnFor('2026-10-20').season).toBe(2);
+  });
+});
+
+describe('配ること', () => {
+  const now = '2026-09-25T21:30:00.000Z';
+  const teo = snapshotFor('teo', ['口約束を信用しない']);
+
+  it('配ると、その版を指す', () => {
+    const manifest = nextManifest(emptyManifest(), [teo], now, 1);
+    const entry = manifest.personas.teo;
+    expect(entry?.version).toBe(1);
+    expect(entry?.path).toBe('characters/teo/snapshots/v0001.json');
+    expect(entry?.era).toBe('guilds');
+    expect(manifest.season).toBe(1);
+  });
+
+  it('コンパイルしただけでは、まだ何も配られていない', () => {
+    // Snapshot を書いても personas.json が動かなければ、PixTale の出力は変わらない。
+    expect(emptyManifest().personas).toEqual({});
+    expect(emptyManifest().updated_at).toBeNull();
+  });
+
+  it('ピンは人物ごとに独立している', () => {
+    // ある人物のコンパイルが落ちても、その人のピンは前のまま。
+    // PixTale はその人格を語り続ける。
+    const first = nextManifest(
+      emptyManifest(),
+      [teo, snapshotFor('riko', ['値札を先に見る'])],
+      now,
+      1,
+    );
+    const second = nextManifest(
+      first,
+      [assemble(buildCompileContext('teo'), 2, ['別の癖'], GENERATION)],
+      '2026-10-20T21:30:00.000Z',
+      2,
+    );
+    expect(second.personas.teo?.version).toBe(2);
+    expect(second.personas.riko?.version).toBe(1);
+    expect(second.personas.riko?.published_at).toBe(now);
+  });
+
+  it('人格を戻すのは、version を書き換えるだけで済む', () => {
+    // 追記のみなので、進めたあとも v0001 のファイルは消えていない。
+    const advanced = nextManifest(
+      nextManifest(emptyManifest(), [teo], now, 1),
+      [assemble(buildCompileContext('teo'), 2, ['別の癖'], GENERATION)],
+      '2026-10-20T21:30:00.000Z',
+      2,
+    );
+    expect(advanced.personas.teo?.version).toBe(2);
+
+    // 戻す操作は、このファイルの数字ひとつの書き換えである。
+    const rolledBack = structuredClone(advanced);
+    rolledBack.personas.teo = {
+      ...advanced.personas.teo!,
+      version: 1,
+      path: 'characters/teo/snapshots/v0001.json',
+    };
+    expect(PersonaManifestSchema.safeParse(rolledBack).success).toBe(true);
+    expect(rolledBack.personas.riko).toEqual(advanced.personas.riko);
   });
 });

@@ -41,3 +41,6 @@ export const snapshotDir = (id: string) => charPath(id, 'snapshots');
 
 export const snapshotPath = (id: string, version: number) =>
   join(snapshotDir(id), `v${String(version).padStart(4, '0')}.json`);
+
+/** いま配っているペルソナ。PixTale が最初に取りに来る1枚。 */
+export const manifestPath = () => worldPath('personas.json');

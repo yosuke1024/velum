@@ -79,3 +79,14 @@ export function seasonStartDate(season: number): string {
   const offset = (season - 1) * DAYS_PER_SEASON * 86_400_000;
   return new Date(start + offset).toISOString().slice(0, 10);
 }
+
+/**
+ * その日が季の最終日か。
+ *
+ * 5日周期を5周した最後の日（原初／ウタの第5話）で、5人全員が第5話を書き終えている。
+ * Persona Snapshot をコンパイルできるのはこの日以降である——
+ * 誰かが第5話を書く前に圧縮すれば、その季を生きていない人格が配られる。
+ */
+export function isSeasonEnd(date: string): boolean {
+  return turnFor(date).dayIndex % DAYS_PER_SEASON === DAYS_PER_SEASON - 1;
+}

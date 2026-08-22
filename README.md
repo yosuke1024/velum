@@ -135,7 +135,11 @@ npm run day                 # 今日の日記を書かせる
 npm run snapshot            # Persona Snapshot をコンパイルする
 ```
 
-Snapshot は日次では作りません。**追記のみ**で、PixTale はバージョンを固定して読むので、増やすのは人間が「この人格を配ってよい」と判断したときだけです。詳細は [docs/persona-snapshot.md](docs/persona-snapshot.md)。
+Snapshot は日次では作らず、**季の切れ目（25日ごと）**にコンパイルします。1日ごとに人格が動くと、PixTale から見れば同じ人物が毎日別人になるためです。
+
+**作ることと、配ることは別です。** Snapshot を書いても PixTale の出力は変わりません。変わるのは `world/personas.json`（いま配っている版を指すピン）が動いたときだけです。人格が変になったら、このファイルの数字ひとつを戻せば元に戻ります——Snapshot は追記のみなので、戻す先は消えていません。
+
+詳細は [docs/persona-snapshot.md](docs/persona-snapshot.md)。
 
 ---
 
