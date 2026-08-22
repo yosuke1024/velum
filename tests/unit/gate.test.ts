@@ -225,6 +225,13 @@ describe('差分の適用', () => {
   });
 
   it('何が動いたかを記録に残す', () => {
+    // 生きた状態ファイルは日々動くので、ここでは値を固定して渡す。
+    const relationships = structuredClone(character.relationships);
+    const vallen = relationships.people.find((p) => p.id === 'vallen');
+    if (!vallen) throw new Error('vallen が relationships.yaml にありません');
+    vallen.trust = 0.7;
+    vallen.wariness = 0.2;
+
     const result = applyPatches(
       response({
         relationship_patches: [
@@ -233,7 +240,7 @@ describe('差分の適用', () => {
       }),
       {
         state: character.state,
-        relationships: character.relationships,
+        relationships,
         memories: character.memories,
         canon: character.canon,
       },

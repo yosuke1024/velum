@@ -168,7 +168,9 @@ export function buildDiarySystemPrompt(context: DiaryContext): string {
   lines.push(`一人称は「${profile.voice.first_person}」。`);
   lines.push(profile.voice.register);
   lines.push(`癖: ${profile.voice.tic}`);
-  lines.push(`絶対に言わない言葉: 「${profile.voice.never_says}」`);
+  lines.push(
+    `絶対に言わない言葉: 「${profile.voice.never_says}」。表記を変えても言わない。この日記の中でも言わない。`,
+  );
   lines.push(`締め方: ${profile.voice.closing}`);
   lines.push('');
 
@@ -191,6 +193,9 @@ export function buildDiarySystemPrompt(context: DiaryContext): string {
   }
 
   lines.push('## 日記の書き方');
+  lines.push(
+    '- これは誰にも見せない文章である。人前用の話し方と、ひとりのときの声が違うなら、ここではひとりのときの声で書く。',
+  );
   lines.push('- 今日あったことを、あなたの目で書く。設定の説明はしない。');
   lines.push('- 出来事の要約ではなく、あなたがそれをどう受け取ったかを書く。');
   lines.push('- 毎日が転機である必要はない。何も起きない日は、何も起きないまま書く。');
