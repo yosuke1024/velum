@@ -11,7 +11,8 @@
   "scripts": {
     "validate": "tsx scripts/validate.ts",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run"
+    "test": "vitest run",
+    "day": "tsx scripts/run-day.ts"
   },
   "dependencies": {
     "yaml": "^2.6.1",

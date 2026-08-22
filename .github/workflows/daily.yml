@@ -1,16 +1,25 @@
-# 日次の生成。ギルド → 静寂 → 大収束 → 破砕 → 原初 の5日周期で、
-# 番の時代だけ World Tick を進め、その時代の主人公が日記を書く。
+# 日次の生成。
 #
-# 生成パイプラインは M2 で実装する。それまでこのワークフローは無効のまま置く。
-# 誤って走らないよう workflow_dispatch のみにしてある。
+# ギルド → 静寂 → 大収束 → 破砕 → 原初 の5日周期で、番の時代だけ World Tick を進め、
+# その時代の主人公が日記を書く。進むのは1日ひとつの時代だけ。
+#
+# 構造ゲートに違反した日は、状態ファイルを変更せずに失敗記録だけを残す。
+# 欠けた日は隠さない。
 
 name: daily
 
 on:
   workflow_dispatch:
-  # M2 で有効化する:
-  # schedule:
-  #   - cron: '0 21 * * *' # 06:00 JST
+    inputs:
+      date:
+        description: '生成する日付（YYYY-MM-DD）。省略すると今日'
+        required: false
+  schedule:
+    - cron: '0 21 * * *' # 06:00 JST
+
+concurrency:
+  group: daily
+  cancel-in-progress: false
 
 jobs:
   generate:
@@ -28,24 +37,26 @@ jobs:
           cache: npm
       - run: npm ci
 
-      - name: Not implemented yet
-        run: |
-          echo "生成パイプラインは M2 で実装する。"
-          echo "docs/world-tick.md と docs/diary.md を参照。"
-          exit 1
+      - name: Generate the day
+        id: generate
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: npm run day -- ${{ inputs.date }}
 
-      # M2 で有効化する:
-      # - run: npm run tick
-      #   env:
-      #     GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-      # - run: npm run diary
-      #   env:
-      #     GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-      # - run: npm run validate
-      # - name: Commit the day
-      #   run: |
-      #     git config user.name  'velum'
-      #     git config user.email 'noreply@pixapps.ai'
-      #     git add world/ticks characters
-      #     git diff --staged --quiet || git commit -m "world: $(date -u +%Y-%m-%d)"
-      #     git push
+      # 生成が破棄された日でも、失敗記録は残す。
+      - name: Validate the data
+        if: always()
+        run: npm run validate
+
+      - name: Commit the day
+        if: always()
+        run: |
+          git config user.name  'velum'
+          git config user.email 'noreply@pixapps.ai'
+          git add world characters
+          if git diff --staged --quiet; then
+            echo "変更なし。"
+          else
+            git commit -m "world: ${{ inputs.date || '$(date -u +%Y-%m-%d)' }}"
+            git push
+          fi

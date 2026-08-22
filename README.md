@@ -102,10 +102,16 @@ tests/        スキーマ検証と、声の基準となるフィクスチャ
 
 ```bash
 npm install
-npm run validate
+npm run validate      # 全データをスキーマと設計上の検収条件に照らす
+npm test              # 上限とプロンプトの対応、構造ゲート、ローテーション
+npm run day           # 今日の一日を回す（GEMINI_API_KEY が要ります）
 ```
 
-`validate` は `world/` と `characters/` の全データをスキーマに照らして検証します。生成パイプライン（World Tick / Diary / Snapshot Compiler）は次の段階で実装します。
+`npm run day` は、その日が誰の番かを判定し、World Tick を生成して、その時代の主人公に日記を書かせます。日付を指定するには `npm run day -- 2026-09-05`、Tick だけ見るには `--tick-only` を付けます。
+
+構造ゲートに違反した日は、状態ファイルを一切変更せずに `world/failures/` へ失敗記録だけを残します。
+
+Persona Snapshot Compiler は次の段階（M3）で実装します。
 
 ---
 

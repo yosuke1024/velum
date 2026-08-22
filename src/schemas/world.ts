@@ -13,6 +13,10 @@ export const CHARACTER_IDS = ['uta', 'teo', 'sevran', 'kaya', 'riko'] as const;
 export const EraId = z.enum(ERA_IDS);
 export const CharacterId = z.enum(CHARACTER_IDS);
 
+// 値（zod スキーマ）と同名の型も出す。呼び出し側が両方使うため。
+export type EraId = z.infer<typeof EraId>;
+export type CharacterId = z.infer<typeof CharacterId>;
+
 /** 各時代の主人公。ルーティングと検証の両方が参照する。 */
 export const ERA_PROTAGONIST: Record<
   (typeof ERA_IDS)[number],
