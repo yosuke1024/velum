@@ -14,8 +14,12 @@ export function datedPath(base: string, date: string, suffix: string): string {
   return join(base, year, month, `${date}${suffix}`);
 }
 
-export const tickPath = (date: string) =>
-  datedPath(worldPath('ticks'), date, '.json');
+/** 季の計画。人間が読んで直すファイルなので YAML で置く。 */
+export const seasonPath = (season: number, era: string) =>
+  worldPath('seasons', String(season).padStart(3, '0'), `${era}.yaml`);
+
+export const seasonDir = (season: number) =>
+  worldPath('seasons', String(season).padStart(3, '0'));
 
 export const diaryPath = (id: string, date: string, lang: 'ja' | 'en') =>
   datedPath(charPath(id, 'diaries'), date, `.${lang}.md`);

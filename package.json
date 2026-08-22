@@ -12,7 +12,8 @@
     "validate": "tsx scripts/validate.ts",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "day": "tsx scripts/run-day.ts"
+    "day": "tsx scripts/run-day.ts",
+    "plan": "tsx scripts/plan-season.ts"
   },
   "dependencies": {
     "yaml": "^2.6.1",

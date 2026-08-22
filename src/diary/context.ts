@@ -12,7 +12,17 @@ import {
   type Relationships,
   type Memories,
 } from '../schemas/character.js';
-import type { Tick } from '../schemas/tick.js';
+import type { Episode } from '../schemas/season.js';
+import type { Turn } from '../lib/rotation.js';
+
+/** その日に書く材料。季の計画から取り出した1話ぶん。 */
+export type Day = {
+  date: string;
+  turn: Turn;
+  episode: Episode;
+  /** 前の話が残したもの。物語の続きであることを本人に思い出させる。 */
+  carriedOver: string | null;
+};
 
 export type DiaryContext = {
   profile: Profile;
@@ -20,7 +30,7 @@ export type DiaryContext = {
   state: CurrentState;
   relationships: Relationships;
   memories: Memories;
-  tick: Tick;
+  day: Day;
   /** 直近の日記の要約。全文は渡さない。 */
   recentSummaries: string[];
 };
@@ -45,12 +55,12 @@ export function loadCharacter(id: string): {
 }
 
 export function buildDiaryContext(
-  tick: Tick,
+  day: Day,
   recentSummaries: string[] = [],
 ): DiaryContext {
   return {
-    ...loadCharacter(tick.protagonist),
-    tick,
+    ...loadCharacter(day.turn.protagonist),
+    day,
     recentSummaries,
   };
 }

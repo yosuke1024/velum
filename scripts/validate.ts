@@ -34,6 +34,7 @@ import {
   RelationshipsSchema,
   MemoriesSchema,
 } from '../src/schemas/character.js';
+import { SeasonPlanSchema, BEATS, EPISODES_PER_SEASON } from '../src/schemas/season.js';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
 
@@ -222,6 +223,54 @@ if (profiles.size === CHARACTER_IDS.length) {
   const ages = [...profiles.values()].map((p) => p.age as number);
   if (new Set(ages).size !== ages.length) {
     fail('characters', `年齢が重複しています（${ages.join(', ')}）`);
+  }
+}
+
+// ── world/seasons ──────────────────────────────────────────────
+// 計画は人間が読んで直すファイルなので、直したものが壊れていないかを見る。
+
+const seasonsRoot = join(ROOT, 'world/seasons');
+if (existsSync(seasonsRoot)) {
+  const seasonDirs = readdirSync(seasonsRoot, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory())
+    .map((entry) => entry.name)
+    .sort();
+
+  for (const dir of seasonDirs) {
+    const seasonDir = join(seasonsRoot, dir);
+    for (const file of readdirSync(seasonDir).filter((f) => f.endsWith('.yaml'))) {
+      const rel = `world/seasons/${dir}/${file}`;
+      const plan = load<{
+        season: number;
+        era: string;
+        protagonist: string;
+        episodes: Array<{ number: number; beat: string }>;
+      }>(join(seasonDir, file), SeasonPlanSchema, '季の計画');
+      if (!plan) continue;
+
+      const era = file.replace(/\.yaml$/, '');
+      if (plan.era !== era) {
+        fail(rel, `era が ${plan.era} になっています（ファイル名は ${era}）`);
+      }
+      if (plan.season !== Number(dir)) {
+        fail(rel, `season が ${plan.season} になっています（ディレクトリは ${dir}）`);
+      }
+      const expected = ERA_PROTAGONIST[era as (typeof ERA_IDS)[number]];
+      if (expected && plan.protagonist !== expected) {
+        fail(rel, `${era} の主人公は ${expected} のはずです`);
+      }
+
+      const numbers = plan.episodes.map((e) => e.number);
+      const wanted = Array.from({ length: EPISODES_PER_SEASON }, (_, i) => i + 1);
+      if (numbers.join(',') !== wanted.join(',')) {
+        fail(rel, `話番号が 1..${EPISODES_PER_SEASON} の順になっていません（${numbers.join(',')}）`);
+      }
+      // 発端 → 展開 → 転機 → 危機 → 決着 の並びは崩さない。
+      const beats = plan.episodes.map((e) => e.beat);
+      if (beats.join(',') !== BEATS.join(',')) {
+        fail(rel, `beat の並びが ${BEATS.join(' → ')} になっていません`);
+      }
+    }
   }
 }
 

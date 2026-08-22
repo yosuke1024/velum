@@ -218,16 +218,23 @@ export function buildDiarySystemPrompt(context: DiaryContext): string {
 }
 
 export function buildDiaryUserPrompt(context: DiaryContext): string {
-  const { tick, state, memories, canon } = context;
+  const { day, state, memories, canon } = context;
   const lines: string[] = [];
 
-  lines.push(`## 今日（${tick.date}）起きたこと`);
-  for (const event of tick.events) {
+  if (day.carriedOver) {
+    // 物語の続きであることを思い出させる。ただし前回の日記本文は渡さない。
+    lines.push('## 前回から持ち越していること');
+    lines.push(day.carriedOver);
+    lines.push('');
+  }
+
+  lines.push(`## 今日（${day.date}）起きたこと`);
+  for (const event of day.episode.events) {
     const who = event.who.length ? `［${event.who.join('、')}］` : '';
     lines.push(`- ${event.where}: ${event.summary}${who}`);
   }
-  if (tick.world_change) {
-    lines.push(`- 世界の側の変化: ${tick.world_change}`);
+  if (day.episode.world_change) {
+    lines.push(`- 世界の側の変化: ${day.episode.world_change}`);
   }
   lines.push('');
 

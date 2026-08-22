@@ -1,16 +1,20 @@
 import { z } from 'zod';
 import { CharacterId, EraId } from './world.js';
+import { Beat } from './season.js';
 
 /** サイトが描画する日記のエントリ。 */
 export const DiaryEntrySchema = z.object({
   date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
   era: EraId,
   protagonist: CharacterId,
+  /** 何季の何話目か。日付順と物語順の両方で読めるようにするため。 */
+  season: z.number().int().min(1),
+  episode: z.number().int().min(1).max(5),
+  beat: Beat,
   title: z.string().min(1),
   quote: z.string().min(1),
   mood: z.string().min(1),
   rare_expression_used: z.boolean(),
-  tick_card: z.string().min(1),
 });
 
 export type DiaryEntry = z.infer<typeof DiaryEntrySchema>;

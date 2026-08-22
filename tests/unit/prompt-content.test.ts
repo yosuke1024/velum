@@ -1,16 +1,22 @@
 import { describe, it, expect } from 'vitest';
-import { buildTickContext } from '../../src/tick/context.js';
-import { buildTickUserPrompt, buildTickSystemPrompt } from '../../src/tick/prompt.js';
+import { buildSeasonContext } from '../../src/season/context.js';
+import { buildSeasonUserPrompt, buildSeasonSystemPrompt } from '../../src/season/prompt.js';
 import { buildDiaryUserPrompt, buildDiarySystemPrompt } from '../../src/diary/prompt.js';
-import { loadCharacter } from '../../src/diary/context.js';
-import { TickSchema, type Tick } from '../../src/schemas/tick.js';
+import { loadCharacter, type Day } from '../../src/diary/context.js';
+import { EpisodeSchema, BEATS, EPISODES_PER_SEASON } from '../../src/schemas/season.js';
+import type { Turn } from '../../src/lib/rotation.js';
 
-const tick: Tick = TickSchema.parse({
-  date: '2026-09-01',
+const turn: Turn = {
   era: 'guilds',
   protagonist: 'teo',
-  card: { id: 'appraisal-duty', prompt: '持ち込み鑑定の当番が回ってくる。' },
-  arc: { id: 'guilds-provisional-sigil', thread: 'why-no-recommendation' },
+  dayIndex: 0,
+  season: 1,
+  episode: 1,
+};
+
+const episode = EpisodeSchema.parse({
+  number: 1,
+  beat: '発端',
   events: [
     {
       summary: '真鍮商が燭台を持ち込み、先輩三人が黄金期の逸品と判定した',
@@ -19,55 +25,90 @@ const tick: Tick = TickSchema.parse({
     },
   ],
   world_change: null,
-  generation: {
-    model: 'gemini-3.5-flash',
-    prompt_version: 'tick-v1',
-    seed: '2026-09-01:guilds',
-    generated_at: '2026-09-01T00:00:00.000Z',
-  },
+  leaves_open: '座金の向きを誰も見ていない',
 });
 
-describe('World Tick のプロンプト', () => {
-  const context = buildTickContext('2026-09-01', 'guilds', 'teo');
+const day: Day = { date: '2026-09-01', turn, episode, carriedOver: null };
+
+describe('季の計画のプロンプト', () => {
+  const context = buildSeasonContext(1, 'guilds', 'teo');
 
   it('固定事実を渡す', () => {
-    const prompt = buildTickUserPrompt(context);
-    expect(prompt).toContain('物は嘘をつかない');
+    expect(buildSeasonUserPrompt(context)).toContain('物は嘘をつかない');
   });
 
-  it('アークと現在状態を渡す', () => {
-    const prompt = buildTickUserPrompt(context);
-    expect(prompt).toContain('仮銘審査');
-    expect(prompt).toContain(context.state.mood);
+  it('未解決の問いを全部渡す', () => {
+    // 日ごとの生成と違い、5話の形を作るには何が宙に浮いているかの一望が要る。
+    const prompt = buildSeasonUserPrompt(context);
+    for (const item of context.unresolved) {
+      expect(prompt).toContain(item.question);
+    }
   });
 
-  it('引いたカードを渡す', () => {
-    const prompt = buildTickUserPrompt(context);
-    expect(prompt).toContain(context.card.prompt);
+  it('5話の形を指示する', () => {
+    const prompt = buildSeasonSystemPrompt();
+    for (const beat of BEATS) {
+      expect(prompt).toContain(beat);
+    }
+  });
+
+  it('5話がつながっていることを求める', () => {
+    const prompt = buildSeasonSystemPrompt();
+    expect(prompt).toMatch(/前の話の結果の上に立つ/);
+    expect(prompt).toMatch(/独立した.*日ではなく/);
   });
 
   it('感情や解釈を書かないよう指示する', () => {
-    // Tick は「起きた事実」であって、人物がどう受け取ったかではない。
-    // ここで主観が混ざると、日記が事実を上書きできてしまう。
-    const prompt = buildTickSystemPrompt();
+    // 出来事だけを書かせる。ここで主観が混ざると、日記が事実を上書きできてしまう。
+    const prompt = buildSeasonSystemPrompt();
     expect(prompt).toMatch(/出来事だけを書く/);
     expect(prompt).toMatch(/感情|内面/);
   });
 
-  it('毎日を事件にしないよう指示する', () => {
-    const prompt = buildTickSystemPrompt();
-    expect(prompt).toMatch(/何も起きない日/);
+  it('全部の話を事件にしないよう指示する', () => {
+    expect(buildSeasonSystemPrompt()).toMatch(/何も起きない日でよい/);
+  });
+
+  it('問いを全部片づけないよう指示する', () => {
+    expect(buildSeasonSystemPrompt()).toMatch(/全部片づけようとしない/);
+  });
+
+  it('カードは素材であり、そのまま使わないと指示する', () => {
+    expect(buildSeasonSystemPrompt()).toMatch(/イベントカードは素材/);
+    expect(buildSeasonUserPrompt(context)).toMatch(/そのまま出来事にしない/);
+  });
+
+  it('5話ぶんより多めにカードを引く（使わない札があってよい）', () => {
+    expect(context.cards.length).toBeGreaterThan(EPISODES_PER_SEASON);
+  });
+
+  it('第1季には持ち越しがない', () => {
+    expect(context.carriedOver).toBeNull();
   });
 });
 
 describe('日記のプロンプト', () => {
   const character = loadCharacter('teo');
-  const context = { ...character, tick, recentSummaries: [] };
+  const context = { ...character, day, recentSummaries: [] };
 
-  it('Tick の出来事を渡す', () => {
+  it('計画された出来事を渡す', () => {
     const prompt = buildDiaryUserPrompt(context);
     expect(prompt).toContain('燭台');
     expect(prompt).toContain('大鑑定院');
+  });
+
+  it('前の話から持ち越したものを渡す', () => {
+    const withCarry = {
+      ...context,
+      day: { ...day, carriedOver: '推薦状の話がまだ出ていない' },
+    };
+    const prompt = buildDiaryUserPrompt(withCarry);
+    expect(prompt).toContain('持ち越していること');
+    expect(prompt).toContain('推薦状の話がまだ出ていない');
+  });
+
+  it('第1話には持ち越しの節を出さない', () => {
+    expect(buildDiaryUserPrompt(context)).not.toContain('持ち越していること');
   });
 
   it('関係先の id を渡す（差分の宛先になるため）', () => {
@@ -88,7 +129,6 @@ describe('日記のプロンプト', () => {
       recentSummaries: ['2026-08-27「座金は逆だ」— 別に、悔しくはない。'],
     };
     const prompt = buildDiaryUserPrompt(withHistory);
-
     expect(prompt).toContain('座金は逆だ');
     expect(prompt).toMatch(/引き写さない/);
   });
@@ -100,7 +140,6 @@ describe('日記のプロンプト', () => {
   });
 
   it('レア表現をめったに使わないよう伝える', () => {
-    const prompt = buildDiarySystemPrompt(context);
-    expect(prompt).toMatch(/めったにない/);
+    expect(buildDiarySystemPrompt(context)).toMatch(/めったにない/);
   });
 });

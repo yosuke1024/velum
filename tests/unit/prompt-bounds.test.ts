@@ -2,7 +2,9 @@ import { describe, it, expect } from 'vitest';
 import { PATCH_LIMITS, MEMORY_IMPORTANCE, TEXT_LIMITS } from '../../src/schemas/limits.js';
 import { boundsLines, otherFatalRules, buildDiarySystemPrompt } from '../../src/diary/prompt.js';
 import { loadCharacter } from '../../src/diary/context.js';
-import type { Tick } from '../../src/schemas/tick.js';
+import type { Day } from '../../src/diary/context.js';
+import { EpisodeSchema } from '../../src/schemas/season.js';
+import type { Turn } from '../../src/lib/rotation.js';
 
 /**
  * ゲートが落とせる上限は、すべてプロンプトに書かれていなければならない。
@@ -62,16 +64,25 @@ describe('プロンプトは、ゲートが落とせる上限をすべて述べ�
 });
 
 describe('人物ごとのプロンプト', () => {
-  const tick = {
+  const episode = EpisodeSchema.parse({
+    number: 1,
+    beat: '発端',
+    events: [{ summary: '狩りの吉凶を問われた', where: '野営地', who: [] }],
+    world_change: null,
+    leaves_open: '答えの根拠を誰も訊かなかった',
+  });
+
+  const dayFor = (id: string, era: string): Day => ({
     date: '2026-09-01',
-    era: 'primordial',
-    protagonist: 'uta',
-  } as unknown as Tick;
+    turn: { era, protagonist: id, dayIndex: 0, season: 1, episode: 1 } as Turn,
+    episode,
+    carriedOver: null,
+  });
 
   it('ウタには「書かない語り手」であることを伝える', () => {
     const context = {
       ...loadCharacter('uta'),
-      tick,
+      day: dayFor('uta', 'primordial'),
       recentSummaries: [],
     };
     const prompt = buildDiarySystemPrompt(context);
@@ -83,7 +94,7 @@ describe('人物ごとのプロンプト', () => {
   it('他の人物にはその指示を入れない', () => {
     const context = {
       ...loadCharacter('teo'),
-      tick: { ...tick, era: 'guilds', protagonist: 'teo' } as unknown as Tick,
+      day: dayFor('teo', 'guilds'),
       recentSummaries: [],
     };
     const prompt = buildDiarySystemPrompt(context);
@@ -96,7 +107,7 @@ describe('人物ごとのプロンプト', () => {
       const character = loadCharacter(id);
       const prompt = buildDiarySystemPrompt({
         ...character,
-        tick: { ...tick, protagonist: id } as unknown as Tick,
+        day: dayFor(id, character.profile.era),
         recentSummaries: [],
       });
 

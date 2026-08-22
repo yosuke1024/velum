@@ -3,8 +3,8 @@ import { charPath, diaryPath, entryPath, eventPath, failurePath } from '../lib/p
 import { writeYaml, writeJson, writeText } from '../lib/storage.js';
 import { DiaryResponseSchema } from '../schemas/patch.js';
 import { DiaryEntrySchema, DiaryEventSchema } from '../schemas/diary.js';
-import { FailureSchema, type Tick } from '../schemas/tick.js';
-import { buildDiaryContext } from './context.js';
+import { FailureSchema } from '../schemas/season.js';
+import { buildDiaryContext, type Day } from './context.js';
 import {
   buildDiarySystemPrompt,
   buildDiaryUserPrompt,
@@ -18,7 +18,7 @@ export type DiaryOutcome =
   | { ok: true; title: string; truncated: string[] }
   | { ok: false; violations: string[] };
 
-function frontMatter(fields: Record<string, string>): string {
+function frontMatter(fields: Record<string, string | number>): string {
   const lines = Object.entries(fields).map(
     ([key, value]) => `${key}: ${JSON.stringify(value)}`,
   );
@@ -26,11 +26,12 @@ function frontMatter(fields: Record<string, string>): string {
 }
 
 export async function generateDiary(
-  tick: Tick,
+  day: Day,
   recentSummaries: string[] = [],
 ): Promise<DiaryOutcome> {
-  const context = buildDiaryContext(tick, recentSummaries);
+  const context = buildDiaryContext(day, recentSummaries);
   const { profile } = context;
+  const { turn } = day;
 
   const { data, model } = await generateJson(
     {
@@ -45,12 +46,15 @@ export async function generateDiary(
 
   if (!verdict.ok) {
     // 欠けた日は隠さない。状態ファイルにも日記にも何も書かず、失敗だけを残す。
+    // 季の計画は消さないので、同じ日をやり直せば同じ出来事から書き直せる。
     writeJson(
-      failurePath(tick.date, 'diary'),
+      failurePath(day.date, 'diary'),
       FailureSchema.parse({
-        date: tick.date,
-        era: tick.era,
-        protagonist: tick.protagonist,
+        date: day.date,
+        era: turn.era,
+        protagonist: turn.protagonist,
+        season: turn.season,
+        episode: turn.episode,
         stage: 'diary',
         reason: '構造ゲートの違反により破棄',
         violations: verdict.violations,
@@ -69,7 +73,7 @@ export async function generateDiary(
       memories: context.memories,
       canon: context.canon,
     },
-    tick.date,
+    day.date,
   );
 
   const id = profile.id;
@@ -80,40 +84,45 @@ export async function generateDiary(
   writeYaml(charPath(id, 'canon.yaml'), result.canon);
 
   const meta = {
-    date: tick.date,
-    era: tick.era,
+    date: day.date,
+    era: turn.era,
     protagonist: id,
+    season: turn.season,
+    episode: turn.episode,
+    beat: day.episode.beat,
     title: response.title,
     mood: response.mood,
   };
 
   writeText(
-    diaryPath(id, tick.date, 'ja'),
+    diaryPath(id, day.date, 'ja'),
     `${frontMatter({ ...meta, lang: 'ja' })}${response.body_ja.trim()}\n`,
   );
   writeText(
-    diaryPath(id, tick.date, 'en'),
+    diaryPath(id, day.date, 'en'),
     `${frontMatter({ ...meta, lang: 'en' })}${response.body_en.trim()}\n`,
   );
 
   writeJson(
-    entryPath(id, tick.date),
+    entryPath(id, day.date),
     DiaryEntrySchema.parse({
-      date: tick.date,
-      era: tick.era,
+      date: day.date,
+      era: turn.era,
       protagonist: id,
+      season: turn.season,
+      episode: turn.episode,
+      beat: day.episode.beat,
       title: response.title,
       quote: response.quote,
       mood: response.mood,
       rare_expression_used: response.rare_expression_used,
-      tick_card: tick.card.id,
     }),
   );
 
   writeJson(
-    eventPath(id, tick.date),
+    eventPath(id, day.date),
     DiaryEventSchema.parse({
-      date: tick.date,
+      date: day.date,
       protagonist: id,
       applied: result.applied,
       truncated: verdict.truncated,
