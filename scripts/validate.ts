@@ -8,6 +8,8 @@
  *  - アーク・カードデッキが全時代ぶんあるか
  *  - 糸が参照する人物が実在するか
  *  - 推し軸・一人称・締めの型が5人で重複していないか
+ *  - Persona Snapshot が追記のみで、番号が飛んでいないか
+ *  - 配っているペルソナが、実在する Snapshot を指しているか
  */
 
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
@@ -35,6 +37,8 @@ import {
   MemoriesSchema,
 } from '../src/schemas/character.js';
 import { SeasonPlanSchema, BEATS, EPISODES_PER_SEASON } from '../src/schemas/season.js';
+import { SnapshotSchema, SNAPSHOT_FILE } from '../src/schemas/snapshot.js';
+import { PersonaManifestSchema } from '../src/schemas/manifest.js';
 import { CalendarFileSchema, ClocksFileSchema } from '../src/schemas/world.js';
 import { linearDay } from '../src/lib/calendar.js';
 
@@ -320,6 +324,82 @@ if (existsSync(seasonsRoot)) {
       }
       if (era === 'convergence' && typed.year_in_world !== 4217) {
         fail(rel, 'convergence の year_in_world は 4217 です');
+      }
+    }
+  }
+}
+
+// ── characters/*/snapshots ─────────────────────────────────────
+// PixTale はここをバージョン固定で読む。追記のみで、番号は飛ばない。
+// 番号が飛べば、向こうのピンが存在しないファイルを指しうる。
+
+for (const id of CHARACTER_IDS) {
+  const dir = join(ROOT, 'characters', id, 'snapshots');
+  if (!existsSync(dir)) continue;
+
+  const versions: number[] = [];
+  for (const file of readdirSync(dir)) {
+    const match = SNAPSHOT_FILE.exec(file);
+    if (!match) continue; // README.md など
+
+    const rel = `characters/${id}/snapshots/${file}`;
+    const version = Number(match[1]);
+    versions.push(version);
+
+    let raw: unknown;
+    try {
+      raw = JSON.parse(readFileSync(join(dir, file), 'utf8'));
+    } catch (error) {
+      fail(rel, `JSON を解析できません — ${(error as Error).message}`);
+      continue;
+    }
+    const result = SnapshotSchema.safeParse(raw);
+    checked += 1;
+    if (!result.success) {
+      for (const issue of result.error.issues) {
+        fail(rel, `${issue.path.length ? issue.path.join('.') : '(root)'} — ${issue.message}`);
+      }
+      continue;
+    }
+    if (result.data.version !== version) {
+      fail(rel, `version が ${result.data.version} になっています（ファイル名は v${match[1]}）`);
+    }
+    if (result.data.character !== id) {
+      fail(rel, `character が ${result.data.character} になっています`);
+    }
+  }
+
+  versions.sort((a, b) => a - b);
+  const wanted = versions.map((_, i) => i + 1);
+  if (versions.join(',') !== wanted.join(',')) {
+    fail(
+      `characters/${id}/snapshots`,
+      `バージョンが 1.. の連番になっていません（${versions.join(', ')}）`,
+    );
+  }
+}
+
+// ── world/personas.json ────────────────────────────────────────
+// PixTale が最初に取りに来る1枚。ここが実在しないファイルを指すと、
+// こちらの CI が緑のまま向こうが 404 を踏む。
+
+{
+  const path = join(ROOT, 'world/personas.json');
+  const manifest = load<{
+    personas: Record<string, { character: string; version: number; path: string }>;
+  }>(path, PersonaManifestSchema, '配っているペルソナ');
+
+  if (manifest) {
+    for (const [id, entry] of Object.entries(manifest.personas)) {
+      if (entry.character !== id) {
+        fail('world/personas.json', `${id} の character が ${entry.character} になっています`);
+      }
+      if (!existsSync(join(ROOT, entry.path))) {
+        fail('world/personas.json', `${id} が指す ${entry.path} が存在しません`);
+      }
+      const expected = `characters/${id}/snapshots/v${String(entry.version).padStart(4, '0')}.json`;
+      if (entry.path !== expected) {
+        fail('world/personas.json', `${id} の path と version が食い違っています（${entry.path}）`);
       }
     }
   }

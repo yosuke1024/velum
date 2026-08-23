@@ -56,7 +56,16 @@ visual:
   props:
     - 首に大量の自作お守り（全部売れ残り）
     - 値札の束と筆
-    - 「一番売れない品」の首飾り（荷車の奥の定位置）
+    - |
+      「一番売れない品」の首飾り（荷車の奥の定位置）。
+      水没した礼拝堂で拾った。売り物のはずが、目を覚ます日を夢見ている。
+    - |
+      自作のルーペ。鑑定士の道具ではない——彼女に鑑定の資格はない。それでも使う。
+      5人でただひとり、物を見抜く目を持たない人物であることの記号。
+    - 荷車の看板「RIKO TRADING — WONDERS, WHISPERS, & WHATNOT」
+    - |
+      立て看板「WHAT CAN THIS STILL DO?」。
+      彼女がアイテムへ向ける問い（appraisal.question）を、そのまま物にしたもの。
   palette:
     base: ["#CBB78E", "#3E3128"]
     accent: "#A8433A"
@@ -66,3 +75,21 @@ visual:
     quiet: 遠くを見る目
     rare: 言葉に詰まって固まる顔
   acceptance: シルエットだけで「旅・商売・にぎやか」。荷車と肩掛けで一目でリコと分かること。
+
+  # ── シートで確定した表記 ──────────────────────────────────
+  # 候補2枚目を基準に確定（2026-08-23）。次にシートを描かせるときは、
+  # ここの文面をそのまま渡すこと。理由は docs/visual.md。
+  # シート上の役職・所属の表記は採用しない——このファイルが正である。
+  sheet:
+    base: 候補2枚目（2026-08-23 確定）
+    captions:
+      - "HER OWN LOUPE — Homemade. Not a real appraiser's tool. She uses it anyway."
+      - "SPECIAL NECKLACE (UNSOLD) — Found in a flooded chapel. She dreams of what it might awaken."
+      - "CLOAK: TWO MODES — One cloak. Two faces. She switches with a single clasp."
+      - "PATTERNS OF THE ROAD — Repairs become memories. Nothing goes to waste."
+      - "EVERY STRAP, EVERY POCKET — Has a story. And maybe a future buyer."
+    expressions:
+      - "CHEERFUL & THEATRICAL"
+      - "WISTFUL & SINCERE"
+      - "QUIET DETERMINATION"
+    quote: "People say the world is quiet now. I say it's just waiting for the right question."

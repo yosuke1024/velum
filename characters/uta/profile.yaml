@@ -69,10 +69,12 @@ visual:
     生成りの巻き布、獣皮の肩当て。装飾は少なく、素材そのもの。
     原初の沈黙は文字を持たない前史の時代であり、後の時代より工芸が精緻に見えてはいけない。
     冠のような「与えられた権威」の記号は持たない。
-  key_prop: 髪に挿した祖母の骨櫛。
+  key_prop: |
+    髪に挿した骨櫛。最初の聴き手の顎から彫られたもので、先代たちの声で低く鳴る。
+    祖母から渡された——正式な継承の儀を経ないまま。
   props:
     - 腰に歩くと鳴る貝の束（拾ったものだけ。奪ったものはない）
-    - 儀式用の細い骨笛
+    - 儀式用の細い骨笛（シート2枚目には描かれていない。持たせるかは未確定）
   not_held: 歌う石（今は長の天幕にある。奪還がアークの動機）
   palette:
     base: ["#E8E0CF", "#F0EDE4"]
@@ -85,3 +87,21 @@ visual:
   acceptance: |
     シルエットだけで「原初・巫女・若い」。骨櫛と貝の束、裸足で一目でウタと分かること。
     厳かさが「背伸び」に見えること——完成された巫女に見えたら失敗。
+
+  # ── シートで確定した表記 ──────────────────────────────────
+  # 候補2枚目を基準に確定（2026-08-23）。次にシートを描かせるときは、
+  # ここの文面をそのまま渡すこと。理由は docs/visual.md。
+  # シート上の役職・所属の表記は採用しない——このファイルが正である。
+  sheet:
+    base: 候補2枚目（2026-08-23 確定）
+    captions:
+      - "ANCESTOR BONE COMB — Carved from the jaw of the first Listener. Hums with the voices of those who came before."
+      - "NIGHT-SKY PIGMENT — Self-drawn. Imperfect. A prayer in ink."
+      - "SHELL CLUSTER — Each shell was found, not taken."
+      - "SPEAKING SHELL BUNDLE — She holds it to her ear and asks the omen."
+      - "HABIT — When she sits or crouches, she always raises one knee."
+    expressions:
+      - "SOLEMN IN PERFORMANCE"
+      - "INWARDLY DOUBTFUL"
+      - "QUIETLY CURIOUS"
+    quote: "I listen because I must. I believe because I choose."

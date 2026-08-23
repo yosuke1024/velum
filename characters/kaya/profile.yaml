@@ -75,3 +75,22 @@ visual:
   acceptance: |
     シルエットだけで「歩く人・中立・弔い」。背負い箱と木札の束で一目でカヤと分かること。
     戦士に見えないこと——武器のシルエットを一切入れない。
+
+  # ── シートで確定した表記 ──────────────────────────────────
+  # 候補2枚目を基準に確定（2026-08-23）。次にシートを描かせるときは、
+  # ここの文面をそのまま渡すこと。理由は docs/visual.md。
+  # シート上の役職・所属の表記は採用しない——このファイルが正である。
+  sheet:
+    base: 候補2枚目（2026-08-23 確定）
+    captions:
+      - "COFFIN BOX — Small and light. Holds what matters most. Kept clean."
+      - "DESTINATION TAGS — They clink softly as she walks."
+      - "MENDED CLOAK — Always kept repaired, never replaced. Stitch by stitch, a promise kept."
+      - "RITUAL CARE — She handles each relic with clean hands and a quiet heart."
+      - "NO NAME IN SERVICE — The guild calls its reclaimers by number, never by name. She is Seven."
+      - "EVERY STITCH IS A PROMISE — Every patch holds a memory she will carry home."
+    expressions:
+      - "STEADFAST COMPOSURE"
+      - "QUIET MOURNING"
+      - "GENTLE RESOLVE"
+    quote: "Names fade. Places change. But I will bring them home."
