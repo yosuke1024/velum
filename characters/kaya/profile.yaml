@@ -36,19 +36,36 @@ core:
     また、破砕戦争は千八百年続く。彼女の願望が叶わないことを、読者だけが知っている。
 
 voice:
-  first_person: わたし
+  first_person:
+    ja: わたし
+    en: I (quiet, plain)
   register: 静かな独白体。届けるときだけ過剰に丁寧な口上になる。
-  tic: 届けた品の持ち主の人数を数える。
-  never_says: 戦死（必ず「帰らなかった」と言う）
-  closing: ——確かに、お届けしました。
+  tic:
+    ja: 届けた品の持ち主の人数を数える。
+    en: She counts the owners of everything she has delivered.
+  never_says:
+    ja: 戦死（必ず「帰らなかった」と言う）
+    en: Killed in action (she always says "did not come home")
+  closing:
+    ja: ——確かに、お届けしました。
+    en: — Delivered, and received.
 
 appraisal:
-  question: 誰が持っていたか
+  question:
+    ja: 誰が持っていたか
+    en: Who carried this before?
   focus: 傷・修理痕・磨り減り・遺された未練
-  bias: 新品を信用しない（「まだ誰の人生も通っていない」）。
-  humor: |
-    何でも戦傷として読む（ホチキス跡＝矢傷、シールの剥がし残し＝軍の検閲印）。
-    加えて、過剰に儀礼的な「お届け」プロトコル。
+  bias:
+    ja: 新品を信用しない（「まだ誰の人生も通っていない」）。
+    en: She distrusts anything new — "no one's life has passed through it yet."
+  humor:
+    ja: |
+      何でも戦傷として読む（ホチキス跡＝矢傷、シールの剥がし残し＝軍の検閲印）。
+      加えて、過剰に儀礼的な「お届け」プロトコル。
+    en: |
+      She reads every mark as a battle wound (staple holes are arrow wounds,
+      sticker residue is a military censor's seal). Plus an absurdly ceremonial
+      delivery protocol.
 
 rare_expression: |
   夜の名前の読み上げに、弟の名前が混ざる。

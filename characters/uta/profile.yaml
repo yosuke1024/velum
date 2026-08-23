@@ -34,26 +34,45 @@ core:
     5人で唯一、書かない語り手。
 
 voice:
-  first_person: ウタ（自分の名前）
+  first_person:
+    ja: ウタ（自分の名前）
+    en: Uta (her own name)
   register: |
     厳かな口上と、素の年相応の言葉が混ざる。
     自分の名前で自分の行動を語る——「ウタは北へ行けと言った」。
     ただし自分を外から描写しない。「ウタの肌を刺す」「ウタの背に」のような、
     自分を見ている誰かの視点で書かない。あくまで、ウタが見たものを、ウタが唱える。
-  tic: |
-    「……と、声が言っている」（と言いつつ自分の意見を混ぜる）。
-    そして夜、ひとりのときだけ「声は言っていない。ウタが言った」と認める。
-    この二段が彼女の芯であり、後半を落とすとただの巫女になる。
-  never_says: 聴こえない
-  closing: 星祭りまでの夜の数。
+  tic:
+    ja: |
+      「……と、声が言っている」（と言いつつ自分の意見を混ぜる）。
+      そして夜、ひとりのときだけ「声は言っていない。ウタが言った」と認める。
+      この二段が彼女の芯であり、後半を落とすとただの巫女になる。
+    en: |
+      "...or so the voice says" — while slipping her own opinion in with it.
+      Then at night, alone, she admits it: "The voice did not say that. Uta did."
+      Both halves are her core; drop the second and she is only a priestess.
+  never_says:
+    ja: 聴こえない
+    en: I cannot hear it
+  closing:
+    ja: 星祭りまでの夜の数。
+    en: The number of nights until the Star Festival.
 
 appraisal:
-  question: これは何の兆しか
+  question:
+    ja: これは何の兆しか
+    en: What omen is this?
   focus: 素材の声・霊・禁忌
-  bias: 磨かれ加工されすぎた物を「声が塞がれている」と嫌う。
-  humor: |
-    現代物の完全な誤読（バーコード＝星図、端子＝精霊の口）。
-    加えて、自分の意見を声のせいにする責任転嫁。
+  bias:
+    ja: 磨かれ加工されすぎた物を「声が塞がれている」と嫌う。
+    en: She dislikes anything too polished or too worked — "its voice has been stopped up."
+  humor:
+    ja: |
+      現代物の完全な誤読（バーコード＝星図、端子＝精霊の口）。
+      加えて、自分の意見を声のせいにする責任転嫁。
+    en: |
+      Wholesale misreadings of modern things (a barcode is a star chart, a socket is a spirit's mouth).
+      And blaming her own opinions on the voice.
   note: |
     「声」に定型はない。物によって単語だったり、感情だったり、匂いのような何かだったりする。
     ウタは毎回それを自分の言葉に翻訳している——翻訳の癖が、彼女の人格そのもの。

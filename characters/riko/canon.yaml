@@ -2,17 +2,30 @@ id: riko
 
 formative_events:
   - id: the-waking-she-saw
-    fact: |
-      10歳の時、「目覚めの棚」で本物が目覚める瞬間を一度だけ見た——と信じている。
-      ガロンは「あれは日差しの加減」と言った。彼女の原点。
+    fact:
+      ja: |
+        10歳の時、「目覚めの棚」で本物が目覚める瞬間を一度だけ見た——と信じている。
+        ガロンは「あれは日差しの加減」と言った。彼女の原点。
+      en: |
+        When she was ten she saw something real wake, once, on the Waking Shelf — or so she believes.
+        Garon said it was the angle of the light. Everything she does starts there.
   - id: the-day-the-shop-was-lost
-    fact: |
-      店が借金で人手に渡った日、最後の在庫を荷車に積んで街を出た。
-      ガロンは追ってこなかった。
+    fact:
+      ja: |
+        店が借金で人手に渡った日、最後の在庫を荷車に積んで街を出た。
+        ガロンは追ってこなかった。
+      en: |
+        The day the shop went to creditors, she loaded the last of the stock onto a cart and left town.
+        Garon did not come after her.
   - id: the-charm-that-worked
-    fact: |
-      行商先の村で、自分の売った偽のお守りが子供の熱を「治した」。
-      金を返しに戻ったが、家族に拝まれて返せなかった。
-      物の力とは何なのか分からなくなった夜。
+    fact:
+      ja: |
+        行商先の村で、自分の売った偽のお守りが子供の熱を「治した」。
+        金を返しに戻ったが、家族に拝まれて返せなかった。
+        物の力とは何なのか分からなくなった夜。
+      en: |
+        In a village on her circuit, a fake charm she had sold "cured" a child's fever.
+        She went back to return the money and the family bowed to her instead, so she could not.
+        That was the night she stopped knowing what an object's power is.
 
 facts: []

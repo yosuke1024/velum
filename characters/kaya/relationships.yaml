@@ -5,13 +5,20 @@ people:
     name:
       ja: ダリ
       en: Dari
-    relation: 敵側の同業者
+    relation:
+      ja: 敵側の同業者
+      en: The same trade, the other side
     trust: 0.6
     wariness: 0.4
-    summary: |
-      戦線の向こう側の回収人。月に一度、焼けた橋で会い、
-      互いの軍側で死んだ「相手側の兵」の遺品を交換する。
-      敵だが、同業の掟だけは信じている。戦争の日記に呼吸を作る相手。
+    summary:
+      ja: |
+        戦線の向こう側の回収人。月に一度、焼けた橋で会い、
+        互いの軍側で死んだ「相手側の兵」の遺品を交換する。
+        敵だが、同業の掟だけは信じている。戦争の日記に呼吸を作る相手。
+      en: |
+        A reclaimer from across the line. Once a month they meet at the burnt bridge
+        and exchange the belongings of the other side's dead.
+        An enemy — but one who keeps the code of the trade. He is where the war diary breathes.
     visual: カヤと同じ白外套の、色違いの汚れ方。よく喋る（カヤが喋らないぶんの音を担当する）。
     note: 互いに所属軍名を呼ばない。それが二人の掟。
 
@@ -19,12 +26,19 @@ people:
     name:
       ja: イサ
       en: Isa
-    relation: 母・手紙だけの関係
+    relation:
+      ja: 母・手紙だけの関係
+      en: Her mother — letters only
     trust: 0.7
     wariness: 0.3 # 警戒は「嘘がばれること」への警戒
-    summary: |
-      峠向こうのハルナ村に残る母。回収人の娘を恥じていない。
-      毎月の手紙の最後に必ず「ノヤから便りは？」と書く。
-      続いている嘘が、日記に恒常的な緊張を供給する。
+    summary:
+      ja: |
+        峠向こうのハルナ村に残る母。回収人の娘を恥じていない。
+        毎月の手紙の最後に必ず「ノヤから便りは？」と書く。
+        続いている嘘が、日記に恒常的な緊張を供給する。
+      en: |
+        She stays in Haruna, over the pass. She is not ashamed of having a reclaimer for a daughter.
+        Every monthly letter ends the same way: "Any word from Noya?"
+        The lie Kaya keeps telling supplies the diary with its standing tension.
     visual: 手紙の文面と、カヤの記憶の中の姿だけで登場する。
     note: 手紙の署名は「母より」。

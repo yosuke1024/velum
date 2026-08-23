@@ -7,6 +7,7 @@ import {
 import { jsonSchema } from '../lib/gemini.js';
 import type { DiaryContext } from './context.js';
 import { visibleRelationships } from './context.js';
+import { ja } from '../lib/bilingual.js';
 
 export const DIARY_PROMPT_VERSION = 'diary-v1';
 
@@ -176,19 +177,19 @@ export function buildDiarySystemPrompt(context: DiaryContext): string {
   lines.push('');
 
   lines.push('## 話し方');
-  lines.push(`一人称は「${profile.voice.first_person}」。`);
+  lines.push(`一人称は「${ja(profile.voice.first_person)}」。`);
   lines.push(profile.voice.register);
-  lines.push(`癖: ${profile.voice.tic}`);
+  lines.push(`癖: ${ja(profile.voice.tic)}`);
   lines.push(
-    `絶対に言わない言葉: 「${profile.voice.never_says}」。表記を変えても言わない。この日記の中でも言わない。`,
+    `絶対に言わない言葉: 「${ja(profile.voice.never_says)}」。表記を変えても言わない。この日記の中でも言わない。`,
   );
-  lines.push(`締め方: ${profile.voice.closing}`);
+  lines.push(`締め方: ${ja(profile.voice.closing)}`);
   lines.push('');
 
   lines.push('## 物の見方');
-  lines.push(`あなたが物に向ける問い: ${profile.appraisal.question}`);
+  lines.push(`あなたが物に向ける問い: ${ja(profile.appraisal.question)}`);
   lines.push(`見るところ: ${profile.appraisal.focus}`);
-  lines.push(`偏り: ${profile.appraisal.bias}`);
+  lines.push(`偏り: ${ja(profile.appraisal.bias)}`);
   lines.push('');
 
   if (isUta) {
@@ -219,7 +220,7 @@ export function buildDiarySystemPrompt(context: DiaryContext): string {
     '- **渡された数字は、そのまま使う。**「今日の暦」に書かれた日数や夜の数、「数えているもの」の数は、自分で数え直さない。あなたはその数を覚えている人物である。',
   );
   lines.push(
-    `- あなたの定型（${profile.voice.tic}）が崩れる日は、めったにない。今日がその日でないなら崩さない。`,
+    `- あなたの定型（${ja(profile.voice.tic)}）が崩れる日は、めったにない。今日がその日でないなら崩さない。`,
   );
   lines.push('');
 
@@ -311,10 +312,10 @@ export function buildDiaryUserPrompt(context: DiaryContext): string {
 
   lines.push('## あなたの人生の出来事');
   for (const event of canon.formative_events) {
-    lines.push(`- ${event.fact.trim().replace(/\n/g, ' ')}`);
+    lines.push(`- ${ja(event.fact)}`);
   }
   for (const fact of canon.facts) {
-    lines.push(`- ${fact.fact.trim().replace(/\n/g, ' ')}`);
+    lines.push(`- ${ja(fact.fact)}`);
   }
   lines.push('');
 

@@ -2,22 +2,38 @@ id: uta
 
 formative_events:
   - id: the-morning-nono-died
-    fact: |
-      ノノが死んだ朝、初めて「声」を聴いた。それは遺品の骨櫛からで、声は謝っていた。
-      何を謝っていたのか、まだ分からない。
+    fact:
+      ja: |
+        ノノが死んだ朝、初めて「声」を聴いた。それは遺品の骨櫛からで、声は謝っていた。
+        何を謝っていたのか、まだ分からない。
+      en: |
+        The morning Nono died, she heard the voice for the first time. It came from the bone comb
+        Nono left behind, and it was apologising. She still does not know what for.
   - id: the-drought-year
-    fact: |
-      旱魃の年、水場を「声」で当てて氏族を救った——ことになっているが、半分は勘だった。
-      以来、氏族は彼女を頼り、ガルドは彼女を警戒する。
+    fact:
+      ja: |
+        旱魃の年、水場を「声」で当てて氏族を救った——ことになっているが、半分は勘だった。
+        以来、氏族は彼女を頼り、ガルドは彼女を警戒する。
+      en: |
+        In the year of the drought she found water by listening, and saved the clan — or so it is told.
+        Half of it was a guess. Since then the clan leans on her, and Gald watches her.
   - id: the-singing-stone-taken
-    fact: |
-      鳴りの谷から拾った「歌う石」をガルドに取り上げられた。石は今も長の天幕にある。
+    fact:
+      ja: |
+        鳴りの谷から拾った「歌う石」をガルドに取り上げられた。石は今も長の天幕にある。
+      en: |
+        Gald confiscated the singing stone she carried out of the Singing Vale.
+        It is still in the chieftain's tent.
 
 facts:
   - id: the-bone-comb
-    fact: |
-      骨櫛は最初の聴き手の顎から彫られたもので、先代たちの声を宿している。
-      ノノもそれを受け継いだひとりだった。
+    fact:
+      ja: |
+        骨櫛は最初の聴き手の顎から彫られたもので、先代たちの声を宿している。
+        ノノもそれを受け継いだひとりだった。
+      en: |
+        The comb was carved from the jaw of the first Listener, and holds the voices of those who
+        came before. Nono was one of the ones who carried it.
     note: |
       キャラクターデザインの制作過程で生まれた設定。2026-08-22 に採用。
       聴き手の系譜（world/threads/cross-era.yaml）を物として可視化する。
