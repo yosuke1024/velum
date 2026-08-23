@@ -14,7 +14,8 @@
     "test": "vitest run",
     "day": "tsx scripts/run-day.ts",
     "plan": "tsx scripts/plan-season.ts",
-    "snapshot": "tsx scripts/compile-snapshot.ts"
+    "snapshot": "tsx scripts/compile-snapshot.ts",
+    "export": "tsx scripts/export-site.ts"
   },
   "dependencies": {
     "yaml": "^2.6.1",
