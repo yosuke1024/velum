@@ -3,8 +3,12 @@ era: convergence
 protagonist: sevran
 arc: convergence-four-seventeen
 year_in_world: 4217
-title: 大収束と消えた観測点
-shape: 記録院最後の書記セヴランが、街に現れるミルテの筆跡『四時十七分』の謎を追う。裂け目が一度だけ見せた静止を、記録者は『偶然の一致。要検証』と書く。手帳の様子がおかしいことには、読者だけが気づく。
+title:
+  ja: 大収束と消えた観測点
+  en: "The Convergence and the Vanished Observation Point"
+shape:
+  ja: 記録院最後の書記セヴランが、街に現れるミルテの筆跡『四時十七分』の謎を追う。裂け目が一度だけ見せた静止を、記録者は『偶然の一致。要検証』と書く。手帳の様子がおかしいことには、読者だけが気づく。
+  en: "Sevran, the last scribe of the Record House, follows the riddle of Milte's handwriting — \"4:17\" — as it surfaces around the town. The rift holds still exactly once, and the recorder writes it down as \"coincidence; requires verification\". That something is wrong with the notebook is noticed only by the reader."
 episodes:
   - number: 1
     beat: 発端
@@ -21,7 +25,9 @@ episodes:
         who:
           - セヴラン
     world_change: アルヴィス広場南側の石壁が消失し、代わりに古い木造建築の一部が突き出る形で出現した。
-    leaves_open: 木柱に刻まれた文字がどのような道具でいつ書かれたのかという疑問。
+    leaves_open:
+      ja: 木柱に刻まれた文字がどのような道具でいつ書かれたのかという疑問。
+      en: "The question of what tool cut the letters into the wooden post, and when."
   - number: 2
     beat: 展開
     world_date:
@@ -39,7 +45,9 @@ episodes:
           - セヴラン
           - フム
     world_change: null
-    leaves_open: フムがなぜ存在しない書物の内容、それもミルテに関する情報を暗唱できたのかという謎。
+    leaves_open:
+      ja: フムがなぜ存在しない書物の内容、それもミルテに関する情報を暗唱できたのかという謎。
+      en: "How Hum could recite from a book that does not exist — and recite something about Milte."
   - number: 3
     beat: 転機
     world_date:
@@ -55,7 +63,9 @@ episodes:
         who:
           - セヴラン
     world_change: 地下書庫跡地への侵入経路が、新たな瓦礫の崩落により完全に塞がれる。
-    leaves_open: ミルテが自らの仮説を二重線で消去した理由。
+    leaves_open:
+      ja: ミルテが自らの仮説を二重線で消去した理由。
+      en: "Why Milte struck out her own hypothesis with a double line."
   - number: 4
     beat: 危機
     world_date:
@@ -73,7 +83,9 @@ episodes:
           - セヴラン
           - コルネリ
     world_change: 大時計裏の回廊が完全に消失し、巨大な動く裂け目が発生してコルネリの帰路を塞ぐ。
-    leaves_open: ミルテの地図の指示に従い、危険な裂け目の前で四時十七分を待つかどうかの選択。
+    leaves_open:
+      ja: ミルテの地図の指示に従い、危険な裂け目の前で四時十七分を待つかどうかの選択。
+      en: "Whether to follow the directions on Milte's map and wait for 4:17 in front of a dangerous rift."
   - number: 5
     beat: 決着
     world_date:
@@ -90,7 +102,9 @@ episodes:
         who:
           - セヴラン
     world_change: アルヴィスの大時計の針が一瞬だけ四時十八分へと進み、すぐに四時十七分に戻る。
-    leaves_open: 引いた覚えのない見え消し線。セヴランはこれを自身の書き間違いとして処理した。
+    leaves_open:
+      ja: 引いた覚えのない見え消し線。セヴランはこれを自身の書き間違いとして処理した。
+      en: "A strike-through he does not remember drawing. Sevran filed it as a slip of his own pen."
 generation:
   model: gemini-3.5-flash
   prompt_version: season-v1

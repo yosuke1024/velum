@@ -111,16 +111,25 @@ visual:
   # 候補2枚目を基準に確定（2026-08-23）。次にシートを描かせるときは、
   # ここの文面をそのまま渡すこと。理由は docs/visual.md。
   # シート上の役職・所属の表記は採用しない——このファイルが正である。
+  # `en` がシートに焼く文面。描き直すときはこれをそのまま渡す。`ja` はサイトの
+  # 日本語ページが出す訳で、シートへは渡さない（絵の中の文字は英語のままである）。
   sheet:
     base: 候補2枚目（2026-08-23 確定）
     captions:
-      - "ANCESTOR BONE COMB — Carved from the jaw of the first Listener. Hums with the voices of those who came before."
-      - "NIGHT-SKY PIGMENT — Self-drawn. Imperfect. A prayer in ink."
-      - "SHELL CLUSTER — Each shell was found, not taken."
-      - "SPEAKING SHELL BUNDLE — She holds it to her ear and asks the omen."
-      - "HABIT — When she sits or crouches, she always raises one knee."
+      - ja: "祖霊の骨櫛——初代の聴き手の顎から削り出したもの。先に逝った者たちの声で鳴る。"
+        en: "ANCESTOR BONE COMB — Carved from the jaw of the first Listener. Hums with the voices of those who came before."
+      - ja: "夜空の顔料——自分で描いた。歪んでいる。墨で書いた祈り。"
+        en: "NIGHT-SKY PIGMENT — Self-drawn. Imperfect. A prayer in ink."
+      - ja: "貝の房——どれも拾ったもので、取ったものではない。"
+        en: "SHELL CLUSTER — Each shell was found, not taken."
+      - ja: "語り貝の束——耳に当てて、兆しを訊く。"
+        en: "SPEAKING SHELL BUNDLE — She holds it to her ear and asks the omen."
+      - ja: "癖——座るときもしゃがむときも、いつも片膝を立てる。"
+        en: "HABIT — When she sits or crouches, she always raises one knee."
     expressions:
       - "SOLEMN IN PERFORMANCE"
       - "INWARDLY DOUBTFUL"
       - "QUIETLY CURIOUS"
-    quote: "I listen because I must. I believe because I choose."
+    quote:
+      ja: "ウタは聴く。聴かねばならないから。ウタは信じる。自分で選んだから。"
+      en: "I listen because I must. I believe because I choose."

@@ -92,16 +92,25 @@ visual:
   # 候補2枚目を基準に確定（2026-08-23）。次にシートを描かせるときは、
   # ここの文面をそのまま渡すこと。理由は docs/visual.md。
   # シート上の役職・所属の表記は採用しない——このファイルが正である。
+  # `en` がシートに焼く文面。描き直すときはこれをそのまま渡す。`ja` はサイトの
+  # 日本語ページが出す訳で、シートへは渡さない（絵の中の文字は英語のままである）。
   sheet:
     base: 候補2枚目（2026-08-23 確定）
     captions:
-      - "RECORD BOOK (YEAR 4217) — He writes what must be recorded. And what must not."
-      - "POCKET WATCH — Stopped at 4:17. Time is recorded. Time does not move."
-      - "FASTENED COLLAR — Always secured. Discipline is the only anchor."
-      - "BETWEEN THE PAGES — Something lingers where ink cannot reach. It is not named here."
-      - "INK-STAINED HANDS — Every record leaves its mark. Some marks never fade."
+      - ja: "記録帳（4217年）——記録すべきことを書く。記録してはならないことも。"
+        en: "RECORD BOOK (YEAR 4217) — He writes what must be recorded. And what must not."
+      - ja: "懐中時計——四時十七分で止まっている。時刻は記録される。時刻は動かない。"
+        en: "POCKET WATCH — Stopped at 4:17. Time is recorded. Time does not move."
+      - ja: "留めた襟——常にきちんと。規律だけが錨である。"
+        en: "FASTENED COLLAR — Always secured. Discipline is the only anchor."
+      - ja: "頁のあいだ——墨の届かないところに、何かが残っている。ここには名を書かない。"
+        en: "BETWEEN THE PAGES — Something lingers where ink cannot reach. It is not named here."
+      - ja: "墨の染みた手——記録はかならず痕を残す。消えない痕もある。"
+        en: "INK-STAINED HANDS — Every record leaves its mark. Some marks never fade."
     expressions:
       - "CLINICAL OBSERVATION"
       - "FLEETING DISTURBANCE"
       - "UNSPOKEN REALIZATION"
-    quote: "I record the convergence of all things. Including the one I do not name."
+    quote:
+      ja: "僕は万物の収束を記録する。名を書かない、その一つも含めて。"
+      en: "I record the convergence of all things. Including the one I do not name."

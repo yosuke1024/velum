@@ -109,7 +109,9 @@ export function buildSeasonContext(
     const previous = seasonPath(season - 1, era);
     if (exists(previous)) {
       const plan = readYaml(previous, SeasonPlanSchema);
-      carriedOver = plan.episodes[EPISODES_PER_SEASON - 1]?.leaves_open ?? null;
+      const last = plan.episodes[EPISODES_PER_SEASON - 1];
+      // プロンプトは日本語で回る。訳があっても読むのは ja のほう。
+      carriedOver = last ? ja(last.leaves_open) : null;
     }
   }
 

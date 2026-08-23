@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { CharacterId, EraId } from './world.js';
 import { UNIT_RANGE, MEMORY_IMPORTANCE } from './limits.js';
+import { Bilingual } from './bilingual.js';
 
 /**
  * Persona Snapshot — PixTale が読む、圧縮済みの人物像。
@@ -15,11 +16,6 @@ import { UNIT_RANGE, MEMORY_IMPORTANCE } from './limits.js';
  *
  * 仕様は docs/persona-snapshot.md。
  */
-
-const Bilingual = z.object({
-  ja: z.string().min(1),
-  en: z.string().min(1),
-});
 
 const unit = () => z.number().min(UNIT_RANGE.min).max(UNIT_RANGE.max);
 
@@ -49,7 +45,7 @@ export const SnapshotSchema = z.object({
     age: z.number().int(),
     role: Bilingual,
     affiliation: z.string().min(1),
-    designation: z.string().optional(),
+    designation: Bilingual.optional(),
   }),
 
   /** 話し方。Tale コメントがその人物の声で読めるかは、ここで決まる。 */

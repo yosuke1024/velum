@@ -75,6 +75,8 @@ export const TEXT_LIMITS = {
   diaryBodyMaxJa: 1200,
   titleMin: 2,
   titleMax: 40,
+  /** 英語のタイトル。同じ内容でも文字数が伸びるので、上限は別に持つ。 */
+  titleMaxEn: 90,
 } as const;
 
 /**

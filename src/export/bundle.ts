@@ -113,8 +113,15 @@ function buildCharacters() {
         clothing: typeof visual.clothing === 'string' ? oneLine(visual.clothing) : null,
         key_prop: oneLine(visual.key_prop),
         palette: visual.palette,
-        // シートで確定した英文。サイトはこれをそのまま出す。
-        sheet: (visual as Record<string, unknown>).sheet ?? null,
+        // シートで確定した文面。`en` は絵に焼いた英字そのもの、`ja` はその訳。
+        // 1言語 = 1 URL なので、両方渡して向こうが選ぶ。
+        sheet: visual.sheet
+          ? {
+              ...visual.sheet,
+              captions: visual.sheet.captions.map(both),
+              quote: both(visual.sheet.quote),
+            }
+          : null,
       },
 
       /** 動かない人生の事実。canon 由来。 */
@@ -190,18 +197,21 @@ function buildSeasons() {
     .sort()) {
     for (const file of readdirSync(join(root, dir)).filter((f) => f.endsWith('.yaml'))) {
       const plan = readYaml(join(root, dir, file), SeasonPlanSchema);
+      // サイトが出すのは title / shape / leaves_open の3つだけ。訳が無ければ
+      // `both()` が en を日本語で埋める——英語ページに日本語が出るが、無言で
+      // 消すよりよい。未訳は `npm run validate` が数えて見せる。
       seasons.push({
         season: plan.season,
         era: plan.era,
         protagonist: plan.protagonist,
-        title: plan.title,
-        shape: plan.shape,
+        title: both(plan.title),
+        shape: both(plan.shape),
         year_in_world: plan.year_in_world,
         episodes: plan.episodes.map((e) => ({
           number: e.number,
           beat: e.beat,
           world_date: e.world_date,
-          leaves_open: e.leaves_open,
+          leaves_open: both(e.leaves_open),
         })),
       });
     }

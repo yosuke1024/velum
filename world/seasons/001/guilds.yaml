@@ -3,8 +3,12 @@ era: guilds
 protagonist: teo
 arc: guilds-provisional-sigil
 year_in_world: 3745
-title: 座金の残影
-shape: 仮銘審査を控えた見習い鑑定士テオが、兄ロウの持ち込んだ無銘の燭台と、師ヴァレンの30年前の誤鑑定書との奇妙な技術的一致に気づく。何も分からないまま、テオは事実だけの鑑定書を書き上げ、師からの推薦状を手に入れる。
+title:
+  ja: 座金の残影
+  en: "The Washer's Afterimage"
+shape:
+  ja: 仮銘審査を控えた見習い鑑定士テオが、兄ロウの持ち込んだ無銘の燭台と、師ヴァレンの30年前の誤鑑定書との奇妙な技術的一致に気づく。何も分からないまま、テオは事実だけの鑑定書を書き上げ、師からの推薦状を手に入れる。
+  en: "With the provisional-sigil assessment ahead of him, the apprentice appraiser Teo notices an odd technical agreement between an unmarked candlestick his brother Lowe brings in and an appraisal his master Vallen got wrong thirty years ago. Understanding none of it, Teo writes a certificate of facts alone, and comes away with the recommendation."
 episodes:
   - number: 1
     beat: 発端
@@ -22,7 +26,9 @@ episodes:
         who:
           - テオ
     world_change: null
-    leaves_open: ロウが持ち込んだ燭台と、ヴァレンが過去に誤鑑定したとされる品との構造的一致。
+    leaves_open:
+      ja: ロウが持ち込んだ燭台と、ヴァレンが過去に誤鑑定したとされる品との構造的一致。
+      en: "The structural match between the candlestick Lowe brought in and the piece Vallen is said to have appraised wrongly."
   - number: 2
     beat: 展開
     world_date:
@@ -39,7 +45,9 @@ episodes:
           - テオ
           - ヴァレン
     world_change: null
-    leaves_open: 鑑定書が存在する本物と、手元の鑑定書に書かれた特徴がねじれている理由。
+    leaves_open:
+      ja: 鑑定書が存在する本物と、手元の鑑定書に書かれた特徴がねじれている理由。
+      en: "Why the genuine piece on record and the features written on the certificate in his hands do not line up."
   - number: 3
     beat: 転機
     world_date:
@@ -51,7 +59,9 @@ episodes:
         who:
           - テオ
     world_change: null
-    leaves_open: 30年前の鑑定書に残る、誰のものとも知れない修正跡。
+    leaves_open:
+      ja: 30年前の鑑定書に残る、誰のものとも知れない修正跡。
+      en: "A correction on the thirty-year-old certificate, in a hand nobody can name."
   - number: 4
     beat: 危機
     world_date:
@@ -69,7 +79,9 @@ episodes:
           - テオ
           - ロウ
     world_change: null
-    leaves_open: 来歴の分からない燭台の公式鑑定書を、審査の場でどう書くか。
+    leaves_open:
+      ja: 来歴の分からない燭台の公式鑑定書を、審査の場でどう書くか。
+      en: "How to write the official certificate for a candlestick of unknown provenance, in front of the assessment."
   - number: 5
     beat: 決着
     world_date:
@@ -91,7 +103,9 @@ episodes:
         who:
           - テオ
     world_change: テオが推薦状を得て仮銘審査への切符を掴む。ロウは大鑑定院の周囲から姿を消す。
-    leaves_open: 窓辺に残されたもうひとつの首飾りが示すロウの意図と、これから始まる仮銘審査の行方。
+    leaves_open:
+      ja: 窓辺に残されたもうひとつの首飾りが示すロウの意図と、これから始まる仮銘審査の行方。
+      en: "What the second necklace left on the windowsill says about Lowe's intent, and where the provisional-sigil assessment goes from here."
 generation:
   model: gemini-3.5-flash
   prompt_version: season-v1

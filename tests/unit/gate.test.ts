@@ -10,11 +10,14 @@ const character = loadCharacter('teo');
 function response(overrides: Partial<DiaryResponse> = {}): DiaryResponse {
   return {
     perception: '座金が逆だった。誰も触れなかった。',
-    title: '座金は逆だ',
+    title_ja: '座金は逆だ',
+    title_en: 'The washer is the wrong way round',
     body_ja: 'あ'.repeat(TEXT_LIMITS.diaryBodyMinJa + 10),
     body_en: 'x'.repeat(300),
-    quote: '別に、悔しくはない。',
-    mood: '苛立ち',
+    quote_ja: '別に、悔しくはない。',
+    quote_en: 'It is not that I mind.',
+    mood_ja: '苛立ち',
+    mood_en: 'irritation',
     immediate_goal: '月末の仮銘審査',
     doubt: '報告すべきか',
     relationship_patches: [],

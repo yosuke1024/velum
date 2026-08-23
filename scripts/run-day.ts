@@ -17,6 +17,7 @@ import { calendarLineFor, formatWorldDate } from '../src/lib/calendar.js';
 import { SeasonPlanSchema } from '../src/schemas/season.js';
 import { generateDiary } from '../src/diary/generate.js';
 import type { Day } from '../src/diary/context.js';
+import { ja, type MaybeBilingual } from '../src/lib/bilingual.js';
 
 const args = process.argv.slice(2);
 const dateArg = args.find((a) => /^\d{4}-\d{2}-\d{2}$/.test(a));
@@ -33,10 +34,11 @@ function recentSummaries(id: string, limit = 4): string[] {
   return files.slice(-limit).map((path) => {
     const entry = JSON.parse(readFileSync(path, 'utf8')) as {
       date: string;
-      title: string;
-      quote: string;
+      title: MaybeBilingual;
+      quote: MaybeBilingual;
     };
-    return `${entry.date}「${entry.title}」— ${entry.quote}`;
+    // プロンプトへ戻す文字列。二言語で持っていても、読むのは日本語のほう。
+    return `${entry.date}「${ja(entry.title)}」— ${ja(entry.quote)}`;
   });
 }
 
@@ -72,17 +74,18 @@ async function main(): Promise<void> {
 
   // 前の話が残したもの。第1話なら前の季の第5話から引き継ぐ。
   const previous = plan.episodes.find((e) => e.number === turn.episode - 1);
-  let carriedOver = previous?.leaves_open ?? null;
+  let carriedOver = previous ? ja(previous.leaves_open) : null;
   if (!previous && turn.season > 1) {
     const before = seasonPath(turn.season - 1, turn.era);
     if (exists(before)) {
       const beforePlan = readYaml(before, SeasonPlanSchema);
-      carriedOver = beforePlan.episodes.at(-1)?.leaves_open ?? null;
+      const last = beforePlan.episodes.at(-1);
+      carriedOver = last ? ja(last.leaves_open) : null;
     }
   }
 
   const worldDate = formatWorldDate(plan.year_in_world, episode.world_date);
-  console.log(`  ${plan.title} — ${episode.beat}（${worldDate}）`);
+  console.log(`  ${ja(plan.title)} — ${episode.beat}（${worldDate}）`);
   for (const event of episode.events) {
     console.log(`    ・${event.where}: ${event.summary}`);
   }

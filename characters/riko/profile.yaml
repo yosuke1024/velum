@@ -94,16 +94,25 @@ visual:
   # 候補2枚目を基準に確定（2026-08-23）。次にシートを描かせるときは、
   # ここの文面をそのまま渡すこと。理由は docs/visual.md。
   # シート上の役職・所属の表記は採用しない——このファイルが正である。
+  # `en` がシートに焼く文面。描き直すときはこれをそのまま渡す。`ja` はサイトの
+  # 日本語ページが出す訳で、シートへは渡さない（絵の中の文字は英語のままである）。
   sheet:
     base: 候補2枚目（2026-08-23 確定）
     captions:
-      - "HER OWN LOUPE — Homemade. Not a real appraiser's tool. She uses it anyway."
-      - "SPECIAL NECKLACE (UNSOLD) — Found in a flooded chapel. She dreams of what it might awaken."
-      - "CLOAK: TWO MODES — One cloak. Two faces. She switches with a single clasp."
-      - "PATTERNS OF THE ROAD — Repairs become memories. Nothing goes to waste."
-      - "EVERY STRAP, EVERY POCKET — Has a story. And maybe a future buyer."
+      - ja: "自作のルーペ——手製。本物の鑑定道具ではない。それでも使う。"
+        en: "HER OWN LOUPE — Homemade. Not a real appraiser's tool. She uses it anyway."
+      - ja: "特別な首飾り（売れ残り）——水に沈んだ礼拝堂で拾った。目を覚ましたら何が起きるかを、夢に見ている。"
+        en: "SPECIAL NECKLACE (UNSOLD) — Found in a flooded chapel. She dreams of what it might awaken."
+      - ja: "外套は二通り——一枚で二つの顔。留め具ひとつで切り替える。"
+        en: "CLOAK: TWO MODES — One cloak. Two faces. She switches with a single clasp."
+      - ja: "道の模様——繕った跡が記憶になる。無駄になるものはない。"
+        en: "PATTERNS OF THE ROAD — Repairs become memories. Nothing goes to waste."
+      - ja: "どの帯も、どの隠しも——それぞれに来歴がある。そしてたぶん、いつかの買い手も。"
+        en: "EVERY STRAP, EVERY POCKET — Has a story. And maybe a future buyer."
     expressions:
       - "CHEERFUL & THEATRICAL"
       - "WISTFUL & SINCERE"
       - "QUIET DETERMINATION"
-    quote: "People say the world is quiet now. I say it's just waiting for the right question."
+    quote:
+      ja: "世界はもう静かだと、みんな言う。あたしに言わせれば、正しい問いを待ってるだけ。"
+      en: "People say the world is quiet now. I say it's just waiting for the right question."

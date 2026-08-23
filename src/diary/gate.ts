@@ -150,10 +150,18 @@ export function gate(
       `本文が ${bodyLength} 文字（上限 ${TEXT_LIMITS.diaryBodyMaxJa}）`,
     );
   }
-  const titleLength = [...response.title].length;
-  if (titleLength < TEXT_LIMITS.titleMin || titleLength > TEXT_LIMITS.titleMax) {
+  // タイトルは両言語を見る。片方だけ通すと、その日は英語ページにだけ
+  // 壊れた見出しが出る——本文と同じで、欠けた日として捨てるほうがよい。
+  const titleLengthJa = [...response.title_ja].length;
+  if (titleLengthJa < TEXT_LIMITS.titleMin || titleLengthJa > TEXT_LIMITS.titleMax) {
     violations.push(
-      `タイトルが ${titleLength} 文字（${TEXT_LIMITS.titleMin}〜${TEXT_LIMITS.titleMax}）`,
+      `タイトル（日本語）が ${titleLengthJa} 文字（${TEXT_LIMITS.titleMin}〜${TEXT_LIMITS.titleMax}）`,
+    );
+  }
+  const titleLengthEn = [...response.title_en].length;
+  if (titleLengthEn < TEXT_LIMITS.titleMin || titleLengthEn > TEXT_LIMITS.titleMaxEn) {
+    violations.push(
+      `タイトル（英語）が ${titleLengthEn} 文字（${TEXT_LIMITS.titleMin}〜${TEXT_LIMITS.titleMaxEn}）`,
     );
   }
 

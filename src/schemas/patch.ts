@@ -15,14 +15,24 @@ export const DiaryResponseSchema = z.object({
   /** 人物が認識した事実。Tick の出来事を、その人の目でどう受け取ったか。 */
   perception: z.string().min(1),
 
-  title: z.string().min(1),
+  /**
+   * サイトが日記ページに出す3つ（タイトル・引用・気分）は、本文と同じく
+   * 両言語で返させる。1言語 = 1 URL なので、`/velum/en/` に日本語が出るのは
+   * 読み手に見える欠陥である。あとから訳す余地は無い——日記は毎日出るので、
+   * 訳し忘れがそのまま積み上がる。
+   */
+  title_ja: z.string().min(1),
+  title_en: z.string().min(1),
   body_ja: z.string().min(1),
   body_en: z.string().min(1),
 
   /** 日記から引く一行。サイトの見出しに使う。 */
-  quote: z.string().min(1),
+  quote_ja: z.string().min(1),
+  quote_en: z.string().min(1),
 
-  mood: z.string().min(1),
+  /** 気分。ja は current-state.yaml へ入る値そのもの、en はサイトの表示用。 */
+  mood_ja: z.string().min(1),
+  mood_en: z.string().min(1),
   immediate_goal: z.string().min(1),
   doubt: z.string().min(1),
 
