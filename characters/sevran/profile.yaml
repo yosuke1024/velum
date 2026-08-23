@@ -34,17 +34,31 @@ core:
     存在しない組織の肩書きを名乗り続けることが、彼の平常心の正体。
 
 voice:
-  first_person: 僕
+  first_person:
+    ja: 僕
+    en: I (plain, unadorned)
   register: 事務的。悲愴感を出さない。喪失は行間にだけ漏れる。
-  tic: 事実に「確認」「未確認」「要検証」の注記を付けずにいられない。
-  never_says: 終わり（この街が終わった、とは決して書かない）
-  closing: ——以上を、本日の記録とする。記録院書記 セヴラン
+  tic:
+    ja: 事実に「確認」「未確認」「要検証」の注記を付けずにいられない。
+    en: He cannot leave a fact unmarked — "confirmed", "unconfirmed", "requires verification".
+  never_says:
+    ja: 終わり（この街が終わった、とは決して書かない）
+    en: Over (he will never write that this city is over)
+  closing:
+    ja: ——以上を、本日の記録とする。記録院書記 セヴラン
+    en: — Thus concludes today's record. Sevran, Scribe of the Record House.
 
 appraisal:
-  question: 何が混ざったか
+  question:
+    ja: 何が混ざったか
+    en: What has been mixed into this?
   focus: 歪み・異界痕・次元の匂い
-  bias: あまりに普通の物ほど、何かを隠していると考える。
-  humor: あり得ない事象を完全に事務的な様式で記録する deadpan。
+  bias:
+    ja: あまりに普通の物ほど、何かを隠していると考える。
+    en: The more ordinary a thing looks, the more he assumes it is hiding something.
+  humor:
+    ja: あり得ない事象を完全に事務的な様式で記録する deadpan。
+    en: Deadpan — impossible events filed in perfectly clerical form.
 
 rare_expression: |
   「要検証」を付けない一行を書く。または見え消し線で消した注記の下に、断定を書く。

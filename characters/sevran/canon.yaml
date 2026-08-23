@@ -2,16 +2,28 @@ id: sevran
 
 formative_events:
   - id: the-first-day
-    fact: |
-      収束初日、帳面を取りに戻ってミルテを見失った。
-      大時計が溶けて止まった四時十七分を、今も毎日書き写している。
+    fact:
+      ja: |
+        収束初日、帳面を取りに戻ってミルテを見失った。
+        大時計が溶けて止まった四時十七分を、今も毎日書き写している。
+      en: |
+        On the first day of the Convergence he went back for a ledger and lost Milte.
+        The great clock melted and stopped at 4:17, and he copies that time out every day since.
   - id: the-undercroft
-    fact: |
-      記録院の地下書庫が裂け目に呑まれ、千年分の記録が消えた。
-      その日から「最後の書記」になった。
+    fact:
+      ja: |
+        記録院の地下書庫が裂け目に呑まれ、千年分の記録が消えた。
+        その日から「最後の書記」になった。
+      en: |
+        A rift swallowed the Record House undercroft and a thousand years of records went with it.
+        From that day he has been the last scribe.
   - id: hum-moved-in
-    fact: |
-      廃墟にフムが住み着いた。追い出そうとしたが、そいつが毎晩、
-      消えた書庫の本を一冊ずつ暗唱することに気づき、共存を決めた。
+    fact:
+      ja: |
+        廃墟にフムが住み着いた。追い出そうとしたが、そいつが毎晩、
+        消えた書庫の本を一冊ずつ暗唱することに気づき、共存を決めた。
+      en: |
+        Hum settled into the ruin. He tried to drive it out, then noticed that every night it recites
+        one more book from the lost archive — and decided to live alongside it.
 
 facts: []

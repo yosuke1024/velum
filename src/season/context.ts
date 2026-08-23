@@ -23,6 +23,7 @@ import {
   seasonOf,
   upcomingObservances,
 } from '../lib/calendar.js';
+import { ja } from '../lib/bilingual.js';
 
 export type SeasonContext = {
   season: number;
@@ -131,12 +132,12 @@ export function buildSeasonContext(
     ),
     people: relationships.people.map((p) => ({
       name: p.name.ja,
-      relation: p.relation,
-      summary: p.summary.trim().replace(/\n/g, ' '),
+      relation: ja(p.relation),
+      summary: ja(p.summary),
     })),
     formativeEvents: [
-      ...characterCanon.formative_events.map((e) => e.fact.trim().replace(/\n/g, ' ')),
-      ...characterCanon.facts.map((f) => f.fact.trim().replace(/\n/g, ' ')),
+      ...characterCanon.formative_events.map((e) => ja(e.fact)),
+      ...characterCanon.facts.map((f) => ja(f.fact)),
     ],
     state: {
       mood: state.mood,

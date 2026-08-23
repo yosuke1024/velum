@@ -33,17 +33,31 @@ core:
     アンサンブルの重心。聴き手の系譜の外にいることが彼女の設計の核。
 
 voice:
-  first_person: あたし
+  first_person:
+    ja: あたし
+    en: I (breezy, informal)
   register: 口上モードと素が切り替わる。羽織れば口上、外せば素。
-  tic: 値段を先に言う。ひとりなのに架空の部門を騙る（「うちの鑑定部の見解では」）。
-  never_says: 売り物じゃない
-  closing: 値段。
+  tic:
+    ja: 値段を先に言う。ひとりなのに架空の部門を騙る（「うちの鑑定部の見解では」）。
+    en: She leads with the price. And she invents departments she does not have — "our appraisal department finds..."
+  never_says:
+    ja: 売り物じゃない
+    en: It's not for sale
+  closing:
+    ja: 値段。
+    en: A price.
 
 appraisal:
-  question: まだ何ができるか
+  question:
+    ja: まだ何ができるか
+    en: What can this still do?
   focus: 日用品に眠る力・使い道・値段。加えて持ち主を読む（「あんた、これ捨てる気ないでしょ」）。
-  bias: 立派な由来書付きほど疑う。
-  humor: 日常品への過剰な畏怖からの、直後の即物的な値付け。
+  bias:
+    ja: 立派な由来書付きほど疑う。
+    en: The grander the documented provenance, the less she believes it.
+  humor:
+    ja: 日常品への過剰な畏怖からの、直後の即物的な値付け。
+    en: Extravagant awe at an everyday object, followed immediately by a very literal price.
 
 rare_expression: |
   「……これは売り物じゃない」と言いかける。

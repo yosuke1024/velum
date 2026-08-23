@@ -20,6 +20,7 @@ import {
   SNAPSHOT_PROMPT_VERSION,
 } from './prompt.js';
 import { gateSnapshot } from './gate.js';
+import { ja } from '../lib/bilingual.js';
 
 const SnapshotResponseSchema = z.object({
   dispositions: z.array(z.string().min(1)),
@@ -85,19 +86,19 @@ export function assemble(
     },
 
     voice: {
-      first_person: profile.voice.first_person,
+      first_person: ja(profile.voice.first_person),
       register: oneLine(profile.voice.register),
-      tic: oneLine(profile.voice.tic),
-      never_says: oneLine(profile.voice.never_says),
-      closing: oneLine(profile.voice.closing),
+      tic: ja(profile.voice.tic),
+      never_says: ja(profile.voice.never_says),
+      closing: ja(profile.voice.closing),
       rare_expression: oneLine(profile.rare_expression),
     },
 
     appraisal: {
-      question: profile.appraisal.question,
+      question: ja(profile.appraisal.question),
       focus: profile.appraisal.focus,
-      bias: oneLine(profile.appraisal.bias),
-      humor: oneLine(profile.appraisal.humor),
+      bias: ja(profile.appraisal.bias),
+      humor: ja(profile.appraisal.humor),
     },
 
     // 強い順。同点は YAML に書かれた順のまま（Array#sort は安定）。

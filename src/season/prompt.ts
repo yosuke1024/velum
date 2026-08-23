@@ -1,6 +1,7 @@
 import type { SeasonContext } from './context.js';
 import { jsonSchema } from '../lib/gemini.js';
 import { BEATS, EPISODES_PER_SEASON } from '../schemas/season.js';
+import { ja } from '../lib/bilingual.js';
 
 export const SEASON_PROMPT_VERSION = 'season-v1';
 
@@ -126,7 +127,7 @@ export function buildSeasonUserPrompt(context: SeasonContext): string {
 
   lines.push('## 固定事実（これと矛盾させない）');
   for (const fact of context.canon) {
-    lines.push(`- ${fact.fact.trim().replace(/\n/g, ' ')}`);
+    lines.push(`- ${ja(fact.fact)}`);
   }
   lines.push('');
 

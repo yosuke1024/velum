@@ -5,18 +5,32 @@ id: teo
 
 formative_events:
   - id: the-hero-sword
-    fact: |
-      入門試験で、審査官全員が本物と断じた「英雄の剣」を、一人だけ偽物と判定して的中した。
-      しかし根拠を「なんとなく」としか説明できず、合格と引き換えに
-      「二度と直感を口にしない」ことをヴァレンに誓わされた。
+    fact:
+      ja: |
+        入門試験で、審査官全員が本物と断じた「英雄の剣」を、一人だけ偽物と判定して的中した。
+        しかし根拠を「なんとなく」としか説明できず、合格と引き換えに
+        「二度と直感を口にしない」ことをヴァレンに誓わされた。
+      en: |
+        At the entrance examination he alone called the Hero's Sword a forgery — against every
+        examiner in the room — and he was right. But he could not explain why beyond "it felt wrong",
+        and the price of his pass was a promise to Vallen: never to speak from instinct again.
   - id: vallens-old-error
-    fact: |
-      ヴァレンが30年前に書いた鑑定書に誤りを見つけた。まだ誰にも言えていない。
-      これは手柄ではなく重荷である。推薦を願う立場でそれを握っており、
-      武器として使う気は起きない——使えば、自分が何者かも問われるからである。
+    fact:
+      ja: |
+        ヴァレンが30年前に書いた鑑定書に誤りを見つけた。まだ誰にも言えていない。
+        これは手柄ではなく重荷である。推薦を願う立場でそれを握っており、
+        武器として使う気は起きない——使えば、自分が何者かも問われるからである。
+      en: |
+        He found an error in an appraisal Vallen wrote thirty years ago. He has told no one.
+        It is not a prize but a weight: he needs Vallen's recommendation, and he holds this instead.
+        He has no appetite to use it — using it would invite the question of who he is.
   - id: the-night-he-left
-    fact: |
-      12歳の冬、ヴェスパー工房が摘発される前夜に家を出た。
-      鞄に入れていたのは親の作った贋作の首飾りひとつ。今も持っている。
+    fact:
+      ja: |
+        12歳の冬、ヴェスパー工房が摘発される前夜に家を出た。
+        鞄に入れていたのは親の作った贋作の首飾りひとつ。今も持っている。
+      en: |
+        The winter he was twelve, he left home the night before the Vesper Workshop was raided.
+        In his bag was one forged necklace his parents had made. He still has it.
 
 facts: []

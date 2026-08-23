@@ -10,6 +10,7 @@ import type {
   CurrentState,
   Memories,
 } from '../schemas/character.js';
+import { ja } from '../lib/bilingual.js';
 
 /**
  * Snapshot を組み立てる材料。
@@ -112,8 +113,8 @@ export function rememberedFrom(memories: Memories) {
  */
 export function lifeFactsFrom(canon: Canon): string[] {
   return [
-    ...canon.formative_events.map((event) => oneLine(event.fact)),
-    ...canon.facts.slice(-SNAPSHOT_SELECTION.canonFacts).map((f) => oneLine(f.fact)),
+    ...canon.formative_events.map((event) => ja(event.fact)),
+    ...canon.facts.slice(-SNAPSHOT_SELECTION.canonFacts).map((f) => ja(f.fact)),
   ];
 }
 

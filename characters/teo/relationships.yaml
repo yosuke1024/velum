@@ -11,12 +11,18 @@ people:
     name:
       ja: ヴァレン大鑑定官
       en: Vallen, Grand Appraiser
-    relation: 師匠
+    relation:
+      ja: 師匠
+      en: His master
     trust: 0.7
     wariness: 0.2
-    summary: |
-      大鑑定院の頂点に立つ伝説の鑑定士。老齢。
-      テオに直感を禁じた張本人。厳格。
+    summary:
+      ja: |
+        大鑑定院の頂点に立つ伝説の鑑定士。老齢。
+        テオに直感を禁じた張本人。厳格。
+      en: |
+        The legendary appraiser at the top of the Grand Court. Elderly.
+        The one who forbade Teo from trusting his instincts. Severe.
     hidden_from_protagonist: |
       テオの出自を実は知っており、黙って庇っている。
       テオは知らず、読者だけが日記の行間から気づける。
@@ -26,11 +32,18 @@ people:
     name:
       ja: ロウ
       en: Lowe
-    relation: 兄・贋作師
+    relation:
+      ja: 兄・贋作師
+      en: His brother, a forger
     trust: 0.4
     wariness: 0.6
-    summary: |
-      摘発を生き延びてヴェスパー工房を継いだ兄。今も贋作を作り続け、成功している。
-      時折、大鑑定院の門前に現れ、他愛ない話だけして帰る。
-      連れ戻したいのか、利用したいのか、ただ会いたいだけなのか、テオには分からない。
+    summary:
+      ja: |
+        摘発を生き延びてヴェスパー工房を継いだ兄。今も贋作を作り続け、成功している。
+        時折、大鑑定院の門前に現れ、他愛ない話だけして帰る。
+        連れ戻したいのか、利用したいのか、ただ会いたいだけなのか、テオには分からない。
+      en: |
+        He survived the raid and inherited the Vesper Workshop. He still forges, and does well at it.
+        Now and then he appears at the gate of the Grand Court, talks about nothing, and leaves.
+        Whether he wants Teo back, wants to use him, or only wants to see him, Teo cannot tell.
     visual: テオと同じ癖毛。堂々とした身なりに、指先だけ職人の手。

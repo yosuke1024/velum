@@ -5,13 +5,20 @@ people:
     name:
       ja: ミルテ
       en: Milte
-    relation: 失った相方・同僚の書記
+    relation:
+      ja: 失った相方・同僚の書記
+      en: The scribe he lost — his counterpart
     trust: 0.9
     wariness: 0.0
-    summary: |
-      収束初日に裂け目へ消えた同僚。死んだとは限らない——
-      街のあちこちの壁に、彼女の筆跡が浮かぶという噂がある。
-      「彼女を探すこと」と「記録を続けること」が毎日天秤にかかる。
+    summary:
+      ja: |
+        収束初日に裂け目へ消えた同僚。死んだとは限らない——
+        街のあちこちの壁に、彼女の筆跡が浮かぶという噂がある。
+        「彼女を探すこと」と「記録を続けること」が毎日天秤にかかる。
+      en: |
+        A colleague who vanished into a rift on the first day of the Convergence.
+        Not necessarily dead — there are rumours of her handwriting surfacing on walls across the city.
+        Every day he weighs looking for her against continuing the record.
     visual: |
       記憶の中の姿は、三つ編みにペンを挿す癖。
       今は、壁に現れる筆跡そのもの。
@@ -21,14 +28,22 @@ people:
     name:
       ja: フム
       en: Hum
-    relation: 異界から来て居着いた「何か」
+    relation:
+      ja: 異界から来て居着いた「何か」
+      en: A "something" that came through and stayed
     trust: 0.4
     wariness: 0.5
-    summary: |
-      形の定まらない同居人。本棚の影に住む。
-      善意なのか観察なのか捕食の準備なのか、不明。
-      毎晩、消えた書庫の本を暗唱してくれる——
-      ただし時々、存在しないはずの本を暗唱する。
+    summary:
+      ja: |
+        形の定まらない同居人。本棚の影に住む。
+        善意なのか観察なのか捕食の準備なのか、不明。
+        毎晩、消えた書庫の本を暗唱してくれる——
+        ただし時々、存在しないはずの本を暗唱する。
+      en: |
+        A housemate with no fixed shape. It lives in the shadow behind the shelves.
+        Goodwill, observation, or preparation to feed — unknown.
+        Every night it recites books from the lost archive to him —
+        though sometimes it recites a book that should not exist.
     visual: |
       描かない。影・本の隙間・湯気などとして常に画面の端にいる。
       目や口を与えない。同じ形で二度描かない。

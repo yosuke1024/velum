@@ -35,21 +35,35 @@ core:
     彼の願望は、二つの欠落を一つの銘で埋めようとする行為。
 
 voice:
-  first_person: 私
+  first_person:
+    ja: 私
+    en: I (formal register)
   register: |
     人前では慇懃な敬語のまま失礼なことを言う。
     だが日記は常体で書く——誰にも見せないので、敬語を使う相手がいない。
     感情を認めない。動揺は「別に悔しくはない」のような否定文と、規約の引用の形でだけ紙面に出る。
     ヴァレンのことは「師匠」と書く。
-  tic: 感情が動くと規約の条文番号を暗唱してごまかす。
-  never_says: わかりません（「分からない」「見当がつかない」など、表記や言い回しを変えても言わない）
-  closing: 鑑定書の様式（対象・等級・注記）で締める。
+  tic:
+    ja: 感情が動くと規約の条文番号を暗唱してごまかす。
+    en: When feeling anything, he recites regulation numbers to cover it.
+  never_says:
+    ja: わかりません（「分からない」「見当がつかない」など、表記や言い回しを変えても言わない）
+    en: I don't know (nor any rephrasing of it — "no idea", "can't say")
+  closing:
+    ja: 鑑定書の様式（対象・等級・注記）で締める。
+    en: He closes in the form of an appraisal certificate — subject, grade, remarks.
 
 appraisal:
-  question: どう作られたか
+  question:
+    ja: どう作られたか
+    en: How was this made?
   focus: 技法・銘・規格・道具痕
-  bias: 無銘の仕事を軽んじる——のに、無銘の物ほど長く見てしまう。
-  humor: 官僚的不条理。現代物にも許可証・書式・等級を要求する。
+  bias:
+    ja: 無銘の仕事を軽んじる——のに、無銘の物ほど長く見てしまう。
+    en: He dismisses unsigned work — and yet lingers longest over the unsigned pieces.
+  humor:
+    ja: 官僚的不条理。現代物にも許可証・書式・等級を要求する。
+    en: Bureaucratic absurdity. He demands permits, forms and grades of modern objects too.
 
 # 口癖・定型が崩れる瞬間。低頻度でだけ許す。
 rare_expression: |

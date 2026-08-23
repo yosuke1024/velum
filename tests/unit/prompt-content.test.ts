@@ -5,6 +5,7 @@ import { buildDiaryUserPrompt, buildDiarySystemPrompt } from '../../src/diary/pr
 import { loadCharacter, type Day } from '../../src/diary/context.js';
 import { EpisodeSchema, BEATS, EPISODES_PER_SEASON } from '../../src/schemas/season.js';
 import type { Turn } from '../../src/lib/rotation.js';
+import { ja } from '../../src/lib/bilingual.js';
 
 const turn: Turn = {
   era: 'guilds',
@@ -157,7 +158,8 @@ describe('日記のプロンプト', () => {
   it('声の定型を渡す', () => {
     const prompt = buildDiarySystemPrompt(context);
     expect(prompt).toContain('私');
-    expect(prompt).toContain(character.profile.voice.never_says);
+    // プロンプトは日本語で書く。二言語の欄からは日本語を採る。
+    expect(prompt).toContain(ja(character.profile.voice.never_says));
   });
 
   it('レア表現をめったに使わないよう伝える', () => {

@@ -18,6 +18,7 @@ import {
 import { DiaryEntrySchema, DiaryEventSchema } from '../schemas/diary.js';
 import { SeasonPlanSchema, FailureSchema } from '../schemas/season.js';
 import { oneLine } from '../compile/context.js';
+import { both } from '../lib/bilingual.js';
 
 /**
  * 公開サイトが読むデータの束。
@@ -87,20 +88,23 @@ function buildCharacters() {
         contradiction: oneLine(profile.core.contradiction),
       },
 
+      // サイトが出す欄は { ja, en } のまま渡す。1言語 = 1 URL なので、
+      // どちらを出すかは向こうが決める。register / focus / rare_expression は
+      // 生成プロンプト専用でサイトへ出ないため、日本語のままでよい。
       voice: {
-        first_person: profile.voice.first_person,
+        first_person: both(profile.voice.first_person),
         register: oneLine(profile.voice.register),
-        tic: oneLine(profile.voice.tic),
-        never_says: oneLine(profile.voice.never_says),
-        closing: oneLine(profile.voice.closing),
+        tic: both(profile.voice.tic),
+        never_says: both(profile.voice.never_says),
+        closing: both(profile.voice.closing),
         rare_expression: oneLine(profile.rare_expression),
       },
 
       appraisal: {
-        question: profile.appraisal.question,
+        question: both(profile.appraisal.question),
         focus: profile.appraisal.focus,
-        bias: oneLine(profile.appraisal.bias),
-        humor: oneLine(profile.appraisal.humor),
+        bias: both(profile.appraisal.bias),
+        humor: both(profile.appraisal.humor),
       },
 
       visual: {
@@ -115,16 +119,16 @@ function buildCharacters() {
 
       /** 動かない人生の事実。canon 由来。 */
       life_facts: [
-        ...canon.formative_events.map((e) => oneLine(e.fact)),
-        ...canon.facts.map((f) => oneLine(f.fact)),
+        ...canon.formative_events.map((e) => both(e.fact)),
+        ...canon.facts.map((f) => both(f.fact)),
       ],
 
       /** 周りの人。hidden_from_protagonist は落とす。 */
       people: relationships.people.map((person) => ({
         id: person.id,
         name: person.name,
-        relation: person.relation,
-        summary: oneLine(person.summary),
+        relation: both(person.relation),
+        summary: both(person.summary),
       })),
     };
   });

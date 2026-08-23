@@ -5,13 +5,20 @@ people:
     name:
       ja: ガロン
       en: Garon
-    relation: 元師匠・没落した目利き
+    relation:
+      ja: 元師匠・没落した目利き
+      en: Her old master — an eye that fell
     trust: 0.8
     wariness: 0.1
-    summary: |
-      かつての大目利き。今は倉庫番で、酒場で「昔は大物だった」と笑われている。
-      リコの持ち出し（実質的な盗み）を知っていて、何も言わなかった。
-      信頼は高いが、会いに行けない気まずさがある。
+    summary:
+      ja: |
+        かつての大目利き。今は倉庫番で、酒場で「昔は大物だった」と笑われている。
+        リコの持ち出し（実質的な盗み）を知っていて、何も言わなかった。
+        信頼は高いが、会いに行けない気まずさがある。
+      en: |
+        Once a great judge of objects. Now a warehouse keeper, laughed at in taverns as a has-been.
+        He knew what Riko took — it was theft, in practice — and said nothing.
+        She trusts him completely, and cannot bring herself to visit.
     visual: 大柄で猫背。手入れを諦めた立派な髭。胸に古い銘印をまだ提げている。
     thread: |
       銘印は大鑑定院の系譜の最後の末裔の証。
@@ -21,12 +28,18 @@ people:
     name:
       ja: ミオ
       en: Mio
-    relation: 常連の少女
+    relation:
+      ja: 常連の少女
+      en: A girl who always comes back
     trust: 0.6
     wariness: 0.1
-    summary: |
-      市が立つたび荷車に来て、売れない品ばかり眺めていく無口な少女。
-      商売にならない客だが、追い払えない。
+    summary:
+      ja: |
+        市が立つたび荷車に来て、売れない品ばかり眺めていく無口な少女。
+        商売にならない客だが、追い払えない。
+      en: |
+        Every market day she comes to the cart and looks only at the things that never sell.
+        She is no use as a customer, and Riko cannot bring herself to shoo her off.
     visual: 小柄。目深なフード。いつも片耳を物に寄せる癖。
     hidden_from_protagonist: |
       ミオが眺めているのはいつも「一番売れない品」——彼女には聴こえている。

@@ -2,16 +2,29 @@ id: kaya
 
 formative_events:
   - id: the-first-delivery
-    fact: |
-      初仕事で、検分せずに届けた遺品が別人の物で、遺族に偽りの死を告げてしまった。
-      以来、届ける前に必ず遺品の「人生」を読み切る。
+    fact:
+      ja: |
+        初仕事で、検分せずに届けた遺品が別人の物で、遺族に偽りの死を告げてしまった。
+        以来、届ける前に必ず遺品の「人生」を読み切る。
+      en: |
+        On her first job she delivered belongings without examining them. They were the wrong man's,
+        and she told a family a death that had not happened. Since then she reads a relic's whole
+        life before she carries it anywhere.
   - id: noya-in-enemy-colours
-    fact: |
-      弟ノヤの遺体を敵軍の軍装で見つけた。認識札だけ回収し、
-      埋葬した場所は誰にも言っていない。
+    fact:
+      ja: |
+        弟ノヤの遺体を敵軍の軍装で見つけた。認識札だけ回収し、
+        埋葬した場所は誰にも言っていない。
+      en: |
+        She found her brother Noya's body wearing the enemy's colours. She took only his tag,
+        and has told no one where she buried him.
   - id: the-pact-at-the-bridge
-    fact: |
-      焼けた橋で、敵側の回収人ダリと「回収人同士は撃たれない」という
-      二人だけの協定を交わした。組合の公式協定ではない。
+    fact:
+      ja: |
+        焼けた橋で、敵側の回収人ダリと「回収人同士は撃たれない」という
+        二人だけの協定を交わした。組合の公式協定ではない。
+      en: |
+        At the burnt bridge she and Dari, the reclaimer from the other side, made a pact of two:
+        reclaimers do not shoot reclaimers. It is not a guild agreement.
 
 facts: []

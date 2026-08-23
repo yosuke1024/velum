@@ -16,6 +16,7 @@ import type { Snapshot } from '../../src/schemas/snapshot.js';
 import { nextManifest, emptyManifest } from '../../src/compile/publish.js';
 import { PersonaManifestSchema } from '../../src/schemas/manifest.js';
 import { isSeasonEnd, turnFor } from '../../src/lib/rotation.js';
+import { ja } from '../../src/lib/bilingual.js';
 
 const GENERATION = { model: 'test', compiled_at: '2026-09-15T00:00:00.000Z' };
 
@@ -114,9 +115,8 @@ describe('組み立て', () => {
     for (const id of CHARACTER_IDS) {
       const snapshot = snapshotFor(id, ['何も捨てない']);
       const { humor } = buildCompileContext(id).profile.appraisal;
-      expect(snapshot.appraisal.humor).toBe(
-        humor.trim().replace(/\s*\n\s*/g, ' '),
-      );
+      // Snapshot は生成へ渡すものなので、二言語の欄からは日本語を採る。
+      expect(snapshot.appraisal.humor).toBe(ja(humor));
       humors.add(snapshot.appraisal.humor);
     }
     // 5人が同じ笑い方に収束していたら、この Snapshot は5人ぶんの意味がない。

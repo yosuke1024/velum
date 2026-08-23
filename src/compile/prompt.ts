@@ -2,6 +2,7 @@ import { SNAPSHOT_LIMITS } from '../schemas/limits.js';
 import { jsonSchema } from '../lib/gemini.js';
 import type { CompileContext } from './context.js';
 import { lifeFactsFrom, rememberedFrom, oneLine } from './context.js';
+import { ja } from '../lib/bilingual.js';
 
 export const SNAPSHOT_PROMPT_VERSION = 'snapshot-v1';
 
@@ -85,10 +86,10 @@ export function buildSnapshotUserPrompt(context: CompileContext): string {
   lines.push('');
 
   lines.push('## 物の見方');
-  lines.push(`物に向ける問い: ${profile.appraisal.question}`);
+  lines.push(`物に向ける問い: ${ja(profile.appraisal.question)}`);
   lines.push(`見るところ: ${profile.appraisal.focus}`);
-  lines.push(`偏り: ${oneLine(profile.appraisal.bias)}`);
-  lines.push(`可笑しさの出どころ: ${oneLine(profile.appraisal.humor)}`);
+  lines.push(`偏り: ${ja(profile.appraisal.bias)}`);
+  lines.push(`可笑しさの出どころ: ${ja(profile.appraisal.humor)}`);
   lines.push('');
 
   lines.push('## 人生に起きたこと');

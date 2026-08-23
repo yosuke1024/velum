@@ -7,6 +7,21 @@ const Bilingual = z.object({
   en: z.string().min(1),
 });
 
+/**
+ * まだ訳されていないかもしれない一文。
+ *
+ * サイトは 1言語 = 1 URL で、`/velum/en/` は英語しか出さない場所である。訳の無い
+ * フィールドはそこに日本語のまま出てしまうので、読み手に見える欠陥になる。
+ *
+ * 手で書く固定層（profile / relationships / canon.formative_events）は
+ * `Bilingual` を必須にして、書いた時点で欠落が止まる形にしてある。ここが緩いのは
+ * `canon.facts` だけで、あれは日記の生成が1日1件まで追記できる配列だから——
+ * 生成が英語を出せるようになるまで、素の文字列も受ける。
+ *
+ * 素の文字列は「未訳」であって「英語がある」ではない。読む側は必ず ja へ落とす。
+ */
+const MaybeBilingual = z.union([Bilingual, z.string().min(1)]);
+
 const unit = () => z.number().min(UNIT_RANGE.min).max(UNIT_RANGE.max);
 
 /**
@@ -35,19 +50,20 @@ export const ProfileSchema = z.object({
     note: z.string().optional(),
   }),
 
+  // register は生成プロンプト専用で、サイトへは出ない。出るものだけ二言語。
   voice: z.object({
-    first_person: z.string().min(1),
+    first_person: Bilingual,
     register: z.string().min(1),
-    tic: z.string().min(1),
-    never_says: z.string().min(1),
-    closing: z.string().min(1),
+    tic: Bilingual,
+    never_says: Bilingual,
+    closing: Bilingual,
   }),
 
   appraisal: z.object({
-    question: z.string().min(1),
+    question: Bilingual,
     focus: z.string().min(1),
-    bias: z.string().min(1),
-    humor: z.string().min(1),
+    bias: Bilingual,
+    humor: Bilingual,
     note: z.string().optional(),
   }),
 
@@ -67,18 +83,20 @@ export const ProfileSchema = z.object({
 /** 追記のみ。1日に最大1件の新事実。既存の書き換え・削除は生成側から行えない。 */
 export const CanonSchema = z.object({
   id: CharacterId,
+  /** 手で書く土台。追記されないので二言語を必須にできる。 */
   formative_events: z
     .array(
       z.object({
         id: z.string().min(1),
-        fact: z.string().min(1),
+        fact: Bilingual,
       }),
     )
     .min(3),
+  /** 日記の生成が1日1件まで追記する。生成が英語を出すまで素の文字列も受ける。 */
   facts: z.array(
     z.object({
       id: z.string().min(1),
-      fact: z.string().min(1),
+      fact: MaybeBilingual,
       added_on: z.string().optional(),
       note: z.string().optional(),
     }),
@@ -117,10 +135,10 @@ export const RelationshipsSchema = z.object({
       z.object({
         id: z.string().min(1),
         name: Bilingual,
-        relation: z.string().min(1),
+        relation: Bilingual,
         trust: unit(),
         wariness: unit(),
-        summary: z.string().min(1),
+        summary: Bilingual,
         hidden_from_protagonist: z.string().optional(),
         visual: z.string().optional(),
         note: z.string().optional(),

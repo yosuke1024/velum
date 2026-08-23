@@ -5,12 +5,18 @@ people:
     name:
       ja: ガルド
       en: Gald
-    relation: 氏族の長
+    relation:
+      ja: 氏族の長
+      en: Chieftain of the clan
     trust: 0.3
     wariness: 0.7
-    summary: |
-      声を信じない現実主義の長。
-      取り上げた「歌う石」が二人の間の恒常的な火種。
+    summary:
+      ja: |
+        声を信じない現実主義の長。
+        取り上げた「歌う石」が二人の間の恒常的な火種。
+      en: |
+        A hard-headed chieftain who does not believe in the voice.
+        The singing stone he confiscated is a standing quarrel between them.
     hidden_from_protagonist: |
       若い頃、先代ノノの声に一度命を救われている——信じないのではなく、恐れている。
       獣骨の首飾りは、実はノノにもらったもの。
@@ -20,11 +26,18 @@ people:
     name:
       ja: レン
       en: Ren
-    relation: 幼馴染の狩人
+    relation:
+      ja: 幼馴染の狩人
+      en: A hunter, and her oldest friend
     trust: 0.8
     wariness: 0.1
-    summary: |
-      唯一、証明を求めずにウタを信じる狩人。
-      「当たるかどうかじゃなくて、お前が聴いたなら聴いたんだろ」。
-      氏族の中の唯一の安全地帯。
+    summary:
+      ja: |
+        唯一、証明を求めずにウタを信じる狩人。
+        「当たるかどうかじゃなくて、お前が聴いたなら聴いたんだろ」。
+        氏族の中の唯一の安全地帯。
+      en: |
+        The only one who believes Uta without asking her to prove it.
+        "It's not about whether you're right. If you heard it, you heard it."
+        The one safe place in the clan.
     visual: 日焼け、短い槍、獲物より薬草を多く持ち帰る。

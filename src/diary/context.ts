@@ -14,6 +14,7 @@ import {
 } from '../schemas/character.js';
 import type { Episode } from '../schemas/season.js';
 import type { Turn } from '../lib/rotation.js';
+import { ja } from '../lib/bilingual.js';
 
 /** その日に書く材料。季の計画から取り出した1話ぶん。 */
 export type Day = {
@@ -89,9 +90,9 @@ export function visibleRelationships(
   return relationships.people.map((person) => ({
     id: person.id,
     name: person.name.ja,
-    relation: person.relation,
+    relation: ja(person.relation),
     trust: person.trust,
     wariness: person.wariness,
-    summary: person.summary.trim().replace(/\n/g, ' '),
+    summary: ja(person.summary),
   }));
 }
