@@ -41,10 +41,13 @@ import { SnapshotSchema, SNAPSHOT_FILE } from '../src/schemas/snapshot.js';
 import { PersonaManifestSchema } from '../src/schemas/manifest.js';
 import { CalendarFileSchema, ClocksFileSchema } from '../src/schemas/world.js';
 import { linearDay } from '../src/lib/calendar.js';
+import { ja, isUntranslated } from '../src/lib/bilingual.js';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
 
 const problems: string[] = [];
+/** 落とすほどではないが、黙って通してもいけないもの。未訳がこれである。 */
+const notes: string[] = [];
 let checked = 0;
 
 function fail(where: string, message: string): void {
@@ -207,10 +210,16 @@ for (const id of CHARACTER_IDS) {
 
 // ── 5人が重ならないこと（設計上の検収条件） ───────────────────
 
-function assertDistinct(field: string, pick: (p: Record<string, any>) => string): void {
+/**
+ * 5人が重ならないことを見る。
+ *
+ * 値は `ja()` へ落としてから比べる。二言語の欄は `{ ja, en }` の**オブジェクト**で
+ * 来るので、そのまま Map の鍵にすると参照が毎回違い、重複が永久に見つからない。
+ */
+function assertDistinct(field: string, pick: (p: Record<string, any>) => unknown): void {
   const seen = new Map<string, string>();
   for (const [id, profile] of profiles) {
-    const value = pick(profile);
+    const value = ja(pick(profile) as string | { ja: string; en: string });
     const owner = seen.get(value);
     if (owner) {
       fail('characters', `${field} が ${owner} と ${id} で重複しています（${value}）`);
@@ -426,6 +435,45 @@ if (threads) {
   }
 }
 
+// ── 未訳の棚卸し ───────────────────────────────────────────────
+// サイトは 1言語 = 1 URL で、訳の無い欄は `/velum/en/` に日本語のまま出る。
+// 落とさないのは、生成した直後の季がまだ訳されていないのは正常だからである。
+// ただし黙って通すと、そのまま公開ページに残る——数えて見せる。
+
+{
+  const untranslated: string[] = [];
+
+  if (existsSync(seasonsRoot)) {
+    for (const dir of readdirSync(seasonsRoot, { withFileTypes: true })
+      .filter((entry) => entry.isDirectory())
+      .map((entry) => entry.name)
+      .sort()) {
+      for (const file of readdirSync(join(seasonsRoot, dir)).filter((f) => f.endsWith('.yaml'))) {
+        const raw = parse(readFileSync(join(seasonsRoot, dir, file), 'utf8'));
+        const result = SeasonPlanSchema.safeParse(raw);
+        if (!result.success) continue; // スキーマ違反は上で報告済み
+
+        const plan = result.data;
+        const rel = `world/seasons/${dir}/${file}`;
+        if (isUntranslated(plan.title)) untranslated.push(`${rel}: title`);
+        if (isUntranslated(plan.shape)) untranslated.push(`${rel}: shape`);
+        for (const episode of plan.episodes) {
+          if (isUntranslated(episode.leaves_open)) {
+            untranslated.push(`${rel}: 第${episode.number}話 leaves_open`);
+          }
+        }
+      }
+    }
+  }
+
+  if (untranslated.length) {
+    notes.push(
+      `英語ページに日本語のまま出る欄が ${untranslated.length} 件あります（docs/seasons.md §10）:`,
+      ...untranslated.map((line) => `  ${line}`),
+    );
+  }
+}
+
 // ── 結果 ───────────────────────────────────────────────────────
 
 if (problems.length) {
@@ -437,3 +485,9 @@ if (problems.length) {
 
 console.log(`✓ ${checked} ファイルを検証しました。問題ありません。`);
 console.log(`  時代 ${ERA_IDS.length} / 主人公 ${CHARACTER_IDS.length} / 登場人物 ${knownPeople.size}`);
+
+if (notes.length) {
+  console.log('');
+  console.log('未訳:');
+  for (const note of notes) console.log(`  ${note}`);
+}

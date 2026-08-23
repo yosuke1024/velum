@@ -12,6 +12,7 @@
 
 import { ERA_IDS, ERA_PROTAGONIST, type EraId } from '../src/schemas/world.js';
 import { seasonPath } from '../src/lib/paths.js';
+import { ja } from '../src/lib/bilingual.js';
 import { exists } from '../src/lib/storage.js';
 import { seasonStartDate } from '../src/lib/rotation.js';
 import { planSeason } from '../src/season/plan.js';
@@ -56,8 +57,8 @@ async function main(): Promise<void> {
     const protagonist = ERA_PROTAGONIST[era];
     const plan = await planSeason(season, era, protagonist);
 
-    console.log(`  ${era} / ${protagonist} —「${plan.title}」`);
-    console.log(`    ${plan.shape.trim().replace(/\n/g, ' ')}`);
+    console.log(`  ${era} / ${protagonist} —「${ja(plan.title)}」`);
+    console.log(`    ${ja(plan.shape)}`);
     for (const episode of plan.episodes) {
       const first = episode.events[0];
       console.log(`    第${episode.number}話 ${episode.beat}: ${first?.summary ?? ''}`);

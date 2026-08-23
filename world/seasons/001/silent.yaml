@@ -3,8 +3,12 @@ era: silent
 protagonist: riko
 arc: silent-northern-market
 year_in_world: 9745
-title: 目覚めぬ首飾りと繰り上げられた期限
-shape: 北の市での資金調達を目指すリコが、売れない首飾りの値上げを繰り返すうちに、質屋オルバから頭金支払期限の繰り上げを通告され窮地に陥る物語。車輪の破損により移動手段を失うが、かつての師ガロンの不審な動向から新たな手がかりを得る。そして季の終わり、値上げし続けた首飾りに、値札どおりの買い手が現れる。
+title:
+  ja: 目覚めぬ首飾りと繰り上げられた期限
+  en: "The Necklace That Will Not Wake, and a Deadline Moved Up"
+shape:
+  ja: 北の市での資金調達を目指すリコが、売れない首飾りの値上げを繰り返すうちに、質屋オルバから頭金支払期限の繰り上げを通告され窮地に陥る物語。車輪の破損により移動手段を失うが、かつての師ガロンの不審な動向から新たな手がかりを得る。そして季の終わり、値上げし続けた首飾りに、値札どおりの買い手が現れる。
+  en: "Riko sets out to raise money at the northern market, and marks the unsold necklace up again and again — until Orba the pawnbroker moves the deadline for the down payment forward and leaves her cornered. A broken wheel takes away her means of travel, but her old master Garon is behaving oddly, and that gives her a new thread to pull. At the end of the season a buyer appears for the necklace she kept marking up, at the price on the tag."
 episodes:
   - number: 1
     beat: 発端
@@ -22,7 +26,9 @@ episodes:
           - リコ
           - 旅の行商人
     world_change: null
-    leaves_open: 首飾りの急激な値上げにより、北の市での販売計画に狂いが生じ始める。
+    leaves_open:
+      ja: 首飾りの急激な値上げにより、北の市での販売計画に狂いが生じ始める。
+      en: "The sharp markup on the necklace begins to throw off her selling plan for the northern market."
   - number: 2
     beat: 展開
     world_date:
@@ -40,7 +46,9 @@ episodes:
           - リコ
           - ミオ
     world_change: リコの出店位置が市場の主要動線から外れる。
-    leaves_open: 人通りの少ない場所での販売により、売上目標の達成が困難になる。
+    leaves_open:
+      ja: 人通りの少ない場所での販売により、売上目標の達成が困難になる。
+      en: "Selling from a corner nobody walks past puts her takings target out of reach."
   - number: 3
     beat: 転機
     world_date:
@@ -57,7 +65,9 @@ episodes:
         who:
           - リコ
     world_change: リコの店に、偽物の治療効果という奇妙な評判がもたらされる。
-    leaves_open: 価値が証明されていない首飾りの価格が、現実的な買い手のつかない領域に達する。
+    leaves_open:
+      ja: 価値が証明されていない首飾りの価格が、現実的な買い手のつかない領域に達する。
+      en: "The price of a necklace whose worth is unproven passes the point where any real buyer will meet it."
   - number: 4
     beat: 危機
     world_date:
@@ -74,7 +84,9 @@ episodes:
         who:
           - リコ
     world_change: 権利書獲得の猶予期間が大幅に短縮され、かつ物理的な移動手段を失う。
-    leaves_open: 車輪の修理費用と繰り上がった頭金の支払いが重なり、資金繰りが完全に破綻しかける。
+    leaves_open:
+      ja: 車輪の修理費用と繰り上がった頭金の支払いが重なり、資金繰りが完全に破綻しかける。
+      en: "The wheel repair and the advanced down payment land together, and her cash flow comes close to collapsing outright."
   - number: 5
     beat: 決着
     world_date:
@@ -97,7 +109,9 @@ episodes:
           - リコ
           - 身なりのよい収集家
     world_change: ガロンが目覚めの棚に関する古い情報の整理を開始する。
-    leaves_open: 値札どおりに買うという客への返事。首飾りを売れば、繰り上げられた頭金に届いてしまう。
+    leaves_open:
+      ja: 値札どおりに買うという客への返事。首飾りを売れば、繰り上げられた頭金に届いてしまう。
+      en: "The answer she owes a customer who will pay the price on the tag. If she sells the necklace, she reaches the down payment she was told to advance."
 generation:
   model: gemini-3.5-flash
   prompt_version: season-v1

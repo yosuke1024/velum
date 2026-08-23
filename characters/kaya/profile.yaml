@@ -10,7 +10,9 @@ role:
   ja: 回収人組合 第七号（遺品回収人）
   en: Relic Returner, the Reclaimers' Guild — No. Seven
 affiliation: reclaimers-guild
-designation: No. Seven
+designation:
+  ja: 七番
+  en: No. Seven
 
 appeal_axis: 静かな優しさ×切なさ
 reader_distance: 幸せになってほしい人
@@ -97,17 +99,27 @@ visual:
   # 候補2枚目を基準に確定（2026-08-23）。次にシートを描かせるときは、
   # ここの文面をそのまま渡すこと。理由は docs/visual.md。
   # シート上の役職・所属の表記は採用しない——このファイルが正である。
+  # `en` がシートに焼く文面。描き直すときはこれをそのまま渡す。`ja` はサイトの
+  # 日本語ページが出す訳で、シートへは渡さない（絵の中の文字は英語のままである）。
   sheet:
     base: 候補2枚目（2026-08-23 確定）
     captions:
-      - "COFFIN BOX — Small and light. Holds what matters most. Kept clean."
-      - "DESTINATION TAGS — They clink softly as she walks."
-      - "MENDED CLOAK — Always kept repaired, never replaced. Stitch by stitch, a promise kept."
-      - "RITUAL CARE — She handles each relic with clean hands and a quiet heart."
-      - "NO NAME IN SERVICE — The guild calls its reclaimers by number, never by name. She is Seven."
-      - "EVERY STITCH IS A PROMISE — Every patch holds a memory she will carry home."
+      - ja: "棺の箱——小さく、軽い。いちばん大事なものが入る。いつも清めてある。"
+        en: "COFFIN BOX — Small and light. Holds what matters most. Kept clean."
+      - ja: "行き先札——歩くたび、小さく鳴る。"
+        en: "DESTINATION TAGS — They clink softly as she walks."
+      - ja: "繕った外套——直して着る。買い替えない。ひと針ずつが、守った約束。"
+        en: "MENDED CLOAK — Always kept repaired, never replaced. Stitch by stitch, a promise kept."
+      - ja: "作法——遺品はどれも、清めた手と静かな心で扱う。"
+        en: "RITUAL CARE — She handles each relic with clean hands and a quiet heart."
+      - ja: "任務中に名はない——ギルドは回収者を番号で呼ぶ。名では呼ばない。彼女は七番。"
+        en: "NO NAME IN SERVICE — The guild calls its reclaimers by number, never by name. She is Seven."
+      - ja: "ひと針が約束——継ぎのひとつずつに、連れ帰る記憶がある。"
+        en: "EVERY STITCH IS A PROMISE — Every patch holds a memory she will carry home."
     expressions:
       - "STEADFAST COMPOSURE"
       - "QUIET MOURNING"
       - "GENTLE RESOLVE"
-    quote: "Names fade. Places change. But I will bring them home."
+    quote:
+      ja: "名は消える。土地も変わる。それでも、わたしが連れて帰る。"
+      en: "Names fade. Places change. But I will bring them home."

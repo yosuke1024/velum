@@ -91,6 +91,22 @@ describe('束の形', () => {
     }
   });
 
+  it('シートの文面は二言語で来る（日本語ページに英語を残さない）', () => {
+    // 1言語 = 1 URL。訳が無ければ人物ページの引用文と小物キャプションが
+    // 英語のまま日本語ページに出る——`/velum/en/` に日本語が出るのと同じ欠陥。
+    const japanese = /[ぁ-んァ-ヶ一-龠]/;
+    for (const character of bundle.characters) {
+      const { sheet } = character.visual;
+      if (!sheet) continue;
+      for (const caption of sheet.captions) {
+        expect(caption.ja).toMatch(japanese);
+        expect(caption.en).toMatch(/[A-Za-z]/);
+      }
+      expect(sheet.quote.ja).toMatch(japanese);
+      expect(sheet.quote.en).toMatch(/[A-Za-z]/);
+    }
+  });
+
   it('改行を含んだままの文字列を渡さない（JSON に生の改行を残さない）', () => {
     for (const character of bundle.characters) {
       for (const fact of character.life_facts) expect(fact).not.toContain('\n');

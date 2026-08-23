@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { CharacterId, EraId } from './world.js';
 import { Beat } from './season.js';
+import { Bilingual } from './bilingual.js';
 
 /** サイトが描画する日記のエントリ。 */
 export const DiaryEntrySchema = z.object({
@@ -17,9 +18,14 @@ export const DiaryEntrySchema = z.object({
     month: z.number().int().min(1).max(13),
     day: z.number().int().min(1).max(30),
   }),
-  title: z.string().min(1),
-  quote: z.string().min(1),
-  mood: z.string().min(1),
+  /**
+   * サイトが出す3つ。二言語を必須にする——日記は毎日出るので、素の文字列を
+   * 受けると訳し忘れが英語ページに積み上がる。生成が両方返さなければ、その日は
+   * 破棄される（src/diary/gate.ts）。
+   */
+  title: Bilingual,
+  quote: Bilingual,
+  mood: Bilingual,
   rare_expression_used: z.boolean(),
 });
 

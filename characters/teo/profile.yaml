@@ -91,16 +91,25 @@ visual:
   # 候補2枚目を基準に確定（2026-08-23）。次にシートを描かせるときは、
   # ここの文面をそのまま渡すこと。理由は docs/visual.md。
   # シート上の役職・所属の表記は採用しない——このファイルが正である。
+  # `en` がシートに焼く文面。描き直すときはこれをそのまま渡す。`ja` はサイトの
+  # 日本語ページが出す訳で、シートへは渡さない（絵の中の文字は英語のままである）。
   sheet:
     base: 候補2枚目（2026-08-23 確定）
     captions:
-      - "SIGIL TAG (ISSUED) — Blank. To be earned."
-      - "REGULATIONS HANDBOOK — He knows the rules. He quotes the rules. He hides behind them."
-      - "STICKY NOTES — Questions. Connections. The parts the rules don't cover."
-      - "FOLDED CUFFS — Neat. Correct. No exceptions."
-      - "SUPPLIED COAT — The sleeves are long. He folds them back. Still, he stands taller than the coat."
+      - ja: "銘章（支給）——白紙。これから得るもの。"
+        en: "SIGIL TAG (ISSUED) — Blank. To be earned."
+      - ja: "規程集——規則を知っている。規則を引く。規則の後ろに隠れる。"
+        en: "REGULATIONS HANDBOOK — He knows the rules. He quotes the rules. He hides behind them."
+      - ja: "付箋——疑問。つながり。規則が書いていない部分。"
+        en: "STICKY NOTES — Questions. Connections. The parts the rules don't cover."
+      - ja: "折り返した袖口——きちんと。正しく。例外なし。"
+        en: "FOLDED CUFFS — Neat. Correct. No exceptions."
+      - ja: "支給の外套——袖が長い。折り返して着ている。それでも、外套に着られてはいない。"
+        en: "SUPPLIED COAT — The sleeves are long. He folds them back. Still, he stands taller than the coat."
     expressions:
       - "SMUG / RULE-QUOTING"
       - "HIDDEN INSECURITY"
       - "THOUGHTFULLY OBSERVANT"
-    quote: "Rules are not chains. They are the ladder that fools refuse to climb."
+    quote:
+      ja: "規則は鎖ではありません。愚か者が登ろうとしない梯子です。"
+      en: "Rules are not chains. They are the ladder that fools refuse to climb."

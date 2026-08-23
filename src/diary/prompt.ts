@@ -9,7 +9,7 @@ import type { DiaryContext } from './context.js';
 import { visibleRelationships } from './context.js';
 import { ja } from '../lib/bilingual.js';
 
-export const DIARY_PROMPT_VERSION = 'diary-v1';
+export const DIARY_PROMPT_VERSION = 'diary-v2';
 
 /**
  * ゲートが落とせる上限は、すべてここでプロンプトに書く。
@@ -78,18 +78,22 @@ export function otherFatalRules(): string[] {
   return [
     `記憶の importance は ${MEMORY_IMPORTANCE.min}〜${MEMORY_IMPORTANCE.max} の小数。どの記憶を先に忘れるかを決める重みであって、1〜5 の評価ではない（この日は破棄される）`,
     `日記の本文（日本語）は ${TEXT_LIMITS.diaryBodyMinJa}〜${TEXT_LIMITS.diaryBodyMaxJa} 文字（この日は破棄される）`,
-    `タイトルは ${TEXT_LIMITS.titleMin}〜${TEXT_LIMITS.titleMax} 文字（この日は破棄される）`,
+    `タイトル（日本語）は ${TEXT_LIMITS.titleMin}〜${TEXT_LIMITS.titleMax} 文字（この日は破棄される）`,
+    `タイトル（英語）は ${TEXT_LIMITS.titleMin}〜${TEXT_LIMITS.titleMaxEn} 文字（この日は破棄される）`,
   ];
 }
 
 export const DIARY_RESPONSE_SCHEMA = jsonSchema.object(
   {
     perception: jsonSchema.string(),
-    title: jsonSchema.string(),
+    title_ja: jsonSchema.string(),
+    title_en: jsonSchema.string(),
     body_ja: jsonSchema.string(),
     body_en: jsonSchema.string(),
-    quote: jsonSchema.string(),
-    mood: jsonSchema.string(),
+    quote_ja: jsonSchema.string(),
+    quote_en: jsonSchema.string(),
+    mood_ja: jsonSchema.string(),
+    mood_en: jsonSchema.string(),
     immediate_goal: jsonSchema.string(),
     doubt: jsonSchema.string(),
     relationship_patches: jsonSchema.array(
@@ -139,11 +143,14 @@ export const DIARY_RESPONSE_SCHEMA = jsonSchema.object(
   },
   [
     'perception',
-    'title',
+    'title_ja',
+    'title_en',
     'body_ja',
     'body_en',
-    'quote',
-    'mood',
+    'quote_ja',
+    'quote_en',
+    'mood_ja',
+    'mood_en',
     'immediate_goal',
     'doubt',
     'relationship_patches',
@@ -341,6 +348,10 @@ export function buildDiaryUserPrompt(context: DiaryContext): string {
   lines.push('今日の日記を書いてください。');
   lines.push(
     'body_ja が本文です。body_en は英語版ですが、直訳ではなく、同じ人物が英語で書いたらこうなるという文章にしてください。',
+  );
+  lines.push(
+    'title / quote / mood も同じように両方書いてください。' +
+      'quote_ja は body_ja から、quote_en は body_en から引きます——引用は本文にある一行であって、訳し下ろした別の文ではありません。',
   );
 
   return lines.join('\n');

@@ -40,7 +40,7 @@ export function applyPatches(
   const canon: Canon = structuredClone(current.canon);
 
   const applied: DiaryEvent['applied'] = {
-    mood: [state.mood, response.mood],
+    mood: [state.mood, response.mood_ja],
     immediate_goal: [state.immediate_goal, response.immediate_goal],
     doubt: [state.doubt, response.doubt],
     relationships: [],
@@ -53,7 +53,7 @@ export function applyPatches(
     canon_added: null,
   };
 
-  state.mood = response.mood;
+  state.mood = response.mood_ja;
   state.immediate_goal = response.immediate_goal;
   state.doubt = response.doubt;
   state.updated_at = date;

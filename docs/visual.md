@@ -40,17 +40,22 @@
 
 したがって、**役職・所属・小物のキャプション・引用文の正は `profile.yaml` である。** シートはそれを絵にしたものであって、逆ではない。シート上の表記が `profile.yaml` と食い違ったら、直すのはシートのほうである。
 
-確定した英文は `visual.sheet` に置いてある。
+確定した英文は `visual.sheet` に置いてある。**サイトも同じ文面を出す**ので、
+キャプションと引用文は `{ ja, en }` である。`en` が絵に焼く文面——描き直すときに
+渡すのはこちらで、`ja` は日本語ページ用の訳にすぎない。絵の中の文字は英語のままである。
 
 ```yaml
 visual:
   sheet:
     base: 候補2枚目（2026-08-23 確定）
     captions:
-      - "SIGIL TAG (ISSUED) — Blank. To be earned."
+      - ja: "銘章（支給）——白紙。これから得るもの。"
+        en: "SIGIL TAG (ISSUED) — Blank. To be earned."
       ...
     expressions: [...]
-    quote: "..."
+    quote:
+      ja: "..."
+      en: "..."
 ```
 
 ## 4. 次にシートを描かせるとき
@@ -63,9 +68,9 @@ visual:
 |---|---|
 | 名前・年齢・役職・所属 | `name` / `age` / `role` / `affiliation` / `designation` |
 | 体格・髪・衣装・配色 | `visual.build` / `hair` / `clothing` / `palette` |
-| 小物とキャプション | `visual.key_prop` / `props` / `sheet.captions` |
+| 小物とキャプション | `visual.key_prop` / `props` / `sheet.captions[].en` |
 | 表情差分 | `visual.sheet.expressions` |
-| 引用文 | `visual.sheet.quote` |
+| 引用文 | `visual.sheet.quote.en` |
 | 描いてはいけないもの | `visual.never_drawn` / `not_held`、および各人の禁則 |
 
 最後の行は落とさないこと。カヤに武器のシルエットが入ると設計が壊れ、ウタに冠が乗ると「与えられた権威」を持ってしまう。**描かないものの指定は、描くものの指定と同じだけ要る。**

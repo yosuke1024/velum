@@ -3,8 +3,12 @@ era: primordial
 protagonist: uta
 arc: primordial-star-festival
 year_in_world: null
-title: 原初の沈黙
-shape: 先代の急死により宙に浮いた継承の儀を巡り、ウタが長ガルドからの不信と氏族の危機に直面する。禁忌の地での発見を通じて危機を脱するが、正式な継承は保留され、骨櫛の謎は次へと持ち越される。
+title:
+  ja: 原初の沈黙
+  en: "Primordial Silence"
+shape:
+  ja: 先代の急死により宙に浮いた継承の儀を巡り、ウタが長ガルドからの不信と氏族の危機に直面する。禁忌の地での発見を通じて危機を脱するが、正式な継承は保留され、骨櫛の謎は次へと持ち越される。
+  en: "The sudden death of the previous Listener leaves the succession rite hanging, and Uta faces Gald's distrust and a crisis in the clan at the same time. A find in forbidden ground carries her through the crisis, but the succession is deferred, and the riddle of the bone comb is handed on."
 episodes:
   - number: 1
     beat: 発端
@@ -23,7 +27,9 @@ episodes:
           - ウタ
           - ガルド
     world_change: ガルドがウタの継承の儀を正式に拒絶し、氏族内にウタへの不信が広がる。
-    leaves_open: 没収された歌う石から声を聴き取れなかった事実と、ガルドとの決定的な対立。
+    leaves_open:
+      ja: 没収された歌う石から声を聴き取れなかった事実と、ガルドとの決定的な対立。
+      en: "That she heard no voice in the confiscated singing stone, and a decisive break with Gald."
   - number: 2
     beat: 展開
     world_date:
@@ -41,7 +47,9 @@ episodes:
           - ウタ
           - 氏族の若者
     world_change: 氏族内に未知の疫病が発生し、聴き手としてのウタの能力が試される状況が生まれる。
-    leaves_open: 骨櫛が依然として沈黙していることと、病人の容体の悪化。
+    leaves_open:
+      ja: 骨櫛が依然として沈黙していることと、病人の容体の悪化。
+      en: "The bone comb still silent, and the fevered youth getting worse."
   - number: 3
     beat: 転機
     world_date:
@@ -57,7 +65,9 @@ episodes:
         who:
           - ウタ
     world_change: ウタが氏族の禁忌を破って鳴りの谷に入り、新たな骨の遺物を取り出す。
-    leaves_open: 鳴りの谷で見つかった古い骨の破片が持つ意味と、それがもたらす影響。
+    leaves_open:
+      ja: 鳴りの谷で見つかった古い骨の破片が持つ意味と、それがもたらす影響。
+      en: "What the old bone fragment found in the Singing Vale means, and what it sets in motion."
   - number: 4
     beat: 危機
     world_date:
@@ -76,7 +86,9 @@ episodes:
           - ウタ
           - ガルド
     world_change: ウタの処遇をめぐり、ガルドとレンの対立が表面化し、氏族全体が不穏な空気に包まれる。
-    leaves_open: 星祭りの前夜に突きつけられた、追放の脅しと病人の命を救うための声の証明。
+    leaves_open:
+      ja: 星祭りの前夜に突きつけられた、追放の脅しと病人の命を救うための声の証明。
+      en: "On the eve of the Star Festival: a threat of exile, and a demand that she prove the voice by saving the fevered youth."
   - number: 5
     beat: 決着
     world_date:
@@ -96,7 +108,9 @@ episodes:
           - ウタ
           - ガルド
     world_change: 新たな水場が確保され、病人は回復に向かう。ウタの立場は正式な継承者ではなく、臨時の聴き手という曖昧なものに留まる。
-    leaves_open: ウタが手に入れた古い骨の破片の由来と、依然として何も語らないノノの骨櫛の謎。
+    leaves_open:
+      ja: ウタが手に入れた古い骨の破片の由来と、依然として何も語らないノノの骨櫛の謎。
+      en: "Where the old bone fragment Uta now holds came from, and the riddle of Nono's bone comb, which still says nothing."
 generation:
   model: gemini-3.5-flash
   prompt_version: season-v1

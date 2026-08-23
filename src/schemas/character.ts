@@ -1,26 +1,7 @@
 import { z } from 'zod';
 import { CharacterId, EraId } from './world.js';
 import { MEMORY_IMPORTANCE, UNIT_RANGE } from './limits.js';
-
-const Bilingual = z.object({
-  ja: z.string().min(1),
-  en: z.string().min(1),
-});
-
-/**
- * まだ訳されていないかもしれない一文。
- *
- * サイトは 1言語 = 1 URL で、`/velum/en/` は英語しか出さない場所である。訳の無い
- * フィールドはそこに日本語のまま出てしまうので、読み手に見える欠陥になる。
- *
- * 手で書く固定層（profile / relationships / canon.formative_events）は
- * `Bilingual` を必須にして、書いた時点で欠落が止まる形にしてある。ここが緩いのは
- * `canon.facts` だけで、あれは日記の生成が1日1件まで追記できる配列だから——
- * 生成が英語を出せるようになるまで、素の文字列も受ける。
- *
- * 素の文字列は「未訳」であって「英語がある」ではない。読む側は必ず ja へ落とす。
- */
-const MaybeBilingual = z.union([Bilingual, z.string().min(1)]);
+import { Bilingual, MaybeBilingual } from './bilingual.js';
 
 const unit = () => z.number().min(UNIT_RANGE.min).max(UNIT_RANGE.max);
 
@@ -36,7 +17,8 @@ export const ProfileSchema = z.object({
   gender: z.enum(['male', 'female']),
   role: Bilingual,
   affiliation: z.string().min(1),
-  designation: z.string().optional(),
+  /** 名の代わりに呼ばれる番号。人物ページの名札に出るので二言語で持つ。 */
+  designation: Bilingual.optional(),
 
   appeal_axis: z.string().min(1),
   reader_distance: z.string().min(1),
@@ -76,6 +58,23 @@ export const ProfileSchema = z.object({
       key_prop: z.string().min(1),
       palette: z.record(z.union([z.string(), z.array(z.string())])),
       acceptance: z.string().min(1),
+
+      /**
+       * シートで確定した表記。`en` が絵に焼いた英字そのもので、描き直すときに
+       * そのまま渡す文面である（docs/visual.md §3）。`ja` はその訳。
+       *
+       * サイトが出すのは captions と quote の2つだけなので、ここは `Bilingual`
+       * を必須にする——訳が無ければ日本語ページに英語が残り、`/velum/en/` に
+       * 日本語が出るのと同じ、読み手に見える欠陥になる。
+       */
+      sheet: z
+        .object({
+          base: z.string().min(1),
+          captions: z.array(Bilingual).min(1),
+          expressions: z.array(z.string().min(1)).min(1),
+          quote: Bilingual,
+        })
+        .optional(),
     })
     .passthrough(),
 });

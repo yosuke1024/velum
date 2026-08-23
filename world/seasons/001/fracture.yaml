@@ -3,8 +3,12 @@ era: fracture
 protagonist: kaya
 arc: fracture-before-the-snow
 year_in_world: 5330
-title: 破砕戦争・第一季
-shape: カヤが雪の閉ざす峠を越えて母の待つハルナ村へ三つの遺品を届ける旅路を描く。旅の途中で弟の死に関する新たな物証を手に入れ、母への嘘を抱えたまま、最初の冬を迎えるまでの軌跡。
+title:
+  ja: 破砕戦争・第一季
+  en: "The Fracture War, Season One"
+shape:
+  ja: カヤが雪の閉ざす峠を越えて母の待つハルナ村へ三つの遺品を届ける旅路を描く。旅の途中で弟の死に関する新たな物証を手に入れ、母への嘘を抱えたまま、最初の冬を迎えるまでの軌跡。
+  en: "Kaya carries three relics over a pass the snow is closing, to Haruna, where a mother is waiting. On the road she comes into new physical evidence about her brother's death, and she goes into her first winter still holding the lie she told that mother."
 episodes:
   - number: 1
     beat: 発端
@@ -22,7 +26,9 @@ episodes:
         who:
           - 第七号（カヤ）
     world_change: 冬の到来を示す北風が峠から吹き下ろし始める。
-    leaves_open: 二件目の水筒の持ち主の遺族が住むハルナ村への道程
+    leaves_open:
+      ja: 二件目の水筒の持ち主の遺族が住むハルナ村への道程
+      en: "The road to Haruna, where the family of the second canteen's owner lives"
   - number: 2
     beat: 展開
     world_date:
@@ -40,7 +46,9 @@ episodes:
           - 第七号（カヤ）
           - 同盟軍の哨兵
     world_change: 軍の移動により、通常の回収路が一本閉鎖される。
-    leaves_open: 険しい峠道を越えるための装備と時間の制限
+    leaves_open:
+      ja: 険しい峠道を越えるための装備と時間の制限
+      en: "The gear and the time she has for crossing a hard mountain pass"
   - number: 3
     beat: 転機
     world_date:
@@ -52,7 +60,9 @@ episodes:
         who:
           - 第七号（カヤ）
     world_change: null
-    leaves_open: 回収袋に加わった、未開封のままの手紙をどうするか
+    leaves_open:
+      ja: 回収袋に加わった、未開封のままの手紙をどうするか
+      en: "What to do with the unopened letter that has joined the reclaim bag"
   - number: 4
     beat: 危機
     world_date:
@@ -69,7 +79,9 @@ episodes:
           - 第七号（カヤ）
           - ハルナ村の猟師
     world_change: 峠に初雪が降り、翌日には積雪により通行不能になる兆候を見せる。
-    leaves_open: 雪に閉ざされる前にハルナ村へたどり着けるか否か
+    leaves_open:
+      ja: 雪に閉ざされる前にハルナ村へたどり着けるか否か
+      en: "Whether she can reach Haruna before the snow closes the way"
   - number: 5
     beat: 決着
     world_date:
@@ -88,7 +100,9 @@ episodes:
           - 第七号（カヤ）
           - イサ
     world_change: 峠が完全に雪で閉ざされ、春までカヤはハルナ村に留まることになる。
-    leaves_open: 袋の底に残された、弟の未開封の手紙の行方
+    leaves_open:
+      ja: 袋の底に残された、弟の未開封の手紙の行方
+      en: "Where her brother's unopened letter, still at the bottom of the bag, goes next"
 generation:
   model: gemini-3.5-flash
   prompt_version: season-v1

@@ -92,17 +92,17 @@ export async function generateDiary(
     episode: turn.episode,
     beat: day.episode.beat,
     world_date: formatWorldDate(day.worldYear, day.episode.world_date),
-    title: response.title,
-    mood: response.mood,
   };
 
+  // 前書きの見出しも、そのファイルの言語で書く。英語の日記に日本語の
+  // タイトルが載っていると、読む側にも、あとで読み直す側にも嘘になる。
   writeText(
     diaryPath(id, day.date, 'ja'),
-    `${frontMatter({ ...meta, lang: 'ja' })}${response.body_ja.trim()}\n`,
+    `${frontMatter({ ...meta, lang: 'ja', title: response.title_ja, mood: response.mood_ja })}${response.body_ja.trim()}\n`,
   );
   writeText(
     diaryPath(id, day.date, 'en'),
-    `${frontMatter({ ...meta, lang: 'en' })}${response.body_en.trim()}\n`,
+    `${frontMatter({ ...meta, lang: 'en', title: response.title_en, mood: response.mood_en })}${response.body_en.trim()}\n`,
   );
 
   writeJson(
@@ -115,9 +115,9 @@ export async function generateDiary(
       episode: turn.episode,
       beat: day.episode.beat,
       world_date: { year: day.worldYear, ...day.episode.world_date },
-      title: response.title,
-      quote: response.quote,
-      mood: response.mood,
+      title: { ja: response.title_ja, en: response.title_en },
+      quote: { ja: response.quote_ja, en: response.quote_en },
+      mood: { ja: response.mood_ja, en: response.mood_en },
       rare_expression_used: response.rare_expression_used,
     }),
   );
@@ -137,5 +137,5 @@ export async function generateDiary(
     }),
   );
 
-  return { ok: true, title: response.title, truncated: verdict.truncated };
+  return { ok: true, title: response.title_ja, truncated: verdict.truncated };
 }
