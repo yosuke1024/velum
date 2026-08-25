@@ -106,3 +106,14 @@ export function seasonStartDate(season: number): string {
 export function isSeasonEnd(date: string): boolean {
   return turnFor(date).dayIndex % DAYS_PER_SEASON === DAYS_PER_SEASON - 1;
 }
+
+/**
+ * その季の残り日数（その日を含む）。季の最終日なら 1。
+ *
+ * 次の季の計画は自動では立たない（docs/seasons.md §4）。次の季の初日に
+ * 計画が無ければ、その日から毎朝ジョブが赤くなる——赤くなってから気づいたのでは、
+ * その日はもう欠けている。まだ緑のうちに知らせるための目盛りである。
+ */
+export function daysLeftInSeason(date: string): number {
+  return DAYS_PER_SEASON - (turnFor(date).dayIndex % DAYS_PER_SEASON);
+}

@@ -1,6 +1,12 @@
 import { describe, it, expect } from 'vitest';
 import { seededRandom, weightedPick } from '../../src/lib/random.js';
-import { turnFor, seasonStartDate, today } from '../../src/lib/rotation.js';
+import {
+  turnFor,
+  seasonStartDate,
+  today,
+  isSeasonEnd,
+  daysLeftInSeason,
+} from '../../src/lib/rotation.js';
 import { worldPath } from '../../src/lib/paths.js';
 import { readYaml } from '../../src/lib/storage.js';
 import {
@@ -104,6 +110,27 @@ describe('季と話の割り当て', () => {
 
   it('稼働開始日より前は拒む', () => {
     expect(() => turnFor(dayAfter(-1))).toThrow(/稼働開始日/);
+  });
+
+  it('季の残り日数は25から1へ減り、次の季でまた25に戻る', () => {
+    expect(daysLeftInSeason(dayAfter(0))).toBe(DAYS_PER_SEASON);
+    expect(daysLeftInSeason(dayAfter(DAYS_PER_SEASON - 1))).toBe(1);
+    expect(daysLeftInSeason(dayAfter(DAYS_PER_SEASON))).toBe(DAYS_PER_SEASON);
+  });
+
+  it('残り日数ぶん進めると、次の季の初日になる', () => {
+    // 「あと何日で計画が要るか」がこの数である、という保証。
+    for (let offset = 0; offset < DAYS_PER_SEASON; offset += 1) {
+      const date = dayAfter(offset);
+      expect(dayAfter(offset + daysLeftInSeason(date))).toBe(seasonStartDate(2));
+    }
+  });
+
+  it('残り1日の日が、季の最終日である', () => {
+    for (let offset = 0; offset < DAYS_PER_SEASON; offset += 1) {
+      const date = dayAfter(offset);
+      expect(daysLeftInSeason(date) === 1).toBe(isSeasonEnd(date));
+    }
   });
 });
 
