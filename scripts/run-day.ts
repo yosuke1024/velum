@@ -2,7 +2,7 @@
 /**
  * その日の日記を書かせる。
  *
- *   npm run day                 今日
+ *   npm run day                 今日（JST）
  *   npm run day -- 2026-09-01   日付を指定
  *
  * 出来事はここでは作らない。季の計画（world/seasons/）から、その日の話を取り出す。
@@ -10,7 +10,7 @@
  */
 
 import { readFileSync } from 'node:fs';
-import { turnFor } from '../src/lib/rotation.js';
+import { turnFor, today } from '../src/lib/rotation.js';
 import { charPath, seasonPath, entryPath } from '../src/lib/paths.js';
 import { readYaml, exists, listDatedFiles } from '../src/lib/storage.js';
 import { calendarLineFor, formatWorldDate } from '../src/lib/calendar.js';
@@ -21,7 +21,7 @@ import { ja, type MaybeBilingual } from '../src/lib/bilingual.js';
 
 const args = process.argv.slice(2);
 const dateArg = args.find((a) => /^\d{4}-\d{2}-\d{2}$/.test(a));
-const date = dateArg ?? new Date().toISOString().slice(0, 10);
+const date = dateArg ?? today();
 const dryRun = args.includes('--dry-run');
 
 /**

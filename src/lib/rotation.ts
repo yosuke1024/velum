@@ -28,6 +28,22 @@ function daysBetween(from: string, to: string): number {
   return Math.floor((b - a) / 86_400_000);
 }
 
+/** 日本標準時。夏時間がないので、固定オフセットで足りる。 */
+const JST_OFFSET_MS = 9 * 3_600_000;
+
+/**
+ * 「今日」——JST の日付。
+ *
+ * この世界の1日は日本時間の1日である。日次ワークフローの cron は
+ * 21:00 UTC（= 翌 06:00 JST）に走るので、UTC で日付を取ると必ず前日を刻む。
+ * 稼働開始日の朝に回しても dayIndex が1足りず、初日が1日遅れて始まることになる。
+ *
+ * 日付を手で渡したときはその文字列がそのまま使われる——ここは通らない。
+ */
+export function today(now: Date = new Date()): string {
+  return new Date(now.getTime() + JST_OFFSET_MS).toISOString().slice(0, 10);
+}
+
 /**
  * その日は誰の、季の何話目か。
  *

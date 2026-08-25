@@ -18,7 +18,9 @@ on:
         description: '生成する日付（YYYY-MM-DD）。省略すると今日'
         required: false
   schedule:
-    - cron: '0 21 * * *' # 06:00 JST
+    # 21:00 UTC = 06:00 JST。刻む日付も JST で決める（src/lib/rotation.ts の today）。
+    # UTC で日付を取ると毎回前日を刻み、初日が1日遅れて始まる。
+    - cron: '0 21 * * *'
 
 concurrency:
   group: daily
@@ -77,6 +79,6 @@ jobs:
           if git diff --staged --quiet; then
             echo "変更なし。"
           else
-            git commit -m "world: ${{ inputs.date || '$(date -u +%Y-%m-%d)' }}"
+            git commit -m "world: ${{ inputs.date || '$(TZ=Asia/Tokyo date +%Y-%m-%d)' }}"
             git push
           fi
