@@ -1,6 +1,12 @@
 import { describe, it, expect } from 'vitest';
 import { seededRandom, weightedPick } from '../../src/lib/random.js';
-import { turnFor, seasonStartDate } from '../../src/lib/rotation.js';
+import {
+  turnFor,
+  seasonStartDate,
+  today,
+  isSeasonEnd,
+  daysLeftInSeason,
+} from '../../src/lib/rotation.js';
 import { worldPath } from '../../src/lib/paths.js';
 import { readYaml } from '../../src/lib/storage.js';
 import {
@@ -104,6 +110,55 @@ describe('季と話の割り当て', () => {
 
   it('稼働開始日より前は拒む', () => {
     expect(() => turnFor(dayAfter(-1))).toThrow(/稼働開始日/);
+  });
+
+  it('季の残り日数は25から1へ減り、次の季でまた25に戻る', () => {
+    expect(daysLeftInSeason(dayAfter(0))).toBe(DAYS_PER_SEASON);
+    expect(daysLeftInSeason(dayAfter(DAYS_PER_SEASON - 1))).toBe(1);
+    expect(daysLeftInSeason(dayAfter(DAYS_PER_SEASON))).toBe(DAYS_PER_SEASON);
+  });
+
+  it('残り日数ぶん進めると、次の季の初日になる', () => {
+    // 「あと何日で計画が要るか」がこの数である、という保証。
+    for (let offset = 0; offset < DAYS_PER_SEASON; offset += 1) {
+      const date = dayAfter(offset);
+      expect(dayAfter(offset + daysLeftInSeason(date))).toBe(seasonStartDate(2));
+    }
+  });
+
+  it('残り1日の日が、季の最終日である', () => {
+    for (let offset = 0; offset < DAYS_PER_SEASON; offset += 1) {
+      const date = dayAfter(offset);
+      expect(daysLeftInSeason(date) === 1).toBe(isSeasonEnd(date));
+    }
+  });
+});
+
+describe('今日（JST）', () => {
+  const start = rotation.start_date as string;
+
+  /** 稼働開始日の朝 06:00 JST に cron が鳴る瞬間 = その前日の 21:00 UTC。 */
+  const firstCron = new Date(Date.parse(`${start}T00:00:00Z`) - 3 * 3_600_000);
+
+  it('稼働開始日の朝に鳴った cron は、その日を刻む', () => {
+    // UTC で日付を取ると前日になり、turnFor が稼働開始日より前だと拒む。
+    // 日次ジョブが1度も成功しなかったのはこれ。
+    expect(firstCron.toISOString().slice(0, 10)).not.toBe(start);
+    expect(today(firstCron)).toBe(start);
+  });
+
+  it('稼働開始日の朝の実行が、初日として成立する', () => {
+    expect(turnFor(today(firstCron))).toMatchObject({
+      era: 'guilds',
+      protagonist: 'teo',
+      season: 1,
+      episode: 1,
+    });
+  });
+
+  it('日付が変わるのは JST の深夜（15:00 UTC）', () => {
+    expect(today(new Date('2026-09-01T14:59:59Z'))).toBe('2026-09-01'); // 23:59:59 JST
+    expect(today(new Date('2026-09-01T15:00:00Z'))).toBe('2026-09-02'); // 00:00:00 JST
   });
 });
 

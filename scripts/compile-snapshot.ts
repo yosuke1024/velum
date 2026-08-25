@@ -24,7 +24,7 @@ import { CHARACTER_IDS } from '../src/schemas/world.js';
 import { buildCompileContext, lifeFactsFrom, rememberedFrom } from '../src/compile/context.js';
 import { compileSnapshot, existingVersions, nextVersion } from '../src/compile/compile.js';
 import { publish, readManifest } from '../src/compile/publish.js';
-import { isSeasonEnd, turnFor } from '../src/lib/rotation.js';
+import { isSeasonEnd, today, turnFor } from '../src/lib/rotation.js';
 import type { Snapshot } from '../src/schemas/snapshot.js';
 
 const args = process.argv.slice(2);
@@ -35,7 +35,7 @@ const dateArg = args.find((a) => a.startsWith('--date='))?.split('=')[1];
 const seasonArg = args.find((a) => a.startsWith('--season='))?.split('=')[1];
 const named = args.filter((a) => !a.startsWith('--'));
 
-const date = dateArg || new Date().toISOString().slice(0, 10);
+const date = dateArg || today();
 
 /**
  * 季の最終日でなければ、何もせずに終わる（成功として）。

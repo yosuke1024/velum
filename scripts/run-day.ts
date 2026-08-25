@@ -2,7 +2,7 @@
 /**
  * その日の日記を書かせる。
  *
- *   npm run day                 今日
+ *   npm run day                 今日（JST）
  *   npm run day -- 2026-09-01   日付を指定
  *
  * 出来事はここでは作らない。季の計画（world/seasons/）から、その日の話を取り出す。
@@ -10,18 +10,19 @@
  */
 
 import { readFileSync } from 'node:fs';
-import { turnFor } from '../src/lib/rotation.js';
+import { turnFor, today, daysLeftInSeason, seasonStartDate } from '../src/lib/rotation.js';
 import { charPath, seasonPath, entryPath } from '../src/lib/paths.js';
 import { readYaml, exists, listDatedFiles } from '../src/lib/storage.js';
 import { calendarLineFor, formatWorldDate } from '../src/lib/calendar.js';
-import { SeasonPlanSchema } from '../src/schemas/season.js';
+import { SeasonPlanSchema, DAYS_PER_SEASON, EPISODES_PER_SEASON } from '../src/schemas/season.js';
+import { ERA_IDS } from '../src/schemas/world.js';
 import { generateDiary } from '../src/diary/generate.js';
 import type { Day } from '../src/diary/context.js';
 import { ja, type MaybeBilingual } from '../src/lib/bilingual.js';
 
 const args = process.argv.slice(2);
 const dateArg = args.find((a) => /^\d{4}-\d{2}-\d{2}$/.test(a));
-const date = dateArg ?? new Date().toISOString().slice(0, 10);
+const date = dateArg ?? today();
 const dryRun = args.includes('--dry-run');
 
 /**
@@ -40,6 +41,36 @@ function recentSummaries(id: string, limit = 4): string[] {
     // プロンプトへ戻す文字列。二言語で持っていても、読むのは日本語のほう。
     return `${entry.date}「${ja(entry.title)}」— ${ja(entry.quote)}`;
   });
+}
+
+/** 最後の1周（5日）に入ったら知らせる。5人が1回ずつ書くあいだ、毎朝出る。 */
+const NOTICE_WITHIN_DAYS = DAYS_PER_SEASON / EPISODES_PER_SEASON;
+
+/**
+ * 季の終わりが近いのに次の季の計画が無ければ、まだ緑のうちに知らせる。
+ *
+ * 計画は自動では立たない——それがこの構造の主目的である（docs/seasons.md §1）。
+ * だから次の季の初日に計画が無ければ、その朝からジョブは赤くなり、
+ * 人が npm run plan を回すまで毎日欠け続ける。赤くなってから気づいたのでは、
+ * その日はもう欠けている。
+ */
+function noticeIfSeasonRunningOut(date: string, season: number): void {
+  const left = daysLeftInSeason(date);
+  if (left > NOTICE_WITHIN_DAYS) return;
+
+  const next = season + 1;
+  const unplanned = ERA_IDS.filter((era) => !exists(seasonPath(next, era)));
+  if (unplanned.length === 0) return;
+
+  const from = seasonStartDate(next);
+  const notice =
+    `第${season}季は残り${left}日。${from} から第${next}季が始まりますが、` +
+    `計画がまだありません（${unplanned.join(' / ')}）。` +
+    `その朝までに npm run plan -- --season ${next} を回してください。`;
+
+  console.log(`\n  ⚠ ${notice}`);
+  // 緑のまま流れていかないよう、GitHub Actions では run の注釈にも残す。
+  if (process.env.GITHUB_ACTIONS) console.log(`::warning::${notice}`);
 }
 
 async function main(): Promise<void> {
@@ -89,6 +120,8 @@ async function main(): Promise<void> {
   for (const event of episode.events) {
     console.log(`    ・${event.where}: ${event.summary}`);
   }
+
+  noticeIfSeasonRunningOut(date, turn.season);
 
   if (dryRun) {
     console.log('\n  --dry-run のため、日記は生成しません。');

@@ -3,8 +3,11 @@
 # ギルド → 静寂 → 大収束 → 破砕 → 原初 の5日周期で、番の時代の主人公が日記を書く。
 # 出来事はここでは作らない。季の計画（world/seasons/）から、その日の話を取り出す。
 #
-# 計画がない日は何もせずに終わる。季の計画は npm run plan で立て、
+# 計画がない日は、何も書かずに失敗する。季の計画は npm run plan で立て、
 # 走らせる前に人間が読んで直す。自動では計画しない——それがこの構造の主目的なので。
+#
+# ここで黙って緑を返すほうが危ない。世界が止まったことに誰も気づかないまま
+# 日が過ぎる。季の終わりが近づいたら、まだ緑のうちに run-day が警告を出す。
 #
 # 構造ゲートに違反した日は、状態ファイルを変更せずに失敗記録だけを残す。
 # 欠けた日は隠さない。季の計画は消さないので、同じ日をやり直せる。
@@ -18,7 +21,9 @@ on:
         description: '生成する日付（YYYY-MM-DD）。省略すると今日'
         required: false
   schedule:
-    - cron: '0 21 * * *' # 06:00 JST
+    # 21:00 UTC = 06:00 JST。刻む日付も JST で決める（src/lib/rotation.ts の today）。
+    # UTC で日付を取ると毎回前日を刻み、初日が1日遅れて始まる。
+    - cron: '0 21 * * *'
 
 concurrency:
   group: daily
@@ -77,6 +82,6 @@ jobs:
           if git diff --staged --quiet; then
             echo "変更なし。"
           else
-            git commit -m "world: ${{ inputs.date || '$(date -u +%Y-%m-%d)' }}"
+            git commit -m "world: ${{ inputs.date || '$(TZ=Asia/Tokyo date +%Y-%m-%d)' }}"
             git push
           fi
