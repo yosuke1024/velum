@@ -35,8 +35,8 @@ const day: Day = {
   turn,
   episode,
   carriedOver: null,
-  worldYear: 3745,
-  calendarLine: '3,745年 星の月4日（秋）。仮銘審査まであと26日',
+  worldYear: 375,
+  calendarLine: '375年 星の月4日（秋）。仮銘審査まであと26日',
 };
 
 describe('季の計画のプロンプト', () => {

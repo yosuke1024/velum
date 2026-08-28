@@ -78,7 +78,7 @@ describe('人物ごとのプロンプト', () => {
     turn: { era, protagonist: id, dayIndex: 0, season: 1, episode: 1 } as Turn,
     episode,
     carriedOver: null,
-    worldYear: era === 'primordial' ? null : 3745,
+    worldYear: era === 'primordial' ? null : 375,
     calendarLine: '星の月4日（秋）',
   });
 

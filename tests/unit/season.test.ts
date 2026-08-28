@@ -24,7 +24,7 @@ function plan(overrides: Record<string, unknown> = {}) {
     era: 'guilds',
     protagonist: 'teo',
     arc: 'guilds-provisional-sigil',
-    year_in_world: 3745,
+    year_in_world: 375,
     title: '座金の向き',
     shape: '誰も見なかった座金から始まり、推薦状へ届かないまま終わる5話。',
     episodes: BEATS.map((beat, i) => episode(i + 1, beat)),

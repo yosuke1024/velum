@@ -33,30 +33,30 @@ describe('暦の算術', () => {
   });
 
   it('日付の整形', () => {
-    expect(formatWorldDate(3745, { month: 7, day: 4 })).toBe('3,745年 星の月4日');
+    expect(formatWorldDate(375, { month: 7, day: 4 })).toBe('375年 星の月4日');
     expect(formatWorldDate(null, { month: 7, day: 4 })).toBe('星の月4日');
-    expect(formatWorldDate(9745, { month: 13, day: 2 })).toBe('9,745年 五夜の2日目');
+    expect(formatWorldDate(1175, { month: 13, day: 2 })).toBe('1,175年 五夜の2日目');
   });
 });
 
 describe('翌日と年の変わり目', () => {
   it('月の中では日が進む', () => {
-    expect(nextDay('guilds', { era: 'guilds', year: 3745, month: 7, day: 4 })).toMatchObject({
+    expect(nextDay('guilds', { era: 'guilds', year: 375, month: 7, day: 4 })).toMatchObject({
       month: 7,
       day: 5,
     });
   });
 
   it('眠りの月の後に五夜が来る', () => {
-    expect(nextDay('guilds', { era: 'guilds', year: 3745, month: 12, day: 30 })).toMatchObject({
+    expect(nextDay('guilds', { era: 'guilds', year: 375, month: 12, day: 30 })).toMatchObject({
       month: 13,
       day: 1,
     });
   });
 
   it('五夜が明けると年が変わる', () => {
-    expect(nextDay('guilds', { era: 'guilds', year: 3745, month: 13, day: 5 })).toMatchObject({
-      year: 3746,
+    expect(nextDay('guilds', { era: 'guilds', year: 375, month: 13, day: 5 })).toMatchObject({
+      year: 376,
       month: 1,
       day: 1,
     });
@@ -64,8 +64,8 @@ describe('翌日と年の変わり目', () => {
 
   it('大収束の年は変わらない（終わらない年）', () => {
     expect(
-      nextDay('convergence', { era: 'convergence', year: 4217, month: 13, day: 5 }),
-    ).toMatchObject({ year: 4217, month: 1, day: 1 });
+      nextDay('convergence', { era: 'convergence', year: 417, month: 13, day: 5 }),
+    ).toMatchObject({ year: 417, month: 1, day: 1 });
   });
 
   it('原初は年を数えないまま', () => {
@@ -108,7 +108,7 @@ describe('稼働開始時の設計と、既存の記述の整合', () => {
   it('時計は妥当な状態を保っている（可変ぶんは中身を固定しない）', () => {
     const clocks = loadClocks();
     expect(clocks).toHaveLength(5);
-    expect(clockFor('convergence').year).toBe(4217); // 終わらない年
+    expect(clockFor('convergence').year).toBe(417); // 終わらない年
     expect(clockFor('primordial').year).toBeNull(); // 年を数えない
   });
 });
@@ -123,15 +123,15 @@ describe('時代ごとの暦の声', () => {
     expect(line).not.toContain('年');
   });
 
-  it('セヴラン: 収束暦を併記し、年は4,217のまま', () => {
-    const line = calendarLineFor('convergence', 4217, { month: 7, day: 4 });
-    expect(line).toContain('4,217年');
+  it('セヴラン: 収束暦を併記し、年は417のまま', () => {
+    const line = calendarLineFor('convergence', 417, { month: 7, day: 4 });
+    expect(line).toContain('417年');
     expect(line).toContain('収束暦184日');
   });
 
   it('テオ: 年月日と、近い節目', () => {
-    const line = calendarLineFor('guilds', 3745, { month: 7, day: 4 });
-    expect(line).toContain('3,745年 星の月4日');
+    const line = calendarLineFor('guilds', 375, { month: 7, day: 4 });
+    expect(line).toContain('375年 星の月4日');
     expect(line).toContain('仮銘審査まであと26日');
   });
 

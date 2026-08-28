@@ -159,7 +159,7 @@ describe('組み立て', () => {
   it('知識境界に、その時代とその年代が入る', () => {
     const snapshot = snapshotFor('teo', ['何も捨てない']);
     expect(snapshot.knowledge_boundary.era).toBe('ギルドの時代');
-    expect(snapshot.knowledge_boundary.years).toBe('0–4,000');
+    expect(snapshot.knowledge_boundary.years).toBe('0–400');
     expect(snapshot.knowledge_boundary.note).toMatch(/自分の時代より後を知らない/);
   });
 });

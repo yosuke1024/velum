@@ -264,8 +264,8 @@ if (clocks) {
     if (clock.era !== 'primordial' && clock.year === null) {
       fail('world/clocks.yaml', `${clock.era} の year が null です`);
     }
-    if (clock.era === 'convergence' && clock.year !== 4217) {
-      fail('world/clocks.yaml', `convergence の year は 4217 のまま変わりません（いま ${clock.year}）`);
+    if (clock.era === 'convergence' && clock.year !== 417) {
+      fail('world/clocks.yaml', `convergence の year は 417 のまま変わりません（いま ${clock.year}）`);
     }
   }
 }
@@ -331,8 +331,8 @@ if (existsSync(seasonsRoot)) {
       if (era === 'primordial' && typed.year_in_world !== null) {
         fail(rel, 'primordial の year_in_world は null です');
       }
-      if (era === 'convergence' && typed.year_in_world !== 4217) {
-        fail(rel, 'convergence の year_in_world は 4217 です');
+      if (era === 'convergence' && typed.year_in_world !== 417) {
+        fail(rel, 'convergence の year_in_world は 417 です');
       }
     }
   }

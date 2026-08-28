@@ -128,7 +128,7 @@ export const CalendarFileSchema = z.object({
 /**
  * 各時代の「いま」。季の計画が進める。
  * primordial の year は null（サナ氏族は年を数えない）。
- * convergence の year は 4,217 のまま変わらない（終わらない年）。
+ * convergence の year は 417 のまま変わらない（終わらない年）。
  */
 export const ClocksFileSchema = z.object({
   clocks: z

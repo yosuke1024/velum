@@ -14,7 +14,7 @@ import { z } from 'zod';
  * 月の名は全時代で共通（原初の星読み由来、canon 参照）。
  * 年の数え方だけが時代ごとに違う:
  *   primordial  年を数えない（null）
- *   convergence 4,217 のまま変わらない（終わらない年）
+ *   convergence 417 のまま変わらない（終わらない年）
  *   その他      普通に進む
  */
 
@@ -73,7 +73,7 @@ export function seasonOf(month: number): string {
   return found.season;
 }
 
-/** 「3,745年 星の月4日」「星の月4日」「五夜の2日目」 */
+/** 「375年 星の月4日」「星の月4日」「五夜の2日目」 */
 export function formatWorldDate(year: number | null, date: WorldDate): string {
   const day =
     date.month === 13 ? `${monthName(13)}の${date.day}日目` : `${monthName(date.month)}${date.day}日`;
@@ -159,7 +159,7 @@ export function upcomingObservances(
  * 日記プロンプト用の「今日の暦」。時代ごとの声で書く。
  *
  * primordial  年も日付の数字も出さない。季節と月の呼び名、節目までの夜の数だけ。
- * convergence 月日と収束暦を併記。年は 4,217 のまま。
+ * convergence 月日と収束暦を併記。年は 417 のまま。
  * その他      年月日。
  */
 export function calendarLineFor(
