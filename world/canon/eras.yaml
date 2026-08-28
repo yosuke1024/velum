@@ -27,7 +27,7 @@ eras:
     name:
       ja: ギルドの時代
       en: Guild Age
-    years: "0–4,000"
+    years: "0–400"
     order: 2
     protagonist: teo
     assignment: 制度的、工芸的、学術的
@@ -44,7 +44,7 @@ eras:
     name:
       ja: 大収束
       en: Convergence
-    years: "4,217"
+    years: "417"
     order: 3
     protagonist: sevran
     assignment: 混沌的、次元歪曲、異形
@@ -61,7 +61,7 @@ eras:
     name:
       ja: 破砕戦争
       en: Fracture War
-    years: "4,217–6,000"
+    years: "417–800"
     order: 4
     protagonist: kaya
     assignment: 戦闘跡、軍事的、絶望的
@@ -78,7 +78,7 @@ eras:
     name:
       ja: 静寂の時代
       en: Silent Age
-    years: "6,000–現在"
+    years: "800–現在"
     order: 5
     protagonist: riko
     # 鑑定で最も一般的に付与される時代。統合後の登板数が最も多い。

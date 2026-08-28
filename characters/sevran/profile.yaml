@@ -68,7 +68,7 @@ visual:
   build: 長身・痩せ型。猫背だが姿勢を正す癖（事務の身体）。眼の下の隈。
   hair: 黒。伸びかけを自分で切ったような不揃い。前髪が片目にかかる。
   clothing: 記録院の制服。着崩れているが、襟だけはいつも留まっている（平常心の記号）。
-  key_prop: 鎖で体に繋いだ「今年の記録帳」。表紙は「RECORD OF THE CONVERGENCE / YEAR 4217」。
+  key_prop: 鎖で体に繋いだ「今年の記録帳」。表紙は「RECORD OF THE CONVERGENCE / YEAR 417」。
   props:
     - 肩掛けに何本も挿したペン
     - 携行インク壺
@@ -97,8 +97,8 @@ visual:
   sheet:
     base: 候補2枚目（2026-08-23 確定）
     captions:
-      - ja: "記録帳（4217年）——記録すべきことを書く。記録してはならないことも。"
-        en: "RECORD BOOK (YEAR 4217) — He writes what must be recorded. And what must not."
+      - ja: "記録帳（417年）——記録すべきことを書く。記録してはならないことも。"
+        en: "RECORD BOOK (YEAR 417) — He writes what must be recorded. And what must not."
       - ja: "懐中時計——四時十七分で止まっている。時刻は記録される。時刻は動かない。"
         en: "POCKET WATCH — Stopped at 4:17. Time is recorded. Time does not move."
       - ja: "留めた襟——常にきちんと。規律だけが錨である。"
