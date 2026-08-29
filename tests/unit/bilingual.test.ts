@@ -1,7 +1,15 @@
 import { describe, it, expect } from 'vitest';
 import { SeasonPlanSchema, BEATS } from '../../src/schemas/season.js';
 import { DiaryEntrySchema } from '../../src/schemas/diary.js';
-import { both, ja, pick, isUntranslated } from '../../src/lib/bilingual.js';
+import {
+  both,
+  bothForReaders,
+  ja,
+  oneLine,
+  oneLineForReaders,
+  pick,
+  isUntranslated,
+} from '../../src/lib/bilingual.js';
 
 /**
  * 1言語 = 1 URL。`/velum/en/` は英語しか出さない場所で、`/velum/` は日本語しか
@@ -108,5 +116,36 @@ describe('生成が読む向きは、常に日本語', () => {
   it('プロンプトへ戻すときは ja へ落とす', () => {
     expect(ja({ ja: '座金の向き', en: 'Which Way the Washer Faces' })).toBe('座金の向き');
     expect(ja('座金の向き')).toBe('座金の向き');
+  });
+});
+
+/**
+ * YAML の折り返しは見た目の整形にすぎない。英語ではそこに空白が要るが、
+ * 日本語で空白が残ると読み手に見える欠陥になる（World タブの実機確認で判明）。
+ * 発行済みの appraisal snapshot を通る oneLine() は据え置き、読み手向けだけ直す。
+ */
+describe('読み手向けの1行化', () => {
+  it('和文どうしの折り返しは空白を入れずに繋ぐ', () => {
+    const wrapped = '季節ごとに\n野営地を移しながら暮らす。';
+    expect(oneLineForReaders(wrapped)).toBe('季節ごとに野営地を移しながら暮らす。');
+    // 従来の oneLine は空白を入れる。こちらは発行済み Snapshot が依存するので変えない。
+    expect(oneLine(wrapped)).toBe('季節ごとに 野営地を移しながら暮らす。');
+  });
+
+  it('英語の折り返しは従来どおり空白で繋ぐ', () => {
+    expect(oneLineForReaders('A tribe without\nwriting.')).toBe('A tribe without writing.');
+  });
+
+  it('素材が意図して入れた文中の空白は残す', () => {
+    // 「大鑑定院 見習い鑑定士」のような区切りは折り返し由来ではない。
+    expect(oneLineForReaders('大鑑定院 見習い鑑定士')).toBe('大鑑定院 見習い鑑定士');
+  });
+
+  it('和文と英字の境目は空白で繋ぐ', () => {
+    expect(oneLineForReaders('いまは\nEcho と呼ぶ。')).toBe('いまは Echo と呼ぶ。');
+  });
+
+  it('bothForReaders は訳が無ければ日本語へ落ちる（both と同じ規則）', () => {
+    expect(bothForReaders('物に残る\n声')).toEqual({ ja: '物に残る声', en: '物に残る声' });
   });
 });
