@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "id": "2026-08-22-sevran",
+  "date": "2026-08-22",
+  "character_id": "sevran",
+  "era": "convergence",
+  "season": 1,
+  "episode": 1,
+  "world_date": {
+    "year": 417,
+    "month": 4,
+    "day": 9
+  },
+  "title": {
+    "ja": "収束暦九十九日の記録",
+    "en": "Record of Convergence Day Ninety-Nine"
+  },
+  "excerpt": {
+    "ja": "本日、東三番通りは存在しなかった。未確認——ではなく、確認。",
+    "en": "Today, East Third Street did not exist. Not unconfirmed — confirmed."
+  },
+  "mood": {
+    "ja": "平常",
+    "en": "unmoved"
+  },
+  "path": "world/feed/entries/2026-08-22-sevran.json",
+  "body": {
+    "ja": "収束暦九十九日。晴れ。ただし空の色は要検証。\n\n東三番通りが消えていた。昨日まで通っていた道である。パン屋の壁だけが単独で立っており、壁の向こうは川だった。川は昨日まで北二区にあったものと同一と思われる(未確認)。近隣の住人は三名。うち二名は「前からこうだった」と主張した。人の記憶が裂け目より先に書き換わる事例、これで七件目。記録する。確認。\n\n大時計は四時十七分。変化なし。確認。\n\n本日の特記。パン屋の壁に、誰かが白墨で矢印を書いていた。矢印の先には何もない。何もない場所を指す矢印を、僕は消さずに写した。記録とはそういう仕事である。\n\n——以上を、本日の記録とする。記録院書記 セヴラン",
+    "en": "Convergence day ninety-nine. Clear skies; the sky's color, however, requires verification.\n\nEast Third Street was gone. I walked it yesterday. Only the baker's wall still stood, alone, and beyond the wall was a river. The river appears identical to the one that was in North Second District until yesterday (unconfirmed). Residents nearby: three. Two of them insisted it had \"always been like this.\" That makes seven recorded cases of memory rewriting itself faster than the rifts do. Recorded. Confirmed.\n\nThe great clock reads 4:17. No change. Confirmed.\n\nToday's special note: someone had drawn an arrow in chalk on the baker's wall. The arrow points at nothing. I copied the arrow that points at nothing, without erasing it. That is what recording is.\n\n— Thus concludes today's record. Sevran, Scribe of the Record House."
+  }
+}

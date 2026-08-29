@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "id": "2026-08-23-kaya",
+  "date": "2026-08-23",
+  "character_id": "kaya",
+  "era": "fracture",
+  "season": 1,
+  "episode": 1,
+  "world_date": {
+    "year": 561,
+    "month": 9,
+    "day": 26
+  },
+  "title": {
+    "ja": "縫い針の届け先",
+    "en": "Where the Needle Was Bound"
+  },
+  "excerpt": {
+    "ja": "百四十一人目。針一本でも、作法は同じ。",
+    "en": "One hundred forty-one. Even for a single needle, the ritual is the same."
+  },
+  "mood": {
+    "ja": "静か",
+    "en": "quiet"
+  },
+  "path": "world/feed/entries/2026-08-23-kaya.json",
+  "body": {
+    "ja": "今日の届け物は小さかった。縫い針が一本、糸巻きに刺さったまま。持ち主は東の陣で帰らなかった人で、木札の宛先は峠の手前の村になっていた。\n\n針の腹に、砥いだ痕が斜めに三筋。右利きの人が、急いで砥いだ痕だ。急いで砥いだ針で、何を繕ったのか。袖口だと思う。針先に外套の繊維がひとつ残っていた。寒くなる前に、袖だけでも直そうとしたのだと思う。\n\n宛先の家では、お婆さんが出てきた。検分をして、木札と照合して、品名を読み上げた。縫い針一本、糸巻きひとつ。お婆さんは針を受け取って、「この人は裁縫が下手でねえ」と言って、それきり黙った。わたしは頭を下げて、戸が閉まるまで待った。\n\nこれで百四十一人。\n\n——確かに、お届けしました。",
+    "en": "Today's delivery was small. One sewing needle, still in its spool. The owner did not come home from the eastern line; the wooden tag gave a village just before the pass.\n\nOn the needle's flat, three whetting marks, slanted. A right-handed person, sharpening in a hurry. What did they mend with a hurriedly sharpened needle? A cuff, I think. A single fiber of cloak wool was left on the point. Before the cold came, they meant to fix the sleeve at least.\n\nAt the address, an old woman came out. I examined the relic, matched it to the tag, and read the item's name aloud. One sewing needle, one spool. She took the needle and said, \"This one was always hopeless at sewing,\" and then said nothing more. I bowed and waited until the door had closed.\n\nThat makes one hundred forty-one.\n\n— Delivered, and received."
+  }
+}

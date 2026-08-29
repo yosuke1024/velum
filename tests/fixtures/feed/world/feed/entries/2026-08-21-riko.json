@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "id": "2026-08-21-riko",
+  "date": "2026-08-21",
+  "character_id": "riko",
+  "era": "silent",
+  "season": 1,
+  "episode": 1,
+  "world_date": {
+    "year": 843,
+    "month": 6,
+    "day": 18
+  },
+  "title": {
+    "ja": "雨の市とスプーン一本",
+    "en": "A Rainy Market and One Spoon"
+  },
+  "excerpt": {
+    "ja": "うちの鑑定部の見解では、これは伝説のスプーン。お値段、銅貨三枚。",
+    "en": "Our appraisal department finds this to be a legendary spoon. Price: three coppers."
+  },
+  "mood": {
+    "ja": "強気",
+    "en": "undaunted"
+  },
+  "path": "world/feed/entries/2026-08-21-riko.json",
+  "body": {
+    "ja": "雨。客ゼロ。荷車の幌から水が一筋、よりによって値札の束の上に落ちる。あたしは商人だから泣かない。値札を書き直すだけだ。\n\n昼すぎに一人だけ来た。傘も差さない婆さんで、匙を一本だけ見ていった。「これ、何ができるの」と聞くから、うちの鑑定部の見解を伝えた。曰く、百年前の行商が峠で命を繋いだ伝説の匙(たぶん)。婆さんは笑って、銅貨三枚置いていった。言い値のままだ。雨の日に言い値で買う客は、匙じゃなくて話を買っている。それでいい。商売とはそういうものだ。\n\n夜、幌の穴を繕った。針を持つと、なんで売れない品ほど直したくなるんだろうね。\n\n本日の売上:銅貨三枚。明日の予定:晴れたら北へ。",
+    "en": "Rain. Zero customers. A thread of water found its way through the cart's canopy and landed, of all places, on my stack of price tags. I am a merchant, so I do not cry. I rewrite price tags.\n\nJust one visitor after midday — an old woman without an umbrella, who looked at a single spoon. \"What can this still do?\" she asked, so I gave her our appraisal department's finding: the legendary spoon (probably) that kept a peddler alive on the pass a hundred years ago. She laughed and left three coppers. Full asking price. A customer who pays full price in the rain isn't buying the spoon, she's buying the story. That's fine. That is what commerce is.\n\nAt night I mended the hole in the canopy. Funny how it's always the unsellable things I most want to fix.\n\nToday's revenue: three coppers. Tomorrow's plan: north, if it clears."
+  }
+}
