@@ -14,8 +14,15 @@ import {
   diaryFeedFrom,
 } from '../../src/export/feed.js';
 import { forbiddenSecretSegments } from '../../src/lib/secrets.js';
-import { CHARACTER_IDS, ERA_PROTAGONIST, DEFAULT_COMPANION } from '../../src/schemas/world.js';
+import {
+  CHARACTER_IDS,
+  ERA_PROTAGONIST,
+  DEFAULT_COMPANION,
+  GlossaryFileSchema,
+} from '../../src/schemas/world.js';
 import { emptyManifest } from '../../src/compile/publish.js';
+import { worldPath } from '../../src/lib/paths.js';
+import { readYaml } from '../../src/lib/storage.js';
 import type { PersonaManifest } from '../../src/schemas/manifest.js';
 import type { DiaryEntry } from '../../src/schemas/diary.js';
 
@@ -94,6 +101,49 @@ describe('world/feed/lore.json', () => {
     for (const law of lore.laws) {
       expect(law.text.ja).toMatch(/[ぁ-んァ-ヶ一-龠]/);
       expect(law.text.en).toMatch(/[A-Za-z]/);
+    }
+  });
+
+  it('組織の名前・要約が二言語で入っている', () => {
+    expect(lore.organizations.length).toBeGreaterThanOrEqual(1);
+    for (const org of lore.organizations) {
+      expect(org.name.ja).toMatch(/[ぁ-んァ-ヶ一-龠]/);
+      expect(org.name.en).toMatch(/[A-Za-z]/);
+      expect(org.summary.ja).toMatch(/[ぁ-んァ-ヶ一-龠]/);
+      expect(org.summary.en).toMatch(/[A-Za-z]/);
+    }
+  });
+
+  it('summary を持つ5件だけが揃い、summary の無い vesper-workshop は含まない', () => {
+    // 現時点の canon で summary を持つのはこの5件（各時代1件ずつ）。
+    // guilds.yaml の vesper-workshop は意図的に summary が無く、除外される。
+    // 並びも固定する（ERA_IDS 順 → ファイル内の記載順）。sort して比べると
+    // 収集順が変わる実装（readdirSync 依存など）に退行しても気づけない。
+    const ids = lore.organizations.map((o) => o.id);
+    expect(ids).toEqual([
+      'sana',
+      'grand-court',
+      'record-house',
+      'reclaimers-guild',
+      'riko-trading',
+    ]);
+    expect(ids).not.toContain('vesper-workshop');
+  });
+
+  it('同じ now で2回組み立てるとバイト単位で一致する（組織・用語集の収集順を含む）', () => {
+    const a = JSON.stringify(buildLoreFeed(NOW), null, 2);
+    const b = JSON.stringify(buildLoreFeed(NOW), null, 2);
+    expect(a).toBe(b);
+  });
+
+  it('用語集が glossary.yaml の記載と一致し、二言語で入っている', () => {
+    const source = readYaml(worldPath('canon/glossary.yaml'), GlossaryFileSchema);
+    expect(lore.glossary.map((g) => g.id)).toEqual(source.glossary.map((g) => g.id));
+    for (const entry of lore.glossary) {
+      expect(entry.term.ja).toMatch(/[ぁ-んァ-ヶ一-龠]/);
+      expect(entry.term.en).toMatch(/[A-Za-z]/);
+      expect(entry.text.ja).toMatch(/[ぁ-んァ-ヶ一-龠]/);
+      expect(entry.text.en).toMatch(/[A-Za-z]/);
     }
   });
 

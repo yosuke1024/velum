@@ -6,8 +6,11 @@ import { DiaryEntrySchema, type DiaryEntry } from '../schemas/diary.js';
 import {
   ErasFileSchema,
   LawsFileSchema,
+  EraCanonFileSchema,
+  GlossaryFileSchema,
   CHARACTER_IDS,
   DEFAULT_COMPANION,
+  ERA_IDS,
 } from '../schemas/world.js';
 import {
   FEED_SCHEMA_VERSION,
@@ -71,10 +74,28 @@ export function buildCharactersFeed(
   });
 }
 
-/** World Lore 基本（時代・世界法則）が読む lore.json。 */
+/**
+ * 時代別 canon（world/canon/<era>.yaml）を ERA_IDS 順に横断し、summary を
+ * 持つ institutions だけを組織として集める（summary が無いものは自然に
+ * 除外——例: guilds.yaml の vesper-workshop）。並び順は ERA_IDS 順 → 各
+ * ファイル内の記載順で決定的にする（readdirSync 等の順序依存は使わない）。
+ * note は読者だけが知る注記が混ざりうるので出さない。
+ */
+function collectOrganizations(): FeedLore['organizations'] {
+  return ERA_IDS.flatMap((id) => {
+    const canon = readYaml(worldPath(`canon/${id}.yaml`), EraCanonFileSchema);
+    return (canon.institutions ?? []).flatMap((entry) => {
+      if (!entry.summary) return [];
+      return [{ id: entry.id, era: id, name: both(entry.name), summary: both(entry.summary) }];
+    });
+  });
+}
+
+/** World Lore 基本（時代・世界法則・組織・用語集）が読む lore.json。 */
 export function buildLoreFeed(now: string): FeedLore {
   const eras = readYaml(worldPath('canon/eras.yaml'), ErasFileSchema).eras;
   const laws = readYaml(worldPath('canon/laws.yaml'), LawsFileSchema);
+  const glossary = readYaml(worldPath('canon/glossary.yaml'), GlossaryFileSchema);
 
   return FeedLoreSchema.parse({
     schema_version: FEED_SCHEMA_VERSION,
@@ -89,6 +110,13 @@ export function buildLoreFeed(now: string): FeedLore {
         summary: both(era.summary),
       })),
     laws: laws.laws.map((law) => ({ id: law.id, text: both(law.text) })),
+    organizations: collectOrganizations(),
+    // 記載順どおりに出す。note は出さない。
+    glossary: glossary.glossary.map((term) => ({
+      id: term.id,
+      term: both(term.term),
+      text: both(term.text),
+    })),
   });
 }
 

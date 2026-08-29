@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-29T02:00:34.896Z",
+  "generated_at": "2026-08-29T20:47:47.457Z",
   "eras": [
     {
       "id": "primordial",
@@ -72,15 +72,15 @@
     {
       "id": "echo",
       "text": {
-        "ja": "物は、それを強く想った者の何かを宿すことがある。人はそれを 「声」「残響」「目覚め」と、時代ごとに違う名で呼んできた。",
-        "en": "A thing may come to hold something of those who loved, feared, or needed it. Every age has had its own name for this — a voice, an echo, an awakening."
+        "ja": "物は、それを強く想った者の何かを宿すことがある。人はそれを 「声」「残響」「目覚め」——そしていまは Echo と、時代ごとに 違う名で呼んできた。",
+        "en": "A thing may come to hold something of those who loved, feared, or needed it. Every age has had its own name for this — a voice, an echo, an awakening, and today an Echo."
       }
     },
     {
       "id": "five-eras",
       "text": {
-        "ja": "世界は五つの時代を重ねてきた。原初の沈黙、ギルドの時代、大収束、 破砕戦争、静寂の時代。物はしばしば、生まれた時代の顔を残す。",
-        "en": "The world has passed through five ages — the Primordial Silence, the Guild Age, the Convergence, the Fracture War, and the Silent Age. A thing often keeps the face of the age that made it."
+        "ja": "Velum は五つの時代を重ねてきた。原初の沈黙、ギルドの時代、大収束、 破砕戦争、静寂の時代。物はしばしば、生まれた時代の顔を残す。",
+        "en": "Velum has passed through five ages — the Primordial Silence, the Guild Age, the Convergence, the Fracture War, and the Silent Age. A thing often keeps the face of the age that made it."
       }
     },
     {
@@ -102,6 +102,125 @@
       "text": {
         "ja": "静寂の時代、遺物が力を示す「目覚め」は百年以上、公式には観測されて いない。いまや目覚めは伝承と商売文句の領域にある——それを信じるか どうかは、値札を書く者の側の問題である。",
         "en": "In the Silent Age, no awakening — a relic showing its power — has been officially observed for over a century. Awakenings now belong to folklore and sales pitches; whether to believe in them is a problem for whoever writes the price tag."
+      }
+    }
+  ],
+  "organizations": [
+    {
+      "id": "sana",
+      "era": "primordial",
+      "name": {
+        "ja": "サナ氏族",
+        "en": "The Sana"
+      },
+      "summary": {
+        "ja": "文字を持たない氏族。名は「水を分ける者」に由来し、季節ごとに 野営地を移しながら暮らす。物には声が宿ると信じ、それを聴くと される「聴き手」を立て、世界の記憶を口伝だけで受け渡している。",
+        "en": "A tribe without writing. Their name means \"those who divide the water,\" and they move camp with the seasons. They hold that things carry voices, appoint Listeners said to hear them, and pass the world's memory on by word of mouth."
+      }
+    },
+    {
+      "id": "grand-court",
+      "era": "guilds",
+      "name": {
+        "ja": "大鑑定院",
+        "en": "The Grand Court of Appraisal"
+      },
+      "summary": {
+        "ja": "鑑定を制度に変えた組織。階級と規約で物の真贋を裁き、鑑定書に 打つ銘ひとつが職人の一生を左右する。のちの時代に語られる 「ギルド」の呼び名は、ここを起点としている。",
+        "en": "The body that turned appraisal into an institution. It judges real from fake by rank and regulation, and one sigil on a certificate can decide a craftsman's life. The \"Guild\" of later ages traces its name back to this house."
+      }
+    },
+    {
+      "id": "record-house",
+      "era": "convergence",
+      "name": {
+        "ja": "記録院",
+        "en": "The Record House"
+      },
+      "summary": {
+        "ja": "公的記録を担っていた組織。アルヴィスの出来事を日付とともに綴じ、 誰が何を証したかを残す役目を負っていた。大収束の混乱のなかで 崩壊し、いまは廃墟と、その名を肩書きに残す者だけが残っている。",
+        "en": "The body that kept the public record. It bound the events of Alvis with their dates, noting who had attested to what. It fell in the turmoil of the Convergence; what remains is a ruin, and those who still carry its name as a title."
+      }
+    },
+    {
+      "id": "reclaimers-guild",
+      "era": "fracture",
+      "name": {
+        "ja": "回収人組合",
+        "en": "The Reclaimers' Guild"
+      },
+      "summary": {
+        "ja": "戦場を渡る中立の職能組合。武器を持たず白い外套をまとい、死者の 持ち物を拾い上げて遺族のもとへ届ける。両軍とも手を出さないという 約束だけが、その身を守る唯一の盾になっている。",
+        "en": "A neutral trade guild that crosses the battle lines. Unarmed and in white coats, its members gather the belongings of the dead and return them to their families. The promise that neither army will touch them is their only shield."
+      }
+    },
+    {
+      "id": "riko-trading",
+      "era": "silent",
+      "name": {
+        "ja": "リコ商会",
+        "en": "Riko Trading"
+      },
+      "summary": {
+        "ja": "静寂の時代を巡る行商。奇物とささやきを看板に掲げ、巡回路を辿って 市から市へ品を運ぶ。目覚めを見たという話を売り文句にしながら、 値札を書く手はいつも慎重である。",
+        "en": "A peddler working the Silent Age. The sign promises wonders and whispers, and goods travel from market to market along the circuit roads. It sells stories of awakenings — though the hand that writes the price tag is always careful."
+      }
+    }
+  ],
+  "glossary": [
+    {
+      "id": "velum",
+      "term": {
+        "ja": "Velum（ヴェラム）",
+        "en": "Velum"
+      },
+      "text": {
+        "ja": "世界そのものの名。五つの時代を重ねてきたこの世界を、外側から 観測する者はそう呼ぶ。内側で暮らす者にとっては、ただの「世界」 である。",
+        "en": "The name of the world itself. Those who observe it from outside call this world — the one that has passed through five ages — by that name. To those who live inside it, it is simply the world."
+      }
+    },
+    {
+      "id": "the-veil",
+      "term": {
+        "ja": "The Veil（ヴェール）",
+        "en": "The Veil"
+      },
+      "text": {
+        "ja": "Velum と現実を隔てる薄い膜。静寂の時代に入ってから厚みを増し、 物の真の姿はその向こうで眠ったままになった。鑑定とは、この膜 越しに目を凝らす技術を指す。",
+        "en": "The thin membrane between Velum and the real world. It has thickened since the Silent Age began, leaving the true forms of things asleep on the far side. Appraisal is the craft of straining one's eyes through it."
+      }
+    },
+    {
+      "id": "echo",
+      "term": {
+        "ja": "Echo（残響）",
+        "en": "Echo"
+      },
+      "text": {
+        "ja": "Veil のこちら側に投影された、物の眠った姿。ありふれた品の一つ ひとつが、向こう側に真の名と性質を持っている。呼び名は時代ごとに 変わり、いまは Echo で通っている。",
+        "en": "The sleeping form of a thing, projected on this side of the Veil. Every ordinary object holds a true name and nature on the far side. What it is called has changed with each age; today it goes by Echo."
+      }
+    },
+    {
+      "id": "resonance-energy",
+      "term": {
+        "ja": "共鳴エナジー",
+        "en": "Resonance Energy"
+      },
+      "text": {
+        "ja": "Veil 越しに物の真の姿を引き出すとき消費される力。通称マナ。 静寂の時代は魔法が薄れ Veil が厚いため、これが自然に満ちること はなく、外から補うほかない。",
+        "en": "The force spent when drawing a thing's true form through the Veil. Commonly called mana. In the Silent Age magic has thinned and the Veil grown thick, so it never refills on its own — it must be supplied from outside."
+      }
+    },
+    {
+      "id": "arcane-circuit",
+      "term": {
+        "ja": "魔導回路",
+        "en": "Arcane Circuit"
+      },
+      "text": {
+        "ja": "霊脈に頼らず、術者が自ら調達した力で鑑定を行うための仕組み。 組み込めば少ない共鳴エナジーで高位の鑑定に届くが、その鍵を 用意するのは術者自身の責任になる。",
+        "en": "A rig that lets an appraiser work from a supply they have secured themselves, rather than drawing on the ley lines. Fitted with one, a high appraisal costs far less resonance energy — but obtaining the key is the appraiser's own responsibility."
       }
     }
   ]

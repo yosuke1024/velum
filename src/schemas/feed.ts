@@ -74,6 +74,24 @@ export const FeedLoreSchema = z.object({
     .length(5),
   /** 読者向けに選別した世界法則。ソースは world/canon/laws.yaml。 */
   laws: z.array(z.object({ id: z.string().min(1), text: Bilingual })).min(1),
+  /**
+   * 読者向けの組織要約。ソースは各時代 canon（world/canon/<era>.yaml）の
+   * institutions のうち、summary を持つものだけ（契約 §1.2）。
+   */
+  organizations: z
+    .array(
+      z.object({
+        id: z.string().min(1),
+        era: EraId,
+        name: Bilingual,
+        summary: Bilingual,
+      }),
+    )
+    .min(1),
+  /** 読者向けの用語集。ソースは world/canon/glossary.yaml。 */
+  glossary: z
+    .array(z.object({ id: z.string().min(1), term: Bilingual, text: Bilingual }))
+    .min(1),
 });
 
 /** 日記 ID は `<date>-<characterId>`。 */

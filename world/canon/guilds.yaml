@@ -22,6 +22,17 @@ institutions:
     name:
       ja: 大鑑定院
       en: The Grand Court of Appraisal
+    # 読者向けの組織要約。feed の lore.json が出す（note は出さない）。
+    summary:
+      ja: |
+        鑑定を制度に変えた組織。階級と規約で物の真贋を裁き、鑑定書に
+        打つ銘ひとつが職人の一生を左右する。のちの時代に語られる
+        「ギルド」の呼び名は、ここを起点としている。
+      en: |
+        The body that turned appraisal into an institution. It judges real from
+        fake by rank and regulation, and one sigil on a certificate can decide a
+        craftsman's life. The "Guild" of later ages traces its name back to this
+        house.
     note: |
       鑑定士を育て、鑑定書に権威を与える制度の中心。
       のちの時代の「鑑定ギルド」の前身にあたる。

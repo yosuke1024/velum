@@ -31,6 +31,17 @@ institutions:
     name:
       ja: 記録院
       en: The Record House
+    # 読者向けの組織要約。feed の lore.json が出す（note は出さない）。
+    summary:
+      ja: |
+        公的記録を担っていた組織。アルヴィスの出来事を日付とともに綴じ、
+        誰が何を証したかを残す役目を負っていた。大収束の混乱のなかで
+        崩壊し、いまは廃墟と、その名を肩書きに残す者だけが残っている。
+      en: |
+        The body that kept the public record. It bound the events of Alvis with
+        their dates, noting who had attested to what. It fell in the turmoil of
+        the Convergence; what remains is a ruin, and those who still carry its
+        name as a title.
     note: |
       アルヴィスの公的記録を担っていた組織。崩壊済み。
       セヴランは日記の署名に、いまも「記録院書記」と肩書きを入れる。
