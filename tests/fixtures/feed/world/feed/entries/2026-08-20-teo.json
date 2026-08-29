@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "id": "2026-08-20-teo",
+  "date": "2026-08-20",
+  "character_id": "teo",
+  "era": "guilds",
+  "season": 1,
+  "episode": 1,
+  "world_date": {
+    "year": 412,
+    "month": 7,
+    "day": 2
+  },
+  "title": {
+    "ja": "持ち込みの燭台",
+    "en": "The Walk-in Candlestick"
+  },
+  "excerpt": {
+    "ja": "別に悔しくはない。規約第31条を三回唱えただけだ。",
+    "en": "Not that I mind. I only recited Regulation 31 three times."
+  },
+  "mood": {
+    "ja": "澄まし",
+    "en": "composed"
+  },
+  "path": "world/feed/entries/2026-08-20-teo.json",
+  "body": {
+    "ja": "工房通りから燭台の持ち込みがあった。依頼人は銘持ちの鑑定を望んだが、受付に立っていたのは私である。年上の職人は私の顔を見て「見習いか」と言った。規約第4条、受付は院の代理である。つまり私は大鑑定院である。そう伝えたら、依頼人は黙った。\n\n燭台そのものは悪くない仕事だった。台座の裏に道具痕が三種。うち一つが、教本に載っていない向きで入っていた。ヴァレン師匠なら一目で流派を言い当てるのだろう。私は言い当てられなかった——調べれば分かることだ。調べれば分かることを「分からない」とは言わない。\n\n夜、書庫で道具痕の巻を三冊引いた。該当なし。明日もう一冊残っている。\n\n対象:真鍮燭台一基。等級:仮判定・中の上。注記:台座裏の痕、要継続調査。",
+    "en": "A candlestick came in from Workshop Street. The client wanted a sigiled appraiser; what he got at the reception desk was me. The craftsman, twice my age, looked at my face and said, \"An apprentice?\" Regulation 4: the desk acts for the Court. Therefore I am the Grand Court of Appraisal. I told him so, and he went quiet.\n\nThe candlestick itself was decent work. Three kinds of tool marks under the base. One of them ran in a direction no textbook shows. Master Varen would name the school at a glance. I could not — which is a thing that research will settle. One does not say \"I don't know\" about a thing that research will settle.\n\nAt night I pulled three volumes on tool marks from the archive. No match. One volume remains for tomorrow.\n\nSubject: one brass candlestick. Grade: provisional, upper-middle. Remarks: marks under the base, investigation to continue."
+  }
+}

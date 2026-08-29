@@ -56,7 +56,8 @@ function splitFrontMatter(markdown: string): { meta: Record<string, unknown>; bo
   return { meta, body: (match[2] ?? '').trim() };
 }
 
-function readDiary(id: string, date: string, lang: 'ja' | 'en'): string | null {
+/** 日記本文を読む。サイトの束と feed（src/export/feed.ts）の両方が使う。 */
+export function readDiaryBody(id: string, date: string, lang: 'ja' | 'en'): string | null {
   const [year, month] = date.split('-');
   const path = join(charPath(id, 'diaries'), year ?? '', month ?? '', `${date}.${lang}.md`);
   if (!existsSync(path)) return null;
@@ -158,8 +159,8 @@ function buildEntries() {
       entries.push({
         ...entry,
         body: {
-          ja: readDiary(id, entry.date, 'ja'),
-          en: readDiary(id, entry.date, 'en'),
+          ja: readDiaryBody(id, entry.date, 'ja'),
+          en: readDiaryBody(id, entry.date, 'en'),
         },
         applied,
       });

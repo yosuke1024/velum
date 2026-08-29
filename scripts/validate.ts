@@ -10,9 +10,12 @@
  *  - 推し軸・一人称・締めの型が5人で重複していないか
  *  - Persona Snapshot が追記のみで、番号が飛んでいないか
  *  - 配っているペルソナが、実在する Snapshot を指しているか
+ *  - feed（world/feed/）がスキーマ・サイズ上限に収まり、素材と食い違っていないか
+ *  - World Appraisal Snapshot が追記のみで、ピンが実在するファイルを指しているか
+ *  - 秘匿情報（secret_*・hidden_from_protagonist）が配布物に混入していないか
  */
 
-import { readFileSync, readdirSync, existsSync } from 'node:fs';
+import { readFileSync, readdirSync, existsSync, statSync } from 'node:fs';
 import { join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parse } from 'yaml';
@@ -22,6 +25,7 @@ import {
   ERA_IDS,
   CHARACTER_IDS,
   ERA_PROTAGONIST,
+  DEFAULT_COMPANION,
   ErasFileSchema,
   RotationFileSchema,
   EraCanonFileSchema,
@@ -38,10 +42,31 @@ import {
 } from '../src/schemas/character.js';
 import { SeasonPlanSchema, BEATS, EPISODES_PER_SEASON } from '../src/schemas/season.js';
 import { SnapshotSchema, SNAPSHOT_FILE } from '../src/schemas/snapshot.js';
-import { PersonaManifestSchema } from '../src/schemas/manifest.js';
+import { PersonaManifestSchema, type PersonaManifest } from '../src/schemas/manifest.js';
 import { CalendarFileSchema, ClocksFileSchema } from '../src/schemas/world.js';
+import {
+  FeedCharactersSchema,
+  FeedLoreSchema,
+  FeedDiarySchema,
+  FeedEntryFileSchema,
+  FEED_SIZE_LIMITS,
+  PORTRAIT_SIZE,
+} from '../src/schemas/feed.js';
+import {
+  WorldAppraisalSchema,
+  APPRAISAL_FILE,
+  APPRAISAL_SIZE_LIMIT,
+} from '../src/schemas/appraisal.js';
 import { linearDay } from '../src/lib/calendar.js';
 import { ja, isUntranslated } from '../src/lib/bilingual.js';
+import { pngDimensions } from '../src/lib/png.js';
+import { secretLeaksIn } from '../src/lib/secrets.js';
+import {
+  buildCharactersFeed,
+  buildLoreFeed,
+  collectFeedEntryFiles,
+  diaryFeedFrom,
+} from '../src/export/feed.js';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
 
@@ -392,11 +417,9 @@ for (const id of CHARACTER_IDS) {
 // PixTale が最初に取りに来る1枚。ここが実在しないファイルを指すと、
 // こちらの CI が緑のまま向こうが 404 を踏む。
 
-{
+const pinned = ((): PersonaManifest | null => {
   const path = join(ROOT, 'world/personas.json');
-  const manifest = load<{
-    personas: Record<string, { character: string; version: number; path: string }>;
-  }>(path, PersonaManifestSchema, '配っているペルソナ');
+  const manifest = load<PersonaManifest>(path, PersonaManifestSchema, '配っているペルソナ');
 
   if (manifest) {
     for (const [id, entry] of Object.entries(manifest.personas)) {
@@ -409,6 +432,252 @@ for (const id of CHARACTER_IDS) {
       const expected = `characters/${id}/snapshots/v${String(entry.version).padStart(4, '0')}.json`;
       if (entry.path !== expected) {
         fail('world/personas.json', `${id} の path と version が食い違っています（${entry.path}）`);
+      }
+    }
+
+    // ── World Appraisal のピン（契約 §2.1）──────────────────
+    // ここが実在しないファイルを指すと、こちらの CI が緑のまま
+    // PixTale プロキシが 404 を踏む。Persona と同じ理屈である。
+    if (manifest.world) {
+      const expected = `world/appraisal/v${String(manifest.world.version).padStart(4, '0')}.json`;
+      if (manifest.world.path !== expected) {
+        fail('world/personas.json', `world の path と version が食い違っています（${manifest.world.path}）`);
+      }
+      if (!existsSync(join(ROOT, manifest.world.path))) {
+        fail('world/personas.json', `world が指す ${manifest.world.path} が存在しません`);
+      }
+      if (!manifest.default_companion) {
+        fail('world/personas.json', 'world を配るなら default_companion も要ります（契約 §2.1）');
+      }
+    }
+  }
+  return manifest;
+})();
+
+// ── world/appraisal ────────────────────────────────────────────
+// World Appraisal Snapshot。Persona Snapshot と同じ規約——追記のみ・連番。
+// PixTale プロキシがピン経由でバージョン固定で読む。
+
+{
+  const dir = join(ROOT, 'world/appraisal');
+  if (existsSync(dir)) {
+    const versions: number[] = [];
+    for (const file of readdirSync(dir)) {
+      const match = APPRAISAL_FILE.exec(file);
+      if (!match) continue;
+
+      const rel = `world/appraisal/${file}`;
+      const version = Number(match[1]);
+      versions.push(version);
+
+      let raw: unknown;
+      try {
+        raw = JSON.parse(readFileSync(join(dir, file), 'utf8'));
+      } catch (error) {
+        fail(rel, `JSON を解析できません — ${(error as Error).message}`);
+        continue;
+      }
+      const result = WorldAppraisalSchema.safeParse(raw);
+      checked += 1;
+      if (!result.success) {
+        for (const issue of result.error.issues) {
+          fail(rel, `${issue.path.length ? issue.path.join('.') : '(root)'} — ${issue.message}`);
+        }
+        continue;
+      }
+      if (result.data.version !== version) {
+        fail(rel, `version が ${result.data.version} になっています（ファイル名は v${match[1]}）`);
+      }
+      const size = statSync(join(dir, file)).size;
+      if (size > APPRAISAL_SIZE_LIMIT) {
+        fail(rel, `${size} bytes あります（上限 ${APPRAISAL_SIZE_LIMIT}。契約 §2.2）`);
+      }
+    }
+
+    versions.sort((a, b) => a - b);
+    const wanted = versions.map((_, i) => i + 1);
+    if (versions.join(',') !== wanted.join(',')) {
+      fail('world/appraisal', `バージョンが 1.. の連番になっていません（${versions.join(', ')}）`);
+    }
+  }
+}
+
+// ── world/feed ─────────────────────────────────────────────────
+// PixTale アプリが raw で直接読む契約面（契約 §1）。スキーマ・サイズ上限・
+// 素材との食い違い・秘匿情報の混入を見る。ここから漏れたものは、
+// そのまま商用アプリの画面に出る。
+
+{
+  const feedRoot = join(ROOT, 'world/feed');
+  if (!existsSync(feedRoot)) {
+    fail('world/feed', 'feed がありません。npm run export:feed で作ってください');
+  } else {
+    /** generated_at の違いは「変わった」と数えない（export の writeStable と同じ規約）。 */
+    const drifted = (current: unknown, rebuilt: unknown): boolean =>
+      JSON.stringify({ ...(current as Record<string, unknown>), generated_at: null }) !==
+      JSON.stringify({ ...(rebuilt as Record<string, unknown>), generated_at: null });
+
+    const overSize = (rel: string, limit: number): void => {
+      const size = statSync(join(ROOT, rel)).size;
+      if (size > limit) fail(rel, `${size} bytes あります（上限 ${limit}。契約 §1.1）`);
+    };
+
+    // characters.json
+    const feedCharacters = load<{
+      default_companion_id: string;
+      characters: Array<{ id: string; era: string; portrait: { path: string } }>;
+    }>(join(feedRoot, 'characters.json'), FeedCharactersSchema, 'feed の characters');
+
+    if (feedCharacters) {
+      overSize('world/feed/characters.json', FEED_SIZE_LIMITS.characters);
+
+      const ids = feedCharacters.characters.map((c) => c.id);
+      for (const id of CHARACTER_IDS) {
+        if (!ids.includes(id)) fail('world/feed/characters.json', `${id} がいません`);
+      }
+      for (const c of feedCharacters.characters) {
+        if (ERA_PROTAGONIST[c.era as (typeof ERA_IDS)[number]] !== c.id) {
+          fail('world/feed/characters.json', `${c.id} の era が ${c.era} になっています`);
+        }
+      }
+
+      // ピンの転記。真の値は personas.json の default_companion。
+      const expected = pinned?.default_companion ?? DEFAULT_COMPANION;
+      if (feedCharacters.default_companion_id !== expected) {
+        fail(
+          'world/feed/characters.json',
+          `default_companion_id が ${feedCharacters.default_companion_id} になっています（ピンは ${expected}）`,
+        );
+      }
+
+      // 肖像。512×512・200KB 以下・実在。
+      for (const c of feedCharacters.characters) {
+        const rel = c.portrait.path;
+        const path = join(ROOT, rel);
+        if (!existsSync(path)) {
+          fail('world/feed/characters.json', `${c.id} の肖像 ${rel} が存在しません`);
+          continue;
+        }
+        overSize(rel, FEED_SIZE_LIMITS.portrait);
+        const dimensions = pngDimensions(readFileSync(path));
+        if (!dimensions) {
+          fail(rel, 'PNG として読めません');
+        } else if (dimensions.width !== PORTRAIT_SIZE || dimensions.height !== PORTRAIT_SIZE) {
+          fail(rel, `${dimensions.width}×${dimensions.height} です（${PORTRAIT_SIZE}×${PORTRAIT_SIZE} が契約）`);
+        }
+      }
+    }
+
+    // lore.json
+    const feedLore = load<{ eras: Array<{ id: string }> }>(
+      join(feedRoot, 'lore.json'),
+      FeedLoreSchema,
+      'feed の lore',
+    );
+    if (feedLore) {
+      overSize('world/feed/lore.json', FEED_SIZE_LIMITS.lore);
+      const ids = new Set(feedLore.eras.map((e) => e.id));
+      for (const era of ERA_IDS) {
+        if (!ids.has(era)) fail('world/feed/lore.json', `時代 ${era} がありません`);
+      }
+    }
+
+    // diary.json と entries/
+    const feedDiary = load<{
+      entries: Array<Record<string, unknown> & { id: string; date: string; path: string }>;
+    }>(join(feedRoot, 'diary.json'), FeedDiarySchema, 'feed の diary');
+
+    if (feedDiary) {
+      overSize('world/feed/diary.json', FEED_SIZE_LIMITS.diary);
+
+      const dates = feedDiary.entries.map((e) => e.id);
+      if (dates.join(',') !== [...dates].sort().reverse().join(',')) {
+        fail('world/feed/diary.json', '一覧が新しい順になっていません');
+      }
+
+      for (const listed of feedDiary.entries) {
+        const rel = listed.path;
+        if (!existsSync(join(ROOT, rel))) {
+          fail('world/feed/diary.json', `${listed.id} が指す ${rel} が存在しません`);
+          continue;
+        }
+        // 一覧と全文の同フィールドが食い違っていないか（契約 §1.2）。
+        const file = JSON.parse(readFileSync(join(ROOT, rel), 'utf8')) as Record<string, unknown>;
+        for (const key of Object.keys(listed)) {
+          if (JSON.stringify(listed[key]) !== JSON.stringify(file[key])) {
+            fail(rel, `${key} が一覧と食い違っています`);
+          }
+        }
+      }
+    }
+
+    const entriesDir = join(feedRoot, 'entries');
+    if (existsSync(entriesDir)) {
+      for (const file of readdirSync(entriesDir).filter((f) => f.endsWith('.json'))) {
+        const rel = `world/feed/entries/${file}`;
+        let raw: unknown;
+        try {
+          raw = JSON.parse(readFileSync(join(entriesDir, file), 'utf8'));
+        } catch (error) {
+          fail(rel, `JSON を解析できません — ${(error as Error).message}`);
+          continue;
+        }
+        const result = FeedEntryFileSchema.safeParse(raw);
+        checked += 1;
+        if (!result.success) {
+          for (const issue of result.error.issues) {
+            fail(rel, `${issue.path.length ? issue.path.join('.') : '(root)'} — ${issue.message}`);
+          }
+          continue;
+        }
+        if (`${result.data.id}.json` !== file) {
+          fail(rel, `id が ${result.data.id} になっています（ファイル名と不一致）`);
+        }
+        overSize(rel, FEED_SIZE_LIMITS.entry);
+      }
+    }
+
+    // 素材との食い違い。プロフィールや canon を直して feed を作り直し忘れると、
+    // アプリは古い内容を配り続ける。日次 cron は export → validate の順なので、
+    // ここが赤いのは「手で直して、書き出していない」PR だけである。
+    {
+      try {
+        const current = JSON.parse(readFileSync(join(feedRoot, 'characters.json'), 'utf8'));
+        if (drifted(current, buildCharactersFeed('')))
+          fail('world/feed/characters.json', '素材と食い違っています。npm run export:feed で作り直してください');
+        const lore = JSON.parse(readFileSync(join(feedRoot, 'lore.json'), 'utf8'));
+        if (drifted(lore, buildLoreFeed('')))
+          fail('world/feed/lore.json', '素材と食い違っています。npm run export:feed で作り直してください');
+        const diary = JSON.parse(readFileSync(join(feedRoot, 'diary.json'), 'utf8'));
+        if (drifted(diary, diaryFeedFrom(collectFeedEntryFiles(), '')))
+          fail('world/feed/diary.json', '素材と食い違っています。npm run export:feed で作り直してください');
+      } catch (error) {
+        fail('world/feed', `作り直しの照合に失敗しました — ${(error as Error).message}`);
+      }
+    }
+
+    // 秘匿情報の混入検査。型が参照していないことに加えて、出来上がった
+    // バイト列そのものを断片照合で見る（契約 §1.2 の除外規則）。
+    const distributed: string[] = [
+      'world/feed/characters.json',
+      'world/feed/lore.json',
+      'world/feed/diary.json',
+      ...(existsSync(entriesDir)
+        ? readdirSync(entriesDir)
+            .filter((f) => f.endsWith('.json'))
+            .map((f) => `world/feed/entries/${f}`)
+        : []),
+      ...(existsSync(join(ROOT, 'world/appraisal'))
+        ? readdirSync(join(ROOT, 'world/appraisal'))
+            .filter((f) => f.endsWith('.json'))
+            .map((f) => `world/appraisal/${f}`)
+        : []),
+    ];
+    for (const rel of distributed) {
+      const path = join(ROOT, rel);
+      if (!existsSync(path)) continue;
+      for (const leak of secretLeaksIn(readFileSync(path, 'utf8'))) {
+        fail(rel, `${leak.owner} の秘密が混入しています（${leak.segment.slice(0, 16)}…）`);
       }
     }
   }

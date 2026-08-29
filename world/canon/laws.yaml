@@ -1,0 +1,68 @@
+# 世界法則 — 読者向けに選別した、世界共通の基本法則。
+#
+# feed の lore.json（二言語）と World Appraisal Snapshot（ja）の両方が
+# ここから射影する。書いてよいのは**作中で公知の法則**だけである。
+# 時代を跨ぐ糸（world/threads/）の「読者だけが発見できる」答え合わせ——
+# 声の正体、系譜のつながり、首飾りの来歴——は、ここに書かない。
+
+laws:
+  - id: echo
+    text:
+      ja: |
+        物は、それを強く想った者の何かを宿すことがある。人はそれを
+        「声」「残響」「目覚め」と、時代ごとに違う名で呼んできた。
+      en: |
+        A thing may come to hold something of those who loved, feared, or
+        needed it. Every age has had its own name for this — a voice, an
+        echo, an awakening.
+    note: 世界の芯。ただし「誰がそれを聴けるか」は書かない（糸の答え合わせになる）。
+
+  - id: five-eras
+    text:
+      ja: |
+        世界は五つの時代を重ねてきた。原初の沈黙、ギルドの時代、大収束、
+        破砕戦争、静寂の時代。物はしばしば、生まれた時代の顔を残す。
+      en: |
+        The world has passed through five ages — the Primordial Silence, the
+        Guild Age, the Convergence, the Fracture War, and the Silent Age. A
+        thing often keeps the face of the age that made it.
+
+  - id: calendar
+    text:
+      ja: |
+        一年は十二の月と、どの月にも属さない五日からなる。年の外のその
+        五日は、時代ごとに違う名で呼ばれ、違う過ごし方をされてきた。
+      en: |
+        A year is twelve months, plus five days that belong to no month.
+        Those five days outside the year have carried different names and
+        different customs in every age.
+    note: 暦の事実だけを書く。「名を数える芯が残り続ける」は五夜の糸の答え合わせなので書かない。
+
+  - id: unending-year
+    text:
+      ja: |
+        大収束の417年だけは、暦の月日が進んでも年が変わらない。
+        止まったその年は、いまも世界のどこかで続いていると伝えられる。
+      en: |
+        In the Convergence, and only there, the months and days advance while
+        the year itself stays 417. That stopped year, they say, is still
+        going on somewhere in the world.
+
+  - id: sleeping-relics
+    text:
+      ja: |
+        静寂の時代、遺物が力を示す「目覚め」は百年以上、公式には観測されて
+        いない。いまや目覚めは伝承と商売文句の領域にある——それを信じるか
+        どうかは、値札を書く者の側の問題である。
+      en: |
+        In the Silent Age, no awakening — a relic showing its power — has been
+        officially observed for over a century. Awakenings now belong to
+        folklore and sales pitches; whether to believe in them is a problem
+        for whoever writes the price tag.
+
+# 見立て規則 — World Appraisal Snapshot の expression_rules へ射影する（ja のみ）。
+# カードの鑑定文が Snapshot にない事物をどう扱うかの決め。
+expression_rules:
+  - Snapshot にない事物・人名は断定せず、「〜に見える」「〜と伝わる」の見立てで表現する。
+  - 固有名詞はカード1枚あたり0〜1件を目安とする。
+  - その時代の absent に挙げたものを、その時代の視点から実在するものとして扱わない。

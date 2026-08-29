@@ -14,6 +14,20 @@ affiliation: sana
 appeal_axis: 健気×一途
 reader_distance: 報われてほしい妹
 
+# World 詳細用の紹介文。feed の characters.json が出す。秘密には触れない。
+intro:
+  ja: |
+    文字を持たないサナ氏族の、若い「聴き手」。物に残るかすかな声を聴き取り、
+    氏族のための兆しに翻訳する。厳かな口上の下で、本当は毎回半信半疑——
+    それでも夜にひとり、その日聴いたものを言葉にして唱える。彼女の「日記」は
+    書かれたものではなく、誰にも聞かせないその声である。
+  en: |
+    A young Listener of the Sana, a tribe that has no writing. She catches the
+    faint voices left in things and translates them into omens for her people.
+    Beneath the solemn recitations she is half in doubt every time — and still,
+    alone at night, she speaks aloud what she heard that day. Her "diary" is not
+    written; it is that voice no one else hears.
+
 core:
   wish: 自分の聴いた声で、一度でいいから氏族を救うこと。
   fear: 声が自分の妄想にすぎないこと。
@@ -103,6 +117,8 @@ visual:
     default: 厳かな儀式顔（作っている）
     quiet: 年相応の不安顔
     rare: 確信を持って断言する顔——このときだけ大人に見える
+  # 肖像 512×512 の切り出し（sheet.png のピクセル座標）。scripts/derive-portraits.ts が読む。
+  portrait: { x: 310, y: 30, size: 540 }
   acceptance: |
     シルエットだけで「原初・巫女・若い」。骨櫛と貝の束、裸足で一目でウタと分かること。
     厳かさが「背伸び」に見えること——完成された巫女に見えたら失敗。

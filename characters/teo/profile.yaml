@@ -18,6 +18,20 @@ affiliation: grand-court
 appeal_axis: 生意気×ギャップ
 reader_distance: からかいたい弟
 
+# World 詳細用の紹介文。feed の characters.json が出す。秘密には触れない。
+intro:
+  ja: |
+    大鑑定院の見習い鑑定士。まだ銘を持たない「無銘」の身で、規約を武器に
+    年上の職人にも慇懃無礼に食ってかかる小生意気な自信家。だがその目は、
+    条文をめくるより先に「なんとなく」で真贋を視てしまう——見習いがそれを
+    口にすることは、規約が許していない。
+  en: |
+    An apprentice appraiser at the Grand Court of Appraisal. Still "unsigiled" —
+    without a mark of his own — he wields the regulations like a weapon, politely
+    talking down to craftsmen twice his age. And yet his eye calls real or fake
+    before he can even open the handbook. An apprentice saying so out loud is
+    something the regulations do not allow.
+
 core:
   wish: 自分の銘を打つことを許されること。
   fear: 自分の目が信じられなくなること。
@@ -85,6 +99,8 @@ visual:
   expressions:
     default: 澄まし顔とドヤ顔
     rare: 目を見開いた素の顔
+  # 肖像 512×512 の切り出し（sheet.png のピクセル座標）。scripts/derive-portraits.ts が読む。
+  portrait: { x: 340, y: 20, size: 530 }
   acceptance: シルエットだけで「几帳面・生意気・見習い」が伝わること。
 
   # ── シートで確定した表記 ──────────────────────────────────

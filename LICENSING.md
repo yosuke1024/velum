@@ -38,6 +38,24 @@ non-commercial purposes, with attribution. Commercial use requires permission.
 The world and its characters are production assets for PixTale, which is why
 this material is not MIT-licensed alongside the code.
 
+### PixApps products
+
+The non-commercial restriction above binds third parties, not the rights
+holder. PixApps — the publisher of both Velum and PixTale — retains full
+rights to this material, and its own products and services (including the
+PixTale app and the PixTale proxy) are expressly licensed to reproduce,
+adapt, and distribute it commercially. This covers in particular the
+distribution surfaces consumed by PixTale:
+
+- `world/feed/` — the Diary/World feed, including the derived 512×512
+  portrait assets
+- `world/appraisal/` — compiled World Appraisal Snapshots
+- `characters/*/snapshots/` — compiled Persona Snapshots
+- `world/personas.json` — the distribution pin
+
+This clause makes the commercial use by PixApps products explicit; it grants
+no rights to anyone else.
+
 ## Branding
 
 The Velum and PixTale names, logos, wordmarks, visual identity, and other

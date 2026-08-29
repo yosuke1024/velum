@@ -1,11 +1,12 @@
 import { relative } from 'node:path';
-import { ROOT, manifestPath, snapshotPath } from '../lib/paths.js';
+import { ROOT, manifestPath, snapshotPath, appraisalPath } from '../lib/paths.js';
 import { readJson, writeJson, exists } from '../lib/storage.js';
 import {
   PersonaManifestSchema,
   MANIFEST_NOTE,
   type PersonaManifest,
 } from '../schemas/manifest.js';
+import { DEFAULT_COMPANION } from '../schemas/world.js';
 import type { Snapshot } from '../schemas/snapshot.js';
 
 const EMPTY: PersonaManifest = {
@@ -76,3 +77,35 @@ export function nextManifest(
 
 /** まだ誰も配っていない状態。 */
 export const emptyManifest = (): PersonaManifest => structuredClone(EMPTY);
+
+/**
+ * World Appraisal Snapshot のピン（契約 §2.1）。ピンファイルは1枚のまま、
+ * `world` と `default_companion` を additive に足す。
+ *
+ * Persona と同じ規律である——Snapshot を書いただけでは PixTale の出力は
+ * 変わらず、ここを通って初めて変わる。世界を戻すときも version の数字ひとつ。
+ */
+export function nextWorldPin(
+  current: PersonaManifest,
+  version: number,
+  now: string,
+): PersonaManifest {
+  const manifest = structuredClone(current);
+
+  manifest.world = {
+    version,
+    path: relative(ROOT, appraisalPath(version)),
+    published_at: now,
+  };
+  // 人が選んだ値は動かさない。まだ誰も選んでいなければ既定の teo を立てる。
+  manifest.default_companion = manifest.default_companion ?? DEFAULT_COMPANION;
+  manifest.updated_at = now;
+
+  return PersonaManifestSchema.parse(manifest);
+}
+
+export function publishWorld(version: number, now: string): PersonaManifest {
+  const manifest = nextWorldPin(readManifest(), version, now);
+  writeJson(manifestPath(), manifest);
+  return manifest;
+}

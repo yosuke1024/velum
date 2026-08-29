@@ -68,6 +68,15 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: npm run snapshot -- --if-season-end --date=${{ inputs.date }}
 
+      # PixTale アプリが読む feed（world/feed/）を書き出す。
+      # 生成が失敗した日でも回す——feed は「書かれている日記の全部」の射影であり、
+      # 昨日までの分は今日も正しい。内容が変わらない日はファイルが動かないので、
+      # 変更のない日にコミットが増えることはない。
+      # 肖像はここでは作らない（シートが変わったときに npm run portraits で手動）。
+      - name: Export the public feed
+        if: always()
+        run: npm run export:feed
+
       # 生成が破棄された日でも、失敗記録は残す。
       - name: Validate the data
         if: always()

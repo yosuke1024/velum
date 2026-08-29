@@ -97,7 +97,9 @@ world/
   threads/      未解決スレッドと、時代を跨ぐ5本の糸
   cards/        イベントカード（季を組み立てるときの素材）
   seasons/      季の計画。1人5話 × 5人 = 25日分。人間が読んで直せる
-  personas.json いま PixTale へ配っているペルソナのバージョン
+  personas.json いま PixTale へ配っている版を指すピン（ペルソナ・世界・既定の同行者）
+  feed/         PixTale アプリが直接読む公開 feed（日記一覧・人物・時代・肖像）
+  appraisal/    World Appraisal Snapshot（カード鑑定へ注入する世界の圧縮）
 
 characters/<id>/
   profile.yaml        固定層。人格の芯
@@ -142,6 +144,16 @@ Snapshot は日次では作らず、**季の切れ目（25日ごと）**にコ�
 
 詳細は [docs/persona-snapshot.md](docs/persona-snapshot.md)。
 
+```bash
+npm run export:feed         # PixTale アプリが読む feed（world/feed/）を書き出す
+npm run appraisal           # World Appraisal Snapshot をコンパイルする（--publish で配る）
+npm run portraits           # 肖像 512×512 をシートから派生させる
+```
+
+feed は日次ワークフローが自動で書き出します。World Appraisal は Persona と同じく
+**季末にコンパイルし、人が読んでから配ります**。肖像はシートが変わったときだけ
+手で作り直します。詳細は [docs/feed.md](docs/feed.md)。
+
 ### キャラクターシート
 
 5人のビジュアルは `profile.yaml` の `visual` が正です。**シートに焼き込まれた文字ではありません。**
@@ -152,12 +164,13 @@ Snapshot は日次では作らず、**季の切れ目（25日ごと）**にコ�
 
 ## PixTale との関係
 
-このリポジトリと PixTale のあいだに、実行時の連携はありません。受け渡すのは**バージョン付きの Persona Snapshot ファイルひとつだけ**です。
+このリポジトリと PixTale のあいだに、実行時の連携はありません。受け渡すのは**公開ファイルの一方向の取得だけ**です。面は3つあります。
 
 ```text
-velum: characters/<id>/snapshots/v0007.json
-         ↓ 公開ファイルとして取得、バージョンを固定
-PixTale Proxy: キャッシュして、選ばれた時代と人物の分だけプロンプトへ注入
+velum: world/feed/                      → PixTale アプリが直接読む（日記・人物・時代・肖像）
+velum: world/appraisal/v0001.json       ↘
+velum: characters/<id>/snapshots/v0007.json → PixTale Proxy がピン経由で取得し、
+         ↑ どの版を読むかは world/personas.json     プロンプトへ注入してキャッシュ
 ```
 
 この設計のおかげで、こちらの生成が止まっても壊れても PixTale は動き続け、人格が不自然に変化したらバージョンを戻すだけで元に戻せます。

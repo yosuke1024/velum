@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "id": "2026-08-24-uta",
+  "date": "2026-08-24",
+  "character_id": "uta",
+  "era": "primordial",
+  "season": 1,
+  "episode": 1,
+  "world_date": {
+    "year": null,
+    "month": 7,
+    "day": 4
+  },
+  "title": {
+    "ja": "北へ行けと言った匙",
+    "en": "The Ladle That Said Go North"
+  },
+  "excerpt": {
+    "ja": "……と、声が言っている。半分は。",
+    "en": "...or so the voice says. Half of it, anyway."
+  },
+  "mood": {
+    "ja": "背伸び",
+    "en": "on tiptoe"
+  },
+  "path": "world/feed/entries/2026-08-24-uta.json",
+  "body": {
+    "ja": "昼、水場の相談があった。長老たちが集まって、ウタの前に古い木の匙を置いた。先の割れた、水汲みの匙。みんながウタを見ていた。\n\nウタは匙を両手で持って、耳を当てた。木は乾いた匂いがして、遠くで、水の音がした。北の窪みの方だと思った。だからウタは言った。「北へ行け……と、声が言っている」。長老たちはうなずいて、明日、北の窪みを掘ることに決めた。\n\n夜。ひとりの分を言う。水の音は、ほんとうに聴こえた。でも「北」は、声は言っていない。ウタが言った。窪みの土が黒いのを、昼間に見ていたから。声が半分、ウタが半分。それでも氏族が水を見つけるなら、その半分をウタは背負う。\n\n星祭りまで、あと十一の夜。",
+    "en": "At midday there was a question about water. The elders gathered and set an old wooden ladle before Uta. A water ladle with a split lip. Everyone was watching Uta.\n\nUta held the ladle in both hands and put her ear to it. The wood smelled dry, and far away, there was a sound of water. It seemed to come from the northern hollow. So Uta said: \"Go north... or so the voice says.\" The elders nodded, and it was decided: tomorrow they dig the northern hollow.\n\nNight. The alone-part gets said now. The sound of water — that was real, Uta truly heard it. But \"north\" — the voice did not say that. Uta said it. Because at midday Uta had seen how dark the soil of the hollow was. Half the voice, half Uta. Still, if the tribe finds water, Uta will carry that half.\n\nEleven nights until the Star Festival."
+  }
+}

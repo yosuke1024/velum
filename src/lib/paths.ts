@@ -44,3 +44,25 @@ export const snapshotPath = (id: string, version: number) =>
 
 /** いま配っているペルソナ。PixTale が最初に取りに来る1枚。 */
 export const manifestPath = () => worldPath('personas.json');
+
+/**
+ * Diary/World feed。PixTale アプリが raw で直接読む契約面（契約 §1.1）。
+ * ここより下のパス構造は配布 URL そのものなので、動かさない。
+ */
+export const feedDir = () => worldPath('feed');
+export const feedPath = (...parts: string[]) => worldPath('feed', ...parts);
+export const feedEntriesDir = () => feedPath('entries');
+export const feedEntryName = (date: string, id: string) => `${date}-${id}.json`;
+export const feedPortraitPath = (id: string) => feedPath('portraits', `${id}.png`);
+
+/** リポジトリ root からの相対（feed の JSON に書く形）。 */
+export const feedRelPath = (...parts: string[]) => ['world', 'feed', ...parts].join('/');
+
+/**
+ * World Appraisal Snapshot。追記のみで、既存バージョンは上書きしない。
+ * PixTale プロキシはピン（world/personas.json の world）経由で読む。
+ */
+export const appraisalDir = () => worldPath('appraisal');
+
+export const appraisalPath = (version: number) =>
+  join(appraisalDir(), `v${String(version).padStart(4, '0')}.json`);

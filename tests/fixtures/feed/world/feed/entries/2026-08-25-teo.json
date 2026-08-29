@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "id": "2026-08-25-teo",
+  "date": "2026-08-25",
+  "character_id": "teo",
+  "era": "guilds",
+  "season": 1,
+  "episode": 2,
+  "world_date": {
+    "year": 412,
+    "month": 7,
+    "day": 8
+  },
+  "title": {
+    "ja": "四冊目の巻",
+    "en": "The Fourth Volume"
+  },
+  "excerpt": {
+    "ja": "該当なし、四冊目。規約第207条は、まだ使いたくない。",
+    "en": "No match, four volumes in. I am not ready to invoke Regulation 207."
+  },
+  "mood": {
+    "ja": "不服",
+    "en": "unsatisfied"
+  },
+  "path": "world/feed/entries/2026-08-25-teo.json",
+  "body": {
+    "ja": "燭台の道具痕、四冊目も該当なし。書庫の司書に「まだやってるのか」と言われた。規約第12条、調査の期限は鑑定士が定める。私が定める。つまり期限はまだ来ていない。\n\n癪なのは、今日ヴァレン師匠が審査室の前を通ったことだ。私の手元を一瞬だけ見て、何も言わずに行った。何も言わないのは、言う価値がないからか、言わなくても分かるはずだからか。後者だと思うことにする。規約に、師の沈黙の読み方は載っていない。載せるべきだと思う。\n\n痕の向きは、左利きの彫りに似ている。だが左利きの彫り師の登録は、この百年の名簿に三人しかいない。三人とも燭台は作らない。明日、名簿より前の記録を引く。\n\n対象:真鍮燭台一基(継続)。等級:保留。注記:出自不明と記すのは、五冊目のあとでいい。",
+    "en": "Fourth volume on the candlestick's tool marks: no match. The archivist asked if I was \"still at it.\" Regulation 12: the appraiser sets the term of an investigation. I set it. Therefore the term has not expired.\n\nWhat irritates me is that Master Varen passed the review room today. He glanced at my hands for exactly one moment and walked on without a word. No word because it is not worth one, or no word because none should be needed? I have decided to assume the latter. The regulations contain no article on reading a master's silence. They should.\n\nThe angle of the marks resembles left-handed carving. But the registry lists only three left-handed carvers in the past century, and none of the three made candlesticks. Tomorrow I pull the records from before the registry.\n\nSubject: one brass candlestick (continued). Grade: withheld. Remarks: \"provenance unknown\" can wait until after the fifth volume."
+  }
+}

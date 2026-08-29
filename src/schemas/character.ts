@@ -23,6 +23,13 @@ export const ProfileSchema = z.object({
   appeal_axis: z.string().min(1),
   reader_distance: z.string().min(1),
 
+  /**
+   * World 詳細用の紹介文（feed の characters.json が出す。契約 §1.2）。
+   * 読者が最初に読む2〜3文。core.secret_* に触れないこと——ここは秘密の
+   * 「外側」だけを書く欄で、混入は npm run validate が検査する。
+   */
+  intro: Bilingual,
+
   core: z.object({
     wish: z.string().min(1),
     fear: z.string().min(1),
@@ -58,6 +65,19 @@ export const ProfileSchema = z.object({
       key_prop: z.string().min(1),
       palette: z.record(z.union([z.string(), z.array(z.string())])),
       acceptance: z.string().min(1),
+
+      /**
+       * 肖像 512×512 の切り出し元（sheet.png のピクセル座標、size は正方形の一辺）。
+       * scripts/derive-portraits.ts がこれを読んで world/feed/portraits/<id>.png を作る。
+       * シートを描き直したら、ここを合わせ直してから派生を作り直す。
+       */
+      portrait: z
+        .object({
+          x: z.number().int().min(0),
+          y: z.number().int().min(0),
+          size: z.number().int().min(1),
+        })
+        .optional(),
 
       /**
        * シートで確定した表記。`en` が絵に焼いた英字そのもので、描き直すときに

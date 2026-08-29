@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-08-29T01:55:47.212Z",
+  "eras": [
+    {
+      "id": "primordial",
+      "order": 1,
+      "years": "~???–0",
+      "name": {
+        "ja": "原初の沈黙",
+        "en": "Primordial Silence"
+      },
+      "summary": {
+        "ja": "文字のない前史。人はまだ物に名を付けず、物の側が先に語りかけてくる。 サナ氏族の「聴き手」が、声とも兆しともつかないものを聴き取り、 口伝だけで世界を覚えている時代。",
+        "en": "A prehistory without writing. People have not yet named the things around them — the things speak first. The Listeners of the Sana catch what may be voices or omens, and the world is remembered only by word of mouth."
+      }
+    },
+    {
+      "id": "guilds",
+      "order": 2,
+      "years": "0–400",
+      "name": {
+        "ja": "ギルドの時代",
+        "en": "Guild Age"
+      },
+      "summary": {
+        "ja": "鑑定が制度になった時代。大鑑定院が階級と規約で物の真贋を裁き、 鑑定書に打つ銘ひとつが職人の一生を左右する。整いすぎた制度の 隙間で、規約に載らない目が育ちはじめている。",
+        "en": "The age when appraisal became an institution. The Grand Court judges real from fake with ranks and regulations, and a single sigil on a certificate can decide a craftsman's life. In the gaps of a system grown too orderly, an eye the regulations never wrote down is beginning to open."
+      }
+    },
+    {
+      "id": "convergence",
+      "order": 3,
+      "years": "417",
+      "name": {
+        "ja": "大収束",
+        "en": "Convergence"
+      },
+      "summary": {
+        "ja": "417年、すべてが混ざった一年。裂け目が街の地理を日ごとに書き換え、 大時計は四時十七分で止まったまま。暦の月日は進むのに年は変わらない その一年を、最後の書記がひとりで記録し続けている。",
+        "en": "Year 417 — the year everything mixed. Rifts redraw the city's geography daily, and the great clock stands stopped at 4:17. The months pass but the year refuses to change, and one last scribe keeps recording it alone."
+      }
+    },
+    {
+      "id": "fracture",
+      "order": 4,
+      "years": "417–800",
+      "name": {
+        "ja": "破砕戦争",
+        "en": "Fracture War"
+      },
+      "summary": {
+        "ja": "戦争が383年続く時代。武器を持たない白い外套の回収人だけが戦線を 渡り、死者の持ち物を遺族へ届ける。物は傷と修理痕で人生を語り、 遺品を読むことが弔いの技術になった。",
+        "en": "An age of a war 383 years long. Only the unarmed reclaimers in their white cloaks may cross the lines, returning the belongings of the dead to their families. Things tell lives through scars and mended seams, and reading a relic has become an art of mourning."
+      }
+    },
+    {
+      "id": "silent",
+      "order": 5,
+      "years": "800–現在",
+      "name": {
+        "ja": "静寂の時代",
+        "en": "Silent Age"
+      },
+      "summary": {
+        "ja": "遺物が眠り、奇跡が伝承になった現在。「目覚め」を見たと言い切れる者は もう生きていない。それでも市場には物が並び、まだ何かできると信じる 者が、今日も値札を書き続けている。",
+        "en": "The present, where relics sleep and miracles have become folklore. No one still living can claim to have seen an awakening. And yet the markets go on, and those who believe a thing can still do something keep writing price tags for it."
+      }
+    }
+  ],
+  "laws": [
+    {
+      "id": "echo",
+      "text": {
+        "ja": "物は、それを強く想った者の何かを宿すことがある。人はそれを 「声」「残響」「目覚め」と、時代ごとに違う名で呼んできた。",
+        "en": "A thing may come to hold something of those who loved, feared, or needed it. Every age has had its own name for this — a voice, an echo, an awakening."
+      }
+    },
+    {
+      "id": "five-eras",
+      "text": {
+        "ja": "世界は五つの時代を重ねてきた。原初の沈黙、ギルドの時代、大収束、 破砕戦争、静寂の時代。物はしばしば、生まれた時代の顔を残す。",
+        "en": "The world has passed through five ages — the Primordial Silence, the Guild Age, the Convergence, the Fracture War, and the Silent Age. A thing often keeps the face of the age that made it."
+      }
+    },
+    {
+      "id": "calendar",
+      "text": {
+        "ja": "一年は十二の月と、どの月にも属さない五日からなる。年の外のその 五日は、時代ごとに違う名で呼ばれ、違う過ごし方をされてきた。",
+        "en": "A year is twelve months, plus five days that belong to no month. Those five days outside the year have carried different names and different customs in every age."
+      }
+    },
+    {
+      "id": "unending-year",
+      "text": {
+        "ja": "大収束の417年だけは、暦の月日が進んでも年が変わらない。 止まったその年は、いまも世界のどこかで続いていると伝えられる。",
+        "en": "In the Convergence, and only there, the months and days advance while the year itself stays 417. That stopped year, they say, is still going on somewhere in the world."
+      }
+    },
+    {
+      "id": "sleeping-relics",
+      "text": {
+        "ja": "静寂の時代、遺物が力を示す「目覚め」は百年以上、公式には観測されて いない。いまや目覚めは伝承と商売文句の領域にある——それを信じるか どうかは、値札を書く者の側の問題である。",
+        "en": "In the Silent Age, no awakening — a relic showing its power — has been officially observed for over a century. Awakenings now belong to folklore and sales pitches; whether to believe in them is a problem for whoever writes the price tag."
+      }
+    }
+  ]
+}
