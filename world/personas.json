@@ -1,6 +1,12 @@
 {
-  "updated_at": null,
+  "updated_at": "2026-08-29T01:55:47.836Z",
   "season": null,
   "note": "PixTale はこのファイルを読み、version の指す Snapshot を取得する。人格を戻すときは version を以前の番号へ書き換える（ファイルは追記のみなので消えていない）。",
-  "personas": {}
+  "personas": {},
+  "world": {
+    "version": 1,
+    "path": "world/appraisal/v0001.json",
+    "published_at": "2026-08-29T01:55:47.836Z"
+  },
+  "default_companion": "teo"
 }

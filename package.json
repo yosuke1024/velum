@@ -15,7 +15,10 @@
     "day": "tsx scripts/run-day.ts",
     "plan": "tsx scripts/plan-season.ts",
     "snapshot": "tsx scripts/compile-snapshot.ts",
-    "export": "tsx scripts/export-site.ts"
+    "appraisal": "tsx scripts/compile-appraisal.ts",
+    "export": "tsx scripts/export-site.ts",
+    "export:feed": "tsx scripts/export-feed.ts",
+    "portraits": "tsx scripts/derive-portraits.ts"
   },
   "dependencies": {
     "yaml": "^2.6.1",
@@ -23,6 +26,7 @@
   },
   "devDependencies": {
     "@types/node": "^22.10.2",
+    "sharp": "^0.35.4",
     "tsx": "^4.19.2",
     "typescript": "^5.7.2",
     "vitest": "^2.1.8"
