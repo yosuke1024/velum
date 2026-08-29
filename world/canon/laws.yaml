@@ -10,20 +10,21 @@ laws:
     text:
       ja: |
         物は、それを強く想った者の何かを宿すことがある。人はそれを
-        「声」「残響」「目覚め」と、時代ごとに違う名で呼んできた。
+        「声」「残響」「目覚め」——そしていまは Echo と、時代ごとに
+        違う名で呼んできた。
       en: |
         A thing may come to hold something of those who loved, feared, or
         needed it. Every age has had its own name for this — a voice, an
-        echo, an awakening.
+        echo, an awakening, and today an Echo.
     note: 世界の芯。ただし「誰がそれを聴けるか」は書かない（糸の答え合わせになる）。
 
   - id: five-eras
     text:
       ja: |
-        世界は五つの時代を重ねてきた。原初の沈黙、ギルドの時代、大収束、
+        Velum は五つの時代を重ねてきた。原初の沈黙、ギルドの時代、大収束、
         破砕戦争、静寂の時代。物はしばしば、生まれた時代の顔を残す。
       en: |
-        The world has passed through five ages — the Primordial Silence, the
+        Velum has passed through five ages — the Primordial Silence, the
         Guild Age, the Convergence, the Fracture War, and the Silent Age. A
         thing often keeps the face of the age that made it.
 

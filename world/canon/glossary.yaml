@@ -1,0 +1,86 @@
+# 用語集 — 読者向けに選別した、世界を語るための基本語彙。
+#
+# feed の lore.json（二言語）が ここから射影する。laws.yaml と同じ規律に従う：
+# 書いてよいのは**作中で公知の語**だけであり、時代を跨ぐ糸（world/threads/）の
+# 答え合わせ——声の正体、系譜のつながり、首飾りの来歴——は、ここに書かない。
+#
+# laws.yaml との棲み分け：laws は「世界がどう振る舞うか」、glossary は
+# 「それを何と呼ぶか」。重なる概念は、laws 側を法則、glossary 側を語義として書く。
+#
+# なお Velum / The Veil という語は、世界を**外側から観測する側**の語彙である。
+# 内側で暮らす者はこの世界を単に「世界」と呼ぶ。両方の視点が混ざらないよう、
+# 語義の側にその非対称性を明記しておく。
+
+glossary:
+  - id: velum
+    term:
+      ja: Velum（ヴェラム）
+      en: Velum
+    text:
+      ja: |
+        世界そのものの名。五つの時代を重ねてきたこの世界を、外側から
+        観測する者はそう呼ぶ。内側で暮らす者にとっては、ただの「世界」
+        である。
+      en: |
+        The name of the world itself. Those who observe it from outside call
+        this world — the one that has passed through five ages — by that name.
+        To those who live inside it, it is simply the world.
+
+  - id: the-veil
+    term:
+      ja: The Veil（ヴェール）
+      en: The Veil
+    text:
+      ja: |
+        Velum と現実を隔てる薄い膜。静寂の時代に入ってから厚みを増し、
+        物の真の姿はその向こうで眠ったままになった。鑑定とは、この膜
+        越しに目を凝らす技術を指す。
+      en: |
+        The thin membrane between Velum and the real world. It has thickened
+        since the Silent Age began, leaving the true forms of things asleep on
+        the far side. Appraisal is the craft of straining one's eyes through it.
+
+  - id: echo
+    term:
+      ja: Echo（残響）
+      en: Echo
+    text:
+      ja: |
+        Veil のこちら側に投影された、物の眠った姿。ありふれた品の一つ
+        ひとつが、向こう側に真の名と性質を持っている。呼び名は時代ごとに
+        変わり、いまは Echo で通っている。
+      en: |
+        The sleeping form of a thing, projected on this side of the Veil. Every
+        ordinary object holds a true name and nature on the far side. What it is
+        called has changed with each age; today it goes by Echo.
+    note: 法則側（laws.yaml の echo）と対にする。「誰が聴けるか」は両方に書かない。
+
+  - id: resonance-energy
+    term:
+      ja: 共鳴エナジー
+      en: Resonance Energy
+    text:
+      ja: |
+        Veil 越しに物の真の姿を引き出すとき消費される力。通称マナ。
+        静寂の時代は魔法が薄れ Veil が厚いため、これが自然に満ちること
+        はなく、外から補うほかない。
+      en: |
+        The force spent when drawing a thing's true form through the Veil.
+        Commonly called mana. In the Silent Age magic has thinned and the Veil
+        grown thick, so it never refills on its own — it must be supplied from
+        outside.
+
+  - id: arcane-circuit
+    term:
+      ja: 魔導回路
+      en: Arcane Circuit
+    text:
+      ja: |
+        霊脈に頼らず、術者が自ら調達した力で鑑定を行うための仕組み。
+        組み込めば少ない共鳴エナジーで高位の鑑定に届くが、その鍵を
+        用意するのは術者自身の責任になる。
+      en: |
+        A rig that lets an appraiser work from a supply they have secured
+        themselves, rather than drawing on the ley lines. Fitted with one, a
+        high appraisal costs far less resonance energy — but obtaining the key
+        is the appraiser's own responsibility.

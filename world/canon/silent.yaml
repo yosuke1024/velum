@@ -20,6 +20,17 @@ institutions:
     name:
       ja: リコ商会
       en: Riko Trading
+    # 読者向けの組織要約。feed の lore.json が出す（note は出さない）。
+    summary:
+      ja: |
+        静寂の時代を巡る行商。奇物とささやきを看板に掲げ、巡回路を辿って
+        市から市へ品を運ぶ。目覚めを見たという話を売り文句にしながら、
+        値札を書く手はいつも慎重である。
+      en: |
+        A peddler working the Silent Age. The sign promises wonders and
+        whispers, and goods travel from market to market along the circuit
+        roads. It sells stories of awakenings — though the hand that writes the
+        price tag is always careful.
     note: |
       屋号。看板には「WONDERS, WHISPERS, & WHATNOT」。
       架空の部門を騙るのが彼女の口癖であり、ひとりであることの埋め合わせ。

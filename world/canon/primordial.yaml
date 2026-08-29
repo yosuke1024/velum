@@ -27,6 +27,19 @@ institutions:
     name:
       ja: サナ氏族
       en: The Sana
+    # 読者向けの組織要約。feed の lore.json が出す（note は出さない）。
+    # 声が実在するかは断定しない（時代要約が「声とも兆しともつかないもの」と
+    # ぼかしているのと同じ規律。断定するとウタの糸の答え合わせになる）。
+    summary:
+      ja: |
+        文字を持たない氏族。名は「水を分ける者」に由来し、季節ごとに
+        野営地を移しながら暮らす。物には声が宿ると信じ、それを聴くと
+        される「聴き手」を立て、世界の記憶を口伝だけで受け渡している。
+      en: |
+        A tribe without writing. Their name means "those who divide the water,"
+        and they move camp with the seasons. They hold that things carry voices,
+        appoint Listeners said to hear them, and pass the world's memory on by
+        word of mouth.
     note: 「水を分ける者」の意。文字を持たない。
 
 places:

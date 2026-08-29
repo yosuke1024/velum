@@ -70,6 +70,8 @@ export const RotationFileSchema = z.object({
 const NamedEntry = z.object({
   id: z.string().min(1),
   name: z.union([Bilingual, z.string().min(1)]),
+  /** 読者向けの要約。feed の lore.json の organizations がこれを出す（契約 §1.2）。持たない項目は feed に出ない。 */
+  summary: Bilingual.optional(),
   note: z.string().optional(),
 });
 
@@ -148,6 +150,25 @@ export const LawsFileSchema = z.object({
     .min(1),
   /** 見立て規則。Snapshot にない事物をカードでどう扱うか（ja のみ）。 */
   expression_rules: z.array(z.string().min(1)).min(1),
+});
+
+/**
+ * 用語集（world/canon/glossary.yaml）。読者向けに選別した、世界を語るための
+ * 基本語彙。feed の lore.json（二言語）がここから射影する。laws.yaml と
+ * 同じ規律に従う——時代を跨ぐ糸の「読者だけが発見できる」答え合わせは、
+ * ここに書かない。
+ */
+export const GlossaryFileSchema = z.object({
+  glossary: z
+    .array(
+      z.object({
+        id: z.string().min(1),
+        term: Bilingual,
+        text: Bilingual,
+        note: z.string().optional(),
+      }),
+    )
+    .min(1),
 });
 
 export const CalendarFileSchema = z.object({

@@ -522,10 +522,19 @@ const pinned = ((): PersonaManifest | null => {
       if (size > limit) fail(rel, `${size} bytes あります（上限 ${limit}。契約 §1.1）`);
     };
 
+    /** 公開してよい組織。過不足の両方を落とすので、Set で membership を見る。 */
+    const EXPECTED_ORGANIZATION_IDS = new Set<string>([
+      'sana',
+      'grand-court',
+      'record-house',
+      'reclaimers-guild',
+      'riko-trading',
+    ]);
+
     // characters.json
     const feedCharacters = load<{
       default_companion_id: string;
-      characters: Array<{ id: string; era: string; portrait: { path: string } }>;
+      characters: Array<{ id: string; era: string; affiliation: string; portrait: { path: string } }>;
     }>(join(feedRoot, 'characters.json'), FeedCharactersSchema, 'feed の characters');
 
     if (feedCharacters) {
@@ -569,16 +578,48 @@ const pinned = ((): PersonaManifest | null => {
     }
 
     // lore.json
-    const feedLore = load<{ eras: Array<{ id: string }> }>(
-      join(feedRoot, 'lore.json'),
-      FeedLoreSchema,
-      'feed の lore',
-    );
+    const feedLore = load<{
+      eras: Array<{ id: string }>;
+      organizations: Array<{ id: string }>;
+    }>(join(feedRoot, 'lore.json'), FeedLoreSchema, 'feed の lore');
     if (feedLore) {
       overSize('world/feed/lore.json', FEED_SIZE_LIMITS.lore);
       const ids = new Set(feedLore.eras.map((e) => e.id));
       for (const era of ERA_IDS) {
         if (!ids.has(era)) fail('world/feed/lore.json', `時代 ${era} がありません`);
+      }
+
+      // 組織は「欠けていないか」ではなく**完全一致**で見る。公開可否を summary の
+      // 有無という偶発的な条件に委ねているため、誰かが canon の非公開組織へ
+      // summary を足すと黙って配信されてしまう（例: ヴェスパー工房は贋作師一家で、
+      // 出すと人物の秘密に触れる）。増えた場合も必ず落とす。
+      const orgIdList = feedLore.organizations.map((o) => o.id);
+      const orgIds = new Set(orgIdList);
+      if (orgIds.size !== orgIdList.length) {
+        fail('world/feed/lore.json', '組織 id が重複しています');
+      }
+      for (const id of EXPECTED_ORGANIZATION_IDS) {
+        if (!orgIds.has(id)) fail('world/feed/lore.json', `組織 ${id} がいません`);
+      }
+      for (const id of orgIdList) {
+        if (!EXPECTED_ORGANIZATION_IDS.has(id)) {
+          fail(
+            'world/feed/lore.json',
+            `組織 ${id} は公開対象ではありません（公開してよいなら EXPECTED_ORGANIZATION_IDS へ追加し、人物の秘密に触れないか確認すること）`,
+          );
+        }
+      }
+
+      // 参照整合。characters.json の affiliation は組織一覧の id で解決できるはず。
+      if (feedCharacters) {
+        for (const c of feedCharacters.characters) {
+          if (!orgIds.has(c.affiliation)) {
+            fail(
+              'world/feed/characters.json',
+              `${c.id} の affiliation ${c.affiliation} が world/feed/lore.json の組織一覧にありません`,
+            );
+          }
+        }
       }
     }
 
