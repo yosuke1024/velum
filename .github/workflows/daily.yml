@@ -51,22 +51,19 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: npm run day -- ${{ inputs.date }}
 
-      # 季の最終日（25日ごと）だけ、Persona Snapshot をコンパイルする。
+      # 季の最終日（25日ごと）だけ、Persona Snapshot をコンパイルして配る。
       # 5人全員が第5話を書き終えたあとなので、この日より前に圧縮すると
       # その季を生きていない人格ができる。
       #
-      # **配りはしない。** world/personas.json は動かないので、PixTale の出力は
-      # 変わらない。人が読んで「配ってよい」と判断したときに、手元で
-      #
-      #     npm run snapshot -- --publish --season=<季>
-      #
-      # を回す。全自動にするときは、下の run へ --publish を足すだけでよい。
-      # 人が介在する箇所は、構造ではなくこのフラグ1つに閉じてある。
-      - name: Compile the personas at the end of a season
+      # **コンパイルと publish を両方自動で行う**（2026-08-29 決定）。season は
+      # --if-season-end が日付から導出する。安全側はゲートに残る——ゲートに
+      # 落ちた人物は Snapshot が書かれず、ピンも動かず、前の人格のままになる。
+      # 手動で戻すときは world/personas.json の version を以前の番号へ書き換える。
+      - name: Compile and publish the personas at the end of a season
         if: success()
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: npm run snapshot -- --if-season-end --date=${{ inputs.date }}
+        run: npm run snapshot -- --if-season-end --date=${{ inputs.date }} --publish
 
       # PixTale アプリが読む feed（world/feed/）を書き出す。
       # 生成が失敗した日でも回す——feed は「書かれている日記の全部」の射影であり、
