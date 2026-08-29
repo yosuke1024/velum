@@ -229,6 +229,9 @@ export function buildBundle(now: string) {
     protagonist: era.protagonist,
     question: era.question,
     focus: era.focus,
+    // 読者向けの時代要約。時代ページが世界記述の置き場になる——/pixtale/lore は
+    // 時代の詳細をここへ委ね、ゲーム側の意味（カードへの付与）だけを持つ。
+    summary: both(era.summary),
     palette: era.palette,
   }));
 
