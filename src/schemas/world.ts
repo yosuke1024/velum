@@ -29,6 +29,12 @@ export const ERA_PROTAGONIST: Record<
   silent: 'riko',
 };
 
+/**
+ * デフォルト同行者（契約 §3.2）。日記ローテーションの先頭で、最初に日記・記憶・
+ * Snapshot が蓄積される。真の値はピン（world/personas.json）で、これはその初期値。
+ */
+export const DEFAULT_COMPANION: (typeof CHARACTER_IDS)[number] = 'teo';
+
 const Bilingual = z.object({
   ja: z.string().min(1),
   en: z.string().min(1),
@@ -44,6 +50,8 @@ export const EraSchema = z.object({
   question: Bilingual,
   focus: z.string().min(1),
   humor: z.string().min(1),
+  /** 読者向けの時代要約。feed の lore.json がこれを出す（契約 §1.2）。 */
+  summary: Bilingual,
   palette: z.object({
     base: z.array(z.string()).min(1),
     accent: z.string(),
@@ -105,6 +113,41 @@ export const EraCanonFileSchema = z.object({
   cities: z.array(NamedEntry).optional(),
   calendar_note: z.string().optional(),
   observances: z.array(ObservanceSchema).optional(),
+
+  /**
+   * World Appraisal Snapshot（src/schemas/appraisal.ts）へ射影する時代の輪郭。
+   *
+   * fixed をそのまま流し込まないための欄である。fixed には読者だけが知る注記や
+   * 人物の秘密に触れる文面が混ざりうるので、カードのプロンプト素材に出してよい
+   * 文だけを、ここへ手で書き下す。terms は書かない——固有名詞は institutions /
+   * places / cities / observances の**名前だけ**から自動で射影する（note は出さない）。
+   */
+  appraisal: z.object({
+    profile: z.string().min(1),
+    values: z.array(z.string().min(1)).min(1),
+    taboos: z.array(z.string().min(1)).min(1),
+    events: z.array(z.string().min(1)).min(1),
+    absent: z.array(z.string().min(1)).min(1),
+  }),
+});
+
+/**
+ * 世界法則（world/canon/laws.yaml）。読者向けに選別した、世界共通の基本法則。
+ * feed の lore.json（二言語）と World Appraisal Snapshot（ja）の両方がここから射影する。
+ * 時代を跨ぐ糸の「読者だけが発見できる」答え合わせは、ここに書かない。
+ */
+export const LawsFileSchema = z.object({
+  laws: z
+    .array(
+      z.object({
+        id: z.string().min(1),
+        text: Bilingual,
+        note: z.string().optional(),
+      }),
+    )
+    .min(1),
+  /** 見立て規則。Snapshot にない事物をカードでどう扱うか（ja のみ）。 */
+  expression_rules: z.array(z.string().min(1)).min(1),
 });
 
 export const CalendarFileSchema = z.object({

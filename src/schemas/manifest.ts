@@ -37,6 +37,23 @@ export const PersonaManifestSchema = z.object({
       published_at: z.string(),
     }),
   ),
+
+  // ── PixTale 2.0 で additive 追加した2枚（契約 §2.1）──────────
+  // ピンファイルは1枚のまま。フィールドの削除・改名はしない。
+
+  /** World Appraisal Snapshot のピン。世界を戻すときも数字ひとつ。 */
+  world: z
+    .object({
+      version: z.number().int().min(1),
+      path: z.string().min(1),
+      published_at: z.string(),
+    })
+    .optional(),
+  /**
+   * デフォルト同行者。companionId 未指定・未知のときプロキシがこれで鑑定する。
+   * アプリ同梱定数 "teo" はピン未取得時のフォールバックにすぎず、真の値はここ。
+   */
+  default_companion: CharacterId.optional(),
 });
 
 export type PersonaManifest = z.infer<typeof PersonaManifestSchema>;
