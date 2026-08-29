@@ -26,6 +26,37 @@ export function oneLine(text: string): string {
   return text.trim().replace(/\s*\n\s*/g, ' ');
 }
 
+/** 日本語の文中に半角空白を作らないための文字クラス（和文の約物・仮名・漢字・全角）。 */
+const CJK = '\\u3000-\\u303f\\u3040-\\u30ff\\u3400-\\u4dbf\\u4e00-\\u9fff\\uff00-\\uffef';
+
+/**
+ * 読み手に見せる文字列向けの1行化。
+ *
+ * YAML の折り返しは見た目の整形にすぎないが、`oneLine()` はそれを一律で
+ * 半角空白に変換する。英語はそれで正しいいっぽう、日本語では「季節ごとに
+ * 野営地を」のように文中へ空白が残り、読み手に見える欠陥になる。折り返しの
+ * 両側がともに和文のときだけ、空白を入れずに繋ぐ。
+ *
+ * `oneLine()` 自体は変えない。あちらは発行済みの World Appraisal Snapshot
+ * （`world/appraisal/v*.json`、発行後は書き換えない契約）も通っており、
+ * 出力が変われば不変性を破ってしまう。読み手向けの feed だけがこちらを使う。
+ */
+export function oneLineForReaders(text: string): string {
+  return text
+    .trim()
+    .replace(new RegExp(`(?<=[${CJK}])\\s*\\n\\s*(?=[${CJK}])`, 'g'), '')
+    .replace(/\s*\n\s*/g, ' ');
+}
+
+/** 読み手向けに両方を1行へ均す。`both()` と同じく、訳が無ければ日本語へ落ちる。 */
+export function bothForReaders(value: MaybeBilingual): Bilingual {
+  const pair = isBilingual(value) ? value : { ja: value, en: value };
+  return {
+    ja: oneLineForReaders(pair.ja),
+    en: oneLineForReaders(pair.en || pair.ja),
+  };
+}
+
 /** 生成が読む向き。プロンプトは日本語で書かれているので、常に日本語へ落とす。 */
 export function ja(value: MaybeBilingual): string {
   return oneLine(isBilingual(value) ? value.ja : value);

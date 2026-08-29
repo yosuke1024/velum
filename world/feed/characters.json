@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-29T01:58:27.046Z",
+  "generated_at": "2026-08-29T21:09:30.843Z",
   "default_companion_id": "teo",
   "characters": [
     {
@@ -17,7 +17,7 @@
       "age": 19,
       "affiliation": "sana",
       "intro": {
-        "ja": "文字を持たないサナ氏族の、若い「聴き手」。物に残るかすかな声を聴き取り、 氏族のための兆しに翻訳する。厳かな口上の下で、本当は毎回半信半疑—— それでも夜にひとり、その日聴いたものを言葉にして唱える。彼女の「日記」は 書かれたものではなく、誰にも聞かせないその声である。",
+        "ja": "文字を持たないサナ氏族の、若い「聴き手」。物に残るかすかな声を聴き取り、氏族のための兆しに翻訳する。厳かな口上の下で、本当は毎回半信半疑—— それでも夜にひとり、その日聴いたものを言葉にして唱える。彼女の「日記」は書かれたものではなく、誰にも聞かせないその声である。",
         "en": "A young Listener of the Sana, a tribe that has no writing. She catches the faint voices left in things and translates them into omens for her people. Beneath the solemn recitations she is half in doubt every time — and still, alone at night, she speaks aloud what she heard that day. Her \"diary\" is not written; it is that voice no one else hears."
       },
       "portrait": {
@@ -40,7 +40,7 @@
       "age": 16,
       "affiliation": "grand-court",
       "intro": {
-        "ja": "大鑑定院の見習い鑑定士。まだ銘を持たない「無銘」の身で、規約を武器に 年上の職人にも慇懃無礼に食ってかかる小生意気な自信家。だがその目は、 条文をめくるより先に「なんとなく」で真贋を視てしまう——見習いがそれを 口にすることは、規約が許していない。",
+        "ja": "大鑑定院の見習い鑑定士。まだ銘を持たない「無銘」の身で、規約を武器に年上の職人にも慇懃無礼に食ってかかる小生意気な自信家。だがその目は、条文をめくるより先に「なんとなく」で真贋を視てしまう——見習いがそれを口にすることは、規約が許していない。",
         "en": "An apprentice appraiser at the Grand Court of Appraisal. Still \"unsigiled\" — without a mark of his own — he wields the regulations like a weapon, politely talking down to craftsmen twice his age. And yet his eye calls real or fake before he can even open the handbook. An apprentice saying so out loud is something the regulations do not allow."
       },
       "portrait": {
@@ -63,7 +63,7 @@
       "age": 29,
       "affiliation": "record-house",
       "intro": {
-        "ja": "崩壊した記録院の、最後の書記。裂け目が街の地理を日ごとに書き換える 大収束のただなかで、「確認」「未確認」「要検証」を几帳面に付けながら、 誰に読ませるあてもない記録を毎日続けている。世界の終わりにも動じない その平常心が、いちばんの謎である。",
+        "ja": "崩壊した記録院の、最後の書記。裂け目が街の地理を日ごとに書き換える大収束のただなかで、「確認」「未確認」「要検証」を几帳面に付けながら、誰に読ませるあてもない記録を毎日続けている。世界の終わりにも動じないその平常心が、いちばんの謎である。",
         "en": "The last scribe of the fallen Record House. In the middle of the Convergence, where rifts redraw the city's geography day by day, he keeps his meticulous record — \"confirmed\", \"unconfirmed\", \"requires verification\" — with no one left to read it. His unshakable calm at the end of the world is the greatest mystery of all."
       },
       "portrait": {
@@ -86,7 +86,7 @@
       "age": 26,
       "affiliation": "reclaimers-guild",
       "intro": {
-        "ja": "回収人組合の第七号。武器を持たない白い外套ひとつで戦線を渡り、 帰らなかった者の持ち物を、その人生を読み取って遺族へ届ける。 「泣かない回収人」と呼ばれるが、届けた品の持ち主の名前を、 彼女はひとりも忘れたことがない。",
+        "ja": "回収人組合の第七号。武器を持たない白い外套ひとつで戦線を渡り、帰らなかった者の持ち物を、その人生を読み取って遺族へ届ける。「泣かない回収人」と呼ばれるが、届けた品の持ち主の名前を、彼女はひとりも忘れたことがない。",
         "en": "Number Seven of the Reclaimers' Guild. Unarmed, in a white cloak that both armies have sworn not to touch, she crosses the front lines to return the belongings of those who did not come home — reading each life from what it left behind. They call her the reclaimer who never cries. She has never once forgotten the name of an owner she delivered for."
       },
       "portrait": {
@@ -109,7 +109,7 @@
       "age": 24,
       "affiliation": "riko-trading",
       "intro": {
-        "ja": "荷車ひとつの行商古物商「リコ商会」。口を開けば伝説の逸品、値札は強気、 社員はあたしひとり。売り物に本物なんてないことを誰より分かっていて、 それでも本物の「目覚めた遺物」にいつか出会えると信じている—— 静かになった世界で、いちばん騒がしい夢を積んで旅をしている。",
+        "ja": "荷車ひとつの行商古物商「リコ商会」。口を開けば伝説の逸品、値札は強気、社員はあたしひとり。売り物に本物なんてないことを誰より分かっていて、それでも本物の「目覚めた遺物」にいつか出会えると信じている—— 静かになった世界で、いちばん騒がしい夢を積んで旅をしている。",
         "en": "A traveling antiquarian with one cart and a big sign: Riko Trading. Every item is a legendary find, every price is ambitious, and the entire staff is her. She knows better than anyone that nothing in her stock is genuine — and still believes she will one day meet a truly awakened relic. Through a world gone quiet, she travels carrying the noisiest dream left in it."
       },
       "portrait": {
