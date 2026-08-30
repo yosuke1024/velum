@@ -23,6 +23,19 @@ people:
       記憶の中の姿は、三つ編みにペンを挿す癖。
       今は、壁に現れる筆跡そのもの。
     note: 公式記録では「同僚書記M」と書く。日記では「ミルテ」と書く。
+    public_relation:
+      ja: 同僚の書記
+      en: A fellow scribe
+    intro:
+      ja: |
+        収束の初日に、裂け目へ消えた同僚の書記。死んだとは限らない——街のあちこちの
+        壁に、彼女の筆跡が浮かぶという噂がある。「彼女を探すこと」と「記録を続ける
+        こと」が、セヴランの中で毎日天秤にかかる。
+      en: |
+        The scribe who vanished into a rift on the first day of the Convergence. Not
+        necessarily dead — there are rumours of her handwriting surfacing on walls
+        across the city. Every day, Sevran weighs searching for her against keeping
+        the record.
 
   - id: hum
     name:
@@ -48,3 +61,13 @@ people:
       描かない。影・本の隙間・湯気などとして常に画面の端にいる。
       目や口を与えない。同じ形で二度描かない。
     note: セヴランが便宜上つけた呼び名。呻り声から。
+    intro:
+      ja: |
+        形の定まらない同居人。本棚の影に住む。善意なのか、観察なのか、捕食の準備
+        なのかは分からない。毎晩、失われた書庫の本を暗唱してくれる——ただし時々、
+        存在しないはずの本を暗唱する。名前は、セヴランが呻り声から便宜上つけた。
+      en: |
+        A housemate with no fixed shape, living in the shadow behind the bookshelves.
+        Goodwill, observation, or preparation to feed — unknown. Every night it
+        recites books from the lost archive; sometimes it recites a book that should
+        not exist. Sevran named it after the sound it makes.

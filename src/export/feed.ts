@@ -6,7 +6,7 @@ import {
   feedEntryName,
 } from "../lib/paths.js";
 import { readYaml, listDatedFiles } from "../lib/storage.js";
-import { ProfileSchema } from "../schemas/character.js";
+import { ProfileSchema, RelationshipsSchema } from "../schemas/character.js";
 import { DiaryEntrySchema, type DiaryEntry } from "../schemas/diary.js";
 import {
   ErasFileSchema,
@@ -54,6 +54,10 @@ export function buildCharactersFeed(
 ): FeedCharacters {
   const characters = CHARACTER_IDS.map((id) => {
     const profile = readYaml(charPath(id, "profile.yaml"), ProfileSchema);
+    const relationships = readYaml(
+      charPath(id, "relationships.yaml"),
+      RelationshipsSchema,
+    );
     return {
       id: profile.id,
       era: profile.era,
@@ -67,6 +71,15 @@ export function buildCharactersFeed(
         width: PORTRAIT_SIZE,
         height: PORTRAIT_SIZE,
       },
+      // 周りの人。公開用の relation（public_relation があればそちら）と
+      // intro だけを出す。summary・trust/wariness・hidden_from_protagonist
+      // はここに含めない（契約 §1.2）。
+      people: relationships.people.map((person) => ({
+        id: person.id,
+        name: bothForReaders(person.name),
+        relation: bothForReaders(person.public_relation ?? person.relation),
+        intro: bothForReaders(person.intro),
+      })),
     };
   });
 

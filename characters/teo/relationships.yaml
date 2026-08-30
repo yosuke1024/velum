@@ -27,6 +27,16 @@ people:
       テオの出自を実は知っており、黙って庇っている。
       テオは知らず、読者だけが日記の行間から気づける。
     visual: 長身痩躯。胸に勲章のように並ぶ歴代の銘印。片眼鏡。
+    intro:
+      ja: |
+        大鑑定院の頂点に立つ、伝説の大鑑定官。老いた胸には、歴代の銘印が勲章のように
+        並ぶ。テオに「直感でものを言うこと」を禁じた張本人であり、規約と手順のほかは
+        何も認めない。
+      en: |
+        The legendary Grand Appraiser at the summit of the Grand Court — an old man
+        now, the seals of a lifetime ranked across his chest like medals. He is the one who
+        forbade Teo to speak from instinct, and he accepts nothing but code and
+        procedure.
 
   - id: lowe
     name:
@@ -47,3 +57,16 @@ people:
         Now and then he appears at the gate of the Grand Court, talks about nothing, and leaves.
         Whether he wants Teo back, wants to use him, or only wants to see him, Teo cannot tell.
     visual: テオと同じ癖毛。堂々とした身なりに、指先だけ職人の手。
+    public_relation:
+      ja: 兄
+      en: His brother
+    intro:
+      ja: |
+        時折、大鑑定院の門前に現れる兄。身なりは堂々としているのに、指先だけが
+        職人の手をしている。他愛ない話だけして帰っていく。連れ戻したいのか、
+        利用したいのか、ただ会いたいだけなのか——テオには分からない。
+      en: |
+        His brother, who appears at the gate of the Grand Court now and then —
+        impeccably dressed, and only his fingertips give him away as a craftsman.
+        He talks about nothing in particular and leaves. Whether he wants Teo back, wants to use him, or
+        only wants to see him, Teo cannot tell.

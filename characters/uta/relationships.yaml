@@ -21,6 +21,15 @@ people:
       若い頃、先代ノノの声に一度命を救われている——信じないのではなく、恐れている。
       獣骨の首飾りは、実はノノにもらったもの。
     visual: 岩のような体格。獣骨の首飾り。
+    intro:
+      ja: |
+        サナ氏族の長。物の声を信じない現実主義者で、ウタの「聴いたこと」を氏族の判断に
+        使うことを渋り続けている。取り上げたきり返さない「歌う石」のことで、
+        二人は今も揉めている。
+      en: |
+        Chieftain of the Sana. A hard-headed realist who puts no faith in the voices of
+        things, and is slow to let Uta's hearings steer the clan. They are still
+        quarrelling over the singing stone he confiscated and never gave back.
 
   - id: ren
     name:
@@ -41,3 +50,13 @@ people:
         "It's not about whether you're right. If you heard it, you heard it."
         The one safe place in the clan.
     visual: 日焼け、短い槍、獲物より薬草を多く持ち帰る。
+    intro:
+      ja: |
+        幼馴染の狩人。獲物より薬草を多く持ち帰る。氏族でただひとり、証明を求めずに
+        ウタを信じる——「当たるかどうかじゃない。お前が聴いたなら、聴いたんだろ」。
+        氏族の中の、唯一の安全地帯。
+      en: |
+        A hunter, and her oldest friend — the kind who comes home with more herbs than
+        game. The only one in the clan who believes Uta without asking her to prove
+        anything: "It's not about whether you're right. If you heard it, you heard it."
+        Her one safe place in the clan.

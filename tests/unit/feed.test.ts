@@ -13,7 +13,7 @@ import {
   feedEntryFrom,
   diaryFeedFrom,
 } from '../../src/export/feed.js';
-import { forbiddenSecretSegments } from '../../src/lib/secrets.js';
+import { forbiddenSecretSegments, secretSegments } from '../../src/lib/secrets.js';
 import {
   CHARACTER_IDS,
   ERA_PROTAGONIST,
@@ -21,8 +21,9 @@ import {
   GlossaryFileSchema,
 } from '../../src/schemas/world.js';
 import { emptyManifest } from '../../src/compile/publish.js';
-import { worldPath } from '../../src/lib/paths.js';
+import { worldPath, charPath } from '../../src/lib/paths.js';
 import { readYaml } from '../../src/lib/storage.js';
+import { RelationshipsSchema } from '../../src/schemas/character.js';
 import type { PersonaManifest } from '../../src/schemas/manifest.js';
 import type { DiaryEntry } from '../../src/schemas/diary.js';
 
@@ -83,6 +84,77 @@ describe('world/feed/characters.json', () => {
     expect(Buffer.byteLength(JSON.stringify(characters, null, 2))).toBeLessThanOrEqual(
       FEED_SIZE_LIMITS.characters,
     );
+  });
+
+  describe('people（周りの人）', () => {
+    it('主人公ごとに2人ずつ、id/name/relation/intro だけを持つ', () => {
+      for (const c of characters.characters) {
+        expect(c.people).toHaveLength(2);
+        for (const person of c.people) {
+          expect(Object.keys(person).sort()).toEqual(['id', 'intro', 'name', 'relation']);
+        }
+      }
+    });
+
+    it('relation は public_relation があればそちらで上書きされる（teo/lowe）', () => {
+      const teo = characters.characters.find((c) => c.id === 'teo')!;
+      const lowe = teo.people.find((p) => p.id === 'lowe')!;
+      expect(lowe.relation).toEqual({ ja: '兄', en: 'His brother' });
+    });
+
+    it('公開ラベルに中黒連結（執筆者向けのメモ体裁）を持ち込まない', () => {
+      // relation は名前の隣に出る短いラベル。「A・B」は relationships.yaml の
+      // メモ体裁で、読者向けではない——該当する人物には public_relation を置く。
+      for (const c of characters.characters) {
+        for (const person of c.people) {
+          expect(person.relation.ja).not.toContain('・');
+        }
+      }
+    });
+
+    it('public_relation の無い人物は既存の relation をそのまま使う', () => {
+      const uta = characters.characters.find((c) => c.id === 'uta')!;
+      const gald = uta.people.find((p) => p.id === 'gald')!;
+      const source = readYaml(charPath('uta', 'relationships.yaml'), RelationshipsSchema);
+      const sourceGald = source.people.find((p) => p.id === 'gald')!;
+      expect(gald.relation).toEqual(sourceGald.relation);
+    });
+
+    it('hidden_from_protagonist の文言は現れない', () => {
+      const serialized = JSON.stringify(characters).replace(/\s+/g, '');
+      for (const id of CHARACTER_IDS) {
+        const relationships = readYaml(charPath(id, 'relationships.yaml'), RelationshipsSchema);
+        for (const person of relationships.people) {
+          if (!person.hidden_from_protagonist) continue;
+          for (const segment of secretSegments(person.hidden_from_protagonist)) {
+            expect(serialized).not.toContain(segment.replace(/\s+/g, ''));
+          }
+        }
+      }
+    });
+
+    it('trust/wariness のフィールド自体が存在しない', () => {
+      for (const c of characters.characters) {
+        for (const person of c.people) {
+          expect(person).not.toHaveProperty('trust');
+          expect(person).not.toHaveProperty('wariness');
+          expect(person).not.toHaveProperty('summary');
+        }
+      }
+    });
+
+    it('内部限定の秘密（テオ/ロウの贋作師、カヤ/イサの嘘、リコ/ガロンの持ち出し）は現れない', () => {
+      // summary（内部文）にしかない語で、intro/relation（公開用に別途執筆）には
+      // 意図的に書かれていない。契約 §1.2 の除外規則の中でも、最も見落としやすい
+      // 「relation 自体が秘密に触れる」ケース（teo/lowe）を含む。
+      const serialized = JSON.stringify(characters);
+      for (const word of ['贋作', '嘘', '持ち出し']) {
+        expect(serialized).not.toContain(word);
+      }
+      for (const word of ['forger', 'forgery', 'forges', 'forged', 'lie', 'lies', 'lying', 'theft', 'stole', 'stolen']) {
+        expect(new RegExp(`\\b${word}\\b`, 'i').test(serialized)).toBe(false);
+      }
+    });
   });
 });
 
