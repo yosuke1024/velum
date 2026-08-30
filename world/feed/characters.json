@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-30T05:00:07.082Z",
+  "generated_at": "2026-08-30T05:20:03.956Z",
   "default_companion_id": "teo",
   "characters": [
     {
@@ -17,7 +17,7 @@
       "age": 19,
       "affiliation": "sana",
       "intro": {
-        "ja": "文字を持たないサナ氏族の、若い「聴き手」。物に残るかすかな声を聴き取り、氏族のための兆しに翻訳する。厳かな口上の下で、本当は毎回半信半疑—— それでも夜にひとり、その日聴いたものを言葉にして唱える。彼女の「日記」は書かれたものではなく、誰にも聞かせないその声である。",
+        "ja": "文字を持たないサナ氏族の、若い「聴き手」。物に残るかすかな声を聴き取り、氏族のための兆しに翻訳する。厳かな口上の下で、本当は毎回半信半疑——それでも夜にひとり、その日聴いたものを言葉にして唱える。彼女の「日記」は書かれたものではなく、誰にも聞かせないその声である。",
         "en": "A young Listener of the Sana, a tribe that has no writing. She catches the faint voices left in things and translates them into omens for her people. Beneath the solemn recitations she is half in doubt every time — and still, alone at night, she speaks aloud what she heard that day. Her \"diary\" is not written; it is that voice no one else hears."
       },
       "portrait": {
@@ -37,8 +37,8 @@
             "en": "Chieftain of the clan"
           },
           "intro": {
-            "ja": "サナ氏族の長。物の声を信じない現実主義者で、ウタの「聴いたこと」を氏族の判断に使うことを渋り続けている。取り上げたきり返さない「歌う石」が、二人のあいだの恒常的な火種。",
-            "en": "Chieftain of the Sana. A hard-headed realist who puts no faith in the voices of things, and is slow to let Uta's hearings steer the clan. The singing stone he confiscated and never returned is a standing quarrel between the two of them."
+            "ja": "サナ氏族の長。物の声を信じない現実主義者で、ウタの「聴いたこと」を氏族の判断に使うことを渋り続けている。取り上げたきり返さない「歌う石」のことで、二人は今も揉めている。",
+            "en": "Chieftain of the Sana. A hard-headed realist who puts no faith in the voices of things, and is slow to let Uta's hearings steer the clan. They are still quarrelling over the singing stone he confiscated and never gave back."
           }
         },
         {
@@ -92,8 +92,8 @@
             "en": "His master"
           },
           "intro": {
-            "ja": "大鑑定院の頂点に立つ、伝説の大鑑定官。老齢。胸には歴代の銘印が勲章のように並ぶ。テオに「直感でものを言うこと」を禁じた張本人であり、規約と手順のほかは何も認めない。",
-            "en": "The legendary Grand Appraiser at the summit of the Grand Court. Elderly, the seals of a lifetime ranked across his chest like medals. He is the one who forbade Teo to speak from instinct, and he accepts nothing but code and procedure."
+            "ja": "大鑑定院の頂点に立つ、伝説の大鑑定官。老いた胸には、歴代の銘印が勲章のように並ぶ。テオに「直感でものを言うこと」を禁じた張本人であり、規約と手順のほかは何も認めない。",
+            "en": "The legendary Grand Appraiser at the summit of the Grand Court — an old man now, the seals of a lifetime ranked across his chest like medals. He is the one who forbade Teo to speak from instinct, and he accepts nothing but code and procedure."
           }
         },
         {
@@ -107,8 +107,8 @@
             "en": "His brother"
           },
           "intro": {
-            "ja": "時折、大鑑定院の門前に現れる兄。堂々とした身なりに、指先だけ職人の手。他愛ない話だけして帰っていく。連れ戻したいのか、利用したいのか、ただ会いたいだけなのか——テオには分からない。",
-            "en": "His brother, who appears at the gate of the Grand Court now and then — impeccably dressed, with a craftsman's fingertips. He talks about nothing in particular and leaves. Whether he wants Teo back, wants to use him, or only wants to see him, Teo cannot tell."
+            "ja": "時折、大鑑定院の門前に現れる兄。身なりは堂々としているのに、指先だけが職人の手をしている。他愛ない話だけして帰っていく。連れ戻したいのか、利用したいのか、ただ会いたいだけなのか——テオには分からない。",
+            "en": "His brother, who appears at the gate of the Grand Court now and then — impeccably dressed, and only his fingertips give him away as a craftsman. He talks about nothing in particular and leaves. Whether he wants Teo back, wants to use him, or only wants to see him, Teo cannot tell."
           }
         }
       ]
@@ -143,8 +143,8 @@
             "en": "Milte"
           },
           "relation": {
-            "ja": "失った相方・同僚の書記",
-            "en": "The scribe he lost — his counterpart"
+            "ja": "同僚の書記",
+            "en": "A fellow scribe"
           },
           "intro": {
             "ja": "収束の初日に、裂け目へ消えた同僚の書記。死んだとは限らない——街のあちこちの壁に、彼女の筆跡が浮かぶという噂がある。「彼女を探すこと」と「記録を続けること」が、セヴランの中で毎日天秤にかかる。",
@@ -202,7 +202,7 @@
             "en": "The same trade, the other side"
           },
           "intro": {
-            "ja": "戦線の向こう側の回収人。月に一度、焼けた橋の上で会い、互いの軍側で死んだ「相手側の兵」の遺品を交換する。敵だが、同業の掟だけは信じられる相手。カヤが喋らないぶんまで、よく喋る。互いの軍の名は、決して口にしない—— それが二人の掟。",
+            "ja": "戦線の向こう側の回収人。月に一度、焼けた橋の上で会い、互いの軍側で死んだ「相手側の兵」の遺品を交換する。敵だが、同業の掟だけは信じられる相手。カヤが喋らないぶんまで、よく喋る。互いの軍の名は、決して口にしない——それが二人の掟。",
             "en": "A reclaimer from across the line. Once a month they meet on the burnt bridge and exchange the belongings of the other side's dead. An enemy — but one who keeps the code of the trade. He talks enough for the both of them. Neither ever names the army the other serves; that is their rule."
           }
         },
@@ -213,8 +213,8 @@
             "en": "Isa"
           },
           "relation": {
-            "ja": "母・手紙だけの関係",
-            "en": "Her mother — letters only"
+            "ja": "母",
+            "en": "Her mother"
           },
           "intro": {
             "ja": "峠の向こう、ハルナ村に残る母。会うことはなく、手紙だけが往き来する。回収人になった娘を、恥じたことは一度もない。毎月の手紙の最後には、必ず同じ一行がある——「ノヤから便りは？」",
@@ -237,7 +237,7 @@
       "age": 24,
       "affiliation": "riko-trading",
       "intro": {
-        "ja": "荷車ひとつの行商古物商「リコ商会」。口を開けば伝説の逸品、値札は強気、社員はあたしひとり。売り物に本物なんてないことを誰より分かっていて、それでも本物の「目覚めた遺物」にいつか出会えると信じている—— 静かになった世界で、いちばん騒がしい夢を積んで旅をしている。",
+        "ja": "荷車ひとつの行商古物商「リコ商会」。口を開けば伝説の逸品、値札は強気、社員はあたしひとり。売り物に本物なんてないことを誰より分かっていて、それでも本物の「目覚めた遺物」にいつか出会えると信じている——静かになった世界で、いちばん騒がしい夢を積んで旅をしている。",
         "en": "A traveling antiquarian with one cart and a big sign: Riko Trading. Every item is a legendary find, every price is ambitious, and the entire staff is her. She knows better than anyone that nothing in her stock is genuine — and still believes she will one day meet a truly awakened relic. Through a world gone quiet, she travels carrying the noisiest dream left in it."
       },
       "portrait": {
@@ -253,11 +253,11 @@
             "en": "Garon"
           },
           "relation": {
-            "ja": "元師匠・没落した目利き",
-            "en": "Her old master — an eye that fell"
+            "ja": "元師匠",
+            "en": "Her old master"
           },
           "intro": {
-            "ja": "かつて名の知れた大目利き。今は倉庫番で、酒場では「昔は大物だった」と笑われている。リコに目利きのいろはを叩き込んだ師匠であり、彼女が唯一、頭の上がらない ——そして、どうしても会いに行けずにいる相手。",
+            "ja": "かつて名の知れた大目利き。今は倉庫番で、酒場では「昔は大物だった」と笑われている。リコに目利きのいろはを叩き込んだ師匠であり、彼女が唯一、頭の上がらない——そして、どうしても会いに行けずにいる相手。",
             "en": "Once a famous judge of objects; now a warehouse keeper, laughed at in taverns as a has-been. The master who taught Riko everything her eye knows — the one person she cannot stand up to, and cannot bring herself to visit."
           }
         },
@@ -272,8 +272,8 @@
             "en": "A girl who always comes back"
           },
           "intro": {
-            "ja": "市が立つたび荷車にやって来て、売れない品ばかり黙って眺めていく少女。目深なフードに、物へ片耳を寄せる癖。商売にはならない客だが、リコはどうしても追い払えずにいる。",
-            "en": "A girl who comes to the cart every market day and looks, in silence, only at the things that never sell. A deep hood, and a habit of tilting one ear toward objects. She is no use as a customer, and Riko cannot bring herself to shoo her away."
+            "ja": "市が立つたび荷車にやって来て、売れない品ばかり黙って眺めていく少女。フードを目深にかぶり、気になった品にはそっと片耳を寄せる。商売にはならない客だが、リコはどうしても追い払えずにいる。",
+            "en": "A girl who comes to the cart every market day and looks, in silence, only at the things that never sell. She keeps her hood low, and tilts one ear toward anything that catches her interest. She is no use as a customer, and Riko cannot bring herself to shoo her away."
           }
         }
       ]

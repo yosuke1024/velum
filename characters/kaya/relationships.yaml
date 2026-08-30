@@ -53,6 +53,9 @@ people:
         The lie Kaya keeps telling supplies the diary with its standing tension.
     visual: 手紙の文面と、カヤの記憶の中の姿だけで登場する。
     note: 手紙の署名は「母より」。
+    public_relation:
+      ja: 母
+      en: Her mother
     intro:
       ja: |
         峠の向こう、ハルナ村に残る母。会うことはなく、手紙だけが往き来する。回収人に

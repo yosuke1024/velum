@@ -170,9 +170,11 @@ export const RelationshipsSchema = z.object({
          */
         intro: Bilingual,
         /**
-         * 公開面（feed）で relation の代わりに使うラベル。relation 自体が
-         * 秘密に触れる場合だけ設定する（例: teo/lowe の「贋作師」を隠す）。
-         * 無ければ relation をそのまま公開面に出す。
+         * 公開面（feed）で relation の代わりに使うラベル。無ければ relation を
+         * そのまま出す。設定するのは2つの場合だけ:
+         *   1. relation 自体が秘密に触れる（例: teo/lowe の「贋作師」を隠す）
+         *   2. relation が「A・B」の中黒連結——執筆者向けのメモ体裁であり、
+         *      名前の隣に出る短いラベルとしては読ませられない
          */
         public_relation: Bilingual.optional(),
       }),

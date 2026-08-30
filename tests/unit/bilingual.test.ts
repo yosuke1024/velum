@@ -145,6 +145,26 @@ describe('読み手向けの1行化', () => {
     expect(oneLineForReaders('いまは\nEcho と呼ぶ。')).toBe('いまは Echo と呼ぶ。');
   });
 
+  it('ダッシュ・三点リーダの隣で折り返しても空白を残さない', () => {
+    // この世界の文章はダッシュを和文の約物として使う。折り返しがその隣に
+    // 落ちると「口にしない—— それが」のように空白が残る。
+    expect(oneLineForReaders('決して口にしない——\nそれが二人の掟。')).toBe(
+      '決して口にしない——それが二人の掟。',
+    );
+    expect(oneLineForReaders('頭の上がらない\n——そして、会いに行けない。')).toBe(
+      '頭の上がらない——そして、会いに行けない。',
+    );
+    expect(oneLineForReaders('聴こえた気がした…\nでも、確かめようがない。')).toBe(
+      '聴こえた気がした…でも、確かめようがない。',
+    );
+  });
+
+  it('英文のダッシュの隣は従来どおり空白で繋ぐ', () => {
+    expect(oneLineForReaders('An enemy —\nbut one who keeps the code.')).toBe(
+      'An enemy — but one who keeps the code.',
+    );
+  });
+
   it('bothForReaders は訳が無ければ日本語へ落ちる（both と同じ規則）', () => {
     expect(bothForReaders('物に残る\n声')).toEqual({ ja: '物に残る声', en: '物に残る声' });
   });

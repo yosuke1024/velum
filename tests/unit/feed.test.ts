@@ -102,6 +102,16 @@ describe('world/feed/characters.json', () => {
       expect(lowe.relation).toEqual({ ja: '兄', en: 'His brother' });
     });
 
+    it('公開ラベルに中黒連結（執筆者向けのメモ体裁）を持ち込まない', () => {
+      // relation は名前の隣に出る短いラベル。「A・B」は relationships.yaml の
+      // メモ体裁で、読者向けではない——該当する人物には public_relation を置く。
+      for (const c of characters.characters) {
+        for (const person of c.people) {
+          expect(person.relation.ja).not.toContain('・');
+        }
+      }
+    });
+
     it('public_relation の無い人物は既存の relation をそのまま使う', () => {
       const uta = characters.characters.find((c) => c.id === 'uta')!;
       const gald = uta.people.find((p) => p.id === 'gald')!;
