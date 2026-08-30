@@ -32,6 +32,19 @@ export const DIARY_FEED_WINDOW = 90;
 /** 肖像は 512×512 固定（契約 §1.1）。sheet.png から派生する。 */
 export const PORTRAIT_SIZE = 512;
 
+/**
+ * 周りの人。ソースは characters/<id>/relationships.yaml の people。
+ * summary（内部文）・trust/wariness・hidden_from_protagonist はここに出さない
+ * （契約 §1.2）——公開用に書いた intro/relation（public_relation があれば
+ * それ）だけを転記する。
+ */
+export const FeedPersonSchema = z.object({
+  id: z.string().min(1),
+  name: Bilingual,
+  relation: Bilingual,
+  intro: Bilingual,
+});
+
 export const FeedCharacterSchema = z.object({
   id: CharacterId,
   era: EraId,
@@ -46,6 +59,8 @@ export const FeedCharacterSchema = z.object({
     width: z.literal(PORTRAIT_SIZE),
     height: z.literal(PORTRAIT_SIZE),
   }),
+  /** 周りの人。主人公1人につき2人（契約 §1.2）。 */
+  people: z.array(FeedPersonSchema).length(2),
 });
 
 /** world/feed/characters.json — World タブ・同行者選択。 */
@@ -133,6 +148,7 @@ export const FeedEntryFileSchema = FeedDiaryEntrySchema.extend({
   body: Bilingual,
 });
 
+export type FeedPerson = z.infer<typeof FeedPersonSchema>;
 export type FeedCharacters = z.infer<typeof FeedCharactersSchema>;
 export type FeedLore = z.infer<typeof FeedLoreSchema>;
 export type FeedDiary = z.infer<typeof FeedDiarySchema>;

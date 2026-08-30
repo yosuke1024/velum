@@ -23,6 +23,15 @@ people:
     thread: |
       銘印は大鑑定院の系譜の最後の末裔の証。
       ヴァレン → 現行の Artifact Guild への糸の、silent 側の端点。
+    intro:
+      ja: |
+        かつて名の知れた大目利き。今は倉庫番で、酒場では「昔は大物だった」と笑われて
+        いる。リコに目利きのいろはを叩き込んだ師匠であり、彼女が唯一、頭の上がらない
+        ——そして、どうしても会いに行けずにいる相手。
+      en: |
+        Once a famous judge of objects; now a warehouse keeper, laughed at in taverns
+        as a has-been. The master who taught Riko everything her eye knows — the one
+        person she cannot stand up to, and cannot bring herself to visit.
 
   - id: mio
     name:
@@ -44,3 +53,13 @@ people:
     hidden_from_protagonist: |
       ミオが眺めているのはいつも「一番売れない品」——彼女には聴こえている。
       原初の「聴き手」の系譜の現代側。リコは気づいていない。
+    intro:
+      ja: |
+        市が立つたび荷車にやって来て、売れない品ばかり黙って眺めていく少女。目深な
+        フードに、物へ片耳を寄せる癖。商売にはならない客だが、リコはどうしても
+        追い払えずにいる。
+      en: |
+        A girl who comes to the cart every market day and looks, in silence, only at
+        the things that never sell. A deep hood, and a habit of tilting one ear toward
+        objects. She is no use as a customer, and Riko cannot bring herself to shoo
+        her away.

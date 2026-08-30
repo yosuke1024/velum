@@ -162,6 +162,19 @@ export const RelationshipsSchema = z.object({
         visual: z.string().optional(),
         note: z.string().optional(),
         thread: z.string().optional(),
+
+        /**
+         * World 詳細用の紹介文（feed の characters.json が出す。契約 §1.2）。
+         * 読者が最初に読む紹介文。summary（内部文）とは別物——秘密の「外側」
+         * だけを書く欄で、混入は npm run validate が検査する。
+         */
+        intro: Bilingual,
+        /**
+         * 公開面（feed）で relation の代わりに使うラベル。relation 自体が
+         * 秘密に触れる場合だけ設定する（例: teo/lowe の「贋作師」を隠す）。
+         * 無ければ relation をそのまま公開面に出す。
+         */
+        public_relation: Bilingual.optional(),
       }),
     )
     .length(2), // 主人公1人につき関係者2人

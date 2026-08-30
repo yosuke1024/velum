@@ -21,6 +21,17 @@ people:
         An enemy — but one who keeps the code of the trade. He is where the war diary breathes.
     visual: カヤと同じ白外套の、色違いの汚れ方。よく喋る（カヤが喋らないぶんの音を担当する）。
     note: 互いに所属軍名を呼ばない。それが二人の掟。
+    intro:
+      ja: |
+        戦線の向こう側の回収人。月に一度、焼けた橋の上で会い、互いの軍側で死んだ
+        「相手側の兵」の遺品を交換する。敵だが、同業の掟だけは信じられる相手。
+        カヤが喋らないぶんまで、よく喋る。互いの軍の名は、決して口にしない——
+        それが二人の掟。
+      en: |
+        A reclaimer from across the line. Once a month they meet on the burnt bridge
+        and exchange the belongings of the other side's dead. An enemy — but one who
+        keeps the code of the trade. He talks enough for the both of them. Neither
+        ever names the army the other serves; that is their rule.
 
   - id: isa
     name:
@@ -42,3 +53,13 @@ people:
         The lie Kaya keeps telling supplies the diary with its standing tension.
     visual: 手紙の文面と、カヤの記憶の中の姿だけで登場する。
     note: 手紙の署名は「母より」。
+    intro:
+      ja: |
+        峠の向こう、ハルナ村に残る母。会うことはなく、手紙だけが往き来する。回収人に
+        なった娘を、恥じたことは一度もない。毎月の手紙の最後には、必ず同じ一行が
+        ある——「ノヤから便りは？」
+      en: |
+        Her mother, who stays in Haruna village over the pass. They never meet; only
+        letters travel between them. She has never once been ashamed of having a
+        reclaimer for a daughter. And every monthly letter ends with the same line:
+        "Any word from Noya?"
