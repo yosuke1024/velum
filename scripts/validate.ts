@@ -215,7 +215,35 @@ for (const id of CHARACTER_IDS) {
   }
 
   load(join(dir, 'canon.yaml'), CanonSchema, `${id} の canon`);
-  load(join(dir, 'current-state.yaml'), CurrentStateSchema, `${id} の current-state`);
+  const state = load<{ beliefs: Record<string, number> }>(
+    join(dir, 'current-state.yaml'),
+    CurrentStateSchema,
+    `${id} の current-state`,
+  );
+
+  /**
+   * 信念は2つのファイルに分かれている。profile.yaml が名前と英訳を、
+   * current-state.yaml が強さを持つ。片方だけ足すと、サイトの日記ページが
+   * 訳の無い見出しを英語ページへ出し、掲載側の言語ガードが翌朝の同期を止める。
+   * それに気づくのはこちらの CI であるべきなので、集合の一致をここで見る。
+   */
+  if (profile && state) {
+    const named = new Set((profile.beliefs as Array<{ key: string }>).map((b) => b.key));
+    const held = new Set(Object.keys(state.beliefs));
+    for (const key of held) {
+      if (!named.has(key)) {
+        fail(`characters/${id}/profile.yaml`, `信念「${key}」に英語の名前がありません`);
+      }
+    }
+    for (const key of named) {
+      if (!held.has(key)) {
+        fail(
+          `characters/${id}/current-state.yaml`,
+          `信念「${key}」が profile.yaml にしかありません`,
+        );
+      }
+    }
+  }
   load(join(dir, 'memories.yaml'), MemoriesSchema, `${id} の memories`);
 
   const rel = load<{ people: Array<{ id: string }> }>(

@@ -127,10 +127,15 @@ export function applyPatches(
     if (!exists) {
       canon.facts.push({
         id: response.canon_candidate.id,
-        fact: response.canon_candidate.fact,
+        fact: {
+          ja: response.canon_candidate.fact_ja,
+          en: response.canon_candidate.fact_en,
+        },
         added_on: date,
       });
-      applied.canon_added = response.canon_candidate.fact;
+      // 失敗記録と同じで、events/ は日本語で書く実験記録である。読み手へ渡る
+      // 二言語は canon.yaml のほうが持つ。
+      applied.canon_added = response.canon_candidate.fact_ja;
     }
   }
 

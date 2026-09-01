@@ -78,11 +78,18 @@ export const DiaryResponseSchema = z.object({
     })
     .nullable(),
 
-  /** 人生設定へ追記する新事実。なければ null。 */
+  /**
+   * 人生設定へ追記する新事実。なければ null。
+   *
+   * 二言語で書かせる。この事実は canon.yaml へ残り、人物ページの「人生の事実」
+   * として日本語ページと英語ページの両方に出る。日記の題や気分と同じ扱いで、
+   * 片方だけ書かせると英語ページに日本語が出る。
+   */
   canon_candidate: z
     .object({
       id: z.string().min(1),
-      fact: z.string().min(1),
+      fact_ja: z.string().min(1),
+      fact_en: z.string().min(1),
     })
     .nullable(),
 

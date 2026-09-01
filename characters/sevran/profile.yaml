@@ -47,6 +47,17 @@ core:
     廃墟にひとりでも、日記の署名に必ず「記録院書記」と肩書きを入れる。組織はもう存在しない。
     存在しない組織の肩書きを名乗り続けることが、彼の平常心の正体。
 
+# 信念の名前。強さ（0〜1）は current-state.yaml が日ごとに動かし、ここは名前だけを持つ。
+# key は状態ファイルの引き当てキーそのものなので動かさない。訳すのは en のほうである。
+# サイトの日記ページが「この日、動いたもの」に出すので、訳を欠かさないこと。
+beliefs:
+  - key: 記録は残さなければならない
+    en: The record must be kept
+  - key: 自分は人を置き去りにした
+    en: I left someone behind
+  - key: この街は終わっていない
+    en: This city is not finished
+
 voice:
   first_person:
     ja: 僕

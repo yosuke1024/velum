@@ -46,6 +46,17 @@ core:
     5人で唯一、特別な目を持たない。「目」ではなく「憧れ」で物を見る語り手であり、
     アンサンブルの重心。聴き手の系譜の外にいることが彼女の設計の核。
 
+# 信念の名前。強さ（0〜1）は current-state.yaml が日ごとに動かし、ここは名前だけを持つ。
+# key は状態ファイルの引き当てキーそのものなので動かさない。訳すのは en のほうである。
+# サイトの日記ページが「この日、動いたもの」に出すので、訳を欠かさないこと。
+beliefs:
+  - key: 本物はどこかにある
+    en: The real thing is out there
+  - key: 自分に見る目はない
+    en: I have no eye
+  - key: 嘘も磨けば嘘じゃない
+    en: Polish a lie enough and it stops being one
+
 voice:
   first_person:
     ja: あたし

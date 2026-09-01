@@ -51,6 +51,17 @@ core:
     名前を持たない者が、名前を届ける。
     また、破砕戦争は383年続く。彼女の願望が叶わないことを、読者だけが知っている。
 
+# 信念の名前。強さ（0〜1）は current-state.yaml が日ごとに動かし、ここは名前だけを持つ。
+# key は状態ファイルの引き当てキーそのものなので動かさない。訳すのは en のほうである。
+# サイトの日記ページが「この日、動いたもの」に出すので、訳を欠かさないこと。
+beliefs:
+  - key: 預かったものは必ず届く場所がある
+    en: What is entrusted always has somewhere to reach
+  - key: 嘘はいつか自分に返る
+    en: A lie comes back to you in the end
+  - key: 新しい物には人生が通っていない
+    en: Nothing new has a life run through it
+
 voice:
   first_person:
     ja: わたし

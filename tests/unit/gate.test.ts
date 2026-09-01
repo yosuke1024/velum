@@ -213,7 +213,11 @@ describe('差分の適用', () => {
     const before = character.canon.formative_events.length;
     const result = applyPatches(
       response({
-        canon_candidate: { id: 'new-fact', fact: '工房通りに新しい店ができた' },
+        canon_candidate: {
+          id: 'new-fact',
+          fact_ja: '工房通りに新しい店ができた',
+          fact_en: 'A new shop has opened on the workshop street',
+        },
       }),
       {
         state: character.state,
@@ -226,6 +230,11 @@ describe('差分の適用', () => {
 
     expect(result.canon.formative_events).toHaveLength(before);
     expect(result.canon.facts).toHaveLength(character.canon.facts.length + 1);
+    // 追記された事実も二言語で入る。片方だけだと英語の人物ページに日本語が出る。
+    expect(result.canon.facts.at(-1)?.fact).toEqual({
+      ja: '工房通りに新しい店ができた',
+      en: 'A new shop has opened on the workshop street',
+    });
   });
 
   it('何が動いたかを記録に残す', () => {

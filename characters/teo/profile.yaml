@@ -48,6 +48,17 @@ core:
     銘を持たない見習い（無銘）であり、家名も名乗れない——二重の無銘。
     彼の願望は、二つの欠落を一つの銘で埋めようとする行為。
 
+# 信念の名前。強さ（0〜1）は current-state.yaml が日ごとに動かし、ここは名前だけを持つ。
+# key は状態ファイルの引き当てキーそのものなので動かさない。訳すのは en のほうである。
+# サイトの日記ページが「この日、動いたもの」に出すので、訳を欠かさないこと。
+beliefs:
+  - key: 規約は正しい
+    en: The Code is right
+  - key: 自分の目は正しい
+    en: My eye is right
+  - key: 直感は口にすべきでない
+    en: Intuition is not to be spoken aloud
+
 voice:
   first_person:
     ja: 私
