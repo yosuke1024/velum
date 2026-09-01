@@ -1,0 +1,31 @@
+{
+  "id": "2026-09-02-riko",
+  "date": "2026-09-02",
+  "character_id": "riko",
+  "era": "silent",
+  "season": 1,
+  "episode": 1,
+  "world_date": {
+    "year": 1175,
+    "month": 7,
+    "day": 5
+  },
+  "title": {
+    "ja": "倍になった値札と、消えた鍵の噂",
+    "en": "A Doubled Price Tag and Rumors of a Lost Key"
+  },
+  "excerpt": {
+    "ja": "金貨二枚。それが、あの青い石の首飾りの新しい値段。",
+    "en": "Two gold coins. That is the new price for the blue stone necklace."
+  },
+  "mood": {
+    "ja": "鍵を失くした師匠の噂と、一向に貯まらない頭金への焦燥",
+    "en": "Anxiety over the rumor of my master losing his key and the down payment that just won't accumulate."
+  },
+  "path": "world/feed/entries/2026-09-02-riko.json",
+  "schema_version": 1,
+  "body": {
+    "ja": "金貨二枚。それが、あの青い石の首飾りの新しい値段。昨日まではその半分だったんだけど、荷車を止めて、あたしの手が勝手に値札を書き換えちゃった。うちの鑑定部の見解では、これはただのガラス細工じゃない。いつか目覚める可能性がほんの少しだけ残された『兆しの石』なんだから。……自分でも呆れるようなハッタリ。でも、もしこれが本当に本物だったら？ 誰か他人の手に渡った後に目覚めたりしたら？ そう思うと、いつも手放す直前に値段を吊り上げてしまう。もちろん、あたしは商売人だから、これだって立派な売り物なんだけどね。そんなことを考えてたら、街道ですれ違った同業者から嫌な噂を聞いた。あのガロンが、倉庫の鍵を失くして雇い主にこっぴどく叱られたんだって。あの頑固で、目だけは確かだったじいさんが、鍵を失くす？ 信じられない。ガロン、あんた本当にボケちまったの？ それとも……。頭金が足りない。北の市まであと五日だっていうのに、焦りばかりが募る。金貨二枚。",
+    "en": "Two gold coins. That is the new price for the blue stone necklace. It was half of that yesterday, but when I stopped the cart, my hand just went ahead and rewrote the tag. According to our appraisal department, this is no mere glasswork. It is a 'Stone of Omen,' with a tiny spark of awakening still left inside. What a ridiculous bluff, even for me. But what if it really is genuine? What if it awakens after it leaves my hands? The moment I think of that, I always end up raising the price right before a sale. Of course, I am a merchant, so this is still very much on the market. While pondering this, I heard a bad rumor from another peddler on the road. They said Garon lost the warehouse key and got a terrible scolding from his boss. That stubborn old man with the sharpest eyes, losing a key? I cannot believe it. Garon, are you really losing your touch? Or is it something else? I am still short on the down payment. Only five days left until the northern market, and the anxiety is building. Two gold coins."
+  }
+}

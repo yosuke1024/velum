@@ -1,2 +1,6 @@
 id: riko
-memories: []
+memories:
+  - id: 2026-09-02-1
+    summary: ガロンが倉庫の鍵を失くして叱責されたという噂を耳にし、彼の衰えに対する不安が胸をよぎった。
+    importance: 0.52
+    formed_on: 2026-09-02

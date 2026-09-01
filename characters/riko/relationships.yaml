@@ -1,5 +1,4 @@
 id: riko
-
 people:
   - id: garon
     name:
@@ -9,7 +8,7 @@ people:
       ja: 元師匠・没落した目利き
       en: Her old master — an eye that fell
     trust: 0.8
-    wariness: 0.1
+    wariness: 0.13
     summary:
       ja: |
         かつての大目利き。今は倉庫番で、酒場で「昔は大物だった」と笑われている。
@@ -23,9 +22,6 @@ people:
     thread: |
       銘印は大鑑定院の系譜の最後の末裔の証。
       ヴァレン → 現行の Artifact Guild への糸の、silent 側の端点。
-    public_relation:
-      ja: 元師匠
-      en: Her old master
     intro:
       ja: |
         かつて名の知れた大目利き。今は倉庫番で、酒場では「昔は大物だった」と笑われて
@@ -35,7 +31,9 @@ people:
         Once a famous judge of objects; now a warehouse keeper, laughed at in taverns
         as a has-been. The master who taught Riko everything her eye knows — the one
         person she cannot stand up to, and cannot bring herself to visit.
-
+    public_relation:
+      ja: 元師匠
+      en: Her old master
   - id: mio
     name:
       ja: ミオ
@@ -52,10 +50,10 @@ people:
       en: |
         Every market day she comes to the cart and looks only at the things that never sell.
         She is no use as a customer, and Riko cannot bring herself to shoo her off.
-    visual: 小柄。目深なフード。いつも片耳を物に寄せる癖。
     hidden_from_protagonist: |
       ミオが眺めているのはいつも「一番売れない品」——彼女には聴こえている。
       原初の「聴き手」の系譜の現代側。リコは気づいていない。
+    visual: 小柄。目深なフード。いつも片耳を物に寄せる癖。
     intro:
       ja: |
         市が立つたび荷車にやって来て、売れない品ばかり黙って眺めていく少女。フードを

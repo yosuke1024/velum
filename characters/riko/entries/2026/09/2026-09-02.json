@@ -1,0 +1,26 @@
+{
+  "date": "2026-09-02",
+  "era": "silent",
+  "protagonist": "riko",
+  "season": 1,
+  "episode": 1,
+  "beat": "発端",
+  "world_date": {
+    "year": 1175,
+    "month": 7,
+    "day": 5
+  },
+  "title": {
+    "ja": "倍になった値札と、消えた鍵の噂",
+    "en": "A Doubled Price Tag and Rumors of a Lost Key"
+  },
+  "quote": {
+    "ja": "金貨二枚。それが、あの青い石の首飾りの新しい値段。",
+    "en": "Two gold coins. That is the new price for the blue stone necklace."
+  },
+  "mood": {
+    "ja": "鍵を失くした師匠の噂と、一向に貯まらない頭金への焦燥",
+    "en": "Anxiety over the rumor of my master losing his key and the down payment that just won't accumulate."
+  },
+  "rare_expression_used": false
+}

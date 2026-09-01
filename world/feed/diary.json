@@ -1,7 +1,33 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-01T00:26:09.719Z",
+  "generated_at": "2026-09-01T23:06:09.853Z",
   "entries": [
+    {
+      "id": "2026-09-02-riko",
+      "date": "2026-09-02",
+      "character_id": "riko",
+      "era": "silent",
+      "season": 1,
+      "episode": 1,
+      "world_date": {
+        "year": 1175,
+        "month": 7,
+        "day": 5
+      },
+      "title": {
+        "ja": "倍になった値札と、消えた鍵の噂",
+        "en": "A Doubled Price Tag and Rumors of a Lost Key"
+      },
+      "excerpt": {
+        "ja": "金貨二枚。それが、あの青い石の首飾りの新しい値段。",
+        "en": "Two gold coins. That is the new price for the blue stone necklace."
+      },
+      "mood": {
+        "ja": "鍵を失くした師匠の噂と、一向に貯まらない頭金への焦燥",
+        "en": "Anxiety over the rumor of my master losing his key and the down payment that just won't accumulate."
+      },
+      "path": "world/feed/entries/2026-09-02-riko.json"
+    },
     {
       "id": "2026-09-01-teo",
       "date": "2026-09-01",
