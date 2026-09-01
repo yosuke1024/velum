@@ -1,5 +1,32 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-29T01:55:47.212Z",
-  "entries": []
+  "generated_at": "2026-09-01T00:26:09.719Z",
+  "entries": [
+    {
+      "id": "2026-09-01-teo",
+      "date": "2026-09-01",
+      "character_id": "teo",
+      "era": "guilds",
+      "season": 1,
+      "episode": 1,
+      "world_date": {
+        "year": 375,
+        "month": 7,
+        "day": 5
+      },
+      "title": {
+        "ja": "削られた刻印と逆打ちの座金",
+        "en": "Scraped Marks and the Reversed Washer"
+      },
+      "excerpt": {
+        "ja": "師匠の過去の誤りと、兄の持ってきたこの燭台の繋がりについて、確証を得るには至らない。",
+        "en": "I cannot establish a definitive connection between my master's past error and the candlestick my brother brought."
+      },
+      "mood": {
+        "ja": "規約の暗唱でも抑えきれない、過去の暗部へ近づく恐怖と静かな興奮。",
+        "en": "A mixture of fear and quiet excitement as I approach the dark secrets of the past, uncontrollable even by reciting the Code."
+      },
+      "path": "world/feed/entries/2026-09-01-teo.json"
+    }
+  ]
 }

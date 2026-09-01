@@ -1,8 +1,4 @@
-# 追記のみの人生設定。1日に最大1件まで追加できる。
-# 既存の事実の書き換え・削除は生成側から行えない。
-
 id: teo
-
 formative_events:
   - id: the-hero-sword
     fact:
@@ -32,5 +28,4 @@ formative_events:
       en: |
         The winter he was twelve, he left home the night before the Vesper Workshop was raided.
         In his bag was one forged necklace his parents had made. He still has it.
-
 facts: []

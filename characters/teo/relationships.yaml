@@ -1,11 +1,4 @@
-# 周囲の人物と、主人公から見た関係。
-# 関係者は独立した日記を持たない。ここが彼らの唯一の記述場所。
-#
-# trust / wariness は 0.0–1.0。交流のあった日だけ、最大 ±0.05 動く。
-# 1日に patch できるのは最大2人まで。
-
 id: teo
-
 people:
   - id: vallen
     name:
@@ -14,8 +7,8 @@ people:
     relation:
       ja: 師匠
       en: His master
-    trust: 0.7
-    wariness: 0.2
+    trust: 0.69
+    wariness: 0.23
     summary:
       ja: |
         大鑑定院の頂点に立つ伝説の鑑定士。老齢。
@@ -37,7 +30,6 @@ people:
         now, the seals of a lifetime ranked across his chest like medals. He is the one who
         forbade Teo to speak from instinct, and he accepts nothing but code and
         procedure.
-
   - id: lowe
     name:
       ja: ロウ
@@ -46,7 +38,7 @@ people:
       ja: 兄・贋作師
       en: His brother, a forger
     trust: 0.4
-    wariness: 0.6
+    wariness: 0.64
     summary:
       ja: |
         摘発を生き延びてヴェスパー工房を継いだ兄。今も贋作を作り続け、成功している。
@@ -57,9 +49,6 @@ people:
         Now and then he appears at the gate of the Grand Court, talks about nothing, and leaves.
         Whether he wants Teo back, wants to use him, or only wants to see him, Teo cannot tell.
     visual: テオと同じ癖毛。堂々とした身なりに、指先だけ職人の手。
-    public_relation:
-      ja: 兄
-      en: His brother
     intro:
       ja: |
         時折、大鑑定院の門前に現れる兄。身なりは堂々としているのに、指先だけが
@@ -70,3 +59,6 @@ people:
         impeccably dressed, and only his fingertips give him away as a craftsman.
         He talks about nothing in particular and leaves. Whether he wants Teo back, wants to use him, or
         only wants to see him, Teo cannot tell.
+    public_relation:
+      ja: 兄
+      en: His brother
