@@ -70,7 +70,10 @@ describe('人物ごとのプロンプト', () => {
     world_date: { month: 7, day: 4 },
     events: [{ summary: '狩りの吉凶を問われた', where: '野営地', who: [] }],
     world_change: null,
-    leaves_open: '答えの根拠を誰も訊かなかった',
+    leaves_open: {
+      ja: '答えの根拠を誰も訊かなかった',
+      en: 'Nobody asked what the answer rested on',
+    },
   });
 
   const dayFor = (id: string, era: string): Day => ({

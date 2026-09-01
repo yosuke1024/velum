@@ -1,4 +1,6 @@
 import { describe, it, expect } from 'vitest';
+import { existsSync, readdirSync } from 'node:fs';
+import { join } from 'node:path';
 import { SNAPSHOT_LIMITS } from '../../src/schemas/limits.js';
 import { CHARACTER_IDS } from '../../src/schemas/world.js';
 import { charPath } from '../../src/lib/paths.js';
@@ -26,6 +28,25 @@ function snapshotFor(id: string, dispositions: string[]): Snapshot {
 
 const relationshipsOf = (id: string) =>
   readYaml(charPath(id, 'relationships.yaml'), RelationshipsSchema);
+
+/**
+ * entries/ に置かれた日記の日付。production の listDatedFiles を通さず、
+ * ファイル名から直に読む——数え方そのものを検査したいので、同じ関数で数えない。
+ */
+function diaryDates(id: string): string[] {
+  const root = charPath(id, 'entries');
+  if (!existsSync(root)) return [];
+  const dates: string[] = [];
+  const walk = (dir: string) => {
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      const at = join(dir, entry.name);
+      if (entry.isDirectory()) walk(at);
+      else if (entry.name.endsWith('.json')) dates.push(entry.name.slice(0, -'.json'.length));
+    }
+  };
+  walk(root);
+  return dates.sort();
+}
 
 /**
  * 日記のプロンプトと同じ規律。ゲートが落とせる上限は、すべてプロンプトに書かれていなければ、
@@ -144,10 +165,14 @@ describe('組み立て', () => {
     expect(snapshot.life_facts.length).toBeGreaterThanOrEqual(3);
   });
 
-  it('日記が1本もなければ、そう記録する', () => {
+  it('どこまで読んだかを記録する（1本も無ければ null）', () => {
+    // 「0本」で固定していたテストは、稼働開始日 2026-09-01 の朝に最初の日記が
+    // 書かれた時点で偽になった。日記は毎日増えるので、定数ではなく entries/ との
+    // 一致を見る。0本のときに null を返すことは、それ自体がここで守られる。
+    const dates = diaryDates('teo');
     const snapshot = snapshotFor('teo', ['何も捨てない']);
-    expect(snapshot.source.through).toBeNull();
-    expect(snapshot.source.diaries).toBe(0);
+    expect(snapshot.source.diaries).toBe(dates.length);
+    expect(snapshot.source.through).toBe(dates.at(-1) ?? null);
   });
 
   it('生成の産物は dispositions だけで、他は同じ材料から同じものが出る', () => {

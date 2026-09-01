@@ -135,8 +135,12 @@ export const DIARY_RESPONSE_SCHEMA = jsonSchema.object(
     ),
     canon_candidate: jsonSchema.nullable(
       jsonSchema.object(
-        { id: jsonSchema.string(), fact: jsonSchema.string() },
-        ['id', 'fact'],
+        {
+          id: jsonSchema.string(),
+          fact_ja: jsonSchema.string(),
+          fact_en: jsonSchema.string(),
+        },
+        ['id', 'fact_ja', 'fact_en'],
       ),
     ),
     rare_expression_used: jsonSchema.boolean(),
@@ -352,6 +356,10 @@ export function buildDiaryUserPrompt(context: DiaryContext): string {
   lines.push(
     'title / quote / mood も同じように両方書いてください。' +
       'quote_ja は body_ja から、quote_en は body_en から引きます——引用は本文にある一行であって、訳し下ろした別の文ではありません。',
+  );
+  lines.push(
+    'canon_candidate を返す日は fact_ja と fact_en の両方を書いてください。' +
+      'その一文は人物ページの「人生の事実」として残り、日本語ページと英語ページの両方が出します。',
   );
 
   return lines.join('\n');

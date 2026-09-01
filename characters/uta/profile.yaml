@@ -47,6 +47,17 @@ core:
     サナ氏族に文字はないため、彼女の「日記」は書いたものではなく夜にひとりで唱える言葉。
     5人で唯一、書かない語り手。
 
+# 信念の名前。強さ（0〜1）は current-state.yaml が日ごとに動かし、ここは名前だけを持つ。
+# key は状態ファイルの引き当てキーそのものなので動かさない。訳すのは en のほうである。
+# サイトの日記ページが「この日、動いたもの」に出すので、訳を欠かさないこと。
+beliefs:
+  - key: 声は本当にある
+    en: The voices are real
+  - key: 自分は聴き手だ
+    en: I am a Listener
+  - key: ノノは何かを隠していた
+    en: Nono was hiding something
+
 voice:
   first_person:
     ja: ウタ（自分の名前）

@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { CharacterId, EraId } from './world.js';
-import { MaybeBilingual } from './bilingual.js';
+import { Bilingual } from './bilingual.js';
 
 /**
  * 季（シーズン）— 1人につき5話、5人で25日分。
@@ -59,10 +59,10 @@ export const EpisodeSchema = z.object({
   /**
    * この話が次へ残すもの。第5話では次の季へ残す残り火。
    *
-   * サイトが時代ページに出す3つの欄のひとつなので二言語で持つ。生成した直後は
-   * 日本語だけで、人間が直したあとに訳が付く（docs/seasons.md §10）。
+   * サイトが時代ページに出す3つの欄のひとつなので、二言語を必須にする。
+   * `npm run plan` が両方書く（docs/seasons.md §10）。
    */
-  leaves_open: MaybeBilingual,
+  leaves_open: Bilingual,
 });
 
 export type Episode = z.infer<typeof EpisodeSchema>;
@@ -76,9 +76,10 @@ export const SeasonPlanSchema = z.object({
   /** この季が始まる時点の、世界の暦上の年。primordial は null。 */
   year_in_world: z.number().int().nullable(),
 
-  title: MaybeBilingual,
-  /** 5話でどういう形を描くか。人間が読んで直すための要約。 */
-  shape: MaybeBilingual,
+  /** サイトの時代ページが出す。`leaves_open` と同じ理由で二言語を必須にする。 */
+  title: Bilingual,
+  /** 5話でどういう形を描くか。人間が読んで直すための要約。サイトにも出る。 */
+  shape: Bilingual,
 
   episodes: z.array(EpisodeSchema).length(EPISODES_PER_SEASON),
 

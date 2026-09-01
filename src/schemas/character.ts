@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { CharacterId, EraId } from './world.js';
 import { MEMORY_IMPORTANCE, UNIT_RANGE } from './limits.js';
-import { Bilingual, MaybeBilingual } from './bilingual.js';
+import { Bilingual } from './bilingual.js';
 
 const unit = () => z.number().min(UNIT_RANGE.min).max(UNIT_RANGE.max);
 
@@ -38,6 +38,29 @@ export const ProfileSchema = z.object({
     secret_unknown_to_self: z.string().min(1),
     note: z.string().optional(),
   }),
+
+  /**
+   * 信念の名前。強さ（0〜1）は current-state.yaml が日ごとに動かし、ここは
+   * 名前だけを持つ。`key` は日本語の名前そのものであり、current-state.yaml の
+   * beliefs を引き当てるキーでもある——だから訳すのは `en` のほうで、`key` は
+   * 動かさない。動かすと過去の差分が引き当てられなくなる。
+   *
+   * 語彙は閉じている。src/diary/gate.ts が current-state.yaml に無い信念の更新を
+   * 弾くので、生成が信念を増やすことはない。増やせるのは人間だけで、そのとき
+   * npm run validate が両ファイルの集合一致を要求する。
+   *
+   * サイトの日記ページが「この日、動いたもの」の見出しに出すので二言語で持つ。
+   * 訳が無ければ `/velum/en/` に日本語が出る——2026-09-01、最初の日記が公開される
+   * 朝に実際そうなり、掲載側の言語ガードが同期を止めた。
+   */
+  beliefs: z
+    .array(
+      z.object({
+        key: z.string().min(1),
+        en: z.string().min(1),
+      }),
+    )
+    .min(1),
 
   // register は生成プロンプト専用で、サイトへは出ない。出るものだけ二言語。
   voice: z.object({
@@ -111,11 +134,19 @@ export const CanonSchema = z.object({
       }),
     )
     .min(3),
-  /** 日記の生成が1日1件まで追記する。生成が英語を出すまで素の文字列も受ける。 */
+  /**
+   * 日記の生成が1日1件まで追記する。追記されるが二言語を必須にする——生成が
+   * `fact_ja` と `fact_en` の両方を返すようになったので（src/diary/prompt.ts）、
+   * 素の文字列はもう入ってこない。
+   *
+   * 必須にするほうが安全である。素の文字列を受けると `both()` が英語へ日本語を
+   * 落とし、人物ページの「人生の事実」が `/velum/en/` に日本語で出る。ここで
+   * 落ちれば velum の CI が気づく。受けてしまえば、気づくのは翌朝の掲載側である。
+   */
   facts: z.array(
     z.object({
       id: z.string().min(1),
-      fact: MaybeBilingual,
+      fact: Bilingual,
       added_on: z.string().optional(),
       note: z.string().optional(),
     }),

@@ -11,6 +11,9 @@ const serialized = JSON.stringify(bundle);
 /** 照合に意味のある最小の長さ。これより短い断片はどこにでも現れる。 */
 const MIN_NEEDLE = 8;
 
+/** 和文が1文字でも混じっているか。英語ページに出てはいけないもの。 */
+const japanese = /[ぁ-んァ-ヶ一-龠]/;
+
 const segments = (secret: string): string[] =>
   secret
     .split(/[\n。]/)
@@ -94,7 +97,6 @@ describe('束の形', () => {
   it('シートの文面は二言語で来る（日本語ページに英語を残さない）', () => {
     // 1言語 = 1 URL。訳が無ければ人物ページの引用文と小物キャプションが
     // 英語のまま日本語ページに出る——`/velum/en/` に日本語が出るのと同じ欠陥。
-    const japanese = /[ぁ-んァ-ヶ一-龠]/;
     for (const character of bundle.characters) {
       const { sheet } = character.visual;
       if (!sheet) continue;
@@ -107,9 +109,46 @@ describe('束の形', () => {
     }
   });
 
+  it('信念の見出しは二言語で来る（英語ページに状態キーを出さない）', () => {
+    // 2026-09-01、最初の日記が公開された朝に `/velum/en/` の日記ページへ
+    // 「規約は正しい」が出て、掲載側の言語ガードが同期を止めた。信念のキーは
+    // current-state.yaml の引き当てキーなので日本語のままでよく、束が訳を
+    // 添えて渡す——訳がここで欠けると、同じ止まり方をする。
+    for (const id of CHARACTER_IDS) {
+      const profile = readYaml(charPath(id, 'profile.yaml'), ProfileSchema);
+      for (const belief of profile.beliefs) {
+        expect(belief.en).toMatch(/[A-Za-z]/);
+        expect(belief.en).not.toMatch(japanese);
+      }
+    }
+    for (const entry of bundle.entries) {
+      for (const belief of entry.applied?.beliefs ?? []) {
+        expect(belief.key.ja).toMatch(japanese);
+        expect(belief.key.en).toMatch(/[A-Za-z]/);
+        expect(belief.key.en).not.toMatch(japanese);
+      }
+    }
+  });
+
+  it('人生の事実は二言語で来る（生成が追記したぶんも）', () => {
+    // canon.facts は日記の生成が1日1件まで追記する。素の文字列を受けていた
+    // ころは `both()` が英語へ日本語を落としたので、生成が1件足した日に
+    // 人物ページの英語版が日本語を出すことになっていた。
+    for (const character of bundle.characters) {
+      for (const fact of character.life_facts) {
+        expect(fact.ja).toMatch(japanese);
+        expect(fact.en).toMatch(/[A-Za-z]/);
+        expect(fact.en).not.toMatch(japanese);
+      }
+    }
+  });
+
   it('改行を含んだままの文字列を渡さない（JSON に生の改行を残さない）', () => {
     for (const character of bundle.characters) {
-      for (const fact of character.life_facts) expect(fact).not.toContain('\n');
+      for (const fact of character.life_facts) {
+        expect(fact.ja).not.toContain('\n');
+        expect(fact.en).not.toContain('\n');
+      }
       expect(character.voice.register).not.toContain('\n');
     }
   });

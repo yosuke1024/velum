@@ -58,7 +58,7 @@ import {
   APPRAISAL_SIZE_LIMIT,
 } from '../src/schemas/appraisal.js';
 import { linearDay } from '../src/lib/calendar.js';
-import { ja, isUntranslated } from '../src/lib/bilingual.js';
+import { ja } from '../src/lib/bilingual.js';
 import { pngDimensions } from '../src/lib/png.js';
 import { secretLeaksIn } from '../src/lib/secrets.js';
 import {
@@ -215,7 +215,35 @@ for (const id of CHARACTER_IDS) {
   }
 
   load(join(dir, 'canon.yaml'), CanonSchema, `${id} の canon`);
-  load(join(dir, 'current-state.yaml'), CurrentStateSchema, `${id} の current-state`);
+  const state = load<{ beliefs: Record<string, number> }>(
+    join(dir, 'current-state.yaml'),
+    CurrentStateSchema,
+    `${id} の current-state`,
+  );
+
+  /**
+   * 信念は2つのファイルに分かれている。profile.yaml が名前と英訳を、
+   * current-state.yaml が強さを持つ。片方だけ足すと、サイトの日記ページが
+   * 訳の無い見出しを英語ページへ出し、掲載側の言語ガードが翌朝の同期を止める。
+   * それに気づくのはこちらの CI であるべきなので、集合の一致をここで見る。
+   */
+  if (profile && state) {
+    const named = new Set((profile.beliefs as Array<{ key: string }>).map((b) => b.key));
+    const held = new Set(Object.keys(state.beliefs));
+    for (const key of held) {
+      if (!named.has(key)) {
+        fail(`characters/${id}/profile.yaml`, `信念「${key}」に英語の名前がありません`);
+      }
+    }
+    for (const key of named) {
+      if (!held.has(key)) {
+        fail(
+          `characters/${id}/current-state.yaml`,
+          `信念「${key}」が profile.yaml にしかありません`,
+        );
+      }
+    }
+  }
   load(join(dir, 'memories.yaml'), MemoriesSchema, `${id} の memories`);
 
   const rel = load<{ people: Array<{ id: string }> }>(
@@ -742,45 +770,6 @@ if (threads) {
     if (!knownPeople.has(ref) && !ref.includes('-')) {
       fail('world/threads/cross-era.yaml', `人物 ${ref} が characters/ に存在しません`);
     }
-  }
-}
-
-// ── 未訳の棚卸し ───────────────────────────────────────────────
-// サイトは 1言語 = 1 URL で、訳の無い欄は `/velum/en/` に日本語のまま出る。
-// 落とさないのは、生成した直後の季がまだ訳されていないのは正常だからである。
-// ただし黙って通すと、そのまま公開ページに残る——数えて見せる。
-
-{
-  const untranslated: string[] = [];
-
-  if (existsSync(seasonsRoot)) {
-    for (const dir of readdirSync(seasonsRoot, { withFileTypes: true })
-      .filter((entry) => entry.isDirectory())
-      .map((entry) => entry.name)
-      .sort()) {
-      for (const file of readdirSync(join(seasonsRoot, dir)).filter((f) => f.endsWith('.yaml'))) {
-        const raw = parse(readFileSync(join(seasonsRoot, dir, file), 'utf8'));
-        const result = SeasonPlanSchema.safeParse(raw);
-        if (!result.success) continue; // スキーマ違反は上で報告済み
-
-        const plan = result.data;
-        const rel = `world/seasons/${dir}/${file}`;
-        if (isUntranslated(plan.title)) untranslated.push(`${rel}: title`);
-        if (isUntranslated(plan.shape)) untranslated.push(`${rel}: shape`);
-        for (const episode of plan.episodes) {
-          if (isUntranslated(episode.leaves_open)) {
-            untranslated.push(`${rel}: 第${episode.number}話 leaves_open`);
-          }
-        }
-      }
-    }
-  }
-
-  if (untranslated.length) {
-    notes.push(
-      `英語ページに日本語のまま出る欄が ${untranslated.length} 件あります（docs/seasons.md §10）:`,
-      ...untranslated.map((line) => `  ${line}`),
-    );
   }
 }
 

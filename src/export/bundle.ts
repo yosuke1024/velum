@@ -147,6 +147,12 @@ function buildEntries() {
   const entries = [];
 
   for (const id of CHARACTER_IDS) {
+    // 信念の名前。events/ は状態ファイルの引き当てキー（日本語）で書かれており、
+    // profile.yaml だけが訳を持つ。読み手へ渡すのはここなので、ここで開く。
+    const beliefLabels = new Map(
+      readYaml(charPath(id, 'profile.yaml'), ProfileSchema).beliefs.map((b) => [b.key, b.en]),
+    );
+
     for (const path of listDatedFiles(charPath(id, 'entries'), '.json')) {
       const entry = DiaryEntrySchema.parse(JSON.parse(readFileSync(path, 'utf8')));
 
@@ -162,7 +168,21 @@ function buildEntries() {
           ja: readDiaryBody(id, entry.date, 'ja'),
           en: readDiaryBody(id, entry.date, 'en'),
         },
-        applied,
+        applied: applied && {
+          ...applied,
+          /**
+           * 信念の見出しだけ二言語で渡す。特性と数えているものの key は
+           * `self_doubt` のような固定語彙で、どちらの言語のページでもそのまま
+           * 読める——訳す対象ではないので素の文字列のままにしてある。
+           *
+           * events/ の側は書き換えない。あちらは状態ファイルのキーで書かれた
+           * 実験記録であり、束はその読み手向けの射影である。
+           */
+          beliefs: applied.beliefs.map((belief) => ({
+            ...belief,
+            key: { ja: belief.key, en: beliefLabels.get(belief.key) ?? belief.key },
+          })),
+        },
       });
     }
   }

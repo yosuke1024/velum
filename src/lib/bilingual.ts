@@ -9,10 +9,14 @@
  * 生成側の読み出しは `ja()` で日本語に落とす。英語が要るのはサイトへの書き出し
  * （`src/export/bundle.ts`）だけである。
  *
- * `canon.facts` だけは素の文字列も来る。日記の生成が1日1件まで追記する配列で、
- * 生成はまだ英語を出せないため。素の文字列は「未訳」であって「英語がある」では
- * ないので、`pick(x, 'en')` はそのとき日本語へ落ちる——英語ページに日本語が出る
- * ことになるが、無言で消すよりは見えているほうがよい。
+ * スキーマの側は、読み手へ渡る欄をすべて `{ ja, en }` 必須にしてある——日記も、
+ * 生成が追記する canon の事実も、季の計画も（`src/schemas/bilingual.ts`）。
+ * だから未訳の値がここへ来ることは、もう無い。
+ *
+ * それでも `MaybeBilingual` を受けるままにしてあるのは、**読む側の作法として**
+ * である。素の文字列は「未訳」であって「英語がある」ではないので、`pick(x, 'en')`
+ * は日本語へ落とす。書き出した束を読む相手（pixapps-landing）は古い版の束も
+ * 描けるほうがよく、その寛容さはこちら側の契約とは別のものである。
  */
 
 export type Bilingual = { ja: string; en: string };
@@ -80,7 +84,3 @@ export function both(value: MaybeBilingual): Bilingual {
   return { ja: pick(value, 'ja'), en: pick(value, 'en') };
 }
 
-/** 未訳のまま英語ページへ出る一文か。検証が数えるために使う。 */
-export function isUntranslated(value: MaybeBilingual): boolean {
-  return !isBilingual(value);
-}

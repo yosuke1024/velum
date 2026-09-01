@@ -20,8 +20,10 @@ import {
 } from './prompt.js';
 
 const SeasonResponseSchema = z.object({
-  title: z.string().min(1),
-  shape: z.string().min(1),
+  title_ja: z.string().min(1),
+  title_en: z.string().min(1),
+  shape_ja: z.string().min(1),
+  shape_en: z.string().min(1),
   episodes: z
     .array(
       z.object({
@@ -42,7 +44,8 @@ const SeasonResponseSchema = z.object({
           .min(1)
           .max(3),
         world_change: z.string().nullable(),
-        leaves_open: z.string().min(1),
+        leaves_open_ja: z.string().min(1),
+        leaves_open_en: z.string().min(1),
       }),
     )
     .length(EPISODES_PER_SEASON),
@@ -106,7 +109,7 @@ export async function planSeason(
       world_date: episode.world_date,
       events: episode.events,
       world_change: episode.world_change,
-      leaves_open: episode.leaves_open,
+      leaves_open: { ja: episode.leaves_open_ja, en: episode.leaves_open_en },
     }));
 
   assertDatesSane(episodes, context.clock);
@@ -117,8 +120,8 @@ export async function planSeason(
     protagonist,
     arc: context.arc.id,
     year_in_world: context.clock.year,
-    title: data.title,
-    shape: data.shape,
+    title: { ja: data.title_ja, en: data.title_en },
+    shape: { ja: data.shape_ja, en: data.shape_en },
     episodes,
     generation: {
       model,

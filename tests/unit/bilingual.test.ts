@@ -8,14 +8,17 @@ import {
   oneLine,
   oneLineForReaders,
   pick,
-  isUntranslated,
 } from '../../src/lib/bilingual.js';
 
 /**
  * 1言語 = 1 URL。`/velum/en/` は英語しか出さない場所で、`/velum/` は日本語しか
- * 出さない場所である。どの層が訳を必須にし、どの層があとから訳すのかを、ここで
- * 固定する。緩い層と厳しい層を取り違えると、片方は書けなくなり、もう片方は
- * 訳し忘れが公開ページへ積み上がる。
+ * 出さない場所である。**読み手へ渡る欄はすべて訳を必須にする**——ここでそれを
+ * 固定する。
+ *
+ * かつては「あとから訳す層」があった。未訳は英語ページに日本語のまま出るが、
+ * 無言で消すよりは見えているほうがよい、という判断である。掲載側に言語ガードが
+ * 入ってからは成り立たない——未訳の欄は見えている欠陥ではなく、その日の公開が
+ * 丸ごと止まる原因になる（2026-09-01 に実際そうなった）。
  */
 
 function episode(number: number, beat: (typeof BEATS)[number], overrides = {}) {
@@ -25,7 +28,10 @@ function episode(number: number, beat: (typeof BEATS)[number], overrides = {}) {
     world_date: { month: 7, day: 3 + number * 4 },
     events: [{ summary: `第${number}話の出来事`, where: '大鑑定院', who: [] }],
     world_change: null,
-    leaves_open: `第${number}話が残したもの`,
+    leaves_open: {
+      ja: `第${number}話が残したもの`,
+      en: `What episode ${number} leaves open`,
+    },
     ...overrides,
   };
 }
@@ -36,12 +42,15 @@ const plan = (overrides: Record<string, unknown> = {}) => ({
   protagonist: 'teo',
   arc: 'guilds-provisional-sigil',
   year_in_world: 375,
-  title: '座金の向き',
-  shape: '誰も見なかった座金から始まり、推薦状へ届かないまま終わる5話。',
+  title: { ja: '座金の向き', en: 'Which Way the Washer Faces' },
+  shape: {
+    ja: '誰も見なかった座金から始まり、推薦状へ届かないまま終わる5話。',
+    en: 'Five episodes that open on a washer nobody looked at and end short of the letter.',
+  },
   episodes: BEATS.map((beat, i) => episode(i + 1, beat)),
   generation: {
     model: 'gemini-3.5-flash',
-    prompt_version: 'season-v1',
+    prompt_version: 'season-v2',
     seed: 'season-1:guilds',
     generated_at: '2026-08-22T00:00:00.000Z',
   },
@@ -63,31 +72,31 @@ const entry = (overrides: Record<string, unknown> = {}) => ({
   ...overrides,
 });
 
-describe('季の計画 — あとから訳す層', () => {
-  it('生成した直後の日本語だけの計画を受ける', () => {
-    // 立てた季がその場で訳されていないのは正常。ここで落とすと計画が書けない。
+describe('季の計画 — 生成がその場で両方書く', () => {
+  it('二言語で揃っていれば通る', () => {
     expect(SeasonPlanSchema.safeParse(plan()).success).toBe(true);
   });
 
-  it('訳の付いた計画も受ける', () => {
-    const translated = plan({
-      title: { ja: '座金の向き', en: 'Which Way the Washer Faces' },
-      shape: { ja: '5話の形。', en: 'The shape of five episodes.' },
-      episodes: BEATS.map((beat, i) =>
-        episode(i + 1, beat, {
-          leaves_open: { ja: `第${i + 1}話が残したもの`, en: `What episode ${i + 1} leaves open` },
-        }),
-      ),
+  it('日本語だけの計画は受け付けない', () => {
+    // 時代ページはこの3つを両方の言語で出す。未訳のまま1つ commit すれば、
+    // その日の公開が掲載側の言語ガードで止まる。`npm run plan` が両方書く。
+    expect(SeasonPlanSchema.safeParse(plan({ title: '座金の向き' })).success).toBe(false);
+    expect(SeasonPlanSchema.safeParse(plan({ shape: '5話の形。' })).success).toBe(false);
+    const halfDone = plan({
+      episodes: BEATS.map((beat, i) => episode(i + 1, beat, { leaves_open: `第${i + 1}話` })),
     });
-    expect(SeasonPlanSchema.safeParse(translated).success).toBe(true);
+    expect(SeasonPlanSchema.safeParse(halfDone).success).toBe(false);
   });
 
-  it('未訳かどうかを見分けられる（validate が数えるため）', () => {
-    expect(isUntranslated('座金の向き')).toBe(true);
-    expect(isUntranslated({ ja: '座金の向き', en: 'Which Way the Washer Faces' })).toBe(false);
+  it('英語だけ空でも受け付けない', () => {
+    expect(
+      SeasonPlanSchema.safeParse(plan({ title: { ja: '座金の向き', en: '' } })).success,
+    ).toBe(false);
   });
 
-  it('未訳の欄は英語ページに日本語のまま出る（黙って消さない）', () => {
+  it('読み出しは素の文字列も受ける（書く側の契約と、読む側の作法は別）', () => {
+    // スキーマはもう素の文字列を通さない。いっぽう読み出しは通す——掲載側が
+    // 古い形の束を描けるのはこの寛容さによる。
     expect(pick('座金の向き', 'en')).toBe('座金の向き');
     expect(both('座金の向き')).toEqual({ ja: '座金の向き', en: '座金の向き' });
   });

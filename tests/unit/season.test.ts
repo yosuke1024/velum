@@ -14,7 +14,10 @@ function episode(number: number, beat: (typeof BEATS)[number]) {
     world_date: { month: 7, day: 3 + number * 4 },
     events: [{ summary: `第${number}話の出来事`, where: '大鑑定院', who: [] }],
     world_change: null,
-    leaves_open: `第${number}話が残したもの`,
+    leaves_open: {
+      ja: `第${number}話が残したもの`,
+      en: `What episode ${number} leaves open`,
+    },
   };
 }
 
@@ -25,12 +28,15 @@ function plan(overrides: Record<string, unknown> = {}) {
     protagonist: 'teo',
     arc: 'guilds-provisional-sigil',
     year_in_world: 375,
-    title: '座金の向き',
-    shape: '誰も見なかった座金から始まり、推薦状へ届かないまま終わる5話。',
+    title: { ja: '座金の向き', en: 'Which Way the Washer Faces' },
+    shape: {
+      ja: '誰も見なかった座金から始まり、推薦状へ届かないまま終わる5話。',
+      en: 'Five episodes that open on a washer nobody looked at and end short of the letter.',
+    },
     episodes: BEATS.map((beat, i) => episode(i + 1, beat)),
     generation: {
       model: 'gemini-3.5-flash',
-      prompt_version: 'season-v1',
+      prompt_version: 'season-v2',
       seed: 'season-1:guilds',
       generated_at: '2026-08-22T00:00:00.000Z',
     },
@@ -85,8 +91,13 @@ describe('季の計画', () => {
   });
 
   it('leaves_open は必須（次へ渡すものが要る）', () => {
-    const dangling = { ...episode(1, '発端'), leaves_open: '' };
+    const dangling = { ...episode(1, '発端'), leaves_open: { ja: '', en: '' } };
     expect(EpisodeSchema.safeParse(dangling).success).toBe(false);
+  });
+
+  it('leaves_open は英語も必須（時代ページが英語で出す）', () => {
+    const half = { ...episode(1, '発端'), leaves_open: { ja: '次へ渡すもの', en: '' } };
+    expect(EpisodeSchema.safeParse(half).success).toBe(false);
   });
 
   it('世界の側の変化がない日は null にできる', () => {
@@ -94,6 +105,11 @@ describe('季の計画', () => {
   });
 
   it('shape は必須（人間が読んで直すための要約）', () => {
-    expect(SeasonPlanSchema.safeParse(plan({ shape: '' })).success).toBe(false);
+    expect(SeasonPlanSchema.safeParse(plan({ shape: { ja: '', en: '' } })).success).toBe(false);
+  });
+
+  it('title / shape は素の文字列では受けない（英語ページに日本語が出る）', () => {
+    expect(SeasonPlanSchema.safeParse(plan({ title: '座金の向き' })).success).toBe(false);
+    expect(SeasonPlanSchema.safeParse(plan({ shape: '5話の形。' })).success).toBe(false);
   });
 });
