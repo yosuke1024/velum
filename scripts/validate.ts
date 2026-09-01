@@ -58,7 +58,7 @@ import {
   APPRAISAL_SIZE_LIMIT,
 } from '../src/schemas/appraisal.js';
 import { linearDay } from '../src/lib/calendar.js';
-import { ja, isUntranslated } from '../src/lib/bilingual.js';
+import { ja } from '../src/lib/bilingual.js';
 import { pngDimensions } from '../src/lib/png.js';
 import { secretLeaksIn } from '../src/lib/secrets.js';
 import {
@@ -770,45 +770,6 @@ if (threads) {
     if (!knownPeople.has(ref) && !ref.includes('-')) {
       fail('world/threads/cross-era.yaml', `人物 ${ref} が characters/ に存在しません`);
     }
-  }
-}
-
-// ── 未訳の棚卸し ───────────────────────────────────────────────
-// サイトは 1言語 = 1 URL で、訳の無い欄は `/velum/en/` に日本語のまま出る。
-// 落とさないのは、生成した直後の季がまだ訳されていないのは正常だからである。
-// ただし黙って通すと、そのまま公開ページに残る——数えて見せる。
-
-{
-  const untranslated: string[] = [];
-
-  if (existsSync(seasonsRoot)) {
-    for (const dir of readdirSync(seasonsRoot, { withFileTypes: true })
-      .filter((entry) => entry.isDirectory())
-      .map((entry) => entry.name)
-      .sort()) {
-      for (const file of readdirSync(join(seasonsRoot, dir)).filter((f) => f.endsWith('.yaml'))) {
-        const raw = parse(readFileSync(join(seasonsRoot, dir, file), 'utf8'));
-        const result = SeasonPlanSchema.safeParse(raw);
-        if (!result.success) continue; // スキーマ違反は上で報告済み
-
-        const plan = result.data;
-        const rel = `world/seasons/${dir}/${file}`;
-        if (isUntranslated(plan.title)) untranslated.push(`${rel}: title`);
-        if (isUntranslated(plan.shape)) untranslated.push(`${rel}: shape`);
-        for (const episode of plan.episodes) {
-          if (isUntranslated(episode.leaves_open)) {
-            untranslated.push(`${rel}: 第${episode.number}話 leaves_open`);
-          }
-        }
-      }
-    }
-  }
-
-  if (untranslated.length) {
-    notes.push(
-      `英語ページに日本語のまま出る欄が ${untranslated.length} 件あります（docs/seasons.md §10）:`,
-      ...untranslated.map((line) => `  ${line}`),
-    );
   }
 }
 

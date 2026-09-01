@@ -27,7 +27,10 @@ const episode = EpisodeSchema.parse({
     },
   ],
   world_change: null,
-  leaves_open: '座金の向きを誰も見ていない',
+  leaves_open: {
+    ja: '座金の向きを誰も見ていない',
+    en: 'Nobody has looked at which way the washer faces',
+  },
 });
 
 const day: Day = {

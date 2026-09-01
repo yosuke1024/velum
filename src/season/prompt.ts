@@ -3,12 +3,14 @@ import { jsonSchema } from '../lib/gemini.js';
 import { BEATS, EPISODES_PER_SEASON } from '../schemas/season.js';
 import { ja } from '../lib/bilingual.js';
 
-export const SEASON_PROMPT_VERSION = 'season-v1';
+export const SEASON_PROMPT_VERSION = 'season-v2';
 
 export const SEASON_RESPONSE_SCHEMA = jsonSchema.object(
   {
-    title: jsonSchema.string(),
-    shape: jsonSchema.string(),
+    title_ja: jsonSchema.string(),
+    title_en: jsonSchema.string(),
+    shape_ja: jsonSchema.string(),
+    shape_en: jsonSchema.string(),
     episodes: jsonSchema.array(
       jsonSchema.object(
         {
@@ -29,13 +31,22 @@ export const SEASON_RESPONSE_SCHEMA = jsonSchema.object(
             ),
           ),
           world_change: jsonSchema.nullable(jsonSchema.string()),
-          leaves_open: jsonSchema.string(),
+          leaves_open_ja: jsonSchema.string(),
+          leaves_open_en: jsonSchema.string(),
         },
-        ['number', 'beat', 'world_date', 'events', 'world_change', 'leaves_open'],
+        [
+          'number',
+          'beat',
+          'world_date',
+          'events',
+          'world_change',
+          'leaves_open_ja',
+          'leaves_open_en',
+        ],
       ),
     ),
   },
-  ['title', 'shape', 'episodes'],
+  ['title_ja', 'title_en', 'shape_ja', 'shape_en', 'episodes'],
 );
 
 export function buildSeasonSystemPrompt(): string {
@@ -71,6 +82,8 @@ ${BEATS.map((beat, i) => `第${i + 1}話「${beat}」`).join(' → ')}
 - 固定していない細部（通行人の名前、天候、品物）は自由に作ってよい。
 - leaves_open には、その話が次へ持ち越すものを書く。
   第5話の leaves_open は、次の季の第1話が拾える形にする。
+- **title / shape / leaves_open は日本語と英語の両方を書く。** サイトは
+  1言語 = 1 URL で、この3つは時代ページが両方の言語で出す欄である。
 
 ## 謎の扱い
 
@@ -191,6 +204,11 @@ export function buildSeasonUserPrompt(context: SeasonContext): string {
   );
   lines.push(
     'shape には、この5話でどういう形を描くのかを2〜3文で書いてください（人間が読んで直すための要約です）。',
+  );
+  lines.push(
+    'title / shape / leaves_open は日本語と英語の両方を書いてください' +
+      '（title_ja / title_en、shape_ja / shape_en、leaves_open_ja / leaves_open_en）。' +
+      'サイトの時代ページが両方の言語で出す3つです。',
   );
 
   return lines.join('\n');
