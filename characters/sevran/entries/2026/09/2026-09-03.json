@@ -1,0 +1,26 @@
+{
+  "date": "2026-09-03",
+  "era": "convergence",
+  "protagonist": "sevran",
+  "season": 1,
+  "episode": 1,
+  "beat": "発端",
+  "world_date": {
+    "year": 417,
+    "month": 7,
+    "day": 4
+  },
+  "title": {
+    "ja": "四時十七分の木柱と、消えた石壁",
+    "en": "The Wooden Post of Four-Seventeen and the Vanished Wall"
+  },
+  "quote": {
+    "ja": "この文字の彫り癖、肉筆のストローク、および字形の傾きを鑑定した結果、元同僚書記ミルテの筆跡と完全に一致した（確認）。",
+    "en": "Upon examining the carving habits, stroke tension, and slant of the characters, I found them to be an exact match to the handwriting of my former colleague, Myrte (Confirmed)."
+  },
+  "mood": {
+    "ja": "事実と筆跡の冷たい符合に、胸の奥が微かに軋む。",
+    "en": "A cold alignment of facts and handwriting causes a faint ache deep in my chest."
+  },
+  "rare_expression_used": false
+}

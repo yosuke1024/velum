@@ -1,2 +1,6 @@
 id: sevran
-memories: []
+memories:
+  - id: 2026-09-03-1
+    summary: アルヴィス広場に現れた木柱に、ミルテの筆跡で『四時十七分』と刻まれているのを確認したこと。
+    importance: 0.85
+    formed_on: 2026-09-03

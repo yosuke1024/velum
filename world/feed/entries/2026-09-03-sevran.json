@@ -1,0 +1,31 @@
+{
+  "id": "2026-09-03-sevran",
+  "date": "2026-09-03",
+  "character_id": "sevran",
+  "era": "convergence",
+  "season": 1,
+  "episode": 1,
+  "world_date": {
+    "year": 417,
+    "month": 7,
+    "day": 4
+  },
+  "title": {
+    "ja": "四時十七分の木柱と、消えた石壁",
+    "en": "The Wooden Post of Four-Seventeen and the Vanished Wall"
+  },
+  "excerpt": {
+    "ja": "この文字の彫り癖、肉筆のストローク、および字形の傾きを鑑定した結果、元同僚書記ミルテの筆跡と完全に一致した（確認）。",
+    "en": "Upon examining the carving habits, stroke tension, and slant of the characters, I found them to be an exact match to the handwriting of my former colleague, Myrte (Confirmed)."
+  },
+  "mood": {
+    "ja": "事実と筆跡の冷たい符合に、胸の奥が微かに軋む。",
+    "en": "A cold alignment of facts and handwriting causes a faint ache deep in my chest."
+  },
+  "path": "world/feed/entries/2026-09-03-sevran.json",
+  "schema_version": 1,
+  "body": {
+    "ja": "417年 星の月4日（秋）。収束暦184日。\n本日午前、アルヴィス広場の外縁において、前日まで存在しなかった木柱1本の出現を認めた（確認）。\n柱の表面には『四時十七分』と刻まれている。この文字の彫り癖、肉筆のストローク、および字形の傾きを鑑定した結果、元同僚書記ミルテの筆跡と完全に一致した（確認）。彼女がここにいた形跡なのか、あるいは別の何かが彼女の筆跡を模倣したのかは現時点で判定できない（要検証）。\nまた、同広場南側の石壁が完全に消失し、代わりに中世期のものと思われる古い木造建築の一部が壁から突き出るように出現した（確認）。混ざり込んだ部材には、かすかに古い膠と、雨に濡れた腐植土の匂い——すなわち、この地のものではない次元の匂いが混ざっている。\n『417年』という現在の年号と、大時計の止まった『四時十七分』、そして柱に刻まれた数字。これらの符合が単なる偶然であるか否かについては、さらなる観測を要する（要検証）。\nインクの残量は減少傾向にあるが、記録の継続に支障はない。\n——以上を、本日の記録とする。記録院書記 セヴラン",
+    "en": "Year 417, Month of Star, Day 4 (Autumn). Convergence Calendar Day 184.\nThis morning, I confirmed the sudden appearance of a wooden post on the outer edge of Alvis Square, which did not exist yesterday (Confirmed).\nCarved into its surface were the words 'Four Seventeen'. Upon examining the carving habits, stroke tension, and slant of the characters, I found them to be an exact match to the handwriting of my former colleague, Myrte (Confirmed). Whether this is a trace of her actual presence, or if something else has mimicked her handwriting, remains undetermined at this time (To be verified).\nFurthermore, the stone wall on the south side of the square has completely vanished, replaced by a section of an old wooden structure protruding from the gap (Confirmed). The scent clinging to these displaced materials carries a faint trace of old glue and rain-soaked humus—a dimensional odor not native to this area.\nThe correlation between our current year '417', the time '4:17' when the great clock stopped, and the numbers carved into the post requires further observation to determine if it is mere coincidence (To be verified).\nAlthough my ink supply is gradually diminishing, it presents no immediate obstacle to my work.\n——The above is today's record. Severin, Scribe of the Archives."
+  }
+}

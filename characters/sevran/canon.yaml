@@ -1,5 +1,4 @@
 id: sevran
-
 formative_events:
   - id: the-first-day
     fact:
@@ -25,5 +24,4 @@ formative_events:
       en: |
         Hum settled into the ruin. He tried to drive it out, then noticed that every night it recites
         one more book from the lost archive — and decided to live alongside it.
-
 facts: []
