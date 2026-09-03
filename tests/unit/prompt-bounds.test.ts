@@ -1,5 +1,10 @@
 import { describe, it, expect } from 'vitest';
-import { PATCH_LIMITS, MEMORY_IMPORTANCE, TEXT_LIMITS } from '../../src/schemas/limits.js';
+import {
+  PATCH_LIMITS,
+  MEMORY_IMPORTANCE,
+  RARE_EXPRESSION,
+  TEXT_LIMITS,
+} from '../../src/schemas/limits.js';
 import { boundsLines, otherFatalRules, buildDiarySystemPrompt } from '../../src/diary/prompt.js';
 import { loadCharacter } from '../../src/diary/context.js';
 import type { Day } from '../../src/diary/context.js';
@@ -50,6 +55,14 @@ describe('プロンプトは、ゲートが落とせる上限をすべて述べ�
     const text = otherFatalRules().join('\n');
     expect(text).toContain(String(TEXT_LIMITS.diaryBodyMinJa));
     expect(text).toContain(String(TEXT_LIMITS.diaryBodyMaxJa));
+  });
+
+  it('定型の崩れの頻度（クールダウン）が、破棄として書かれている', () => {
+    // ゲートが落とせるのにプロンプトが伝えていない上限は罠になる（§5）。
+    const text = otherFatalRules().join('\n');
+    expect(text).toContain(String(RARE_EXPRESSION.cooldownEntries));
+    expect(text).toMatch(/rare_expression_used/);
+    expect(text).toMatch(/破棄/);
   });
 
   it('破棄される違反と、切り詰められる違反が区別されている', () => {

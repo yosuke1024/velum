@@ -167,6 +167,18 @@ feed は日次ワークフローが自動で書き出します。World Appraisal
 **季末にコンパイルし、人が読んでから配ります**。肖像はシートが変わったときだけ
 手で作り直します。詳細は [docs/feed.md](docs/feed.md)。
 
+### モデル
+
+生成は Gemini で、既定は `gemini-3.5-flash`（`src/lib/gemini.ts`）。環境変数で二段階に上書きできる。
+
+| 変数 | 効く範囲 | 用途 |
+|---|---|---|
+| `VELUM_MODEL` | 全段（季の計画・日記・Snapshot・Appraisal） | 既定モデルの差し替え |
+| `VELUM_DIARY_MODEL` | **日記の段だけ** | 日記は製品そのものなので、季の計画より上位のモデルへ振る。`daily.yml` は repo variable `VELUM_DIARY_MODEL` から渡す。未設定なら `VELUM_MODEL` → 既定 |
+
+どのモデルで書かれたかは `characters/<id>/events/<日付>.json` の `generation.model` に残るので、切り替えた日が
+あとから分かる。日記の質を比べるときは、この列で切ってから読むこと。
+
 ### キャラクターシート
 
 5人のビジュアルは `profile.yaml` の `visual` が正です。**シートに焼き込まれた文字ではありません。**

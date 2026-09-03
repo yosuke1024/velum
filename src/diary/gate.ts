@@ -1,6 +1,7 @@
 import {
   PATCH_LIMITS,
   MEMORY_IMPORTANCE,
+  RARE_EXPRESSION,
   TEXT_LIMITS,
   UNIT_RANGE,
 } from '../schemas/limits.js';
@@ -31,9 +32,22 @@ export function gate(
   state: CurrentState,
   relationships: Relationships,
   selfId: string,
+  options: {
+    /** 今日、定型を崩してよいか。プロンプトに書いた値と同じものを渡す。省略時は許可。 */
+    rareExpressionAllowed?: boolean;
+  } = {},
 ): GateResult {
   const violations: string[] = [];
   const truncated: string[] = [];
+
+  // ── 定型の崩れ ──────────────────────────────────────────
+  // 頻発すると価値が死ぬ。許されない日の崩れは、切り詰めではなく破棄——
+  // rare_expression_used は entries/ とサイトへ届く値だからである。
+  if (response.rare_expression_used && options.rareExpressionAllowed === false) {
+    violations.push(
+      `定型の崩れ（rare_expression_used）が、直近 ${RARE_EXPRESSION.cooldownEntries} 本の日記に崩れがあるのに使われている`,
+    );
+  }
 
   // ── 関係 ────────────────────────────────────────────────
   const known = new Set(relationships.people.map((p) => p.id));

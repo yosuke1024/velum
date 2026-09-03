@@ -168,6 +168,44 @@ describe('日記のプロンプト', () => {
   it('レア表現をめったに使わないよう伝える', () => {
     expect(buildDiarySystemPrompt(context)).toMatch(/めったにない/);
   });
+
+  // diary-v3（2026-09-03）。profile.yaml にあってプロンプトへ届いていなかったもの。
+  it('崩れ方そのもの（rare_expression）を渡す', () => {
+    const prompt = buildDiarySystemPrompt(context);
+    expect(prompt).toContain(character.profile.rare_expression.trim().slice(0, 10));
+    expect(prompt).toMatch(/定型が崩れる瞬間/);
+  });
+
+  it('笑いの仕組みを渡す', () => {
+    expect(buildDiarySystemPrompt(context)).toContain(
+      ja(character.profile.appraisal.humor).slice(0, 10),
+    );
+  });
+
+  it('今日崩してよいかを明示し、ゲートと同じ値を読む', () => {
+    // 省略時は許可。履歴を見ていない呼び出し（テスト・dry-run）で崩れを禁じない。
+    expect(buildDiarySystemPrompt(context)).toMatch(/崩してもよい日/);
+    expect(buildDiarySystemPrompt({ ...context, rareExpressionAllowed: true })).toMatch(/崩してもよい日/);
+    const cooling = buildDiarySystemPrompt({ ...context, rareExpressionAllowed: false });
+    expect(cooling).toMatch(/今日は崩さない/);
+    expect(cooling).not.toMatch(/崩してもよい日/);
+  });
+
+  it('感情の名指しを禁じ、代わりに何で見せるかを言う', () => {
+    // 9/1 テオ「胸の奥が騒ぐ」「動揺は収まらない」の反省。
+    const prompt = buildDiarySystemPrompt(context);
+    expect(prompt).toMatch(/感情を名指しする文は書かない/);
+    expect(prompt).toMatch(/否定/);
+    expect(prompt).toMatch(/数字、物/);
+  });
+
+  it('形の自由を許す（段落・一行段落・見え消し線・様式）', () => {
+    // 9/2 リコが一段落の塊で出た反省。見本は短い段落と改行で笑いを落としている。
+    const prompt = buildDiarySystemPrompt(context);
+    expect(prompt).toMatch(/形は自由である/);
+    expect(prompt).toMatch(/段落を分けてよい/);
+    expect(prompt).toMatch(/見え消し線/);
+  });
 });
 
 describe('数字と結論の扱い', () => {

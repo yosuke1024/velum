@@ -1,6 +1,7 @@
 import {
   PATCH_LIMITS,
   MEMORY_IMPORTANCE,
+  RARE_EXPRESSION,
   TEXT_LIMITS,
   VIOLATION_POLICY,
 } from '../schemas/limits.js';
@@ -9,7 +10,22 @@ import type { DiaryContext } from './context.js';
 import { visibleRelationships } from './context.js';
 import { ja } from '../lib/bilingual.js';
 
-export const DIARY_PROMPT_VERSION = 'diary-v2';
+/**
+ * diary-v3（2026-09-03）: 三つの変更。いずれも profile.yaml に書かれていながら
+ * プロンプトへ届いていなかったもの、あるいは実際の生成物（9/1 テオ・9/2 リコ）で
+ * 崩れていた規律に対応する。
+ *
+ * 1. `appraisal.humor` と `rare_expression` を渡す。応答スキーマは以前から
+ *    rare_expression_used を要求していたが、崩れ方そのものを本人に教えていなかった
+ *    ので、常に false だった。頻度は RARE_EXPRESSION.cooldownEntries で制御し、
+ *    その日の可否をプロンプトが明示、ゲートが同じ値で判定する。
+ * 2. 形の自由。段落分け・一行段落・見え消し線・様式を許す。リコの日記が一段落の塊で
+ *    出たのは、許していなかったからである。
+ * 3. 感情の名指しを禁じる。「胸の奥が騒ぐ」「動揺は収まらない」（テオ 9/1）は、
+ *    「感情を説明せず細部で見せる」という指示を守っていない。禁じ手を具体的に書き、
+ *    代わりに何で見せるか（否定・数字・物・手の動き）を言う。
+ */
+export const DIARY_PROMPT_VERSION = 'diary-v3';
 
 /**
  * ゲートが落とせる上限は、すべてここでプロンプトに書く。
@@ -80,6 +96,7 @@ export function otherFatalRules(): string[] {
     `日記の本文（日本語）は ${TEXT_LIMITS.diaryBodyMinJa}〜${TEXT_LIMITS.diaryBodyMaxJa} 文字（この日は破棄される）`,
     `タイトル（日本語）は ${TEXT_LIMITS.titleMin}〜${TEXT_LIMITS.titleMax} 文字（この日は破棄される）`,
     `タイトル（英語）は ${TEXT_LIMITS.titleMin}〜${TEXT_LIMITS.titleMaxEn} 文字（この日は破棄される）`,
+    `定型の崩れ（rare_expression_used: true）は、直近 ${RARE_EXPRESSION.cooldownEntries} 本の日記に崩れがないときにだけ許される。許されない日に true を返すと、この日は破棄される`,
   ];
 }
 
@@ -195,6 +212,7 @@ export function buildDiarySystemPrompt(context: DiaryContext): string {
     `絶対に言わない言葉: 「${ja(profile.voice.never_says)}」。表記を変えても言わない。この日記の中でも言わない。`,
   );
   lines.push(`締め方: ${ja(profile.voice.closing)}`);
+  lines.push(`笑いの仕組み: ${ja(profile.appraisal.humor)}`);
   lines.push('');
 
   lines.push('## 物の見方');
@@ -223,16 +241,38 @@ export function buildDiarySystemPrompt(context: DiaryContext): string {
   lines.push('- 出来事の要約ではなく、あなたがそれをどう受け取ったかを書く。');
   lines.push('- 毎日が転機である必要はない。何も起きない日は、何も起きないまま書く。');
   lines.push('- 過去の出来事を毎回持ち出さない。今日の話を書く。');
-  lines.push('- 感情を説明せず、細部で見せる。');
+  lines.push(
+    '- 感情を説明せず、細部で見せる。**「胸が騒ぐ」「動揺が収まらない」「不安がよぎる」「興奮を抑えきれない」のように、感情を名指しする文は書かない。** 否定（「別に悔しくはない」）、数字、物、手の動きで見せる。',
+  );
+  lines.push(
+    '- **形は自由である。** 段落を分けてよい。一行だけの段落があってよい。箇条書き、見え消し線（~~未確認~~）、様式（鑑定書・記録・数え上げ）を、あなたの定型がそう求めるなら使う。一段落の塊で書く必要はない。',
+  );
+  lines.push('- 前の段落で見せたことを、次の段落で説明し直さない。');
   lines.push(
     '- **今日見たことだけを書く。推測を結論として書かない。**「証明している」「明らかになった」「〜に違いない」と書き切らない。疑いは疑いのまま抱えて眠る。',
   );
   lines.push(
     '- **渡された数字は、そのまま使う。**「今日の暦」に書かれた日数や夜の数、「数えているもの」の数は、自分で数え直さない。あなたはその数を覚えている人物である。',
   );
+  lines.push('');
+
+  lines.push('## 定型が崩れる瞬間');
   lines.push(
-    `- あなたの定型（${ja(profile.voice.tic)}）が崩れる日は、めったにない。今日がその日でないなら崩さない。`,
+    `あなたの定型（${ja(profile.voice.tic)}）が崩れる日は、めったにない。崩れるときは、こう出る:`,
   );
+  lines.push(profile.rare_expression.trim());
+  lines.push(
+    '崩れるのは感情表現ではなく、定型そのものである。締めが欠ける、注記が付かない、値段が言えない——そういう形で出る。',
+  );
+  if (context.rareExpressionAllowed === false) {
+    lines.push(
+      '**今日は崩さない。** 直近の日記で崩れている。rare_expression_used は false にする。',
+    );
+  } else {
+    lines.push(
+      '今日は崩してもよい日である。ただし、今日の出来事がそれを求めているときだけ。求めていないなら崩さない。崩したなら rare_expression_used を true にする。',
+    );
+  }
   lines.push('');
 
   lines.push('## 状態の更新について');

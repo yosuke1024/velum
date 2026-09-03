@@ -15,6 +15,7 @@ import { charPath, seasonPath, entryPath } from '../src/lib/paths.js';
 import { readYaml, exists, listDatedFiles } from '../src/lib/storage.js';
 import { calendarLineFor, formatWorldDate } from '../src/lib/calendar.js';
 import { SeasonPlanSchema, DAYS_PER_SEASON, EPISODES_PER_SEASON } from '../src/schemas/season.js';
+import { RARE_EXPRESSION } from '../src/schemas/limits.js';
 import { ERA_IDS } from '../src/schemas/world.js';
 import { generateDiary } from '../src/diary/generate.js';
 import type { Day } from '../src/diary/context.js';
@@ -25,22 +26,39 @@ const dateArg = args.find((a) => /^\d{4}-\d{2}-\d{2}$/.test(a));
 const date = dateArg ?? today();
 const dryRun = args.includes('--dry-run');
 
-/**
- * 直近の日記の要約。全文ではなく要約だけを渡す。
- * 日記を再入力して人格を自己更新させると、自己模倣と反復が起きる。
- */
-function recentSummaries(id: string, limit = 4): string[] {
-  const files = listDatedFiles(charPath(id, 'entries'), '.json');
+/** 要約として渡す直近の日記の本数。 */
+const SUMMARY_LIMIT = 4;
 
-  return files.slice(-limit).map((path) => {
-    const entry = JSON.parse(readFileSync(path, 'utf8')) as {
-      date: string;
-      title: MaybeBilingual;
-      quote: MaybeBilingual;
-    };
+/**
+ * 直近の日記から、プロンプトへ渡すものを二つ取り出す。
+ *
+ * - 要約。全文ではなく要約だけを渡す。日記を再入力して人格を自己更新させると、
+ *   自己模倣と反復が起きる。
+ * - 定型を崩してよいか。直近 RARE_EXPRESSION.cooldownEntries 本に崩れがあれば、
+ *   今日は崩せない（docs/diary.md §8）。プロンプトとゲートが同じ値を読む。
+ */
+function recentEntries(id: string): { summaries: string[]; rareExpressionAllowed: boolean } {
+  const files = listDatedFiles(charPath(id, 'entries'), '.json');
+  const window = Math.max(SUMMARY_LIMIT, RARE_EXPRESSION.cooldownEntries);
+  const entries = files.slice(-window).map(
+    (path) =>
+      JSON.parse(readFileSync(path, 'utf8')) as {
+        date: string;
+        title: MaybeBilingual;
+        quote: MaybeBilingual;
+        rare_expression_used?: boolean;
+      },
+  );
+
+  return {
     // プロンプトへ戻す文字列。二言語で持っていても、読むのは日本語のほう。
-    return `${entry.date}「${ja(entry.title)}」— ${ja(entry.quote)}`;
-  });
+    summaries: entries
+      .slice(-SUMMARY_LIMIT)
+      .map((entry) => `${entry.date}「${ja(entry.title)}」— ${ja(entry.quote)}`),
+    rareExpressionAllowed: !entries
+      .slice(-RARE_EXPRESSION.cooldownEntries)
+      .some((entry) => entry.rare_expression_used === true),
+  };
 }
 
 /** 最後の1周（5日）に入ったら知らせる。5人が1回ずつ書くあいだ、毎朝出る。 */
@@ -136,7 +154,13 @@ async function main(): Promise<void> {
     worldYear: plan.year_in_world,
     calendarLine: calendarLineFor(turn.era, plan.year_in_world, episode.world_date),
   };
-  const outcome = await generateDiary(day, recentSummaries(turn.protagonist));
+  const recent = recentEntries(turn.protagonist);
+  if (!recent.rareExpressionAllowed) {
+    console.log('  直近の日記に定型の崩れがあるため、今日は崩さない。');
+  }
+  const outcome = await generateDiary(day, recent.summaries, {
+    rareExpressionAllowed: recent.rareExpressionAllowed,
+  });
 
   if (!outcome.ok) {
     console.error('\n✗ 構造ゲートの違反により、この日を破棄しました:');
