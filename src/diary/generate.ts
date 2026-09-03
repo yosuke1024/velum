@@ -26,11 +26,29 @@ function frontMatter(fields: Record<string, string | number>): string {
   return ['---', ...lines, '---', ''].join('\n');
 }
 
+/**
+ * 日記の段だけに使うモデル。
+ *
+ * 日記は製品そのものであり、季の計画（出来事の設計）とは求める質が違う。
+ * VELUM_DIARY_MODEL が設定されていればそれを使い、無ければ generateJson の既定
+ * （VELUM_MODEL → DEFAULT_MODEL）に落ちる。daily.yml は repo variable から渡すので、
+ * 未設定なら空文字が来る——空は「未設定」として扱う。
+ */
+export function diaryModel(): string | undefined {
+  const model = process.env.VELUM_DIARY_MODEL?.trim();
+  return model ? model : undefined;
+}
+
 export async function generateDiary(
   day: Day,
   recentSummaries: string[] = [],
+  options: {
+    /** 直近の日記に定型の崩れがあれば false。省略時は許可。 */
+    rareExpressionAllowed?: boolean;
+  } = {},
 ): Promise<DiaryOutcome> {
-  const context = buildDiaryContext(day, recentSummaries);
+  const rareExpressionAllowed = options.rareExpressionAllowed ?? true;
+  const context = buildDiaryContext(day, recentSummaries, rareExpressionAllowed);
   const { profile } = context;
   const { turn } = day;
 
@@ -39,11 +57,15 @@ export async function generateDiary(
       system: buildDiarySystemPrompt(context),
       user: buildDiaryUserPrompt(context),
       responseSchema: DIARY_RESPONSE_SCHEMA,
+      model: diaryModel(),
     },
     DiaryResponseSchema,
   );
 
-  const verdict = gate(data, context.state, context.relationships, profile.id);
+  // プロンプトに書いた可否と同じ値で判定する。ずれれば、指示に従った日を失う。
+  const verdict = gate(data, context.state, context.relationships, profile.id, {
+    rareExpressionAllowed,
+  });
 
   if (!verdict.ok) {
     // 欠けた日は隠さない。状態ファイルにも日記にも何も書かず、失敗だけを残す。

@@ -49,6 +49,10 @@ jobs:
         id: generate
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          # 日記の段だけ上位モデルへ振る（任意、repo variable）。日記は製品そのもので、
+          # 季の計画とは求める質が違う。未設定なら VELUM_MODEL → gemini-3.5-flash。
+          # 使ったモデルは characters/<id>/events/ の generation.model に残る。
+          VELUM_DIARY_MODEL: ${{ vars.VELUM_DIARY_MODEL }}
         run: npm run day -- ${{ inputs.date }}
 
       # 季の最終日（25日ごと）だけ、Persona Snapshot をコンパイルして配る。
