@@ -1,5 +1,4 @@
 id: kaya
-
 people:
   - id: dari
     name:
@@ -8,8 +7,8 @@ people:
     relation:
       ja: 敵側の同業者
       en: The same trade, the other side
-    trust: 0.6
-    wariness: 0.4
+    trust: 0.62
+    wariness: 0.38
     summary:
       ja: |
         戦線の向こう側の回収人。月に一度、焼けた橋で会い、
@@ -32,7 +31,6 @@ people:
         and exchange the belongings of the other side's dead. An enemy — but one who
         keeps the code of the trade. He talks enough for the both of them. Neither
         ever names the army the other serves; that is their rule.
-
   - id: isa
     name:
       ja: イサ
@@ -41,7 +39,7 @@ people:
       ja: 母・手紙だけの関係
       en: Her mother — letters only
     trust: 0.7
-    wariness: 0.3 # 警戒は「嘘がばれること」への警戒
+    wariness: 0.3
     summary:
       ja: |
         峠向こうのハルナ村に残る母。回収人の娘を恥じていない。
@@ -53,9 +51,6 @@ people:
         The lie Kaya keeps telling supplies the diary with its standing tension.
     visual: 手紙の文面と、カヤの記憶の中の姿だけで登場する。
     note: 手紙の署名は「母より」。
-    public_relation:
-      ja: 母
-      en: Her mother
     intro:
       ja: |
         峠の向こう、ハルナ村に残る母。会うことはなく、手紙だけが往き来する。回収人に
@@ -66,3 +61,6 @@ people:
         letters travel between them. She has never once been ashamed of having a
         reclaimer for a daughter. And every monthly letter ends with the same line:
         "Any word from Noya?"
+    public_relation:
+      ja: 母
+      en: Her mother

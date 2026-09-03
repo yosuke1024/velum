@@ -1,0 +1,49 @@
+{
+  "date": "2026-09-04",
+  "protagonist": "kaya",
+  "applied": {
+    "mood": [
+      "静かな疲労と義務感",
+      "冷たい風と、真鍮の指輪の重み"
+    ],
+    "immediate_goal": [
+      "雪が来る前に峠向こうへ三件届ける",
+      "峠が雪で閉ざされる前に、ダリから受け取った二つの遺品を照合し届ける"
+    ],
+    "doubt": [
+      "母に弟のことを話すか",
+      "弟の軍服に刻まれた敵軍の印と、母への終わらない嘘"
+    ],
+    "relationships": [
+      {
+        "id": "dari",
+        "trust": [
+          0.6,
+          0.62
+        ],
+        "wariness": [
+          0.4,
+          0.38
+        ],
+        "note": "相変わらず寡黙だが、手渡された遺品の確かな重みから、同業者としての規律を再確認した。"
+      }
+    ],
+    "traits": [],
+    "beliefs": [],
+    "counters": [],
+    "concerns_added": [
+      "峠を閉ざす雪が降るまでのわずかな猶予"
+    ],
+    "thoughts_added": [
+      "真鍮の指輪の傷跡は、彼が自ら消そうとした生きた証なのだろうか"
+    ],
+    "memory_promoted": "焼けた橋でダリから歪んだ真鍮の指輪と刻銘のある水筒を受け取り、詰所の記録簿で照合を始めたこと。",
+    "canon_added": null
+  },
+  "truncated": [],
+  "generation": {
+    "model": "gemini-3.5-flash",
+    "prompt_version": "diary-v3",
+    "generated_at": "2026-09-03T23:06:58.847Z"
+  }
+}

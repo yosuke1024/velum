@@ -1,7 +1,33 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-02T23:04:08.896Z",
+  "generated_at": "2026-09-03T23:06:59.622Z",
   "entries": [
+    {
+      "id": "2026-09-04-kaya",
+      "date": "2026-09-04",
+      "character_id": "kaya",
+      "era": "fracture",
+      "season": 1,
+      "episode": 1,
+      "world_date": {
+        "year": 656,
+        "month": 7,
+        "day": 4
+      },
+      "title": {
+        "ja": "焼けた橋の灰と、二つの金属",
+        "en": "Ashes on the Burnt Bridge and Two Pieces of Metal"
+      },
+      "excerpt": {
+        "ja": "ノヤ。その名を、指先が通り過ぎる。",
+        "en": "Noya. My finger passes over the name."
+      },
+      "mood": {
+        "ja": "冷たい風と、真鍮の指輪の重み",
+        "en": "The cold wind and the weight of a brass ring"
+      },
+      "path": "world/feed/entries/2026-09-04-kaya.json"
+    },
     {
       "id": "2026-09-03-sevran",
       "date": "2026-09-03",

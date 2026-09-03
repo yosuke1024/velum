@@ -1,34 +1,27 @@
 id: kaya
-updated_at: null
-
-mood: 静かな疲労と義務感
-immediate_goal: 雪が来る前に峠向こうへ三件届ける
-doubt: 母に弟のことを話すか
-
+updated_at: 2026-09-04
+mood: 冷たい風と、真鍮の指輪の重み
+immediate_goal: 峠が雪で閉ざされる前に、ダリから受け取った二つの遺品を照合し届ける
+doubt: 弟の軍服に刻まれた敵軍の印と、母への終わらない嘘
 concerns:
   - 峠が雪で閉じるまでの日数
   - 袋の底の、届け先のない遺品
-
+  - 峠を閉ざす雪が降るまでのわずかな猶予
 unresolved_thoughts:
   - なぜ弟は敵軍の軍装で死んでいたのか
-
-# 数えているもの。夜に読み上げる名前の数。
-# プロンプトへ渡さないと、日記のたびに数が変わってしまう。
-counters:
-  delivered: 42
-
+  - 真鍮の指輪の傷跡は、彼が自ら消そうとした生きた証なのだろうか
 traits:
   composure: 0.8
   tenderness: 0.75
   stubbornness: 0.6
   self_denial: 0.7
-
 beliefs:
   預かったものは必ず届く場所がある: 0.8
   嘘はいつか自分に返る: 0.65
   新しい物には人生が通っていない: 0.7
-
 habits:
   - 夜に名前を読み上げる
   - 外套の破れを必ず繕う
   - 届ける前に手を洗う
+counters:
+  delivered: 42

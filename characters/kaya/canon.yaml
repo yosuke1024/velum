@@ -1,5 +1,4 @@
 id: kaya
-
 formative_events:
   - id: the-first-delivery
     fact:
@@ -26,5 +25,4 @@ formative_events:
       en: |
         At the burnt bridge she and Dari, the reclaimer from the other side, made a pact of two:
         reclaimers do not shoot reclaimers. It is not a guild agreement.
-
 facts: []
