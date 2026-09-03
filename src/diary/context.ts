@@ -38,6 +38,12 @@ export type DiaryContext = {
   day: Day;
   /** 直近の日記の要約。全文は渡さない。 */
   recentSummaries: string[];
+  /**
+   * 今日、定型を崩してよいか。直近 RARE_EXPRESSION.cooldownEntries 本の日記に崩れが
+   * なければ true。省略時は true（呼び出し側が履歴を見ていないとき）。
+   * プロンプトが可否を明示し、ゲートが同じ値で判定する——両者は必ず同じ値を読む。
+   */
+  rareExpressionAllowed?: boolean;
 };
 
 export function loadCharacter(id: string): {
@@ -62,11 +68,13 @@ export function loadCharacter(id: string): {
 export function buildDiaryContext(
   day: Day,
   recentSummaries: string[] = [],
+  rareExpressionAllowed = true,
 ): DiaryContext {
   return {
     ...loadCharacter(day.turn.protagonist),
     day,
     recentSummaries,
+    rareExpressionAllowed,
   };
 }
 

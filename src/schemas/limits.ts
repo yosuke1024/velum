@@ -65,8 +65,21 @@ export const VIOLATION_POLICY = {
   counterDelta: 'fatal',
   counterUnknown: 'fatal',
   diaryTooShort: 'fatal',
+  rareExpressionOnCooldown: 'fatal',
   newConcerns: 'truncate',
   newUnresolvedThoughts: 'truncate',
+} as const;
+
+/**
+ * 定型が崩れる瞬間（profile.yaml の rare_expression）の頻度。
+ *
+ * 崩れは成長の節目として機能するが、頻発すると価値が死ぬ（docs/diary.md §8）。
+ * 直近 cooldownEntries 本の日記に崩れがあれば、今日は崩せない。プロンプトは
+ * その日の可否を明示し、ゲートは許されない日の true をその日ごと破棄する
+ * ——rare_expression_used は entries/ とサイトへ届くので、切り詰めではなく破棄である。
+ */
+export const RARE_EXPRESSION = {
+  cooldownEntries: 4,
 } as const;
 
 /** 日記本文の下限・上限（文字数） */

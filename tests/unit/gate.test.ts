@@ -331,3 +331,46 @@ describe('数えているもの', () => {
     });
   });
 });
+
+describe('定型の崩れの頻度', () => {
+  // docs/diary.md §8: 頻発すると価値が死ぬ。直近に崩れがあれば今日は崩せない。
+  it('許された日の崩れは通す', () => {
+    const result = gate(
+      response({ rare_expression_used: true }),
+      character.state,
+      character.relationships,
+      'teo',
+      { rareExpressionAllowed: true },
+    );
+    expect(result.ok).toBe(true);
+  });
+
+  it('許されない日の崩れは、切り詰めではなく破棄する', () => {
+    // rare_expression_used は entries/ とサイトへ届く値なので、到達先の規律で破棄。
+    const result = gate(
+      response({ rare_expression_used: true }),
+      character.state,
+      character.relationships,
+      'teo',
+      { rareExpressionAllowed: false },
+    );
+    expect(result.ok).toBe(false);
+    if (result.ok) return;
+    expect(result.violations.join('\n')).toMatch(/rare_expression_used/);
+  });
+
+  it('許されない日でも、崩さなければ通す', () => {
+    const result = gate(
+      response({ rare_expression_used: false }),
+      character.state,
+      character.relationships,
+      'teo',
+      { rareExpressionAllowed: false },
+    );
+    expect(result.ok).toBe(true);
+  });
+
+  it('可否を渡さなければ許可として扱う', () => {
+    expect(run(response({ rare_expression_used: true })).ok).toBe(true);
+  });
+});
