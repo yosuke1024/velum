@@ -1,5 +1,4 @@
 id: uta
-
 people:
   - id: gald
     name:
@@ -9,7 +8,7 @@ people:
       ja: 氏族の長
       en: Chieftain of the clan
     trust: 0.3
-    wariness: 0.7
+    wariness: 0.75
     summary:
       ja: |
         声を信じない現実主義の長。
@@ -30,7 +29,6 @@ people:
         Chieftain of the Sana. A hard-headed realist who puts no faith in the voices of
         things, and is slow to let Uta's hearings steer the clan. They are still
         quarrelling over the singing stone he confiscated and never gave back.
-
   - id: ren
     name:
       ja: レン

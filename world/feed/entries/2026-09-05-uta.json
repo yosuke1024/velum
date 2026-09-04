@@ -1,0 +1,31 @@
+{
+  "id": "2026-09-05-uta",
+  "date": "2026-09-05",
+  "character_id": "uta",
+  "era": "primordial",
+  "season": 1,
+  "episode": 1,
+  "world_date": {
+    "year": null,
+    "month": 7,
+    "day": 5
+  },
+  "title": {
+    "ja": "閉ざされた石の沈黙",
+    "en": "The Silence of the Choked Stone"
+  },
+  "excerpt": {
+    "ja": "声は言っていない。あの石は、ただ黙っていた。ウタが、その場をしのぐために適当な言葉を並べたのだ。",
+    "en": "The voice said nothing. That stone was merely silent. Uta had only spun convenient words to survive the moment."
+  },
+  "mood": {
+    "ja": "指先がこわばり、掌に骨櫛の尖った角が深く食い込んでいる。天幕の冷気が体を離れない。",
+    "en": "With stiffened fingertips, the sharp edges of the bone comb bite deep into the palm. The chill of the tent refuses to leave."
+  },
+  "path": "world/feed/entries/2026-09-05-uta.json",
+  "schema_version": 1,
+  "body": {
+    "ja": "秋、星の月。\n星祭りまであと十の夜。\n\n天幕の中に、氏族の視線が満ちていた。\nウタはガルドの前に立ち、継承の儀を求めた。\nガルドは棚の奥から、あの「歌う石」を取り出した。磨かれ、飾り立てられ、人の手で角を削られた、あの滑らかな石だ。\n「聴き手なら、この中にある風の歌を今ここで唱えてみせよ」とガルドは言った。\n\nウタは石に触れた。\nあまりに滑らかで、あまりに冷たい。人の手が入りすぎて、声が塞がれている。\n石からは、何の羽ばたきも、何の震えも伝わってこなかった。\n\n「石は、余所者の目を嫌い、今はその殻を閉じている。静かに眠らせよ、と声が言っている」\nウタは、天幕に集まった者たちに向かって、そう厳かに唱えた。そのとき、ウタの指先は冷え切っていた。\nガルドは低く笑い、継承の儀は行わないと告げた。周りの者たちの目が、冷たい霧のようにウタを包んだ。彼らの背が遠ざかっていく。\n\n夜、こうしてひとりで骨櫛を握りしめるときだけ、ウタは本当のことを認める。\n声は言っていない。あの石は、ただ黙っていた。ウタが、その場をしのぐために適当な言葉を並べたのだ。\n\n骨櫛を強く握ると、その端が掌に食い込む。\nノノ。あなたは何を謝っていたのだろう。\nウタはまだ、本当の継承を受けていない。\n\n星祭りまであと十の夜。",
+    "en": "Autumn, the Month of Stars.\nTen nights remain until the Star Festival.\n\nThe chief's tent was thick with the heavy gazes of the clan.\nUta stood before Gald and demanded the Rite of Succession.\nGald pulled that \"singing stone\" from the depths of his shelf. A smooth stone, overly polished and decorated, its natural edges shaved away by human hands.\n\"If you are the Hearer, recite the song of the wind trapped within this stone, here and now,\" Gald said.\n\nUta touched the stone.\nIt was far too smooth, and far too cold. Too much human handling had choked its voice.\nNot a single flutter, not a single vibration reached Uta from its depths.\n\n\"The stone shuns the eyes of onlookers and has closed its shell. Let it sleep in peace, so the voice is saying.\"\nUta chanted solemnly to the gathered clan. As she spoke, her fingertips were entirely numb.\nGald laughed softly and declared that the rite would be postponed. The eyes of the clan enveloped Uta like a cold mist. Their backs turned and drifted away.\n\nOnly at night, holding the bone comb alone like this, does Uta admit the truth.\nThe voice said nothing. That stone was merely silent. Uta had only spun convenient words to survive the moment.\n\nAs Uta grips the bone comb tightly, its sharp edges bite into her palm.\nNono. What were you apologizing for?\nUta has yet to receive the true succession.\n\nTen nights remain until the Star Festival."
+  }
+}

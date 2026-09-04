@@ -1,7 +1,33 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-03T23:06:59.622Z",
+  "generated_at": "2026-09-04T22:50:40.524Z",
   "entries": [
+    {
+      "id": "2026-09-05-uta",
+      "date": "2026-09-05",
+      "character_id": "uta",
+      "era": "primordial",
+      "season": 1,
+      "episode": 1,
+      "world_date": {
+        "year": null,
+        "month": 7,
+        "day": 5
+      },
+      "title": {
+        "ja": "閉ざされた石の沈黙",
+        "en": "The Silence of the Choked Stone"
+      },
+      "excerpt": {
+        "ja": "声は言っていない。あの石は、ただ黙っていた。ウタが、その場をしのぐために適当な言葉を並べたのだ。",
+        "en": "The voice said nothing. That stone was merely silent. Uta had only spun convenient words to survive the moment."
+      },
+      "mood": {
+        "ja": "指先がこわばり、掌に骨櫛の尖った角が深く食い込んでいる。天幕の冷気が体を離れない。",
+        "en": "With stiffened fingertips, the sharp edges of the bone comb bite deep into the palm. The chill of the tent refuses to leave."
+      },
+      "path": "world/feed/entries/2026-09-05-uta.json"
+    },
     {
       "id": "2026-09-04-kaya",
       "date": "2026-09-04",

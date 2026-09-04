@@ -1,5 +1,4 @@
 id: uta
-
 formative_events:
   - id: the-morning-nono-died
     fact:
@@ -24,7 +23,6 @@ formative_events:
       en: |
         Gald confiscated the singing stone she carried out of the Singing Vale.
         It is still in the chieftain's tent.
-
 facts:
   - id: the-bone-comb
     fact:
@@ -37,3 +35,8 @@ facts:
     note: |
       キャラクターデザインの制作過程で生まれた設定。2026-08-22 に採用。
       聴き手の系譜（world/threads/cross-era.yaml）を物として可視化する。
+  - id: singing_stone_silence
+    fact:
+      ja: 星祭りまであと十の夜、ウタはガルドから「歌う石」の声を証明するよう求められたが、磨かれすぎた石からは何も聴き取れず、継承の儀を保留された。
+      en: Ten nights before the Star Festival, Uta was challenged by Gald to prove the voice of the "singing stone," but could discern nothing from the overly polished stone, resulting in the postponement of her Rite of Succession.
+    added_on: 2026-09-05
