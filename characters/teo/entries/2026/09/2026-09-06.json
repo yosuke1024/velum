@@ -1,0 +1,26 @@
+{
+  "date": "2026-09-06",
+  "era": "guilds",
+  "protagonist": "teo",
+  "season": 1,
+  "episode": 2,
+  "beat": "展開",
+  "world_date": {
+    "year": 375,
+    "month": 7,
+    "day": 12
+  },
+  "title": {
+    "ja": "裏腹の座金と保留された紙",
+    "en": "The Contrary Washer and the Deferred Paper"
+  },
+  "quote": {
+    "ja": "手元にある「あの誤鑑定書」の控えには、座金が逆に打たれていると明記されているはずだ。",
+    "en": "The copy of \"that erroneous appraisal\" in my possession explicitly states that the washer was driven in reverse."
+  },
+  "mood": {
+    "ja": "規約の条文をなぞる指先がわずかに冷える。三十年前の影が、大鑑定院の床下から這い出してくるようだ。",
+    "en": "My fingertips grow slightly cold as I trace the articles of the regulations. It feels as if a thirty-year-old shadow is crawling up from beneath the floor of the Academy."
+  },
+  "rare_expression_used": false
+}

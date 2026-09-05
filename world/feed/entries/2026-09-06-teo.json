@@ -1,0 +1,31 @@
+{
+  "id": "2026-09-06-teo",
+  "date": "2026-09-06",
+  "character_id": "teo",
+  "era": "guilds",
+  "season": 1,
+  "episode": 2,
+  "world_date": {
+    "year": 375,
+    "month": 7,
+    "day": 12
+  },
+  "title": {
+    "ja": "裏腹の座金と保留された紙",
+    "en": "The Contrary Washer and the Deferred Paper"
+  },
+  "excerpt": {
+    "ja": "手元にある「あの誤鑑定書」の控えには、座金が逆に打たれていると明記されているはずだ。",
+    "en": "The copy of \"that erroneous appraisal\" in my possession explicitly states that the washer was driven in reverse."
+  },
+  "mood": {
+    "ja": "規約の条文をなぞる指先がわずかに冷える。三十年前の影が、大鑑定院の床下から這い出してくるようだ。",
+    "en": "My fingertips grow slightly cold as I trace the articles of the regulations. It feels as if a thirty-year-old shadow is crawling up from beneath the floor of the Academy."
+  },
+  "path": "world/feed/entries/2026-09-06-teo.json",
+  "schema_version": 1,
+  "body": {
+    "ja": "窓口に置かれた小箱は、小ぶりな真鍮製だった。三十年前の、紛れもない師匠の銘が入った鑑定書が添えられている。\n\nだが、その小箱の座金は極めて均整の取れた状態で、正常に固定されていた。手元にある「あの誤鑑定書」の控えには、座金が逆に打たれていると明記されているはずだ。同一の品であるはずがない。あるいは、当時の鑑定書が示す「誤り」そのものが、物理的な事実と最初から乖離しているのか。\n\n大鑑定院規則第21条、鑑定書の記載事項と対象物の物理的特徴に齟齬がある場合、再鑑定を義務付ける……。暗唱の途中で、真鍮の蓋に反射した自分の顔が見えた。私の目は、何を視ている。\n\n午後、師匠の書斎に呼ばれた。仮銘審査の意志を問われ、私は背筋を伸ばして肯定した。だが、推薦状は私の机には届かなかった。保留。別に悔しくはない。第3条に定める要件はすべて満たしている。ただ、師匠の視線が私の手元ではなく、私の目そのものを覗き込んでいるように感じられただけだ。\n\nあの燭台の削り跡。今日の小箱の、正しく打たれた座金。三十年前の真実は、大鑑定院の厚い帳簿の奥で、まだ呼吸を続けている。\n\n対象：真鍮製鍍金小箱（三十年前の鑑定書付）\n等級：丙種（保存状態極めて良好）\n注記：座金の打ち込みに反転なし。書面上の「逆打ち」の記述との整合性については、更なる調査を要する。",
+    "en": "The small box placed at the counter was made of brass. It was accompanied by an appraisal certificate bearing my master's unmistakable signature from thirty years ago.\n\nHowever, the washer of this box was perfectly aligned and normally secured. The copy of \"that erroneous appraisal\" in my possession explicitly states that the washer was driven in reverse. They cannot be the same item. Or perhaps, the \"error\" described in the appraisal of that time itself has diverged from the physical reality from the very beginning.\n\nGrand Appraisal Academy Regulation Article 21: When there is a discrepancy between the description in the appraisal and the physical characteristics of the object, a re-appraisal is mandated... Mid-recitation, I caught my own reflection on the brass lid. What are my eyes actually looking at?\n\nIn the afternoon, I was summoned to my master's study. Asked of my intent regarding the provisional registration exam, I straightened my back and affirmed. Yet, the recommendation letter did not reach my desk. Deferred. I am not particularly vexed. I have met all the requirements specified in Article 3. It was just that my master's gaze seemed to pierce not my hands, but my very eyes.\n\nThe scraping marks on that candlestick. The correctly driven washer of today's box. The truth of thirty years ago still breathes behind the thick ledgers of the Academy.\n\nSubject: Gilded Brass Small Box (with 30-year-old appraisal certificate)\nGrade: Class C (In excellent preservation state)\nNote: No reversal found on the washer. The consistency with the \"reverse-driven\" description on the document requires further investigation."
+  }
+}
