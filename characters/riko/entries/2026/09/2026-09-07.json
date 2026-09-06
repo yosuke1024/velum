@@ -1,0 +1,26 @@
+{
+  "date": "2026-09-07",
+  "era": "silent",
+  "protagonist": "riko",
+  "season": 1,
+  "episode": 2,
+  "beat": "展開",
+  "world_date": {
+    "year": 1175,
+    "month": 7,
+    "day": 10
+  },
+  "title": {
+    "ja": "裏路地の風と、金貨二枚の沈黙",
+    "en": "Alley Winds and the Two-Gold Silence"
+  },
+  "quote": {
+    "ja": "五分間、ただ石を見つめて、それから音もなく去っていった。",
+    "en": "Without a word, she stared at that blue stone necklace for five whole minutes."
+  },
+  "mood": {
+    "ja": "人通りの絶えた角で、売れ残った馬蹄を撫でながら、自分の強欲さと臆病さに呆れている。",
+    "en": "Sitting in a deserted corner, stroking an unsold horseshoe, feeling exasperated by my own greed and cowardice."
+  },
+  "rare_expression_used": false
+}

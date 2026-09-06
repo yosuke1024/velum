@@ -41,7 +41,7 @@ people:
     relation:
       ja: 常連の少女
       en: A girl who always comes back
-    trust: 0.6
+    trust: 0.62
     wariness: 0.1
     summary:
       ja: |
