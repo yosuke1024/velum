@@ -3,6 +3,10 @@ import { worldPath, charPath, seasonPath } from '../lib/paths.js';
 import { readYaml, exists } from '../lib/storage.js';
 import { seededRandom, weightedPick } from '../lib/random.js';
 import {
+  selectNarrativeMoves,
+  type NarrativeMove,
+} from './narrative-calibration.js';
+import {
   EraCanonFileSchema,
   ArcFileSchema,
   CardDeckFileSchema,
@@ -54,6 +58,11 @@ export type SeasonContext = {
   clock: { year: number | null; month: number; day: number };
   calendarLine: string;
   upcoming: Array<{ name: string; inDays: number | null; note: string | null }>;
+  /**
+   * この季にかぎって許すこと（2〜3個）。seed から決まる。
+   * 全季を同じ形へ収束させないための仕組みで、義務ではない。
+   */
+  narrativeMoves: NarrativeMove[];
 };
 
 /**
@@ -105,6 +114,8 @@ export function buildSeasonContext(
 
   // 前の季の第5話が残したものを引き継ぐ。
   let carriedOver: string | null = null;
+  // 前の季に配った許可。同じ集合を二季続けないために見る（この時代の前の季だけ）。
+  let previousMoves: string[] = [];
   if (season > 1) {
     const previous = seasonPath(season - 1, era);
     if (exists(previous)) {
@@ -112,11 +123,20 @@ export function buildSeasonContext(
       const last = plan.episodes[EPISODES_PER_SEASON - 1];
       // プロンプトは日本語で回る。訳があっても読むのは ja のほう。
       carriedOver = last ? ja(last.leaves_open) : null;
+      previousMoves = plan.generation.narrative_moves ?? [];
     }
   }
 
   const clock = clockFor(era);
   const upcoming = upcomingObservances(era, clock, 60);
+
+  // カードとは別の乱数の流れから引く（narrative-calibration.ts）。
+  // 同じ流れを使うと、許可を1個足しただけで過去の季の引き札が変わる。
+  const narrativeMoves = selectNarrativeMoves(
+    seed,
+    { peopleCount: relationships.people.length, observanceCount: upcoming.length },
+    previousMoves,
+  );
 
   return {
     season,
@@ -153,5 +173,6 @@ export function buildSeasonContext(
     clock: { year: clock.year, month: clock.month, day: clock.day },
     calendarLine: `${formatWorldDate(clock.year, clock)}（${seasonOf(clock.month)}）`,
     upcoming: upcoming.map((o) => ({ name: o.name, inDays: o.inDays, note: o.note })),
+    narrativeMoves,
   };
 }

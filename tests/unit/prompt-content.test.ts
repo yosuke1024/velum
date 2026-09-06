@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { buildSeasonContext } from '../../src/season/context.js';
 import { buildSeasonUserPrompt, buildSeasonSystemPrompt } from '../../src/season/prompt.js';
+import { NARRATIVE_MOVES, selectNarrativeMoves } from '../../src/season/narrative-calibration.js';
 import { buildDiaryUserPrompt, buildDiarySystemPrompt } from '../../src/diary/prompt.js';
 import { loadCharacter, type Day } from '../../src/diary/context.js';
 import { EpisodeSchema, BEATS, EPISODES_PER_SEASON } from '../../src/schemas/season.js';
@@ -64,10 +65,24 @@ describe('季の計画のプロンプト', () => {
     }
   });
 
-  it('5話がつながっていることを求める', () => {
+  it('5話が同じアークを追うことを求める', () => {
     const prompt = buildSeasonSystemPrompt();
-    expect(prompt).toMatch(/前の話の結果の上に立つ/);
+    expect(prompt).toMatch(/同じアークを追っている/);
     expect(prompt).toMatch(/独立した.*日ではなく/);
+  });
+
+  // season-v3（2026-09-06）。一本の因果鎖を既定にしない。
+  it('全話が前の話の直接の結果である必要はないと言う', () => {
+    const prompt = buildSeasonSystemPrompt();
+    expect(prompt).toMatch(/直接の結果である必要はない/);
+    expect(prompt).not.toMatch(/前の話の結果の上に立つ/);
+  });
+
+  it('beat の並びは緩めない', () => {
+    // 緩めたのは因果の張り方だけで、発端→展開→転機→危機→決着は固定のままである。
+    const prompt = buildSeasonSystemPrompt();
+    expect(prompt).toMatch(/beat の並び/);
+    expect(prompt).toContain(BEATS.join(' → '));
   });
 
   it('感情や解釈を書かないよう指示する', () => {
@@ -109,6 +124,51 @@ describe('季の計画のプロンプト', () => {
 
   it('第1季には持ち越しがない', () => {
     expect(context.carriedOver).toBeNull();
+  });
+});
+
+describe('この季にかぎって許すこと', () => {
+  const moves = selectNarrativeMoves('season-1:guilds', {
+    peopleCount: 2,
+    observanceCount: 3,
+  });
+
+  it('選ばれた許可だけがプロンプトに出る', () => {
+    // カタログ全部を並べると、それは緩和ではなく「毎回こう崩せ」という別の型になる。
+    const prompt = buildSeasonSystemPrompt(moves);
+    const chosen = new Set(moves.map((m) => m.id));
+
+    for (const move of NARRATIVE_MOVES) {
+      if (chosen.has(move.id)) {
+        expect(prompt).toContain(move.permission);
+      } else {
+        expect(prompt).not.toContain(move.permission);
+      }
+    }
+  });
+
+  it('義務ではないと明示する', () => {
+    expect(buildSeasonSystemPrompt(moves)).toMatch(/義務ではない/);
+  });
+
+  it('ほかの決まりまで緩んだと読ませない', () => {
+    const prompt = buildSeasonSystemPrompt(moves);
+    expect(prompt).toMatch(/ここに書かれていないことまで緩んだとは考えない/);
+    // 謎・canon・暦の規律は同じプロンプトに残っている。
+    expect(prompt).toMatch(/解決することは違う/);
+    expect(prompt).toMatch(/固定事実（canon）と矛盾させない/);
+  });
+
+  it('許可がなければ節そのものを出さない', () => {
+    expect(buildSeasonSystemPrompt()).not.toMatch(/この季にかぎって許すこと/);
+  });
+
+  it('季の材料が、その季の許可を持っている', () => {
+    const context = buildSeasonContext(1, 'guilds', 'teo');
+    const prompt = buildSeasonSystemPrompt(context.narrativeMoves);
+    for (const move of context.narrativeMoves) {
+      expect(prompt).toContain(move.permission);
+    }
   });
 });
 
@@ -191,12 +251,41 @@ describe('日記のプロンプト', () => {
     expect(cooling).not.toMatch(/崩してもよい日/);
   });
 
-  it('感情の名指しを禁じ、代わりに何で見せるかを言う', () => {
-    // 9/1 テオ「胸の奥が騒ぐ」「動揺は収まらない」の反省。
+  // diary-v4（2026-09-06）。禁止から混在へ。
+  it('感情の名指しを全面的には禁じない', () => {
     const prompt = buildDiarySystemPrompt(context);
-    expect(prompt).toMatch(/感情を名指しする文は書かない/);
-    expect(prompt).toMatch(/否定/);
-    expect(prompt).toMatch(/数字、物/);
+    expect(prompt).not.toMatch(/感情を名指しする文は書かない/);
+  });
+
+  it('感情の書き方を混ぜるよう指示する', () => {
+    // 感情名を塞ぐと出口が身体感覚と比喩だけになり、5人がそちらへ揃う。
+    const prompt = buildDiarySystemPrompt(context);
+    expect(prompt).toMatch(/ひとつの型に固定しない/);
+    expect(prompt).toMatch(/怖かった/);
+    expect(prompt).toMatch(/身体の感覚/);
+    expect(prompt).toMatch(/日によって違ってよい/);
+  });
+
+  it('身体反応と比喩を毎回の既定にしないよう言う', () => {
+    const prompt = buildDiarySystemPrompt(context);
+    expect(prompt).toMatch(/身体の反応を毎回の既定にしない/);
+    expect(prompt).toMatch(/息を呑む/);
+    expect(prompt).toMatch(/毎回あなたの心理の比喩にしない/);
+    // 見せ方の手は残す（禁じ手ではなく選択肢として）。
+    expect(prompt).toMatch(/別に悔しくはない/);
+  });
+
+  it('毎回の着地を教訓にしないよう言う', () => {
+    expect(buildDiarySystemPrompt(context)).toMatch(
+      /理解・納得・成長・教訓に着地させない/,
+    );
+  });
+
+  it('人物固有の声を汎用ルールより優先させる', () => {
+    const prompt = buildDiarySystemPrompt(context);
+    expect(prompt).toMatch(/「話し方」に書いたあなた固有の声のほうが優先される/);
+    // テオの profile は「感情を認めない」を声として定義している。緩めない。
+    expect(prompt).toContain('感情を認めない');
   });
 
   it('形の自由を許す（段落・一行段落・見え消し線・様式）', () => {

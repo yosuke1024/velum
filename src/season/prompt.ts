@@ -2,8 +2,21 @@ import type { SeasonContext } from './context.js';
 import { jsonSchema } from '../lib/gemini.js';
 import { BEATS, EPISODES_PER_SEASON } from '../schemas/season.js';
 import { ja } from '../lib/bilingual.js';
+import type { NarrativeMove } from './narrative-calibration.js';
 
-export const SEASON_PROMPT_VERSION = 'season-v2';
+/**
+ * season-v3（2026-09-06）: 二つの変更。どちらも「1季の出来」ではなく
+ * 「何季も回したときに全季が同じ形へ収束すること」への対応である。
+ *
+ * 1. 一本の因果鎖を必須にしない。v2 は「各話は前の話の結果の上に立つ」と書いていた。
+ *    1季の物語を成立させるには効くが、これを既定にすると5話は必ず綺麗な鎖になり、
+ *    暦や第三者が横から動かす日が出てこない。beat の並びは維持したまま、
+ *    「同じアークを追う」ことへ要求を移す。
+ * 2. 季ごとに2〜3個の「物語上の許可」を渡す（narrative-calibration.ts）。
+ *    カタログ全部を毎季渡さないのがこの仕組みの本体で、全部渡せばそれは
+ *    別のテンプレートになる。
+ */
+export const SEASON_PROMPT_VERSION = 'season-v3';
 
 export const SEASON_RESPONSE_SCHEMA = jsonSchema.object(
   {
@@ -49,7 +62,31 @@ export const SEASON_RESPONSE_SCHEMA = jsonSchema.object(
   ['title_ja', 'title_en', 'shape_ja', 'shape_en', 'episodes'],
 );
 
-export function buildSeasonSystemPrompt(): string {
+/**
+ * この季にかぎって許すことを書き出す。
+ *
+ * 出すのは選ばれた2〜3個だけである。カタログ全部を並べると、それは緩和ではなく
+ * 「毎回こう崩せ」という別の型になる。渡さないものは、これまでどおり既定のまま。
+ */
+function narrativeMoveSection(moves: readonly NarrativeMove[]): string {
+  if (!moves.length) return '';
+
+  const lines = [
+    '',
+    '## この季にかぎって許すこと',
+    '',
+    'この季だけ、次のことが許される。**義務ではない。** 使わずに済むなら使わなくてよいし、',
+    'ひとつを5話すべてに効かせる必要もない。ここに書かれていないことまで緩んだとは考えない。',
+    '——ほかの決まり（canon・謎の扱い・暦・出来事だけを書くこと）はそのまま守る。',
+    '',
+  ];
+  for (const move of moves) {
+    lines.push(`- **${move.label}**: ${move.permission}`);
+  }
+  return lines.join('\n');
+}
+
+export function buildSeasonSystemPrompt(moves: readonly NarrativeMove[] = []): string {
   return `あなたは架空世界 Velum の出来事を組み立てる装置である。人物ではない。
 
 役割は、ひとりの主人公をめぐる${EPISODES_PER_SEASON}話ぶんの出来事を、
@@ -69,8 +106,10 @@ ${BEATS.map((beat, i) => `第${i + 1}話「${beat}」`).join(' → ')}
 
 - **出来事だけを書く。** 人物がそれをどう感じたか、何を思ったかは書かない。
   感情・解釈・内面は、このあと本人が日記で書く。ここで書くと、事実と主観が混ざる。
-- **${EPISODES_PER_SEASON}話がつながっていること。** 各話は前の話の結果の上に立つ。
-  独立した${EPISODES_PER_SEASON}日ではなく、ひとつの物語の${EPISODES_PER_SEASON}場面である。
+- **${EPISODES_PER_SEASON}話が同じアークを追っていること。** 独立した${EPISODES_PER_SEASON}日ではなく、
+  ひとつの物語の${EPISODES_PER_SEASON}場面である。ただし、**各話が前の話の直接の結果である必要はない。**
+  暦・第三者・制度・主人公の見ていないところで進んでいた事情から動き出す話があってよい。
+  beat の並び（${BEATS.join(' → ')}）は崩さない。
 - **固定事実（canon）と矛盾させない。**
 - 1話の出来事は1〜3件。多すぎると一日が事件で埋まり、日常が消える。
 - **全部の話を事件にしない。** ${EPISODES_PER_SEASON}話のうち1話くらいは、
@@ -112,7 +151,8 @@ Velum の1年は、12の月 × 30日 + 「五夜」（どの月にも属さな�
 - ${EPISODES_PER_SEASON}話全体で20〜40日ほど進むのが目安。
 - 節目（祭・審査・市など）が近くにあるなら、話をそこへ向けて組んでよい。
   ただし義務ではない。節目に触れない季があってよい。
-- 季節の手触り（暑さ、雨、日の長さ、収穫、雪）を出来事の背景に使ってよい。`;
+- 季節の手触り（暑さ、雨、日の長さ、収穫、雪）を出来事の背景に使ってよい。
+${narrativeMoveSection(moves)}`;
 }
 
 export function buildSeasonUserPrompt(context: SeasonContext): string {

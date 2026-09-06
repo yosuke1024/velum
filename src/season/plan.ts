@@ -92,7 +92,7 @@ export async function planSeason(
 
   const { data, model } = await generateJson(
     {
-      system: buildSeasonSystemPrompt(),
+      system: buildSeasonSystemPrompt(context.narrativeMoves),
       user: buildSeasonUserPrompt(context),
       responseSchema: SEASON_RESPONSE_SCHEMA,
     },
@@ -127,6 +127,8 @@ export async function planSeason(
       model,
       prompt_version: SEASON_PROMPT_VERSION,
       seed: context.seed,
+      // この季に配った許可。人間が計画を読むとき、横道の出所が分かるようにする。
+      narrative_moves: context.narrativeMoves.map((move) => move.id),
       generated_at: new Date().toISOString(),
     },
   });
