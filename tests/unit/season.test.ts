@@ -113,3 +113,47 @@ describe('季の計画', () => {
     expect(SeasonPlanSchema.safeParse(plan({ shape: '5話の形。' })).success).toBe(false);
   });
 });
+
+// season-v3（2026-09-06）。この季に配った「物語上の許可」を記録する。
+describe('物語上の許可の記録', () => {
+  const generation = {
+    model: 'gemini-3.5-flash',
+    prompt_version: 'season-v3',
+    seed: 'season-1:guilds',
+    generated_at: '2026-09-06T00:00:00.000Z',
+  };
+
+  it('記録された計画を受け入れる', () => {
+    const parsed = SeasonPlanSchema.safeParse(
+      plan({
+        generation: {
+          ...generation,
+          narrative_moves: ['causal_sidewind', 'partial_resolution'],
+        },
+      }),
+    );
+    expect(parsed.success).toBe(true);
+    if (parsed.success) {
+      expect(parsed.data.generation.narrative_moves).toEqual([
+        'causal_sidewind',
+        'partial_resolution',
+      ]);
+    }
+  });
+
+  it('記録のない計画も読める（この仕組みより前に立てた季）', () => {
+    // world/seasons/001/ は season-v2 で立っている。読めなくなったら過去が消える。
+    const parsed = SeasonPlanSchema.safeParse(plan());
+    expect(parsed.success).toBe(true);
+    if (parsed.success) {
+      expect(parsed.data.generation.narrative_moves).toBeUndefined();
+    }
+  });
+
+  it('文字列の配列でなければ拒む', () => {
+    const invalid = plan({
+      generation: { ...generation, narrative_moves: 'causal_sidewind' },
+    });
+    expect(SeasonPlanSchema.safeParse(invalid).success).toBe(false);
+  });
+});

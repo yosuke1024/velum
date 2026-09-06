@@ -87,6 +87,16 @@ export const SeasonPlanSchema = z.object({
     model: z.string(),
     prompt_version: z.string(),
     seed: z.string(),
+    /**
+     * この季に配った「物語上の許可」（src/season/narrative-calibration.ts）。
+     *
+     * 記録する理由は二つ。再現性——同じ seed から同じ許可が出たことを後から確かめられる。
+     * それと、人間が計画を読むときの説明可能性——この季だけ横道に逸れているのは、
+     * 生成が滑ったからではなく許可したからだと分かる。
+     *
+     * optional なのは、この仕組みより前に立てた季の計画がそのまま読めるようにするため。
+     */
+    narrative_moves: z.array(z.string()).optional(),
     generated_at: z.string(),
   }),
 });
