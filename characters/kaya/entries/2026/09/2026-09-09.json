@@ -1,0 +1,26 @@
+{
+  "date": "2026-09-09",
+  "era": "fracture",
+  "protagonist": "kaya",
+  "season": 1,
+  "episode": 2,
+  "beat": "展開",
+  "world_date": {
+    "year": 656,
+    "month": 7,
+    "day": 12
+  },
+  "title": {
+    "ja": "閉ざされた本道と、歪んだ真鍮",
+    "en": "The Blocked Road and Deformed Brass"
+  },
+  "quote": {
+    "ja": "これで、わたしの届けてきたものは、四十三。",
+    "en": "With this, the number of people whose belongings I have returned is forty-three."
+  },
+  "mood": {
+    "ja": "指先が覚えている真鍮の冷たさと、行く手を阻む冬の気配",
+    "en": "The coldness of brass lingering on my fingertips, and the approach of winter blocking my way"
+  },
+  "rare_expression_used": false
+}

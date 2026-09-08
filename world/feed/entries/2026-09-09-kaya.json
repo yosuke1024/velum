@@ -1,0 +1,31 @@
+{
+  "id": "2026-09-09-kaya",
+  "date": "2026-09-09",
+  "character_id": "kaya",
+  "era": "fracture",
+  "season": 1,
+  "episode": 2,
+  "world_date": {
+    "year": 656,
+    "month": 7,
+    "day": 12
+  },
+  "title": {
+    "ja": "閉ざされた本道と、歪んだ真鍮",
+    "en": "The Blocked Road and Deformed Brass"
+  },
+  "excerpt": {
+    "ja": "これで、わたしの届けてきたものは、四十三。",
+    "en": "With this, the number of people whose belongings I have returned is forty-three."
+  },
+  "mood": {
+    "ja": "指先が覚えている真鍮の冷たさと、行く手を阻む冬の気配",
+    "en": "The coldness of brass lingering on my fingertips, and the approach of winter blocking my way"
+  },
+  "path": "world/feed/entries/2026-09-09-kaya.json",
+  "schema_version": 1,
+  "body": {
+    "ja": "峠の手前にある兵舎の、冷たい板の間で指輪を届けた。\n\n「第百十一歩兵連隊所属、ゲオルグ・レイン。確かに、お届けいたしました」\n\n受け取った妹は泣かなかった。ただ指輪を強く握りしめ、その歪みを指先で確かめていた。指輪の内側に残る、爪で引っ掻いたような細かい傷。彼は帰らなかった戦地で、ポケットの中のこの金属を、何度も、何度も弄んでいたのだろう。新品の指輪には決して宿らない、磨り減った生の手触りがそこにあった。\n\nこれで、わたしの届けてきたものは、四十三。\n\n詰所への帰り際、ハルナ村へと続く本道は同盟軍の天幕と柵で塞がれていた。兵士たちの泥だらけの靴跡が、地面を容赦なく捏ねくり回している。まるで大地に刻まれた新しい傷跡のようだ。哨兵はただ無愛想に、顎で北の山を指し示した。\n「本道は軍が徴用している。村へ行くなら、古い峠道を回れ」\n\nあの古い峠道は、冬になれば真っ先に雪で閉ざされる。わたしの回収袋の底には、まだ届け先のない、敵軍の服を着ていた弟の……。いや、今はダリから受け取ったもう一つの水筒を届けることだけを考えなければならない。引き返すという選択肢は、最初から持ち合わせていなかった。冷たい風が、古い峠道から吹き下ろしてくる。\n\n——確かに、お届けしました。",
+    "en": "At the barracks before the pass, on the cold wooden floor, I delivered the ring.\n\n\"To the sister of Georg Rein, 111th Infantry Regiment. I have delivered this to you, without fail.\"\n\nShe did not cry. She only squeezed the deformed brass ring tightly, tracing its distortion with her fingertips. There were tiny scratches on the inner band, like they had been scraped by a fingernail. In the land he never returned from, he must have fiddled with this metal in his pocket, over and over again. It possessed a worn texture of life that no brand-new ring could ever have.\n\nWith this, the number of people whose belongings I have returned is forty-three.\n\nOn my way back, the main road leading to Haruna Village was blocked by military tents and barricades. The soldiers' muddy boots had churned the ground mercilessly, like fresh scars carved into the earth. The sentry gruffly pointed toward the northern mountains with his chin.\n\"The main road is under military requisition. If you want to get to the village, take the old pass.\"\n\nThat old pass is always the first to be choked by snow when winter arrives. At the bottom of my salvage bag lies that other item which has no destination, the one belonging to my brother who was wearing... No, right now I must only focus on delivering the other canteen I received from Dari. I never had the option to turn back. A cold wind blew down from the old mountain pass.\n\n——I have delivered it, without fail."
+  }
+}
