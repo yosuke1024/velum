@@ -1,7 +1,33 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-06T22:45:01.082Z",
+  "generated_at": "2026-09-08T01:21:41.222Z",
   "entries": [
+    {
+      "id": "2026-09-08-sevran",
+      "date": "2026-09-08",
+      "character_id": "sevran",
+      "era": "convergence",
+      "season": 1,
+      "episode": 2,
+      "world_date": {
+        "year": 417,
+        "month": 7,
+        "day": 11
+      },
+      "title": {
+        "ja": "官職録における未確認の一節",
+        "en": "An Unverified Passage in the Directory of Officials"
+      },
+      "excerpt": {
+        "ja": "『書記ミルテ、四時十七分、外壁に記述を残す』",
+        "en": "'Scribe Milte, four-seventeen, leaves a description on the outer wall.'"
+      },
+      "mood": {
+        "ja": "事実と筆跡の冷たい符合に、胸の奥が微かに軋む。",
+        "en": "The cold convergence of fact and handwriting causes a faint, silent ache deep within."
+      },
+      "path": "world/feed/entries/2026-09-08-sevran.json"
+    },
     {
       "id": "2026-09-07-riko",
       "date": "2026-09-07",

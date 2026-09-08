@@ -1,0 +1,31 @@
+{
+  "id": "2026-09-08-sevran",
+  "date": "2026-09-08",
+  "character_id": "sevran",
+  "era": "convergence",
+  "season": 1,
+  "episode": 2,
+  "world_date": {
+    "year": 417,
+    "month": 7,
+    "day": 11
+  },
+  "title": {
+    "ja": "官職録における未確認の一節",
+    "en": "An Unverified Passage in the Directory of Officials"
+  },
+  "excerpt": {
+    "ja": "『書記ミルテ、四時十七分、外壁に記述を残す』",
+    "en": "'Scribe Milte, four-seventeen, leaves a description on the outer wall.'"
+  },
+  "mood": {
+    "ja": "事実と筆跡の冷たい符合に、胸の奥が微かに軋む。",
+    "en": "The cold convergence of fact and handwriting causes a faint, silent ache deep within."
+  },
+  "path": "world/feed/entries/2026-09-08-sevran.json",
+  "schema_version": 1,
+  "body": {
+    "ja": "星の月11日。\n深夜、本棚の影からフムが『大洪水前夜の官職録』の暗唱を始めた。\n当該書物は帝国暦298年に編纂された行政官の名簿であり、現在、当記録院においても原本は喪失している（確認）。フムの暗唱による再現は極めて正確であり、過去の照合結果から見ても信頼度は高い（要検証）。\nしかし、本日の暗唱中、第百四房の役人一覧の直後に、以下の記述が挿入された。\n『書記ミルテ、四時十七分、外壁に記述を残す』\n当然ながら、同書が編纂された二百年以上前に「書記ミルテ」という人物は存在せず、また「四時十七分」という記号が官職録に登場する脈絡もない（確認）。\nフムの発声は平坦であり、特定の意図や感情の混入は認められなかった（確認）。\n仮説として、以下の二点が挙げられる。\n第一に、フムという存在がこの街の「歪み」を呼吸し、現在進行形の事象を過去の記憶に混入させて出力した可能性（要検証）。\n第二に、大時計が止まった「四時十七分」という境界点から、この街の時系列そのものが双方向に漏れ出している可能性（要検証）。\nアルヴィス広場の木柱に刻まれた生々しい筆跡と、二百年前の書物の死んだ言葉。両者が同じ名と時刻を指し示している。\n何が混ざったのか。\nインクの残量はあと三瓶。明日、外壁の痕跡について実地調査を行う。\n\n——以上を、本日の記録とする。記録院書記 セヴラン",
+    "en": "Month of the Star, 11th day.\nLate at night, from the shadow of the bookshelves, Hum began reciting the 'Directory of Officials on the Eve of the Great Flood'.\nThis document is a register of administrative officials compiled in the year 298 of the Imperial Calendar, and the original copy has indeed been lost from this Record Office (Confirmed). Hum's recitation is normally extremely accurate, and based on past verifications, its reliability is high (To be verified).\nHowever, during tonight's recitation, immediately following the list of officials of the 104th Chamber, the following passage was inserted:\n'Scribe Milte, four-seventeen, leaves a description on the outer wall.'\nNaturally, two hundred years ago when the directory was compiled, no person named 'Scribe Milte' existed, nor is there any context for the notation 'four-seventeen' to appear in an official register (Confirmed).\nHum's vocalization remained flat, with no discernible intent or emotion mixed in (Confirmed).\nI must submit two hypotheses.\nFirst, that the entity Hum is breathing in the 'distortions' of this city, causing ongoing events to leak into its memory and output (To be verified).\nSecond, that from the boundary point of 'four-seventeen' when the great clock stopped, the chronology of this city itself is leaking in both directions (To be verified).\nThe vivid handwriting carved into the wooden pillar at Alvis Square, and the dead words of a two-hundred-year-old book. Both point to the same name and time.\nWhat has been mixed in?\nOnly three ink bottles remain. Tomorrow, I will conduct a field survey of the outer wall for any traces.\n\n——The above is today's record. Scribe Severin, Record Office"
+  }
+}
