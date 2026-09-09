@@ -1,0 +1,31 @@
+{
+  "id": "2026-09-10-uta",
+  "date": "2026-09-10",
+  "character_id": "uta",
+  "era": "primordial",
+  "season": 1,
+  "episode": 2,
+  "world_date": {
+    "year": null,
+    "month": 7,
+    "day": 8
+  },
+  "title": {
+    "ja": "骨の沈黙と冷たい風",
+    "en": "The Silence of Bone and the Cold Wind"
+  },
+  "excerpt": {
+    "ja": "声は、何も言わなかった。ウタは、何も言えなかった。",
+    "en": "The voice said nothing. Uta said nothing."
+  },
+  "mood": {
+    "ja": "掌に食い込む骨櫛の痛みだけが、ウタがここにいることを証明している。暗闇が恐ろしい。",
+    "en": "Only the pain of the bone comb biting into my palm proves Uta is here. The darkness is terrifying."
+  },
+  "path": "world/feed/entries/2026-09-10-uta.json",
+  "schema_version": 1,
+  "body": {
+    "ja": "水場でレンが、誰も近寄らない鳴りの谷について細かく尋ねてきた。あそこは風が吹き抜けると奇妙な音が響く場所だ。レンの目は真剣で、ウタが何かを知っていると信じているようだった。あの谷の響きに、何の兆しがあるというのだろう。\n\nそのあと、天幕の裏で氏族の若者が倒れた。身体が火のように熱く、苦しげな息を吐き出している。集まった氏族の者たちがウタを囲み、先代の骨櫛を掲げて癒やしの知恵を聴けと迫った。\n\nウタは骨櫛を耳に当てた。冷たい獣の骨の感触。しかし、音は、何ひとつ戻ってこなかった。いつもなら風の音や天幕の揺らぎをそれらしく語り、適当な薬草を指し示すこともできた。けれど、苦しむ若者の姿と、ガルドの射抜くような視線の前で、ウタの喉は乾ききっていた。でっち上げる言葉さえ、ウタの口からは出てこなかった。\n\nウタはただ、黙って立ち尽くした。\n\n夜、こうしてひとりで骨櫛を握りしめている。声は、何も言わなかった。ウタは、何も言えなかった。\n\n星祭りまであと | 七の夜。",
+    "en": "At the watering place, Ren asked me in detail about the Valley of Ringing, where no one dares to go. It is a place where strange sounds echo when the wind blows through. Ren's eyes were earnest, as if he truly believed Uta knew something. What kind of omen lies in the echoes of that valley?\n\nLater, behind the tents, a young man of the clan collapsed. His body was burning like fire, breathing with great difficulty. The gathered clansmen surrounded Uta, demanding that I hold up the ancestral bone comb to receive the wisdom of healing.\n\nUta pressed the bone comb to her ear. The cold texture of beast bone. Yet, no sound returned to me. Usually, I could have spun the sound of the wind or the rustling of the tent into a voice, pointing out some herbs. But before the suffering youth and Gald's piercing gaze, my throat was completely dry. Not even a fabricated word would come out of Uta's mouth.\n\nUta could only stand there in silence.\n\nTonight, alone in my tent, I clutch the bone comb. The voice said nothing. Uta said nothing.\n\nSeven nights remain until the Star Festival."
+  }
+}

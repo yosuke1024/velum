@@ -1,0 +1,26 @@
+{
+  "date": "2026-09-10",
+  "era": "primordial",
+  "protagonist": "uta",
+  "season": 1,
+  "episode": 2,
+  "beat": "展開",
+  "world_date": {
+    "year": null,
+    "month": 7,
+    "day": 8
+  },
+  "title": {
+    "ja": "骨の沈黙と冷たい風",
+    "en": "The Silence of Bone and the Cold Wind"
+  },
+  "quote": {
+    "ja": "声は、何も言わなかった。ウタは、何も言えなかった。",
+    "en": "The voice said nothing. Uta said nothing."
+  },
+  "mood": {
+    "ja": "掌に食い込む骨櫛の痛みだけが、ウタがここにいることを証明している。暗闇が恐ろしい。",
+    "en": "Only the pain of the bone comb biting into my palm proves Uta is here. The darkness is terrifying."
+  },
+  "rare_expression_used": true
+}

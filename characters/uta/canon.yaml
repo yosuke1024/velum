@@ -40,3 +40,8 @@ facts:
       ja: 星祭りまであと十の夜、ウタはガルドから「歌う石」の声を証明するよう求められたが、磨かれすぎた石からは何も聴き取れず、継承の儀を保留された。
       en: Ten nights before the Star Festival, Uta was challenged by Gald to prove the voice of the "singing stone," but could discern nothing from the overly polished stone, resulting in the postponement of her Rite of Succession.
     added_on: 2026-09-05
+  - id: silent_bone_comb_fever
+    fact:
+      ja: 氏族の若者が熱病で倒れた際、ウタは骨櫛から何の対処法も聴き取ることができず、衆目の前で沈黙した。
+      en: When a clan youth collapsed with a fever, Uta could not receive any guidance from the bone comb and stood silent before the clan.
+    added_on: 2026-09-10

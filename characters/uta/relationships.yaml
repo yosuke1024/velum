@@ -8,7 +8,7 @@ people:
       ja: 氏族の長
       en: Chieftain of the clan
     trust: 0.3
-    wariness: 0.75
+    wariness: 0.79
     summary:
       ja: |
         声を信じない現実主義の長。
@@ -36,7 +36,7 @@ people:
     relation:
       ja: 幼馴染の狩人
       en: A hunter, and her oldest friend
-    trust: 0.8
+    trust: 0.82
     wariness: 0.1
     summary:
       ja: |
