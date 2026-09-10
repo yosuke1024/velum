@@ -1,0 +1,31 @@
+{
+  "id": "2026-09-11-teo",
+  "date": "2026-09-11",
+  "character_id": "teo",
+  "era": "guilds",
+  "season": 1,
+  "episode": 3,
+  "world_date": {
+    "year": 375,
+    "month": 7,
+    "day": 18
+  },
+  "title": {
+    "ja": "模倣された筆跡",
+    "en": "The Imitated Ink"
+  },
+  "excerpt": {
+    "ja": "模倣だ。師匠の筆跡を極めて高い精度で模した、別人の手による修正。",
+    "en": "It is an imitation. A correction made by another hand, mimicking my master's handwriting with extremely high precision."
+  },
+  "mood": {
+    "ja": "地下書庫の底で、真実の一部が紙の上で歪められた痕跡を凝視している。寒気ではなく、規則的な思考の熱がある。",
+    "en": "Staring at the trace where a part of the truth was warped on paper deep in the underground archives. It is not a chill, but the heat of orderly deduction."
+  },
+  "path": "world/feed/entries/2026-09-11-teo.json",
+  "schema_version": 1,
+  "body": {
+    "ja": "地下書庫の空気はいつも冷えていて、羊皮紙の油と埃の匂いがする。私は三十年前の鑑定原簿の原本を広げた。\n\n鉄筆の走り方、特有の飾り文字の癖。一見すれば、それは確かに師匠の筆跡だった。大鑑定院の誰もが彼の手によるものと信じて疑わないだろう。\n\nだが、拡大鏡を通したインクの沈み方と、繊維への喰い込み方が異なっていた。師匠の筆は迷いがなく、速度が一定だ。しかし、この「座金逆打ち」の記述部分、特に細部の加筆においては、曲線の終端にわずかな淀みがある。インクの溜まりの厚みからして、一度引いた線をなぞって太さを調整している。\n\n模倣だ。師匠の筆跡を極めて高い精度で模した、別人の手による修正。\n\n大鑑定院規約第21条「原簿への事後加筆は、権限を有する鑑定官の署名と捺印を要する」。ここにはそのどちらもない。ただ、師匠の筆跡に似せた墨跡が静かに沈んでいるだけだ。\n\n胸の奥が冷えるなどということはない。ただ、冷房の風が地下まで届いているだけだ。この精巧な偽筆を施した者が誰であるかは、現状の証拠のみでは特定に至らない。\n\nだが、これでねじれの起点は見えた。歪められたのは現物ではなく、この紙の側だ。\n\n対象：三十年前の鑑定原簿原本、該当箇所の墨跡\n等級：無効（加筆偽造の疑い濃厚）\n注記：筆圧および運筆速度の不一致あり。作成者の特定は現時点において保留とする。",
+    "en": "The air in the underground archives is always cold, smelling of parchment oil and dust. I opened the original appraisal register from thirty years ago.\n\nThe stroke of the iron pen, the peculiar flourish of the letters—at first glance, it was indeed my master's handwriting. No one in the Great Appraisal Institute would doubt it was his.\n\nHowever, under the magnifying glass, the settling of the ink and the way it bit into the fibers were different. My master’s brush is decisive, his speed constant. Yet, in this description of the \"reversed washer,\" particularly in the detailed additions, there is a slight hesitation at the end of the curves. The thickness of the ink pool indicates that a line was traced over to adjust its width.\n\nIt is an imitation. A correction made by another hand, mimicking my master's handwriting with extremely high precision.\n\nArticle 21 of the Great Appraisal Institute Regulations: \"Subsequent additions to the original register require the signature and seal of an authorized appraiser.\" Neither is present here. There is only the quiet ink, disguised as my master's.\n\nI do not feel a chill in my chest. It is merely the draft from the ventilation reaching down to the basement. With the current evidence, the identity of the person who executed this exquisite forgery remains undetermined.\n\nBut now, the origin of the twist is visible. It was not the object that was warped, but this paper.\n\nSubject: The ink strokes on the corresponding section of the original appraisal register from thirty years ago.\nGrade: Void (Strong suspicion of post-facto forgery).\nNote: Discrepancy detected in brush pressure and stroke speed. Identification of the author is currently reserved."
+  }
+}

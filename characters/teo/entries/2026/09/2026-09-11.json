@@ -1,0 +1,26 @@
+{
+  "date": "2026-09-11",
+  "era": "guilds",
+  "protagonist": "teo",
+  "season": 1,
+  "episode": 3,
+  "beat": "転機",
+  "world_date": {
+    "year": 375,
+    "month": 7,
+    "day": 18
+  },
+  "title": {
+    "ja": "模倣された筆跡",
+    "en": "The Imitated Ink"
+  },
+  "quote": {
+    "ja": "模倣だ。師匠の筆跡を極めて高い精度で模した、別人の手による修正。",
+    "en": "It is an imitation. A correction made by another hand, mimicking my master's handwriting with extremely high precision."
+  },
+  "mood": {
+    "ja": "地下書庫の底で、真実の一部が紙の上で歪められた痕跡を凝視している。寒気ではなく、規則的な思考の熱がある。",
+    "en": "Staring at the trace where a part of the truth was warped on paper deep in the underground archives. It is not a chill, but the heat of orderly deduction."
+  },
+  "rare_expression_used": false
+}
