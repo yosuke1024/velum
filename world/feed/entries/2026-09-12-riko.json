@@ -1,0 +1,31 @@
+{
+  "id": "2026-09-12-riko",
+  "date": "2026-09-12",
+  "character_id": "riko",
+  "era": "silent",
+  "season": 1,
+  "episode": 3,
+  "world_date": {
+    "year": 1175,
+    "month": 7,
+    "day": 14
+  },
+  "title": {
+    "ja": "塩漬けの肉と、金貨三枚の値札",
+    "en": "Salted Meat and the Three-Gold-Coin Tag"
+  },
+  "excerpt": {
+    "ja": "あたしが本物だと言い張って売るものは、全部まがい物だ。それなのに、買った奴らが勝手にそれを本物にしてしまう。",
+    "en": "Every single thing I sell as \"authentic\" is a sham. And yet, the people who buy them somehow turn them into the real deal on their own."
+  },
+  "mood": {
+    "ja": "偽物が引き起こす奇跡に気味の悪さを覚えながら、売りたくない首飾りの値段をまた吊り上げている。",
+    "en": "Feeling creeped out by the miracles my fakes perform, while once again hiking up the price of a necklace I secretly dread to sell."
+  },
+  "path": "world/feed/entries/2026-09-12-riko.json",
+  "schema_version": 1,
+  "body": {
+    "ja": "塩漬けの豚肉ひとかたまり、それと、金貨三枚。\n\n人通りのない角で、一日中馬蹄を磨いていても、入ってくるのは埃と寒風だけだ。それなのに、あの北の村の男がわざわざあたしを探し出して、脂ぎった包みを押しつけてきた。\n「お守りのおかげで、お袋の頭痛がすっかり消えたよ」だって。\nただのトビの骨だ。あたしがそこらの藪で拾って、それらしい紐で縛っただけの、なんの力もないゴミ。それが、あの男の母親の頭痛を治した。前にもこんなことがあった。あの時は子供の熱だった。\nあたしが本物だと言い張って売るものは、全部まがい物だ。それなのに、買った奴らが勝手にそれを本物にしてしまう。じゃあ、あたしが夜通し古い図録をめくって、ガロンの目を盗んでまで学んだ「鑑定」ってやつは、一体何のためにあるんだ？\n\n手元にある青い石の首飾りを見つめる。\n昨日まで「金貨二枚」と書いてあった札を外して、墨をたっぷりとつけた筆で「金貨三枚」と書き直した。\nミオが来たら、また無言でこの数字を見るだろう。値上げしたのを見て、あの子はなんて思うか。軽蔑するかもしれない。それでもいい。\n売りたくないわけじゃない。あたしは金が欲しいんだ。オルバの店から「棚」を買い戻さなきゃいけないんだから。\nだけど、この石にインクの匂いのする新しい木札を添えるとき、指先が少し冷たくなった。\n\nこの首飾りは、うちの鑑定部の厳正なる調査によれば、はるか南方の海底神殿から引き揚げられた奇跡の遺物——。\nいや、ただの綺麗なガラスかもしれない。\n金貨三枚。",
+    "en": "One lump of salted pork, and three gold coins.\n\nSitting in this deserted corner where the wind just sweeps the dust, polishing unsold horseshoes all day, I didn't expect that man from the northern village to track me down. He thrust a greasy package into my hands, saying, \"Thanks to that amulet, my mother's headache is completely gone.\"\nIt was just a kite's bone. A piece of garbage I picked up from some bushes and tied with a fancy thread. It had absolutely no power. Yet, it cured his mother's pain. This isn't the first time. Back then, it was a child's fever.\nEvery single thing I sell as \"authentic\" is a sham. And yet, the people who buy them somehow turn them into the real deal on their own. If that's how it works, then what on earth was the point of all those nights I spent flipping through dusty catalogs, studying \"appraisal\" behind Garon's back?\n\nI look down at the blue stone necklace in my hands.\nI tore off the tag that said \"two gold coins\" yesterday, dipped my brush deep in ink, and rewrote it: \"three gold coins.\"\nWhen Mio comes back, she'll probably stare at this new number in silence again. She might despise me for raising the price. Let her.\nIt's not that I don't want to sell it. I need the money. I have to buy the deed to the \"Shelf\" back from Orba.\nBut as I placed the new, ink-scented wooden tag next to the stone, my fingertips felt a little cold.\n\nAccording to the rigorous investigation of our appraisal department, this necklace is a miraculous relic salvaged from a sunken southern temple...\nOr maybe it's just a piece of pretty glass.\nThree gold coins."
+  }
+}

@@ -1,7 +1,33 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-10T22:58:11.621Z",
+  "generated_at": "2026-09-11T23:03:26.042Z",
   "entries": [
+    {
+      "id": "2026-09-12-riko",
+      "date": "2026-09-12",
+      "character_id": "riko",
+      "era": "silent",
+      "season": 1,
+      "episode": 3,
+      "world_date": {
+        "year": 1175,
+        "month": 7,
+        "day": 14
+      },
+      "title": {
+        "ja": "塩漬けの肉と、金貨三枚の値札",
+        "en": "Salted Meat and the Three-Gold-Coin Tag"
+      },
+      "excerpt": {
+        "ja": "あたしが本物だと言い張って売るものは、全部まがい物だ。それなのに、買った奴らが勝手にそれを本物にしてしまう。",
+        "en": "Every single thing I sell as \"authentic\" is a sham. And yet, the people who buy them somehow turn them into the real deal on their own."
+      },
+      "mood": {
+        "ja": "偽物が引き起こす奇跡に気味の悪さを覚えながら、売りたくない首飾りの値段をまた吊り上げている。",
+        "en": "Feeling creeped out by the miracles my fakes perform, while once again hiking up the price of a necklace I secretly dread to sell."
+      },
+      "path": "world/feed/entries/2026-09-12-riko.json"
+    },
     {
       "id": "2026-09-11-teo",
       "date": "2026-09-11",

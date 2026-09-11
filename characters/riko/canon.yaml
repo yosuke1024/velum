@@ -32,3 +32,8 @@ facts:
       ja: 1,175年秋の北の市にて、同業の古物商バッソに縄張りを主張され、人通りの少ない裏路地の角へ荷車を移動させられた。
       en: During the autumn North Market of 1175, she was forced to move her cart to a quiet back alley corner after the rival antiquarian Basso claimed her spot.
     added_on: 2026-09-07
+  - id: fake_amulet_cure_reputation
+    fact:
+      ja: 1175年秋の北の市にて、かつて売った偽の鳥の骨のお守りが頭痛を治したと村人から感謝され、自身の扱う商品の価値基準に強い混乱を抱いた。
+      en: In the autumn of 1175 at the Northern Market, a villager thanked her for a fake bird-bone amulet that allegedly cured a headache, leaving her deeply confused about the true value of her wares.
+    added_on: 2026-09-12
