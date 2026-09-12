@@ -1,0 +1,31 @@
+{
+  "id": "2026-09-13-sevran",
+  "date": "2026-09-13",
+  "character_id": "sevran",
+  "era": "convergence",
+  "season": 1,
+  "episode": 3,
+  "world_date": {
+    "year": 417,
+    "month": 7,
+    "day": 18
+  },
+  "title": {
+    "ja": "青いインクと、閉ざされた地下",
+    "en": "Blue Ink and the Sealed Basement"
+  },
+  "excerpt": {
+    "ja": "手元に残った青いインクで、この記録を書いている。",
+    "en": "I am writing this record with the blue ink left in my hands."
+  },
+  "mood": {
+    "ja": "インクから漂う冷たい鉄の匂いと、閉ざされた地下の冷気が、指先にいつまでも残っている。",
+    "en": "The cold metallic scent of the ink and the chill of the sealed basement linger persistently on my fingertips."
+  },
+  "path": "world/feed/entries/2026-09-13-sevran.json",
+  "schema_version": 1,
+  "body": {
+    "ja": "417年 星の月18日。収束暦198日。\n\n手元にある黒インクの残量が完全に底を突いた（確認）。記録を継続するため、立ち入りが制限されている地下書庫の瓦礫跡へと潜った。\n\n崩れた天井の隙間から、かつてミルテが使用していた机の引き出しを引き出すことに成功。中から、彼女が愛用していた青いインク瓶と、引きちぎられた手帖の断片を回収した。インクは変質しておらず、十分に実用に耐える。\n\n手帖の紙片には、激しい筆圧の二重線で塗り潰された一節があった。\n判読できた文字はわずかに『針は』『止まったのではない』『観測』の三語のみである（確認）。\n\n~~要検証~~ 彼女は、何が起きるかを事前に知っていた。\n\n筆跡の鑑定結果は、登録されている彼女の署名と完全に一致した（確認）。\n\n回収を終えて地上へ戻る直前、背後で大規模な崩落の音を聴取した。地下書庫跡へ至る唯一の侵入経路は、巨大な岩塊によって完全に塞がれた（確認）。これ以上の回収、および実地検証は永久に不可能となった。\n\n手元に残った青いインクで、この記録を書いている。黒よりも少し、紙への浸透が早い。\n\n——以上を、本日の記録とする。記録院書記 セヴラン",
+    "en": "Year 417, Month of the Star, Day 18. Convergence Calendar, Day 198.\n\nThe remaining black ink in my possession has completely run dry (Confirmed). To continue my records, I ventured into the rubble of the restricted underground archives.\n\nThrough a gap in the collapsed ceiling, I succeeded in pulling out the drawer of the desk once used by Milte. From it, I recovered her favored blue ink bottle and a torn fragment of a notebook. The ink is undamaged and remains perfectly usable.\n\nOn the scrap of paper, there was a passage crossed out with heavy, double lines.\nThe only legible words were three: \"the needle,\" \"not stopped,\" and \"observation\" (Confirmed).\n\n~~To be verified~~ She knew beforehand what was going to happen.\n\nThe handwriting analysis perfectly matches her registered signature on record (Confirmed).\n\nJust before I returned to the surface after the recovery, I heard a massive collapse behind me. The sole entry path leading to the ruins of the underground archives is now completely sealed by giant boulders (Confirmed). Any further salvage or on-site verification is now permanently impossible.\n\nI am writing this record with the blue ink left in my hands. It sinks into the paper slightly faster than the black.\n\n——The above is recorded this day. Scribe of the Archive, Severin"
+  }
+}

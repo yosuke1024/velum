@@ -24,4 +24,9 @@ formative_events:
       en: |
         Hum settled into the ruin. He tried to drive it out, then noticed that every night it recites
         one more book from the lost archive — and decided to live alongside it.
-facts: []
+facts:
+  - id: salvaged_milte_notebook
+    fact:
+      ja: 閉鎖直前の地下書庫跡からミルテの青いインク瓶と、『針は』『止まったのではない』『観測』と書かれた手帖の断片を回収した。
+      en: From the ruins of the underground archive just before its permanent closure, salvaged Milte's blue ink bottle and a notebook fragment reading 'the needle', 'not stopped', and 'observation'.
+    added_on: 2026-09-13
