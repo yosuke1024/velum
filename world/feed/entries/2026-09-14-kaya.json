@@ -1,0 +1,31 @@
+{
+  "id": "2026-09-14-kaya",
+  "date": "2026-09-14",
+  "character_id": "kaya",
+  "era": "fracture",
+  "season": 1,
+  "episode": 3,
+  "world_date": {
+    "year": 656,
+    "month": 7,
+    "day": 22
+  },
+  "title": {
+    "ja": "冷たい石の下の星印",
+    "en": "The Star Stamp Under Cold Stones"
+  },
+  "excerpt": {
+    "ja": "「……ルディ、エマ、ハンス、……ノヤ……」",
+    "en": "\"...Rudy, Emma, Hans, ...Noya...\""
+  },
+  "mood": {
+    "ja": "冷たい石の下の手紙と、暗闇の中で零れ落ちた名前",
+    "en": "Letters under cold stone, and a name spilled in the dark"
+  },
+  "path": "world/feed/entries/2026-09-14-kaya.json",
+  "schema_version": 1,
+  "body": {
+    "ja": "峠道は、冬の気配を孕んだ冷たい風が吹き抜けている。ハルナ村への道を急ぐ途中、崩れた岩の隙間に、灰色の上着が見えた。土と石に半ば埋もれていたのは、敵軍の兵士だった。すでに冷たくなり、誰も彼を掘り起こそうとはしなかったらしい。わたしは彼の懐を探り、一通の手紙を見つけた。消えかけた封蝋と、泥に汚れた宛名。そして、その隅に捺されていたのは、あの部隊の刻印だった。袋の底にある、あの冷たい真鍮の認識札と同じ、尖った星を模した印。指先が、自分の意志とは関係なく細かく震えた。この手紙を書いていたとき、彼は弟の近くにいたのだろうか。目の前にあるのは、一通の未開封の手紙だけだ。夜、携帯用の天幕の中で、わたしはいつものように、これまで届けてきた四十三人の名前を、ひとつずつ暗闇の中に零していった。「……ルディ、エマ、ハンス、……ノヤ……」口を突いて出た名前に、自分で驚き、唇を噛む。まだ届けていない。あの手紙も、袋の底の認識札も。手紙の封蝋は、彼の衣服と擦れて角が丸くなっていた。",
+    "en": "A cold wind carrying the scent of winter sweeps through the mountain pass. Hurrying toward Haruna Village, I spotted a grey coat in the gap of a rockslide. Half-buried under earth and stone was an enemy soldier. He was already cold, and it seemed no one had tried to dig him out. I searched his pocket and found a single letter. A faded wax seal, a mud-stained address. And there, stamped in the corner, was the mark of that unit. The same star-shaped engraving as the cold brass tag resting at the bottom of my bag. My fingertips trembled slightly, of their own accord. Was this man near my brother when he wrote this? All that exists before me is a single, unopened letter. Tonight, inside my small tent, I whispered the names of the forty-three people I have delivered to into the dark, just as I always do. \"...Rudy, Emma, Hans, ...Noya...\" The name slipped out, and I bit my lip, startled by my own voice. I have not delivered them yet. Neither this letter, nor the tag at the bottom of my bag. The wax on the envelope is worn smooth at the edges from rubbing against his coat."
+  }
+}

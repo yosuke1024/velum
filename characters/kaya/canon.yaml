@@ -25,4 +25,9 @@ formative_events:
       en: |
         At the burnt bridge she and Dari, the reclaimer from the other side, made a pact of two:
         reclaimers do not shoot reclaimers. It is not a guild agreement.
-facts: []
+facts:
+  - id: noya_unit_letter_found
+    fact:
+      ja: 古い峠道で、弟ノヤの認識札と同じ部隊刻印のある未開封の手紙を敵兵の遺体から回収した。
+      en: Recovered an unopened letter with the same unit stamp as her brother Noya's from an enemy soldier's body on the old mountain pass.
+    added_on: 2026-09-14

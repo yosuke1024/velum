@@ -1,0 +1,26 @@
+{
+  "date": "2026-09-14",
+  "era": "fracture",
+  "protagonist": "kaya",
+  "season": 1,
+  "episode": 3,
+  "beat": "転機",
+  "world_date": {
+    "year": 656,
+    "month": 7,
+    "day": 22
+  },
+  "title": {
+    "ja": "冷たい石の下の星印",
+    "en": "The Star Stamp Under Cold Stones"
+  },
+  "quote": {
+    "ja": "「……ルディ、エマ、ハンス、……ノヤ……」",
+    "en": "\"...Rudy, Emma, Hans, ...Noya...\""
+  },
+  "mood": {
+    "ja": "冷たい石の下の手紙と、暗闇の中で零れ落ちた名前",
+    "en": "Letters under cold stone, and a name spilled in the dark"
+  },
+  "rare_expression_used": true
+}
