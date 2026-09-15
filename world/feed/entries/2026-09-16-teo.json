@@ -1,0 +1,31 @@
+{
+  "id": "2026-09-16-teo",
+  "date": "2026-09-16",
+  "character_id": "teo",
+  "era": "guilds",
+  "season": 1,
+  "episode": 4,
+  "world_date": {
+    "year": 375,
+    "month": 7,
+    "day": 25
+  },
+  "title": {
+    "ja": "無銘の課題と門前の問い",
+    "en": "The Unmarked Assignment and the Question at the Gate"
+  },
+  "excerpt": {
+    "ja": "ただ、書くべき真実はすでに決まっている。",
+    "en": "The truth to be written is already determined."
+  },
+  "mood": {
+    "ja": "紙の上に下ろすインクの重みを感じながら、規約の条文を頭の中で反芻している。",
+    "en": "Feeling the weight of the ink on the paper, while repeating the clauses of the regulations in my mind."
+  },
+  "path": "world/feed/entries/2026-09-16-teo.json",
+  "schema_version": 1,
+  "body": {
+    "ja": "師匠から仮銘審査の事前課題を言い渡された。対象は、あの男が持ち込んだ「無銘の燭台」だ。このタイミングでこの品をあてがわれることに、作為を感じないと言えば嘘になる。大鑑定院規則第8条、事前課題の選定は公平かつ客観的に行われるべきである。だが、これを不当な嫌がらせだなどと憤るつもりはない。\n\n夕刻、門前にあの男が現れた。来歴を問う私に、あいつはただ「お前なら、どう書く」とだけ残して消えた。底の知れない、薄汚い揺さぶりだ。\n\nあの燭台の座金。そして三十年前の原簿の改竄。私の目は、座金が正常に取り付けられていた痕跡と、それを意図的に「逆打ち」と見せかけるために削られた不自然な道具痕を捉えている。大鑑定院鑑定細則第18条第4項。鑑定書は現物の物理的形状にのみ依拠し、歴史的背景による先入観を排して記述せねばならない。私は私の目で視たものだけを書く。あの男の意図も、師匠の沈黙も、紙の上に引きずる必要はない。ただ、書くべき真実はすでに決まっている。\n\n対象：無銘の燭台（真鍮製、底部に研磨痕あり）\n等級：審査保留（ただし、物理的形状は極めて精巧な複製品のそれである）\n注記：座金周辺に近代の工具による切削痕が認められる。",
+    "en": "My master handed down the pre-examination assignment for the provisional title. The subject is that \"unmarked candlestick\" brought in by that man. To say I feel no calculation in being assigned this item at this timing would be a lie. Article 8 of the Grand Appraisal Academy Regulations: The selection of pre-examination assignments must be conducted fairly and objectively. However, I have no intention of resentfully calling this unfair harassment.\n\nAt dusk, that man appeared at the gates. When I demanded to know its provenance, he merely left me with, \"How would you write it?\" and vanished. A shallow, filthy attempt to shake my composure.\n\nThe washer of that candlestick. And the alteration of the ledger from thirty years ago. My eyes catch the traces where the washer was once properly attached, and the unnatural toolmarks scraped to make it look like a \"reverse-stamped\" defect. Detailed Rules for Appraisal, Article 18, Paragraph 4: An appraisal report must rely solely on the physical form of the object, written without preconceptions of historical background. I will write only what my eyes have seen. There is no need to drag that man's intentions or my master's silence onto the parchment. The truth to be written is already determined.\n\nSubject: Unmarked Candlestick (Brass, with polishing marks on the base)\nGrade: Assessment Pending (However, the physical form is that of an extremely exquisite replica)\nNote: Cutting marks by modern tools are observed around the washer."
+  }
+}

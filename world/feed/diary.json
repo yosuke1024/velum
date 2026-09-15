@@ -1,7 +1,33 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-13T22:57:48.417Z",
+  "generated_at": "2026-09-15T23:26:54.711Z",
   "entries": [
+    {
+      "id": "2026-09-16-teo",
+      "date": "2026-09-16",
+      "character_id": "teo",
+      "era": "guilds",
+      "season": 1,
+      "episode": 4,
+      "world_date": {
+        "year": 375,
+        "month": 7,
+        "day": 25
+      },
+      "title": {
+        "ja": "無銘の課題と門前の問い",
+        "en": "The Unmarked Assignment and the Question at the Gate"
+      },
+      "excerpt": {
+        "ja": "ただ、書くべき真実はすでに決まっている。",
+        "en": "The truth to be written is already determined."
+      },
+      "mood": {
+        "ja": "紙の上に下ろすインクの重みを感じながら、規約の条文を頭の中で反芻している。",
+        "en": "Feeling the weight of the ink on the paper, while repeating the clauses of the regulations in my mind."
+      },
+      "path": "world/feed/entries/2026-09-16-teo.json"
+    },
     {
       "id": "2026-09-14-kaya",
       "date": "2026-09-14",

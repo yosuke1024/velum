@@ -1,0 +1,26 @@
+{
+  "date": "2026-09-16",
+  "era": "guilds",
+  "protagonist": "teo",
+  "season": 1,
+  "episode": 4,
+  "beat": "危機",
+  "world_date": {
+    "year": 375,
+    "month": 7,
+    "day": 25
+  },
+  "title": {
+    "ja": "無銘の課題と門前の問い",
+    "en": "The Unmarked Assignment and the Question at the Gate"
+  },
+  "quote": {
+    "ja": "ただ、書くべき真実はすでに決まっている。",
+    "en": "The truth to be written is already determined."
+  },
+  "mood": {
+    "ja": "紙の上に下ろすインクの重みを感じながら、規約の条文を頭の中で反芻している。",
+    "en": "Feeling the weight of the ink on the paper, while repeating the clauses of the regulations in my mind."
+  },
+  "rare_expression_used": false
+}

@@ -8,7 +8,7 @@ people:
       ja: 師匠
       en: His master
     trust: 0.66
-    wariness: 0.27
+    wariness: 0.29
     summary:
       ja: |
         大鑑定院の頂点に立つ伝説の鑑定士。老齢。
@@ -38,7 +38,7 @@ people:
       ja: 兄・贋作師
       en: His brother, a forger
     trust: 0.4
-    wariness: 0.64
+    wariness: 0.67
     summary:
       ja: |
         摘発を生き延びてヴェスパー工房を継いだ兄。今も贋作を作り続け、成功している。
