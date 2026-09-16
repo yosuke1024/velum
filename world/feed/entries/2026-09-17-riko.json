@@ -1,0 +1,31 @@
+{
+  "id": "2026-09-17-riko",
+  "date": "2026-09-17",
+  "character_id": "riko",
+  "era": "silent",
+  "season": 1,
+  "episode": 4,
+  "world_date": {
+    "year": 1175,
+    "month": 7,
+    "day": 18
+  },
+  "title": {
+    "ja": "泥に沈んだ車輪と、金貨十五枚の猶予",
+    "en": "The Wheel Sunk in Mud and the Fifteen Gold Coin Grace Period"
+  },
+  "excerpt": {
+    "ja": "バキリ、と、あたしの全財産が泥に沈むような音がした。",
+    "en": "A nasty crack sounded, like the sound of my entire livelihood sinking into the mud."
+  },
+  "mood": {
+    "ja": "泥の中で立ち往生し、迫る期限に震えながら、強がりさえも凍りつきそうな気分。",
+    "en": "Stranded in the mud, shivering at the approaching deadline, with even my bravado starting to freeze."
+  },
+  "path": "world/feed/entries/2026-09-17-riko.json",
+  "schema_version": 1,
+  "body": {
+    "ja": "金貨五枚。うちの鑑定部が弾き出した、あの青い石の首飾りの最新価格さ。\n\nオルバの野郎、ニヤニヤしながら、権利書の頭金の期限を今月末に繰り上げると口頭で言ってきやがった。今月の末。あと何日あると思っているんだ。\n頭が真っ白になって、とにかく荷物を片付けようとしたら、今度は右の車輪が根元からへし折れた。バキリ、と、あたしの全財産が泥に沈むような音がした。裏路地の冷たい風の中で、あたしは完全に立ち往生さ。一歩も動けない。\n\nガロンに助けを求める？無理だよ。あの人が倉庫の鍵を失くしたって噂を聞いただけで、あたしの心臓は冷たくなるんだ。あのお節介なじいさんが、もう昔みたいに動けないかもしれないなんて、信じたくもない。\n\n誰か、この泥に突っ込んだ車輪を、目覚めた遺物だと言って高値で買ってくれないかね。\n金貨、あと十五枚。それだけあれば、あたしはあの棚を取り戻せるのに。",
+    "en": "Five gold coins. That is the latest price of that blue stone necklace, as determined by our appraisal department.\n\nThat bastard Olba, with a smug smirk on his face, verbally notified me that the deadline for the down payment on the registry of the Shelf of Awakening has been moved up to the end of this month. The end of this month? How many days do you think I have left?\nMy mind went completely blank, and as I tried to pack up my things, the right wheel of my cart snapped right off from the root. A nasty crack sounded, like the sound of my entire livelihood sinking into the mud. In the cold wind of the back alley, I am completely stranded. I can't move an inch.\n\nAsk Garon for help? I can't. Just hearing the rumor that he lost the warehouse keys makes my heart freeze. I don't want to believe that the meddlesome old man might not be able to move like he used to.\n\nCan't someone buy this wheel stuck in the mud, call it an awakened relic, and pay a high price for it?\nFifteen gold coins. If only I had that much, I could get that shelf back."
+  }
+}

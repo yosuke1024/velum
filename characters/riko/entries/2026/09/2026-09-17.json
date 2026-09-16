@@ -1,0 +1,26 @@
+{
+  "date": "2026-09-17",
+  "era": "silent",
+  "protagonist": "riko",
+  "season": 1,
+  "episode": 4,
+  "beat": "危機",
+  "world_date": {
+    "year": 1175,
+    "month": 7,
+    "day": 18
+  },
+  "title": {
+    "ja": "泥に沈んだ車輪と、金貨十五枚の猶予",
+    "en": "The Wheel Sunk in Mud and the Fifteen Gold Coin Grace Period"
+  },
+  "quote": {
+    "ja": "バキリ、と、あたしの全財産が泥に沈むような音がした。",
+    "en": "A nasty crack sounded, like the sound of my entire livelihood sinking into the mud."
+  },
+  "mood": {
+    "ja": "泥の中で立ち往生し、迫る期限に震えながら、強がりさえも凍りつきそうな気分。",
+    "en": "Stranded in the mud, shivering at the approaching deadline, with even my bravado starting to freeze."
+  },
+  "rare_expression_used": false
+}
