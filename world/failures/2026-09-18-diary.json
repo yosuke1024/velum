@@ -1,0 +1,13 @@
+{
+  "date": "2026-09-18",
+  "era": "convergence",
+  "protagonist": "sevran",
+  "season": 1,
+  "episode": 4,
+  "stage": "diary",
+  "reason": "構造ゲートの違反により破棄",
+  "violations": [
+    "関係先 korneri が relationships.yaml に存在しない"
+  ],
+  "recorded_at": "2026-09-17T23:26:32.380Z"
+}
