@@ -1,0 +1,31 @@
+{
+  "id": "2026-09-19-kaya",
+  "date": "2026-09-19",
+  "character_id": "kaya",
+  "era": "fracture",
+  "season": 1,
+  "episode": 4,
+  "world_date": {
+    "year": 656,
+    "month": 8,
+    "day": 2
+  },
+  "title": {
+    "ja": "初雪の避難小屋と、火の消えた家",
+    "en": "The First Snow in the Mountain Hut, and the House Where the Fire Went Out"
+  },
+  "excerpt": {
+    "ja": "これまでにわたしが届けてきた人生は、四十三。帰らなかった彼らの声を、わたしはまだすべて覚えている。",
+    "en": "The lives I have delivered so far number forty-three. I still remember every single voice of those who never returned."
+  },
+  "mood": {
+    "ja": "吹き込む雪の冷たさと、嘘が待つ母の家へと向かう静かな緊張感",
+    "en": "The coldness of the blowing snow, and a quiet tension heading toward my mother's house where my lie awaits"
+  },
+  "path": "world/feed/entries/2026-09-19-kaya.json",
+  "schema_version": 1,
+  "body": {
+    "ja": "峠の崖沿いにある避難小屋は、急な吹雪を凌ぐには十分だった。先客の猟師が暖炉にくべてくれた薪の匂いが、回収袋に染み込んだ泥の臭いを一時的にかき消してくれる。彼の雨合羽の袖口には、破れを雑に塞いだホチキスの針が並んでいる。敵の突撃を辛うじて防ぎ止めた、真鍮の矢傷の縫合痕だ。そうやって物を見るのは、わたしの悪い癖だろう。\n\n猟師は乾燥肉を削りながら、ハルナ村の様子を教えてくれた。わたしが探していた、あの刻銘のある水筒の持ち主の家は、先週の火災で灰になったという。幸い、その家族は無事だが、いまはわたしの母イサの家に身を寄せているらしい。\n\n母の家。そこは、わたしが「ノヤはまだ行方不明だ」と偽りの手紙を送り続けている場所だ。水筒を届けるためには、その嘘の懐へ飛び込まなければならない。雪が峠を閉ざす前に、あの村へ下りる必要がある。\n\nこれまでにわたしが届けてきた人生は、四十三。帰らなかった彼らの声を、わたしはまだすべて覚えている。回収帳に、新しい届け先を書き留める。\n\nハルナ村、イサの家。\n——確かに、お届けしました。",
+    "en": "The mountain hut along the cliff of the pass was enough to shield me from the sudden blizzard. The smell of the firewood lit by the hunter who arrived before me temporarily masked the scent of mud soaked into my collection bag. Along the cuff of his raincoat, a row of staples crudely patched a tear. To my eyes, they looked like the suture scars of brass arrows that had barely warded off an enemy assault. Looking at objects in such a way is a bad habit of mine.\n\nShaving dried meat, the hunter told me about Haruna Village. The house of the family I was searching for—the owners of the engraved canteen—was reduced to ashes in a fire last week. Fortunately, the family survived, but they are currently staying at my mother Isa's house.\n\nMy mother's house. The very place where I keep sending false letters, claiming that Noya is still \"missing.\" To deliver this canteen, I must step right into the heart of my own lie. I must head down to the village before the snow closes the pass.\n\nThe lives I have delivered so far number forty-three. I still remember every single voice of those who never returned. In my ledger, I write down the new delivery address.\n\nHaruna Village, Isa's house.\n—Indeed, it has been delivered."
+  }
+}

@@ -1,7 +1,33 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-16T23:34:50.186Z",
+  "generated_at": "2026-09-18T23:05:57.745Z",
   "entries": [
+    {
+      "id": "2026-09-19-kaya",
+      "date": "2026-09-19",
+      "character_id": "kaya",
+      "era": "fracture",
+      "season": 1,
+      "episode": 4,
+      "world_date": {
+        "year": 656,
+        "month": 8,
+        "day": 2
+      },
+      "title": {
+        "ja": "初雪の避難小屋と、火の消えた家",
+        "en": "The First Snow in the Mountain Hut, and the House Where the Fire Went Out"
+      },
+      "excerpt": {
+        "ja": "これまでにわたしが届けてきた人生は、四十三。帰らなかった彼らの声を、わたしはまだすべて覚えている。",
+        "en": "The lives I have delivered so far number forty-three. I still remember every single voice of those who never returned."
+      },
+      "mood": {
+        "ja": "吹き込む雪の冷たさと、嘘が待つ母の家へと向かう静かな緊張感",
+        "en": "The coldness of the blowing snow, and a quiet tension heading toward my mother's house where my lie awaits"
+      },
+      "path": "world/feed/entries/2026-09-19-kaya.json"
+    },
     {
       "id": "2026-09-17-riko",
       "date": "2026-09-17",
