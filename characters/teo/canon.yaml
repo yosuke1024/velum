@@ -28,4 +28,9 @@ formative_events:
       en: |
         The winter he was twelve, he left home the night before the Vesper Workshop was raided.
         In his bag was one forged necklace his parents had made. He still has it.
-facts: []
+facts:
+  - id: vesper_pendant_pair
+    fact:
+      ja: テオは大鑑定院の私室の窓辺で、かつて自分が持ち出した贋作の首飾りと一対をなす、もう一方の首飾りを見つけた。
+      en: Teo found the counterpart to his counterfeit pendant, left on his windowsill in his private room at the Grand Appraisal Institute.
+    added_on: 2026-09-21

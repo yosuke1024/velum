@@ -1,7 +1,33 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-19T22:43:07.243Z",
+  "generated_at": "2026-09-20T23:04:10.317Z",
   "entries": [
+    {
+      "id": "2026-09-21-teo",
+      "date": "2026-09-21",
+      "character_id": "teo",
+      "era": "guilds",
+      "season": 1,
+      "episode": 5,
+      "world_date": {
+        "year": 375,
+        "month": 7,
+        "day": 30
+      },
+      "title": {
+        "ja": "規約のインクと対の首飾り",
+        "en": "The Ink of the Code and the Paired Pendant"
+      },
+      "excerpt": {
+        "ja": "『直感を捨てた眼に、何が見えるか』",
+        "en": "'To the eyes that have cast aside intuition, what is visible?'"
+      },
+      "mood": {
+        "ja": "推薦状のインクの重みと、窓辺に置かれた首飾りの冷たさを両手で確かめている。",
+        "en": "Feeling the weight of the ink on the recommendation in one hand, and the coldness of the paired pendant from the windowsill in the other."
+      },
+      "path": "world/feed/entries/2026-09-21-teo.json"
+    },
     {
       "id": "2026-09-20-uta",
       "date": "2026-09-20",

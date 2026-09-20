@@ -1,0 +1,31 @@
+{
+  "id": "2026-09-21-teo",
+  "date": "2026-09-21",
+  "character_id": "teo",
+  "era": "guilds",
+  "season": 1,
+  "episode": 5,
+  "world_date": {
+    "year": 375,
+    "month": 7,
+    "day": 30
+  },
+  "title": {
+    "ja": "規約のインクと対の首飾り",
+    "en": "The Ink of the Code and the Paired Pendant"
+  },
+  "excerpt": {
+    "ja": "『直感を捨てた眼に、何が見えるか』",
+    "en": "'To the eyes that have cast aside intuition, what is visible?'"
+  },
+  "mood": {
+    "ja": "推薦状のインクの重みと、窓辺に置かれた首飾りの冷たさを両手で確かめている。",
+    "en": "Feeling the weight of the ink on the recommendation in one hand, and the coldness of the paired pendant from the windowsill in the other."
+  },
+  "path": "world/feed/entries/2026-09-21-teo.json",
+  "schema_version": 1,
+  "body": {
+    "ja": "仮銘審査の用紙は、規約第207条の記述義務に従って埋めた。客観的事実のみを書き連ねる作業は、驚くほど私の頭を冷やしてくれた。「出自不明。ただし座金の逆打ちから技術的系統はヴェスパー工房の初期特徴に類する」。これ以外の記述は一切不要であり、そこに私の感情を挟む余地など存在しない。\n\n提出を終えた私に、師匠は一枚の推薦状を手渡した。そこに手記されていた言葉は、地下書庫で見つけたあの精巧な模倣の筆跡などではなく、荒削りで、だが間違いなく本物の師匠の筆跡だった。\n\n『直感を捨てた眼に、何が見えるか』\n\n別に嬉しくなどはない。私はただ、大鑑定士としての当然の要件を満たしたに過ぎない。規約第14条を反芻しながら自室の扉を開けたとき、その考えは吹き飛んだ。\n\n窓辺にロウの姿はなかった。代わりに、私がかつて家を出るときに持ち出した、あの親の作った贋作の首飾りと寸分違わぬ、もう一方の首飾りが置かれていた。これで一対だ。これが何を意味するのか、私には明白だった。\n\n【対象】無銘の燭台、および一対の金属製首飾り\n【等級】仮仮銘（鑑定保留）、および未登録の私物\n【注記】首飾りの鎖の細工、および座金の道具痕は、特定の工房の初期技術に極めて高い類似性を示す。",
+    "en": "I filled out the provisional examination sheet in accordance with the descriptive obligations of Article 207 of the Appraisal Code. The process of listing nothing but objective facts cooled my head remarkably. 'Origin unknown. However, based on the reversed washer, the technical lineage resembles the early characteristics of the Vesper workshop.' No other descriptions are necessary, and there is no room for my personal feelings to intervene.\n\nAfter the submission, the Master handed me a letter of recommendation. The words handwritten upon it were not in that exquisite imitation of handwriting from the archives, but in the Master's own hand—rough, yet unmistakably his.\n\n'To the eyes that have cast aside intuition, what is visible?'\n\nI feel no particular joy. I have merely satisfied the natural requirements as an appraiser. Yet, when I opened the door to my private room while reciting Article 14 in my mind, that thought vanished instantly.\n\nLowe was not by the window. Instead, there lay the counterpart to the counterfeit necklace my parents made—the one I brought with me when I left home. Now they form a complete pair. What this means is entirely obvious to me.\n\n[Subject] Unmarked candelabra, and a pair of metal necklaces\n[Grade] Provisional (pending final appraisal), and unregistered personal property\n[Note] The chainwork of the necklaces and the toolmarks on the washer exhibit an extremely high similarity to the early techniques of a specific workshop."
+  }
+}
