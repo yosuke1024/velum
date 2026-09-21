@@ -1,7 +1,33 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-20T23:04:10.317Z",
+  "generated_at": "2026-09-21T23:55:48.281Z",
   "entries": [
+    {
+      "id": "2026-09-22-riko",
+      "date": "2026-09-22",
+      "character_id": "riko",
+      "era": "silent",
+      "season": 1,
+      "episode": 5,
+      "world_date": {
+        "year": 1175,
+        "month": 7,
+        "day": 22
+      },
+      "title": {
+        "ja": "裏路地の沈黙と、差し出された金貨",
+        "en": "Silence in the Back Alley and the Proffered Gold Coins"
+      },
+      "excerpt": {
+        "ja": "『……これは、売り』言いかけて、慌てて舌を噛んだ。あたしは何を言おうとした？　あの一言だけは、死んでもあたしの口から出ていいはずがない。",
+        "en": "'This is, not...' I started to say, then bit my tongue in a panic. What was I about to say? That particular phrase must never, ever escape my lips as a merchant."
+      },
+      "mood": {
+        "ja": "差し出された富に怯え、守るべきプライドと商人の本分の狭間で、凍りついたまま動けない。",
+        "en": "Frightened by the wealth offered to me, frozen and unable to move between my pride and my duty as a merchant."
+      },
+      "path": "world/feed/entries/2026-09-22-riko.json"
+    },
     {
       "id": "2026-09-21-teo",
       "date": "2026-09-21",

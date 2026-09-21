@@ -1,0 +1,31 @@
+{
+  "id": "2026-09-22-riko",
+  "date": "2026-09-22",
+  "character_id": "riko",
+  "era": "silent",
+  "season": 1,
+  "episode": 5,
+  "world_date": {
+    "year": 1175,
+    "month": 7,
+    "day": 22
+  },
+  "title": {
+    "ja": "裏路地の沈黙と、差し出された金貨",
+    "en": "Silence in the Back Alley and the Proffered Gold Coins"
+  },
+  "excerpt": {
+    "ja": "『……これは、売り』言いかけて、慌てて舌を噛んだ。あたしは何を言おうとした？　あの一言だけは、死んでもあたしの口から出ていいはずがない。",
+    "en": "'This is, not...' I started to say, then bit my tongue in a panic. What was I about to say? That particular phrase must never, ever escape my lips as a merchant."
+  },
+  "mood": {
+    "ja": "差し出された富に怯え、守るべきプライドと商人の本分の狭間で、凍りついたまま動けない。",
+    "en": "Frightened by the wealth offered to me, frozen and unable to move between my pride and my duty as a merchant."
+  },
+  "path": "world/feed/entries/2026-09-22-riko.json",
+  "schema_version": 1,
+  "body": {
+    "ja": "金貨三枚。それが、あの青い石の首飾りにあたしがふっかけた、最新の、そして一番馬鹿げた値段。それを、本当にそのままで買うと言い出した物好きが、わざわざ宿の部屋まで訪ねてきた。右の車輪を泥の中に残したまま、ミオに手伝ってもらって運び込んだ荷物に囲まれて、あたしは突っ立っていた。運び屋の奴から、ガロンが倉庫で、あの『目覚めの棚』の古い図面を整理しているという話を聞いたばかりだった。あの人は今更、何を動かそうとしているんだろう。頭の隅でそのことばかりがぐるぐると回っていた。そこへ来たのが、あの身なりのいい男だ。首飾りを買いにきたと言う男の革財布は、金貨の重みできちんと膨らんでいた。頭金の繰り上げ分、車輪の修理代、それらがあっさりと解決するはずの、待ち望んでいた瞬間だった。なのに、男が差し出した手のひらを見ていたら、急に全身の血が冷たくなった。これは、ただのまがい物だ。うちの鑑定部が自信を持って送り出した、何の力もない、薄青いガラスの塊。それなのに、どうして。『……これは、売り』言いかけて、慌てて舌を噛んだ。あたしは何を言おうとした？　あの一言だけは、死んでもあたしの口から出ていいはずがない。結局、荷ほどきが済んでいないからと、およそ商人らしからぬ言い訳で男を帰らせてしまった。あたしはただ、恐ろしいのだ。あの首飾りが、本物になってしまうことが。あるいは、あたしの手から本物が、また一つ消えてしまうことが。明日の宿代、銀貨四枚。",
+    "en": "Three gold coins. That was the latest, and most ridiculous, price I had put on that blue stone necklace. And then, a wealthy eccentric actually showed up at my lodgings, offering to pay exactly that amount. I stood there, surrounded by the baggage I had carted in with Mio's help, leaving my broken wheel behind in the mud. I had just heard from a courier that Garon was in the warehouse, organizing old blueprints of the 'Awakening Shelf.' What on earth is he trying to do now? That question kept spinning in the back of my mind. That was when the well-dressed gentleman arrived. His leather purse was heavy and swollen with gold coins. This was the moment I had been praying for—the money to cover the advanced down payment, the repair costs for the wheel, all resolved in an instant. Yet, looking at his open palm, my blood suddenly ran cold. This is just a counterfeit. A powerless piece of pale blue glass that my 'appraisal department' sent out with false confidence. So why? 'This is, not...' I started to say, then bit my tongue in a panic. What was I about to say? That particular phrase must never, ever escape my lips as a merchant. In the end, I sent him away with a clumsy excuse about not having finished unpacking. I am just terrified. Terrified that the necklace might actually become real—or that another real thing might vanish from my hands. Four silver coins for tomorrow's lodging."
+  }
+}

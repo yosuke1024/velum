@@ -42,3 +42,8 @@ facts:
       ja: 1,175年秋の北の市にて、質屋のオルバから目覚めの棚の頭金期限を今月末に繰り上げると通告された直後、荷車の右車輪が根元から折れて移動不能となった。
       en: In the autumn of 1,175 at the Northern Market, shortly after being notified by the pawnbroker Olba that the deadline for the down payment on the Shelf of Awakening was moved up to the end of this month, the right wheel of her cart snapped from the root, leaving her immobilized.
     added_on: 2026-09-17
+  - id: rico_hesitated_to_sell_necklace
+    fact:
+      ja: 1,175年秋、北の市にて青い石の首飾りを値札通りに買おうとする収集家が現れたが、リコは口を滑らせかけ、売るのを躊躇して返事を持ち帰らせた。
+      en: In the autumn of 1175, at the Northern Market, a collector offered to buy the blue stone necklace at its listed price, but Rico hesitated to sell it, almost letting a forbidden phrase slip.
+    added_on: 2026-09-22
