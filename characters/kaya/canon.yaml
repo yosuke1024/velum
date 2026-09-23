@@ -31,3 +31,8 @@ facts:
       ja: 古い峠道で、弟ノヤの認識札と同じ部隊刻印のある未開封の手紙を敵兵の遺体から回収した。
       en: Recovered an unopened letter with the same unit stamp as her brother Noya's from an enemy soldier's body on the old mountain pass.
     added_on: 2026-09-14
+  - id: delivery_to_displaced_at_isa_house
+    fact:
+      ja: ハルナ村の母の家にて、火災で家を失い避難していた遺族へアルベルトの水筒を届けたが、積雪により春まで同村に留まることを余儀なくされた。
+      en: At her mother's house in Haruna Village, she delivered Albert's canteen to a displaced family sheltering there, and was forced to remain in the village until spring due to heavy snowfall.
+    added_on: 2026-09-24

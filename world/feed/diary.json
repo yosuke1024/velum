@@ -1,7 +1,33 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-21T23:55:48.281Z",
+  "generated_at": "2026-09-23T23:27:23.608Z",
   "entries": [
+    {
+      "id": "2026-09-24-kaya",
+      "date": "2026-09-24",
+      "character_id": "kaya",
+      "era": "fracture",
+      "season": 1,
+      "episode": 5,
+      "world_date": {
+        "year": 656,
+        "month": 8,
+        "day": 10
+      },
+      "title": {
+        "ja": "雪に閉ざされた家と四十四個目の真鍮",
+        "en": "The Snowbound House and the Forty-Fourth Brass"
+      },
+      "excerpt": {
+        "ja": "いいえ、何もない",
+        "en": "No, nothing."
+      },
+      "mood": {
+        "ja": "降り積もる雪に閉じ込められ、温かいスープの向こうで母に嘘を重ねる息苦しさ",
+        "en": "The stifling warmth of my mother's kitchen, trapped by the heavy snow, telling her another lie over hot soup."
+      },
+      "path": "world/feed/entries/2026-09-24-kaya.json"
+    },
     {
       "id": "2026-09-22-riko",
       "date": "2026-09-22",

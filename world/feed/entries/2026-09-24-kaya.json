@@ -1,0 +1,31 @@
+{
+  "id": "2026-09-24-kaya",
+  "date": "2026-09-24",
+  "character_id": "kaya",
+  "era": "fracture",
+  "season": 1,
+  "episode": 5,
+  "world_date": {
+    "year": 656,
+    "month": 8,
+    "day": 10
+  },
+  "title": {
+    "ja": "雪に閉ざされた家と四十四個目の真鍮",
+    "en": "The Snowbound House and the Forty-Fourth Brass"
+  },
+  "excerpt": {
+    "ja": "いいえ、何もない",
+    "en": "No, nothing."
+  },
+  "mood": {
+    "ja": "降り積もる雪に閉じ込められ、温かいスープの向こうで母に嘘を重ねる息苦しさ",
+    "en": "The stifling warmth of my mother's kitchen, trapped by the heavy snow, telling her another lie over hot soup."
+  },
+  "path": "world/feed/entries/2026-09-24-kaya.json",
+  "schema_version": 1,
+  "body": {
+    "ja": "ハルナ村。雪が容赦なく降り積もり、古い峠道は白に消えた。春まで、もう組合の詰所へ戻ることも、焼けた橋へ行くこともできない。母イサの家は、薪の匂いと、行き場を失った人々の湿った外套の匂いがしていた。奥の部屋に身を寄せていた遺族へ、荷物から取り出した水筒を差し出す。「お届けに参りました。同盟軍の第十二歩兵連隊、アルベルト・ウェバーさんのものに間違いありませんか」へこんだ真鍮の底、そこに刻まれた彼自身の指の擦れ跡。妻だという女性が、それを指先でなぞり、静かに頷く。三度の確認を終え、それを手渡した。これで、わたしが届けてきた人生は、四十四。食堂で、母が温かいスープをよそいながら、いつもと同じ顔で聞いてきた。「ノヤから、便りはあったかい？」わたしは答える。「いいえ、何もない」スープの湯気で、目の前が白く曇る。わたしの懐には、古い峠道で回収した未開封の手紙が入っている。あの黒い封蝋と、弟の認識札と同じ、第十三連隊の刻印。それを引きずり出すこともできず、わたしはただ、乾いたパンをスープに浸した。——確かに、お届けしました。",
+    "en": "Haruna Village. The snow fell relentlessly, erasing the old mountain pass into a blank white sheet. Until spring, I cannot return to the Association's depot, nor can I go to the Burnt Bridge. My mother Isa's house smelled of firewood and the damp coats of those who had lost their homes. I presented the canteen to the displaced family sheltering in the back room. 'I have come to deliver this. Does this belong to Albert Weber of the 12th Infantry Regiment of the Allied Forces?' The dented brass bottom, the scratches worn by his own fingers. The woman who said she was his wife traced them with her fingertips and nodded quietly. After three confirmations, I handed it over. With this, the number of lives I have returned is forty-four. In the kitchen, as my mother ladled hot soup, she asked with her usual face, 'Any word from Noya?' I replied, 'No, nothing.' The steam from the soup clouded my eyes. In my breast pocket lay the unopened letter I had recovered on the old pass, with its black sealing wax and the stamp of the 13th Regiment—the same as my brother's dog tag. Unable to pull it out, I simply dipped my dry bread into the soup. —— I have delivered it safely."
+  }
+}
