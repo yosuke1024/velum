@@ -1,8 +1,54 @@
 {
-  "updated_at": "2026-08-29T01:55:47.836Z",
-  "season": null,
+  "updated_at": "2026-09-24T23:48:20.741Z",
+  "season": 1,
   "note": "PixTale はこのファイルを読み、version の指す Snapshot を取得する。人格を戻すときは version を以前の番号へ書き換える（ファイルは追記のみなので消えていない）。",
-  "personas": {},
+  "personas": {
+    "uta": {
+      "character": "uta",
+      "era": "primordial",
+      "version": 1,
+      "path": "characters/uta/snapshots/v0001.json",
+      "diaries": 4,
+      "through": "2026-09-25",
+      "published_at": "2026-09-24T23:48:20.741Z"
+    },
+    "teo": {
+      "character": "teo",
+      "era": "guilds",
+      "version": 1,
+      "path": "characters/teo/snapshots/v0001.json",
+      "diaries": 5,
+      "through": "2026-09-21",
+      "published_at": "2026-09-24T23:48:20.741Z"
+    },
+    "sevran": {
+      "character": "sevran",
+      "era": "convergence",
+      "version": 1,
+      "path": "characters/sevran/snapshots/v0001.json",
+      "diaries": 3,
+      "through": "2026-09-13",
+      "published_at": "2026-09-24T23:48:20.741Z"
+    },
+    "kaya": {
+      "character": "kaya",
+      "era": "fracture",
+      "version": 1,
+      "path": "characters/kaya/snapshots/v0001.json",
+      "diaries": 5,
+      "through": "2026-09-24",
+      "published_at": "2026-09-24T23:48:20.741Z"
+    },
+    "riko": {
+      "character": "riko",
+      "era": "silent",
+      "version": 1,
+      "path": "characters/riko/snapshots/v0001.json",
+      "diaries": 5,
+      "through": "2026-09-22",
+      "published_at": "2026-09-24T23:48:20.741Z"
+    }
+  },
   "world": {
     "version": 1,
     "path": "world/appraisal/v0001.json",

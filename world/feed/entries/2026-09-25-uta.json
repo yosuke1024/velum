@@ -1,0 +1,31 @@
+{
+  "id": "2026-09-25-uta",
+  "date": "2026-09-25",
+  "character_id": "uta",
+  "era": "primordial",
+  "season": 1,
+  "episode": 5,
+  "world_date": {
+    "year": null,
+    "month": 7,
+    "day": 15
+  },
+  "title": {
+    "ja": "星祭りの清水と臨時の名",
+    "en": "The Spring of the Star Festival and the Temporary Name"
+  },
+  "excerpt": {
+    "ja": "声は言っていない。ウタが言った。",
+    "en": "But the voice did not say it. Uta said it."
+  },
+  "mood": {
+    "ja": "助かった命と、引き裂かれた名の間で、骨の冷たさだけを感じている。",
+    "en": "Between a saved life and a torn title, feeling only the coldness of the bone."
+  },
+  "path": "world/feed/entries/2026-09-25-uta.json",
+  "schema_version": 1,
+  "body": {
+    "ja": "星の月の、星祭りの夜。\nウタは丘の裾のくぼ地を指した。あそこに水がある、と。\nレンが硬い地盤を力強く叩き割り、そこから冷たくて清い水が噴き出した。熱に浮かされていた若者の口にその水を含ませると、夜半には熱が引き始めた。\n水のおかげなのか、若者の命が自ら戻ってきたのかは、ウタにはわからない。\nガルドは「先代も知っていた場所だ。偶然にすぎない」と言い、ウタを正式な聴き手とは認めなかった。追放は免れたが、ウタはただの「臨時の聴き手」なのだと、皆の前で宣言された。\n\n……あのくぼ地に水がある、と、声が言っている。ウタはそう言った。\nけれど、声は言っていない。ウタが言った。\nウタは、あそこが少し湿っているのを目で見て、谷の水の流れを頭の中で繋ぎ合わせて、ただあそこを指したのだ。声なんて、どこからも響かなかった。\nそれでも、病人の熱は下がった。命は救われた。\nけれど、ウタの心はひどく冷え切っている。レンが守ってくれた骨の冷たさだけが、手のひらにまだ残っている。\n\n星祭りまで、もう夜はない。",
+    "en": "It is the night of the Star Festival, in the Month of Stars.\nUta pointed to the hollow at the foot of the hill, claiming there was water there.\nRen shattered the hard ground with all his might, and cold, clear water gushed forth. When we let the feverish youth drink it, his fever began to break by midnight.\nWhether it was the water, or the youth's own strength that brought him back, Uta does not know.\nGald said, \"The previous Elder knew of this place as well. It is mere coincidence,\" and refused to recognize Uta as the true Listener. Although the exile was canceled, he declared before everyone that Uta is nothing more than a \"temporary Listener.\"\n\n\"...There is water in that hollow, the voice is saying.\" That is what Uta said to them.\nBut the voice did not say it. Uta said it.\nUta only saw that the hollow was slightly damp, traced the flow of the valley's water in her mind, and pointed. No voice echoed from anywhere.\nEven so, the youth's fever broke. A life was saved.\nYet, Uta's heart remains bitterly cold. Only the chill of the bone that Ren protected still lingers in her palm.\n\nThere are no more nights left until the Star Festival."
+  }
+}

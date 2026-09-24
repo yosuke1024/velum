@@ -1,0 +1,26 @@
+{
+  "date": "2026-09-25",
+  "era": "primordial",
+  "protagonist": "uta",
+  "season": 1,
+  "episode": 5,
+  "beat": "決着",
+  "world_date": {
+    "year": null,
+    "month": 7,
+    "day": 15
+  },
+  "title": {
+    "ja": "星祭りの清水と臨時の名",
+    "en": "The Spring of the Star Festival and the Temporary Name"
+  },
+  "quote": {
+    "ja": "声は言っていない。ウタが言った。",
+    "en": "But the voice did not say it. Uta said it."
+  },
+  "mood": {
+    "ja": "助かった命と、引き裂かれた名の間で、骨の冷たさだけを感じている。",
+    "en": "Between a saved life and a torn title, feeling only the coldness of the bone."
+  },
+  "rare_expression_used": false
+}

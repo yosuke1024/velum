@@ -50,3 +50,8 @@ facts:
       ja: 星祭りの前夜、熱病の若者を救う声を証明できなければ氏族を追放すると、長のガルドから宣告された。
       en: On the eve of the Star Festival, the chief Gald declared that Uta would be exiled from the clan if she could not prove the voice to cure the sick youth.
     added_on: 2026-09-20
+  - id: temporary_listener_declaration
+    fact:
+      ja: 星祭りの夜、ウタは水場を当てて病人を救ったが、ガルドによって正式な継承を拒まれ「臨時の聴き手」と宣言された。
+      en: On the night of the Star Festival, Uta found water and saved a patient, but Gald denied her formal succession, declaring her a 'temporary Listener'.
+    added_on: 2026-09-25
