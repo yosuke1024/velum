@@ -1,0 +1,71 @@
+# 季の計画を立てる（手動）。
+#
+# 次の季の計画は自動では立たない（docs/seasons.md §1, §9）。このワークフローも
+# 人が起動する。ローカルに GEMINI_API_KEY が無くても、repo secret で計画を
+# 生成できるようにするためのもの。
+#
+# 生成した計画は「起動したブランチ」へコミットするだけで、日次生成はここでは
+# 回さない。読んで直してから main へ入れる、という順序を崩さないため。
+#
+# 使い方: Actions → plan → Run workflow。season（必要なら era / force）を指定し、
+# 計画を置きたいブランチを選ぶ。計画は world/seasons/<季>/ に、各時代の時計は
+# world/clocks.yaml に書かれる（最終話の翌日へ進む）。
+
+name: plan
+
+on:
+  workflow_dispatch:
+    inputs:
+      season:
+        description: '計画する季（1以上の整数）'
+        required: true
+      era:
+        description: '1時代だけ作り直すとき（primordial / guilds / convergence / fracture / silent）。省略すると5時代'
+        required: false
+      force:
+        description: '計画済みでも上書きする'
+        type: boolean
+        default: false
+
+concurrency:
+  group: plan
+  cancel-in-progress: false
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    # フォークからの実行で secrets を使う生成が走らないようにする（daily.yml と同じ）。
+    if: github.repository_owner == 'yosuke1024'
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+
+      - name: Plan the season
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: >
+          npm run plan -- --season ${{ inputs.season }}
+          ${{ inputs.era && format('--era {0}', inputs.era) || '' }}
+          ${{ inputs.force && '--force' || '' }}
+
+      # 生成した計画が canon や暦と矛盾していないかを、コミットする前に見る。
+      - name: Validate the data
+        run: npm run validate
+
+      - name: Commit the plan
+        run: |
+          git config user.name  'velum'
+          git config user.email 'noreply@pixapps.ai'
+          git add world/seasons world/clocks.yaml
+          if git diff --staged --quiet; then
+            echo "変更なし。"
+          else
+            git commit -m "season: plan ${{ inputs.season }}"
+            git push
+          fi

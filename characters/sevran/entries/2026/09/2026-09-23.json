@@ -1,0 +1,26 @@
+{
+  "date": "2026-09-23",
+  "era": "convergence",
+  "protagonist": "sevran",
+  "season": 1,
+  "episode": 5,
+  "beat": "決着",
+  "world_date": {
+    "year": 417,
+    "month": 8,
+    "day": 8
+  },
+  "title": {
+    "ja": "紙の上の歪みと、一分間の歩み",
+    "en": "The Distortion on the Paper and a Single Minute's Progress"
+  },
+  "quote": {
+    "ja": "昨日の記述の一部に、僕が引いた覚えのない一本の見え消し線が引かれていた。",
+    "en": "A strikeout line, which I have no recollection of drawing, had been made through a portion of yesterday’s entry."
+  },
+  "mood": {
+    "ja": "見え消し線の下に残る、見慣れたはずの自分の文字が、まるで他人の書いたもののように冷たく感じられる。",
+    "en": "The familiar handwriting beneath the strikeout line feels as cold as if it were written by a stranger."
+  },
+  "rare_expression_used": false
+}

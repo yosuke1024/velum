@@ -1,0 +1,31 @@
+{
+  "id": "2026-09-23-sevran",
+  "date": "2026-09-23",
+  "character_id": "sevran",
+  "era": "convergence",
+  "season": 1,
+  "episode": 5,
+  "world_date": {
+    "year": 417,
+    "month": 8,
+    "day": 8
+  },
+  "title": {
+    "ja": "紙の上の歪みと、一分間の歩み",
+    "en": "The Distortion on the Paper and a Single Minute's Progress"
+  },
+  "excerpt": {
+    "ja": "昨日の記述の一部に、僕が引いた覚えのない一本の見え消し線が引かれていた。",
+    "en": "A strikeout line, which I have no recollection of drawing, had been made through a portion of yesterday’s entry."
+  },
+  "mood": {
+    "ja": "見え消し線の下に残る、見慣れたはずの自分の文字が、まるで他人の書いたもののように冷たく感じられる。",
+    "en": "The familiar handwriting beneath the strikeout line feels as cold as if it were written by a stranger."
+  },
+  "path": "world/feed/entries/2026-09-23-sevran.json",
+  "schema_version": 1,
+  "body": {
+    "ja": "大時計の裏手にある裂け目は、四時十七分になった瞬間に完全に静止した（確認）。\n\n同行したコルネリがその「橋」を渡り、対岸へ到達したことを見届けた後、僕は手帖にこの現象を書き留めた。現時点では、これを『偶然の一致。要検証』とする。\n\nしかし、頁を戻した際、奇妙な不整合を見出した。昨日の記述の一部に、僕が引いた覚えのない一本の見え消し線が引かれていた。線は青いインクで引かれているが、僕が使っているものよりもわずかに暗く、冷たい鉄の匂いが混ざっているように感じられる。何がこの紙に、あるいはこの時間に混ざったのか。\n\n直後、大時計の長針が一瞬だけ四時十八分へと進み、すぐに四時十七分へと逆戻りするのを視認した。この一瞬の「進み」が、帳面の記述にどのような歪みをもたらしたのかは、現時点では未確認である。\n\n手帖の繊維、あるいはインクそのものの成分について、精査の必要がある（要検証）。\n\n——以上を、本日の記録とする。記録院書記 セヴラン",
+    "en": "The rift behind the grand clock came to a complete standstill the exact moment the time reached 4:17 (Confirmed).\n\nAfter witnessing Corneli, who accompanied me, cross this \"bridge\" to the other side, I noted the phenomenon in my ledger. For now, I shall record this as a \"coincidence, to be verified.\"\n\nHowever, upon flipping back the pages, I discovered a strange inconsistency. A strikeout line, which I have no recollection of drawing, had been made through a portion of yesterday’s entry. The line was drawn in blue ink, yet it appeared slightly darker than the one I use, and carried a faint scent of cold iron. What exactly has become mixed into this paper—or perhaps, into this time?\n\nImmediately after, I observed the minute hand of the grand clock advance to 4:18 for a mere second before snapping back to 4:17. The extent of the distortion this brief \"progress\" has caused to the records remains unconfirmed.\n\nThe fibers of the ledger, or perhaps the components of the ink itself, require close examination (To be verified).\n\n——This concludes today’s record. Severin, Scribe of the Archives"
+  }
+}
