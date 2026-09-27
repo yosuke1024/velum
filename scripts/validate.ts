@@ -160,21 +160,37 @@ for (const era of ERA_IDS) {
 // ── world/arcs ─────────────────────────────────────────────────
 
 const arcEras = new Set<string>();
+const activeArcs = new Map<string, string[]>();
 for (const file of readdirSync(join(ROOT, 'world/arcs')).filter((f) => f.endsWith('.yaml'))) {
-  const arc = load<{ era: string; protagonist: string }>(
+  const arc = load<{ id: string; era: string; protagonist: string; status: string }>(
     join(ROOT, 'world/arcs', file),
     ArcFileSchema,
     'アーク',
   );
   if (!arc) continue;
   arcEras.add(arc.era);
+  if (arc.status === 'active') {
+    activeArcs.set(arc.era, [...(activeArcs.get(arc.era) ?? []), arc.id]);
+  }
   const expected = ERA_PROTAGONIST[arc.era as (typeof ERA_IDS)[number]];
   if (arc.protagonist !== expected) {
     fail(`world/arcs/${file}`, `${arc.era} の主人公は ${expected} のはずです`);
   }
 }
 for (const era of ERA_IDS) {
-  if (!arcEras.has(era)) fail('world/arcs', `${era} のアークがありません`);
+  if (!arcEras.has(era)) {
+    fail('world/arcs', `${era} のアークがありません`);
+    continue;
+  }
+  // 季の計画は進行中のアークをひとつ読む。0本なら次の季が立たず、2本ならどちらを読むか決まらない。
+  const active = activeArcs.get(era) ?? [];
+  if (active.length !== 1) {
+    fail(
+      'world/arcs',
+      `${era} の進行中（status: active）のアークは1本のはずです（いま ${active.length} 本` +
+        `${active.length ? `: ${active.join(' / ')}` : ''}）`,
+    );
+  }
 }
 
 // ── world/cards ────────────────────────────────────────────────

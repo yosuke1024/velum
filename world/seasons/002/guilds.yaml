@@ -1,0 +1,101 @@
+season: 2
+era: guilds
+protagonist: teo
+arc: guilds-origin-unknown
+year_in_world: 375
+title:
+  ja: 鑑定士の沈黙と偽りの系譜
+  en: The Appraiser's Silence and the Lineage of Deceit
+shape:
+  ja: テオが仮銘審査の課題を通じて、自らの素性と大鑑定院の過去に向き合う物語。師の求める客観性と兄の示す技術的真実の間で、物理的事実のみを武器に鑑定書を書き上げるまでを描く。
+  en: A story of Teo confronting his own origins and the Grand Court's past through his provisional licensing exam. Caught between the objectivity demanded by his master and the technical truths shown by his brother, he writes an appraisal using only physical facts as his weapon.
+episodes:
+  - number: 1
+    beat: 発端
+    world_date:
+      month: 8
+      day: 1
+    events:
+      - summary: 大鑑定院の執務室にて、ヴァレン大鑑定官からテオへ仮銘審査の課題となる「青銅の燭台」が渡される。その座金の裏には、30年前の原簿に「逆打ち」と記録されていたものと酷似した、不自然な接合痕が存在している。
+        where: 大鑑定院・ヴァレンの執務室
+        who:
+          - テオ
+          - ヴァレン
+    world_change: テオの仮銘審査が正式に開始され、審査対象の品物が大鑑定院の公式記録と矛盾する特徴を持っていることが示される。
+    leaves_open:
+      ja: 30年前の原簿の「逆打ち」という記述が、目の前にある現物とどのような技術的整合性を持つのかという疑問。
+      en: The question of how the "reverse-stamping" recorded in the thirty-year-old ledger aligns technically with the actual object at hand.
+  - number: 2
+    beat: 展開
+    world_date:
+      month: 8
+      day: 5
+    events:
+      - summary: 大市の準備が進む工房通りの片隅で、テオは兄のロウと遭遇する。ロウは古い木箱から取り出した「ヴェスパー工房の初期の座金金型」をテオに見せ、かつて大鑑定院が押収したはずの機材がなぜ今も外に存在するのかを問いかける。
+        where: 工房通り
+        who:
+          - テオ
+          - ロウ
+    world_change: 大鑑定院が過去に処分・管理したはずのヴェスパー工房の押収品が、現在も外部に流出している事実が明らかになる。
+    leaves_open:
+      ja: 大鑑定院が保管しているはずの押収品や原簿の管理体制に対する疑惑。
+      en: Suspicion regarding the Grand Court's management of seized items and historical ledgers that should be securely stored.
+  - number: 3
+    beat: 転機
+    world_date:
+      month: 8
+      day: 10
+    events:
+      - summary: 大市の日、大鑑定院の臨時受付にて、仮銘鑑定士のゼヴが、ある行商人が持ち込んだ首飾りを「安物の贋作」として却下しようとする。横で見ていたテオは、その首飾りの鑞付け痕が、自らの私室に置かれていた対の首飾りと同一の特殊な配合の金属で行われていることを指摘し、正式な再鑑定の手続きを要求する。
+        where: 大鑑定院の門前（大市の臨時受付）
+        who:
+          - テオ
+          - ゼヴ
+          - 行商人
+    world_change: テオが鑑定規約に従い、先輩鑑定士の鑑定結果に対して客観的な物理的根拠をもって異議を唱える。
+    leaves_open:
+      ja: 大鑑定院の現役鑑定士による鑑定の不正確さと、テオが指摘した技術的特徴が周囲に与える波紋。
+      en: The inaccuracy of the current appraiser's judgment and the repercussions of the technical features Teo pointed out.
+  - number: 4
+    beat: 危機
+    world_date:
+      month: 8
+      day: 16
+    events:
+      - summary: ヴァレンに呼び出されたテオは、机の上に「テオが窓辺で見つけた首飾りの片方」が置かれているのを目にする。ヴァレンは、課題の燭台の金属配合が首飾りのそれと一致していることを指摘し、鑑定書に「出自不明」と記して自身のルーツを黙殺するか、真実を記して鑑定士としての資格を失うかの選択を迫る。
+        where: 大鑑定院・ヴァレンの執務室
+        who:
+          - テオ
+          - ヴァレン
+    world_change: テオの出自に関わる首飾りがヴァレンの手に渡り、仮銘審査がテオの鑑定士としての倫理と過去を天秤にかける場となる。
+    leaves_open:
+      ja: ヴァレンがなぜその首飾りを所持していたのか、そしてテオがどのような論理で鑑定書を完成させるのかという選択。
+      en: The question of how Vallen came to possess the necklace, and the choice of logic Teo will use to complete the appraisal report.
+  - number: 5
+    beat: 決着
+    world_date:
+      month: 8
+      day: 24
+    events:
+      - summary: テオは「出自不明」と結論づけながらも、金属の融点差と微量不純物の比率分析のみを用いて、燭台が「30年前に実在した特定の工房の技術を用いて近年偽造されたもの」であることを客観的に証明した鑑定書を提出する。審査は通過し、テオに仮銘が与えられる。
+        where: 大鑑定院
+        who:
+          - テオ
+          - ヴァレン
+      - summary: 大鑑定院の門前で、ロウがテオを待ち受けている。ロウはテオの仮銘の印章を一瞥し、古い真鍮製の鍵をテオの手のひらに置いて無言で立ち去る。
+        where: 大鑑定院の門前
+        who:
+          - テオ
+          - ロウ
+    world_change: テオは仮銘鑑定士に昇格し、自身の感情を交えずに物理的事実のみで真実を記述する手法を確立する。
+    leaves_open:
+      ja: ロウから手渡された真鍮製の古い鍵が、大鑑定院またはヴェスパー工房のどこの扉を開けるものなのかという謎。
+      en: The mystery of which door, either within the Grand Court or the Vesper workshop, the old brass key handed over by Lowe is meant to unlock.
+generation:
+  model: gemini-3.5-flash
+  prompt_version: season-v3
+  seed: season-2:guilds
+  narrative_moves:
+    - relationship_friction
+    - texture_without_payoff
+  generated_at: 2026-09-27T07:08:40.683Z

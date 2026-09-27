@@ -1,0 +1,125 @@
+season: 2
+era: fracture
+protagonist: kaya
+arc: fracture-until-the-pass-opens
+year_in_world: 656
+title:
+  ja: 閉ざされた峠の手紙
+  en: The Letter of the Closed Pass
+shape:
+  ja: 早い雪でハルナ村に閉じ込められたカヤが、母の目を盗んで弟と同じ部隊刻印の手紙の宛先を追う。村の中での捜索と軍の家宅捜索を経て、手紙は本来の家族へ渡されるが、戦争の謎は深まり、カヤは再びダリの待つ焼けた橋へと向かう。
+  en: Trapped in Haruna Village by an early snow, Kaya secretly searches for the recipient of a letter bearing the same unit stamp as her brother's. After conducting investigations in the village and evading a military search, she delivers the letter to its family, only for the mystery to deepen as she heads back to the Burnt Bridge where Dari awaits.
+episodes:
+  - number: 1
+    beat: 発端
+    world_date:
+      month: 8
+      day: 12
+    events:
+      - summary: 朝食時、母イサがカヤに『ノヤから便りは？』と尋ねる。カヤは未開封の手紙を荷物の底へ隠す。
+        where: ハルナ村・イサの家
+        who:
+          - 第七号（カヤ）
+          - イサ
+      - summary: 同盟軍の伝令兵がハルナ村の広場に到着し、早い積雪と軍事規制により峠道が春まで完全閉鎖されたことを布告する。
+        where: ハルナ村・広場
+        who:
+          - 第七号（カヤ）
+          - 同盟軍の伝令兵
+    world_change: 峠道が閉鎖され、カヤはハルナ村から出られなくなる。
+    leaves_open:
+      ja: カヤの手元に残された、宛先不明の弟と同じ部隊刻印の手紙
+      en: The unaddressed letter bearing her brother's unit stamp, still in Kaya's possession
+  - number: 2
+    beat: 展開
+    world_date:
+      month: 8
+      day: 20
+    events:
+      - summary: カヤは村の集会所に保管されている古い民生記録を閲覧し、弟ノヤと同じ時期に行方不明になった若者たちの名前を書き写す。
+        where: ハルナ村・集会所
+        who:
+          - 第七号（カヤ）
+      - summary: 鍛冶屋ラトの作業場を訪れたカヤは、そこを巡回する同盟軍の憲兵がラトに対して敵軍との内通を疑う尋問を行っている場面を目撃する。
+        where: ハルナ村・鍛冶屋
+        who:
+          - 第七号（カヤ）
+          - ラト
+          - 同盟軍の憲兵
+    world_change: 村の中に敵軍との内通を疑われる家が存在することが判明する。
+    leaves_open:
+      ja: 鍛冶屋ラトが抱える秘密と、手紙の本当の受取人の正体
+      en: The secret harbored by Lato the blacksmith, and the true identity of the letter's recipient
+  - number: 3
+    beat: 転機
+    world_date:
+      month: 8
+      day: 28
+    events:
+      - summary: 雪の止み間に、カヤは母イサと共に裏山から薪を運ぶ手伝いをする。イサは、昔村を去ったラトの甥『ルア』について語る。
+        where: ハルナ村・裏山
+        who:
+          - 第七号（カヤ）
+          - イサ
+      - summary: 自室に戻ったカヤが手紙を検分すると、消えかけた宛名の筆跡の端に『ル』の文字が残っているのを発見する。これにより手紙の宛先がラトの甥である可能性が浮上する。
+        where: ハルナ村・イサの家
+        who:
+          - 第七号（カヤ）
+    world_change: null
+    leaves_open:
+      ja: 手紙の宛先がルアであるという確証と、それを鍛冶屋に届ける方法
+      en: The strong possibility that the letter is addressed to Lua, and a way to deliver it to the blacksmith
+  - number: 4
+    beat: 危機
+    world_date:
+      month: 9
+      day: 4
+    events:
+      - summary: 同盟軍の憲兵隊が村全域の家宅捜索を開始する。カヤの家にも憲兵が入り、カヤの回収人の荷物袋を検査しようとする。
+        where: ハルナ村・イサの家
+        who:
+          - 第七号（カヤ）
+          - イサ
+          - 同盟軍の憲兵
+      - summary: カヤは中立の協定を主張するが、憲兵は拒否する。イサが古い毛布の束を落として憲兵の注意を逸らした隙に、カヤは手紙を暖炉脇の薪の隙間に滑り込ませて発見を免れる。しかし、憲兵は弟ノヤの認識札に目を留める。
+        where: ハルナ村・イサの家
+        who:
+          - 第七号（カヤ）
+          - イサ
+          - 同盟軍の憲兵
+    world_change: 憲兵がイサの家に不審の目を向け、村全体の監視が強化される。
+    leaves_open:
+      ja: 憲兵に目をつけられたノヤの認識札と、隠し通さねばならない手紙の処分
+      en: Noya's military tag noticed by the gendarme, and the disposal of the hidden letter that must be concealed
+  - number: 5
+    beat: 決着
+    world_date:
+      month: 9
+      day: 12
+    events:
+      - summary: 深夜、カヤは鍛冶屋ラトの家を訪れ、三度の確認手順を経て、未開封の手紙を彼に手渡す。ラトは手紙を受け取るが、開封せずに暖炉に投げ入れ、灰にする。
+        where: ハルナ村・鍛冶屋
+        who:
+          - 第七号（カヤ）
+          - ラト
+      - summary: 数日後、峠の雪が一時的に踏み固められ、軍の通行許可が降りる。カヤはイサに見送られてハルナ村を出発し、焼けた橋へと向かう。
+        where: ハルナ村・峠道
+        who:
+          - 第七号（カヤ）
+          - イサ
+      - summary: 焼けた橋に到着したカヤは、対岸側の欄干にダリが残した目印の小石が三つ並んでいるのを発見する。
+        where: 焼けた橋
+        who:
+          - 第七号（カヤ）
+    world_change: カヤはハルナ村を離れ、回収人の職務に復帰する。手紙は消失した。
+    leaves_open:
+      ja: 焼けた橋でダリが残した合図の意味と、溜まり続けた未配達の木札
+      en: The meaning of the signal left by Dari at the Burnt Bridge, and the backlog of undelivered wooden tags
+generation:
+  model: gemini-3.5-flash
+  prompt_version: season-v3
+  seed: season-2:fracture
+  narrative_moves:
+    - offstage_consequence
+    - texture_without_payoff
+  generated_at: 2026-09-27T07:10:04.401Z
