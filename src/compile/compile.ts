@@ -30,9 +30,11 @@ export type CompileOutcome =
   | { ok: true; snapshot: Snapshot; path: string }
   | { ok: false; violations: string[] };
 
-/** 既に置かれている Snapshot のバージョン。小さい順。 */
-export function existingVersions(id: string): number[] {
-  const dir = snapshotDir(id);
+/**
+ * 既に置かれている Snapshot のバージョン。小さい順。
+ * dir は試験のために差し替えられる。本番では snapshotDir(id) のまま。
+ */
+export function existingVersions(id: string, dir: string = snapshotDir(id)): number[] {
   if (!existsSync(dir)) return [];
 
   return readdirSync(dir)
@@ -42,8 +44,8 @@ export function existingVersions(id: string): number[] {
     .sort((a, b) => a - b);
 }
 
-export function nextVersion(id: string): number {
-  const versions = existingVersions(id);
+export function nextVersion(id: string, dir: string = snapshotDir(id)): number {
+  const versions = existingVersions(id, dir);
   return (versions.at(-1) ?? 0) + 1;
 }
 
