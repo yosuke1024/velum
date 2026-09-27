@@ -273,11 +273,21 @@ describe('数えているもの', () => {
   // プロンプトへ渡していなかった初回の試写では、これが 408 まで飛んだ。
   const kaya = loadCharacter('kaya');
 
+  // 生きた current-state.yaml は日記が生まれるたびに増えるので、ここでは 42 に固定して渡す。
+  const stateAt = (delivered: number) => {
+    const state = structuredClone(kaya.state);
+    state.counters = { ...state.counters, delivered };
+    return state;
+  };
+
   const runKaya = (r: DiaryResponse) =>
-    gate(r, kaya.state, kaya.relationships, 'kaya');
+    gate(r, stateAt(42), kaya.relationships, 'kaya');
 
   it('カヤは届けた人数を数えている', () => {
-    expect(kaya.state.counters?.delivered).toBe(42);
+    // 物語は 42 から始まり、減ることはない（下の「減らせない」）。生きた値は 42 以上の整数。
+    const delivered = kaya.state.counters?.delivered;
+    expect(Number.isInteger(delivered)).toBe(true);
+    expect(delivered).toBeGreaterThanOrEqual(42);
   });
 
   it('上限以内の増分を通す', () => {
@@ -316,7 +326,7 @@ describe('数えているもの', () => {
     const result = applyPatches(
       response({ counter_patches: [{ key: 'delivered', delta: 2 }] }),
       {
-        state: kaya.state,
+        state: stateAt(42),
         relationships: kaya.relationships,
         memories: kaya.memories,
         canon: kaya.canon,

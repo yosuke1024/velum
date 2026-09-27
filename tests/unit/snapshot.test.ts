@@ -1,5 +1,6 @@
-import { describe, it, expect } from 'vitest';
-import { existsSync, readdirSync } from 'node:fs';
+import { describe, it, expect, afterAll } from 'vitest';
+import { existsSync, readdirSync, mkdtempSync, writeFileSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { SNAPSHOT_LIMITS } from '../../src/schemas/limits.js';
 import { CHARACTER_IDS } from '../../src/schemas/world.js';
@@ -267,16 +268,22 @@ describe('照合する名前の形', () => {
 });
 
 describe('バージョン', () => {
+  // 本物の snapshots/ は季末に v0001.json が置かれて動くので、仮の置き場で数える。
+  const dir = mkdtempSync(join(tmpdir(), 'velum-snapshots-'));
+  afterAll(() => rmSync(dir, { recursive: true, force: true }));
+
   it('README.md をバージョンとして数えない', () => {
     // snapshots/ には README.md が置いてある。v0001.json だけを見る。
-    for (const id of CHARACTER_IDS) {
-      expect(existingVersions(id)).toEqual([]);
-      expect(nextVersion(id)).toBe(1);
-    }
+    writeFileSync(join(dir, 'README.md'), '# snapshots\n');
+    expect(existingVersions('teo', dir)).toEqual([]);
+    expect(nextVersion('teo', dir)).toBe(1);
   });
 
   it('次の番号は、いちばん大きい番号の次', () => {
-    expect(nextVersion('teo')).toBe(existingVersions('teo').length + 1);
+    writeFileSync(join(dir, 'v0001.json'), '{}');
+    writeFileSync(join(dir, 'v0003.json'), '{}');
+    expect(existingVersions('teo', dir)).toEqual([1, 3]);
+    expect(nextVersion('teo', dir)).toBe(4);
   });
 });
 
