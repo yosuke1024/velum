@@ -1,21 +1,21 @@
 clocks:
   - era: primordial
     year: null
-    month: 7
-    day: 16
+    month: 9
+    day: 14
   - era: guilds
     year: 375
     month: 8
     day: 1
   - era: convergence
     year: 417
-    month: 8
-    day: 9
+    month: 9
+    day: 13
   - era: fracture
     year: 656
     month: 8
     day: 11
   - era: silent
     year: 1175
-    month: 7
-    day: 23
+    month: 8
+    day: 3
