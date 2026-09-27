@@ -8,7 +8,7 @@ title:
   en: The Appraiser's Silence and the Lineage of Deceit
 shape:
   ja: テオが仮銘審査の課題を通じて、自らの素性と大鑑定院の過去に向き合う物語。師の求める客観性と兄の示す技術的真実の間で、物理的事実のみを武器に鑑定書を書き上げるまでを描く。
-  en: A story of Theo confronting his own origins and the Grand Academy's past through his provisional licensing exam. Caught between the objectivity demanded by his master and the technical truths shown by his brother, he writes an appraisal using only physical facts as his weapon.
+  en: A story of Teo confronting his own origins and the Grand Court's past through his provisional licensing exam. Caught between the objectivity demanded by his master and the technical truths shown by his brother, he writes an appraisal using only physical facts as his weapon.
 episodes:
   - number: 1
     beat: 発端
@@ -39,12 +39,12 @@ episodes:
     world_change: 大鑑定院が過去に処分・管理したはずのヴェスパー工房の押収品が、現在も外部に流出している事実が明らかになる。
     leaves_open:
       ja: 大鑑定院が保管しているはずの押収品や原簿の管理体制に対する疑惑。
-      en: Suspicion regarding the Grand Academy's management of seized items and historical ledgers that should be securely stored.
+      en: Suspicion regarding the Grand Court's management of seized items and historical ledgers that should be securely stored.
   - number: 3
     beat: 転機
     world_date:
       month: 8
-      day: 9
+      day: 10
     events:
       - summary: 大市の日、大鑑定院の臨時受付にて、仮銘鑑定士のゼヴが、ある行商人が持ち込んだ首飾りを「安物の贋作」として却下しようとする。横で見ていたテオは、その首飾りの鑞付け痕が、自らの私室に置かれていた対の首飾りと同一の特殊な配合の金属で行われていることを指摘し、正式な再鑑定の手続きを要求する。
         where: 大鑑定院の門前（大市の臨時受付）
@@ -55,7 +55,7 @@ episodes:
     world_change: テオが鑑定規約に従い、先輩鑑定士の鑑定結果に対して客観的な物理的根拠をもって異議を唱える。
     leaves_open:
       ja: 大鑑定院の現役鑑定士による鑑定の不正確さと、テオが指摘した技術的特徴が周囲に与える波紋。
-      en: The inaccuracy of the current appraiser's judgment and the repercussions of the technical features Theo pointed out.
+      en: The inaccuracy of the current appraiser's judgment and the repercussions of the technical features Teo pointed out.
   - number: 4
     beat: 危機
     world_date:
@@ -70,7 +70,7 @@ episodes:
     world_change: テオの出自に関わる首飾りがヴァレンの手に渡り、仮銘審査がテオの鑑定士としての倫理と過去を天秤にかける場となる。
     leaves_open:
       ja: ヴァレンがなぜその首飾りを所持していたのか、そしてテオがどのような論理で鑑定書を完成させるのかという選択。
-      en: The question of how Vallen came to possess the necklace, and the choice of logic Theo will use to complete the appraisal report.
+      en: The question of how Vallen came to possess the necklace, and the choice of logic Teo will use to complete the appraisal report.
   - number: 5
     beat: 決着
     world_date:
@@ -90,7 +90,7 @@ episodes:
     world_change: テオは仮銘鑑定士に昇格し、自身の感情を交えずに物理的事実のみで真実を記述する手法を確立する。
     leaves_open:
       ja: ロウから手渡された真鍮製の古い鍵が、大鑑定院またはヴェスパー工房のどこの扉を開けるものなのかという謎。
-      en: The mystery of which door, either within the Grand Academy or the Vesper workshop, the old brass key handed over by Low is meant to unlock.
+      en: The mystery of which door, either within the Grand Court or the Vesper workshop, the old brass key handed over by Lowe is meant to unlock.
 generation:
   model: gemini-3.5-flash
   prompt_version: season-v3
