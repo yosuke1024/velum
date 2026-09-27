@@ -1,0 +1,26 @@
+{
+  "date": "2026-09-27",
+  "era": "silent",
+  "protagonist": "riko",
+  "season": 2,
+  "episode": 1,
+  "beat": "発端",
+  "world_date": {
+    "year": 1175,
+    "month": 7,
+    "day": 24
+  },
+  "title": {
+    "ja": "書き換えられた値札と、銀貨四枚の約束",
+    "en": "The Rewritten Tag and the Four Silver Coin Promise"
+  },
+  "quote": {
+    "ja": "あいつが革袋を差し出した瞬間、あたしはペンを握って、値札の「三」を「十五」に書き換えたんだ。",
+    "en": "The moment he reached for his leather pouch, my hand grabbed the pen and rewrote the \"3\" on the price tag to \"15\"."
+  },
+  "mood": {
+    "ja": "客を怒らせて追い払った最低の罪悪感と、それでも手元に残った青い石にすがるような安堵。矛盾した泥の中に突っ立っている気分。",
+    "en": "A terrible sense of guilt for angering and driving away a customer, mixed with a clinging relief that the blue stone remains in my hand. I feel like I am standing in a swamp of self-contradiction."
+  },
+  "rare_expression_used": false
+}

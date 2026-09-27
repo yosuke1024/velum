@@ -47,3 +47,8 @@ facts:
       ja: 1,175年秋、北の市にて青い石の首飾りを値札通りに買おうとする収集家が現れたが、リコは口を滑らせかけ、売るのを躊躇して返事を持ち帰らせた。
       en: In the autumn of 1175, at the Northern Market, a collector offered to buy the blue stone necklace at its listed price, but Rico hesitated to sell it, almost letting a forbidden phrase slip.
     added_on: 2026-09-22
+  - id: refused_lolo_with_exorbitant_price
+    fact:
+      ja: 1,175年秋、北の市にて首飾りを買いに来たロロに対し、頭金と同額の金貨十五枚へ突如値上げして追い返し、壊れた車輪の修理を大工のドボに依頼した。
+      en: In the autumn of 1175, when Lolo came to buy the necklace, Rico suddenly raised the price to fifteen gold coins—matching her down payment—to drive him away, and then asked Dobo the carpenter to repair her broken wheel.
+    added_on: 2026-09-27

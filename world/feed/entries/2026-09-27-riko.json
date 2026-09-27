@@ -1,0 +1,31 @@
+{
+  "id": "2026-09-27-riko",
+  "date": "2026-09-27",
+  "character_id": "riko",
+  "era": "silent",
+  "season": 2,
+  "episode": 1,
+  "world_date": {
+    "year": 1175,
+    "month": 7,
+    "day": 24
+  },
+  "title": {
+    "ja": "書き換えられた値札と、銀貨四枚の約束",
+    "en": "The Rewritten Tag and the Four Silver Coin Promise"
+  },
+  "excerpt": {
+    "ja": "あいつが革袋を差し出した瞬間、あたしはペンを握って、値札の「三」を「十五」に書き換えたんだ。",
+    "en": "The moment he reached for his leather pouch, my hand grabbed the pen and rewrote the \"3\" on the price tag to \"15\"."
+  },
+  "mood": {
+    "ja": "客を怒らせて追い払った最低の罪悪感と、それでも手元に残った青い石にすがるような安堵。矛盾した泥の中に突っ立っている気分。",
+    "en": "A terrible sense of guilt for angering and driving away a customer, mixed with a clinging relief that the blue stone remains in my hand. I feel like I am standing in a swamp of self-contradiction."
+  },
+  "path": "world/feed/entries/2026-09-27-riko.json",
+  "schema_version": 1,
+  "body": {
+    "ja": "金貨十五枚。\nうちの鑑定部の厳密な再査定によれば、あの青い石の首飾りにはそれだけの価値がある。……なんて、真っ赤な嘘だ。ただ、質屋のオルバに今月末までに払わなきゃいけない頭金の額を、そのまま値札に写しただけ。\nロロが約束通り金貨三枚を持って裏路地までやってきたとき、あたしの指先は冷え切っていた。あいつが革袋を差し出した瞬間、あたしはペンを握って、値札の「三」を「十五」に書き換えたんだ。ロロは顔を真っ赤にして、あたしをペテン師と罵って立ち去った。当然だ。商売人として最低の部類に入るやり口。\nでも、そうでもしなきゃ、あたしはあの首飾りを渡してしまっていた。金貨三枚で、あたしの「もしかしたら」を全部手放してしまうところだった。\nそのあと、大工のドボのところへ行って、折れた右車輪の修理を頼んだ。泥をかぶったただのケヤキの輪っかだけど、これがないとあたしはどこへも行けない。\nドボは煤けた手で車輪を受け取って、「明日には転がるようにしてやる」と言った。\nドボへの修理代、銀貨四枚。",
+    "en": "Fifteen gold coins.\nAccording to the rigorous re-evaluation by our appraisal department, that blue stone necklace is worth exactly that much. ...What a complete lie. I just copied the exact amount of the down payment I have to pay pawnbroker Olba by the end of this month onto the price tag.\nWhen Lolo came to the back alley with the three gold coins as promised, my fingertips were freezing. The moment he reached for his leather pouch, my hand grabbed the pen and rewrote the \"3\" on the price tag to \"15\". Lolo turned bright red, called me a swindler, and stormed off. Of course he did. It was the lowest, dirtiest trick a merchant could pull.\nBut if I hadn't done that, I would have handed that necklace over. For three gold coins, I would have given away all my \"what-ifs.\"\nAfter that, I went to Dobo the carpenter to ask him to repair my broken right wheel. It's just a mud-covered ring of zelkova wood, but without it, I can't go anywhere.\nDobo took the wheel with his soot-stained hands and said, \"I'll have it rolling by tomorrow.\"\nDobo's repair fee, four silver coins."
+  }
+}
