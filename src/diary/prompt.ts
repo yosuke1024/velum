@@ -11,6 +11,17 @@ import { visibleRelationships } from './context.js';
 import { ja } from '../lib/bilingual.js';
 
 /**
+ * diary-v5（2026-09-27）: 関係の更新先を「周りの人」の id だけに限る、と書く。
+ *
+ * ゲートは最初から relationships.yaml に無い id への関係更新を破棄していたが、
+ * プロンプトはそれを伝えていなかった。docs/diary.md §5 の言う罠そのものである——
+ * 9/18 セヴランは、季の計画に登場する第三者（行商人コルネリ）へ relationship_patches
+ * を返し、指示のどこにも反していないのに1日を失った。計画が第三者を出すのは
+ * 許されている（本文に書くのは自由）。関係の層に人物を足せるのは人間だけなので、
+ * 周囲2人の一覧に「この id だけ」と書き、破棄規則の一覧にも同じことを載せる。
+ *
+ * ---
+ *
  * diary-v4（2026-09-06）: 感情表現を「禁止」から「混在」へ変える。
  *
  * v3 は「感情を名指しする文は書かない」を全人物共通の規則として置いた。9/1 テオの
@@ -47,7 +58,7 @@ import { ja } from '../lib/bilingual.js';
  *    「感情を説明せず細部で見せる」という指示を守っていない。禁じ手を具体的に書き、
  *    代わりに何で見せるか（否定・数字・物・手の動き）を言う。
  */
-export const DIARY_PROMPT_VERSION = 'diary-v4';
+export const DIARY_PROMPT_VERSION = 'diary-v5';
 
 /**
  * ゲートが落とせる上限は、すべてここでプロンプトに書く。
@@ -119,6 +130,7 @@ export function otherFatalRules(): string[] {
     `タイトル（日本語）は ${TEXT_LIMITS.titleMin}〜${TEXT_LIMITS.titleMax} 文字（この日は破棄される）`,
     `タイトル（英語）は ${TEXT_LIMITS.titleMin}〜${TEXT_LIMITS.titleMaxEn} 文字（この日は破棄される）`,
     `定型の崩れ（rare_expression_used: true）は、直近 ${RARE_EXPRESSION.cooldownEntries} 本の日記に崩れがないときにだけ許される。許されない日に true を返すと、この日は破棄される`,
+    'relationship_patches の id は「周りの人」に載っている id だけ。今日の出来事に他の人物が出てきても、その人物は関係の更新先にできない（この日は破棄される）',
   ];
 }
 
@@ -395,6 +407,9 @@ export function buildDiaryUserPrompt(context: DiaryContext): string {
       `- ${person.name}（${person.relation}／id: ${person.id}）信頼 ${person.trust} 警戒 ${person.wariness}: ${person.summary}`,
     );
   }
+  lines.push(
+    'relationship_patches の id は、この一覧の id だけです。今日の出来事に他の人物が出てきても、本文に書くのは自由ですが、関係の更新先にはできません。',
+  );
   lines.push('');
 
   lines.push('## あなたの人生の出来事');
