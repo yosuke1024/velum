@@ -1,0 +1,31 @@
+{
+  "id": "2026-09-28-sevran",
+  "date": "2026-09-28",
+  "character_id": "sevran",
+  "era": "convergence",
+  "season": 2,
+  "episode": 1,
+  "world_date": {
+    "year": 417,
+    "month": 8,
+    "day": 9
+  },
+  "title": {
+    "ja": "帳面の二重線と、存在しない観測日誌",
+    "en": "The Double Lines in the Journal and the Non-existent Observation Log"
+  },
+  "excerpt": {
+    "ja": "この筆跡、筆圧、および使用されている青いインクの成分は僕のものと同一である（確認）。",
+    "en": "The handwriting, stroke pressure, and the composition of the blue ink match my own (verified)."
+  },
+  "mood": {
+    "ja": "見え消し線の下に残る、見慣れたはずの自分の文字が、まるで他人の書いたもののように冷たく感じられる。",
+    "en": "The familiar handwriting left beneath the double lines feels as cold as if written by a complete stranger."
+  },
+  "path": "world/feed/entries/2026-09-28-sevran.json",
+  "schema_version": 1,
+  "body": {
+    "ja": "穂の月9日。帳面を確認したところ、一箇所の不審な記述改ざん（未確認）を発見した。元々「四時十七分、大時計前の石畳に歪みあり」と記述されていた行に、僕の手によると思われる二重線が引かれ、その直下に「四時十七分、ミルテが青いインクを零した」と上書きされていた。この筆跡、筆圧、および使用されている青いインクの成分は僕のものと同一である（確認）。しかし、僕自身にその上書きを行った記憶は一切存在しない（要検証）。また、深夜、書架の影に居着いているフムが、これまでにない穏やかな発声で『霧の街の観測日誌（霧の月三日の項）』の暗唱を開始した。記録院の目録において、該当する日誌は「存在しない書物」に分類されている（確認）。フムが暗唱した内容には、大時計の針が一時的に動いたかのような描写が含まれており、僕の帳面の書き換え時期と連動している可能性が疑われる。青いインクに混ざる冷たい鉄の匂いが、心なしか以前より強くなっているように感じられた。——以上を、本日の記録とする。記録院書記 セヴラン",
+    "en": "On this day, I discovered an anomalous alteration (unverified) within my record book. A line that originally read, '16:17, distortion detected on the cobblestones before the grand clock,' had been struck through with a double line in what appeared to be my own hand. Directly beneath it, the words '16:17, Myrte spilled blue ink' had been overwritten. The handwriting, stroke pressure, and the composition of the blue ink match my own (verified). However, I possess absolutely no recollection of making this edit myself (to be verified). Furthermore, late into the night, Hum, residing in the shadow of the bookshelves, began reciting 'The Observation Journal of the Foggy City (Entry for the Third of the Fog Moon)' in an unprecedentedly calm voice. According to the Archives' catalog, no such journal exists (verified). The passage recited by Hum detailed an instance where the clock hands briefly moved, raising a suspicion that it may correlate with the alteration of my own record. The faint scent of cold iron mixed with the blue ink seemed somewhat stronger than before. — This concludes today's record. Sevrain, Scribe of the Archives"
+  }
+}

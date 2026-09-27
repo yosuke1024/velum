@@ -1,7 +1,33 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-27T00:28:38.544Z",
+  "generated_at": "2026-09-27T00:30:12.748Z",
   "entries": [
+    {
+      "id": "2026-09-28-sevran",
+      "date": "2026-09-28",
+      "character_id": "sevran",
+      "era": "convergence",
+      "season": 2,
+      "episode": 1,
+      "world_date": {
+        "year": 417,
+        "month": 8,
+        "day": 9
+      },
+      "title": {
+        "ja": "帳面の二重線と、存在しない観測日誌",
+        "en": "The Double Lines in the Journal and the Non-existent Observation Log"
+      },
+      "excerpt": {
+        "ja": "この筆跡、筆圧、および使用されている青いインクの成分は僕のものと同一である（確認）。",
+        "en": "The handwriting, stroke pressure, and the composition of the blue ink match my own (verified)."
+      },
+      "mood": {
+        "ja": "見え消し線の下に残る、見慣れたはずの自分の文字が、まるで他人の書いたもののように冷たく感じられる。",
+        "en": "The familiar handwriting left beneath the double lines feels as cold as if written by a complete stranger."
+      },
+      "path": "world/feed/entries/2026-09-28-sevran.json"
+    },
     {
       "id": "2026-09-27-riko",
       "date": "2026-09-27",
