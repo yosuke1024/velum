@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-27T12:01:17.228Z",
+  "generated_at": "2026-09-27T12:04:47.667Z",
   "entries": [
     {
       "id": "2026-09-30-uta",
@@ -27,6 +27,32 @@
         "en": "Ren's kindness warms me, yet I feel frustrated by my lack of voice to answer it."
       },
       "path": "world/feed/entries/2026-09-30-uta.json"
+    },
+    {
+      "id": "2026-09-29-kaya",
+      "date": "2026-09-29",
+      "character_id": "kaya",
+      "era": "fracture",
+      "season": 2,
+      "episode": 1,
+      "world_date": {
+        "year": 656,
+        "month": 8,
+        "day": 12
+      },
+      "title": {
+        "ja": "白い沈黙の檻",
+        "en": "A Cage of White Silence"
+      },
+      "excerpt": {
+        "ja": "あまりに簡単に嘘が言えてしまい、舌が鉛に変わったような気がした。",
+        "en": "I lied so easily that it felt like my tongue had turned to lead."
+      },
+      "mood": {
+        "ja": "温かいスープの熱も、胃の奥に居座る冷たさを溶かすことはできなかった。",
+        "en": "The warmth of the soup fails to reach the coldness in my stomach."
+      },
+      "path": "world/feed/entries/2026-09-29-kaya.json"
     },
     {
       "id": "2026-09-28-sevran",
