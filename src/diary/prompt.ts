@@ -11,6 +11,15 @@ import { visibleRelationships } from './context.js';
 import { ja } from '../lib/bilingual.js';
 
 /**
+ * diary-v7（2026-09-27）: mood は一文で書く、と言う。
+ *
+ * Gemma の最初の日記（9/26 テオ）は mood_ja が「緊張と分析」だった。Gemini は
+ * 「いまのあなた」に載っている前日の気分（体の感覚や物に寄せた一文）を型として
+ * 真似ていたが、Gemma は欄名どおりの単語を返した。気分は current-state.yaml と
+ * サイトの日記ページに出る値なので、形を一文に固定する。
+ *
+ * ---
+ *
  * diary-v6（2026-09-27）: 空にしてよい欄を名指しし、perception / immediate_goal / doubt を説明する。
  *
  * v5 までの「動かす必要がない項目は空にすること」を、Workers AI 上の Gemma は文字どおりに
@@ -69,7 +78,7 @@ import { ja } from '../lib/bilingual.js';
  *    「感情を説明せず細部で見せる」という指示を守っていない。禁じ手を具体的に書き、
  *    代わりに何で見せるか（否定・数字・物・手の動き）を言う。
  */
-export const DIARY_PROMPT_VERSION = 'diary-v6';
+export const DIARY_PROMPT_VERSION = 'diary-v7';
 
 /**
  * ゲートが落とせる上限は、すべてここでプロンプトに書く。
@@ -468,6 +477,9 @@ export function buildDiaryUserPrompt(context: DiaryContext): string {
   lines.push(
     'title / quote / mood も同じように両方書いてください。' +
       'quote_ja は body_ja から、quote_en は body_en から引きます——引用は本文にある一行であって、訳し下ろした別の文ではありません。',
+  );
+  lines.push(
+    'mood_ja / mood_en は、いまの気分を体の感覚や手元の物に寄せた一文で書く。「緊張」「不安」のような単語やラベルにしない。',
   );
   lines.push(
     'canon_candidate を返す日は fact_ja と fact_en の両方を書いてください。' +
