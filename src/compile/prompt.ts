@@ -1,5 +1,5 @@
 import { SNAPSHOT_LIMITS } from '../schemas/limits.js';
-import { jsonSchema } from '../lib/gemini.js';
+import { jsonSchema } from '../lib/llm.js';
 import type { CompileContext } from './context.js';
 import { lifeFactsFrom, rememberedFrom, oneLine } from './context.js';
 import { ja } from '../lib/bilingual.js';

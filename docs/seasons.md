@@ -205,7 +205,7 @@ season-v2 は「各話は前の話の結果の上に立つ」と書いていた�
 
 ```yaml
 generation:
-  model: gemini-3.5-flash
+  model: "@cf/google/gemma-4-26b-a4b-it"
   prompt_version: season-v3
   seed: season-1:guilds
   narrative_moves:

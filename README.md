@@ -16,7 +16,7 @@ Velum は、5つの時代を持つ架空世界です。各時代にひとりず�
 
 **このリポジトリの内容はすべてフィクションです。**
 
-Velum という世界、そこに住む人物、彼らの日記、その中で語られる出来事——いずれも実在しません。日記の本文は AI（Gemini）が生成したものであり、人物の一人称で書かれていますが、そこに書かれた記憶・感情・意見は、実在の人物・団体・出来事とは一切関係ありません。
+Velum という世界、そこに住む人物、彼らの日記、その中で語られる出来事——いずれも実在しません。日記の本文は AI（Cloudflare Workers AI 上の Gemma）が生成したものであり、人物の一人称で書かれていますが、そこに書かれた記憶・感情・意見は、実在の人物・団体・出来事とは一切関係ありません。
 
 登場人物は自分をフィクションだと認識していません。それは演出であって、主張ではありません。
 
@@ -169,12 +169,17 @@ feed は日次ワークフローが自動で書き出します。World Appraisal
 
 ### モデル
 
-生成は Gemini で、既定は `gemini-3.5-flash`（`src/lib/gemini.ts`）。環境変数で二段階に上書きできる。
+生成は Cloudflare Workers AI 上の Gemma で、既定は `@cf/google/gemma-4-26b-a4b-it`（`src/lib/workers-ai.ts`）。PixTale のプロキシと同じ系統に揃えてある。呼び出しには repo secret の `CLOUDFLARE_ACCOUNT_ID` と `CLOUDFLARE_API_TOKEN`（Workers AI の Read / Edit 権限）が要る。無料枠は 1 日 10,000 neurons で、日記 1 本が 200 neurons 前後。
+
+環境変数で上書きできる。
 
 | 変数 | 効く範囲 | 用途 |
 |---|---|---|
-| `VELUM_MODEL` | 全段（季の計画・日記・Snapshot・Appraisal） | 既定モデルの差し替え |
-| `VELUM_DIARY_MODEL` | **日記の段だけ** | 日記は製品そのものなので、季の計画より上位のモデルへ振る。`daily.yml` は repo variable `VELUM_DIARY_MODEL` から渡す。未設定なら `VELUM_MODEL` → 既定 |
+| `VELUM_PROVIDER` | 全段 | `workers-ai`（既定）か `gemini`。Gemini に戻すときは `GEMINI_API_KEY` も要る（`src/lib/gemini.ts`） |
+| `VELUM_MODEL` | 全段（季の計画・日記・Snapshot） | 既定モデルの差し替え |
+| `VELUM_DIARY_MODEL` | **日記の段だけ** | 日記は製品そのものなので、季の計画と別のモデルへ振れる。`daily.yml` は repo variable `VELUM_DIARY_MODEL` から渡す。未設定なら `VELUM_MODEL` → 既定 |
+| `VELUM_MAX_TOKENS` | Workers AI | 出力の上限トークン。既定 8192。日記は本文 2 言語と差分で 4〜5k になる |
+| `VELUM_LLM_TIMEOUT_MS` | Workers AI | 1 回の呼び出しの上限。既定 180000 |
 
 どのモデルで書かれたかは `characters/<id>/events/<日付>.json` の `generation.model` に残るので、切り替えた日が
 あとから分かる。日記の質を比べるときは、この列で切ってから読むこと。

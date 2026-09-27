@@ -1,6 +1,6 @@
 import { readdirSync, existsSync } from 'node:fs';
 import { z } from 'zod';
-import { generateJson } from '../lib/gemini.js';
+import { generateJson } from '../lib/llm.js';
 import { charPath, snapshotDir, snapshotPath } from '../lib/paths.js';
 import { writeJson, readYaml, exists } from '../lib/storage.js';
 import { RelationshipsSchema } from '../schemas/character.js';

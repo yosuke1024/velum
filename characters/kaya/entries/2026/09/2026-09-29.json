@@ -1,0 +1,26 @@
+{
+  "date": "2026-09-29",
+  "era": "fracture",
+  "protagonist": "kaya",
+  "season": 2,
+  "episode": 1,
+  "beat": "発端",
+  "world_date": {
+    "year": 656,
+    "month": 8,
+    "day": 12
+  },
+  "title": {
+    "ja": "白い沈黙の檻",
+    "en": "A Cage of White Silence"
+  },
+  "quote": {
+    "ja": "あまりに簡単に嘘が言えてしまい、舌が鉛に変わったような気がした。",
+    "en": "I lied so easily that it felt like my tongue had turned to lead."
+  },
+  "mood": {
+    "ja": "温かいスープの熱も、胃の奥に居座る冷たさを溶かすことはできなかった。",
+    "en": "The warmth of the soup fails to reach the coldness in my stomach."
+  },
+  "rare_expression_used": false
+}

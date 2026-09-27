@@ -154,7 +154,7 @@ run: npm run snapshot -- --if-season-end --date=${{ inputs.date }} --publish
 2. 取得時刻の末尾などから時代を疑似ランダムに決定
 3. 時代に対応するペルソナを決定
 4. 時代情報と Persona Snapshot を取得
-5. 画像と必要最小限のコンテキストを Gemini へ送信
+5. 画像と必要最小限のコンテキストをモデルへ送信
 6. ペルソナ固有の Tale コメントを返す
 ```
 

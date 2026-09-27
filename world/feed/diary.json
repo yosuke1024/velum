@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-27T00:31:22.776Z",
+  "generated_at": "2026-09-27T12:04:47.667Z",
   "entries": [
     {
       "id": "2026-09-30-uta",
@@ -27,6 +27,32 @@
         "en": "Ren's kindness warms me, yet I feel frustrated by my lack of voice to answer it."
       },
       "path": "world/feed/entries/2026-09-30-uta.json"
+    },
+    {
+      "id": "2026-09-29-kaya",
+      "date": "2026-09-29",
+      "character_id": "kaya",
+      "era": "fracture",
+      "season": 2,
+      "episode": 1,
+      "world_date": {
+        "year": 656,
+        "month": 8,
+        "day": 12
+      },
+      "title": {
+        "ja": "白い沈黙の檻",
+        "en": "A Cage of White Silence"
+      },
+      "excerpt": {
+        "ja": "あまりに簡単に嘘が言えてしまい、舌が鉛に変わったような気がした。",
+        "en": "I lied so easily that it felt like my tongue had turned to lead."
+      },
+      "mood": {
+        "ja": "温かいスープの熱も、胃の奥に居座る冷たさを溶かすことはできなかった。",
+        "en": "The warmth of the soup fails to reach the coldness in my stomach."
+      },
+      "path": "world/feed/entries/2026-09-29-kaya.json"
     },
     {
       "id": "2026-09-28-sevran",
@@ -79,6 +105,32 @@
         "en": "A terrible sense of guilt for angering and driving away a customer, mixed with a clinging relief that the blue stone remains in my hand. I feel like I am standing in a swamp of self-contradiction."
       },
       "path": "world/feed/entries/2026-09-27-riko.json"
+    },
+    {
+      "id": "2026-09-26-teo",
+      "date": "2026-09-26",
+      "character_id": "teo",
+      "era": "guilds",
+      "season": 2,
+      "episode": 1,
+      "world_date": {
+        "year": 375,
+        "month": 8,
+        "day": 1
+      },
+      "title": {
+        "ja": "青銅に刻まれた傷跡",
+        "en": "The Scar on the Bronze"
+      },
+      "excerpt": {
+        "ja": "金属は嘘をつかないが、インクはつく。",
+        "en": "The metal doesn't lie, but the ink does."
+      },
+      "mood": {
+        "ja": "緊張と分析",
+        "en": "Tense and analytical"
+      },
+      "path": "world/feed/entries/2026-09-26-teo.json"
     },
     {
       "id": "2026-09-25-uta",
