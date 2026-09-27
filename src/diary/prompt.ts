@@ -11,6 +11,17 @@ import { visibleRelationships } from './context.js';
 import { ja } from '../lib/bilingual.js';
 
 /**
+ * diary-v6（2026-09-27）: 空にしてよい欄を名指しし、perception / immediate_goal / doubt を説明する。
+ *
+ * v5 までの「動かす必要がない項目は空にすること」を、Workers AI 上の Gemma は文字どおりに
+ * 受け取り、perception と doubt を空文字で返した。zod はこの2欄に1文字以上を求めるので、
+ * 指示に従った日が形の違いとして落ちる——docs/diary.md §5 の罠が、プロバイダを替えた
+ * 途端に現れた。空にしてよいのは差分の配列と memory_candidate / canon_candidate（null）
+ * だけと書き、perception / immediate_goal / doubt が何かも初めて説明する
+ * （Gemini は欄名から推し量っていた）。
+ *
+ * ---
+ *
  * diary-v5（2026-09-27）: 関係の更新先を「周りの人」の id だけに限る、と書く。
  *
  * ゲートは最初から relationships.yaml に無い id への関係更新を破棄していたが、
@@ -58,7 +69,7 @@ import { ja } from '../lib/bilingual.js';
  *    「感情を説明せず細部で見せる」という指示を守っていない。禁じ手を具体的に書き、
  *    代わりに何で見せるか（否定・数字・物・手の動き）を言う。
  */
-export const DIARY_PROMPT_VERSION = 'diary-v5';
+export const DIARY_PROMPT_VERSION = 'diary-v6';
 
 /**
  * ゲートが落とせる上限は、すべてここでプロンプトに書く。
@@ -335,8 +346,12 @@ export function buildDiarySystemPrompt(context: DiaryContext): string {
     lines.push(`- ${rule}`);
   }
   lines.push('');
+  lines.push('上限を超えた値は切り捨てられるのではなく、その日の日記ごと破棄される。');
   lines.push(
-    '上限を超えた値は切り捨てられるのではなく、その日の日記ごと破棄される。動かす必要がない項目は空にすること。',
+    '空にしてよいのは、差分の配列（relationship_patches / trait_patches / belief_patches / counter_patches / new_concerns / new_unresolved_thoughts）と、memory_candidate / canon_candidate（null）だけ。動かす必要がなければ、それらは空にする。',
+  );
+  lines.push(
+    'perception / title / body / quote / mood / immediate_goal / doubt は毎日必ず書く。空文字にすると、この日は破棄される。',
   );
 
   return lines.join('\n');
@@ -441,6 +456,12 @@ export function buildDiaryUserPrompt(context: DiaryContext): string {
   }
 
   lines.push('今日の日記を書いてください。');
+  lines.push(
+    'perception は、今日起きたことをあなたの目でどう受け取ったかの1〜3文。本文を書く前の下書きで、公開はされない。',
+  );
+  lines.push(
+    'immediate_goal と doubt は、「いまのあなた」の直近の目的と迷いを、今日を経たあとの一文に書き直す。変わらなければ同じ文をそのまま書く。',
+  );
   lines.push(
     'body_ja が本文です。body_en は英語版ですが、直訳ではなく、同じ人物が英語で書いたらこうなるという文章にしてください。',
   );

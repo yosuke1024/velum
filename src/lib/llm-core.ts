@@ -73,7 +73,8 @@ export function parseWithSchema<S extends ZodTypeAny>(text: string, schema: S): 
     const issues = parsed.error.issues
       .map((i) => `${i.path.join('.') || '(root)'} — ${i.message}`)
       .join('; ');
-    throw new LlmError(`応答が期待した形になっていません: ${issues}`, undefined, true);
+    const head = text.slice(0, 300).replace(/\s+/g, ' ');
+    throw new LlmError(`応答が期待した形になっていません: ${issues}（応答の先頭: ${head}）`, undefined, true);
   }
   return parsed.data;
 }
