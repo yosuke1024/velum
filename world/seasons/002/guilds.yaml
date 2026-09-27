@@ -1,0 +1,120 @@
+season: 2
+era: guilds
+protagonist: teo
+arc: guilds-provisional-sigil
+year_in_world: 375
+title:
+  ja: 真鍮の燭台と仮銘の署名
+  en: The Brass Candlestick and the Signed Recommendation
+shape:
+  ja: 見習い鑑定士のテオが、師匠ヴァレンの過去の誤鑑定と大鑑定院の歴史に隠された技術的つながりに直面しながら、仮銘審査の推薦状を得るまでの葛藤と選択を描く。
+  en: Depicts apprentice appraiser Theo's choices as he faces his master Vallen's past misattribution and a hidden technical connection in the Academy's history, ultimately securing his recommendation for the licensing exam.
+episodes:
+  - number: 1
+    beat: 発端
+    world_date:
+      month: 8
+      day: 1
+    events:
+      - summary: テオは大鑑定院の私室の窓辺から、ロウが残していったもう一つの贋作の首飾りを回収し、手元にあるものと引き合わせる。
+        where: 大鑑定院の私室
+        who:
+          - テオ
+      - summary: テオはヴァレン大鑑定官に仮銘審査の推薦を願い出るが、ヴァレンは推薦状を白紙のまま引き出しにしまい、代わりに「鑑定の基礎を問う」として、座金が逆に打たれた古い真鍮の燭台の鑑定を命じる。
+        where: 大鑑定院・ヴァレンの執務室
+        who:
+          - テオ
+          - ヴァレン
+    world_change: null
+    leaves_open:
+      ja: 手元に残された逆打ちの燭台と、白紙のまま保留された推薦状。
+      en: The reversed-washer candlestick left in hand, and the recommendation letter kept blank.
+  - number: 2
+    beat: 展開
+    world_date:
+      month: 8
+      day: 5
+    events:
+      - summary: テオは大鑑定院の地下書庫で30年前の鑑定原簿を調査し、当該の燭台に関する記述の周囲に、刃物で表面を薄く削り取られた痕跡を発見する。
+        where: 大鑑定院の地下書庫
+        who:
+          - テオ
+      - summary: 門前に現れたロウがテオに接触し、「その二つの首飾りを重ねて陽に透かしてみろ」とだけ告げて去る。
+        where: 大鑑定院の門前
+        who:
+          - テオ
+          - ロウ
+    world_change: null
+    leaves_open:
+      ja: 鑑定原簿に残された人為的な削り跡と、ロウが告げた首飾りの重ね合わせの謎。
+      en: The artificial scraping marks on the ledger and the mystery of overlapping the two necklaces.
+  - number: 3
+    beat: 転機
+    world_date:
+      month: 8
+      day: 10
+    events:
+      - summary: 大市の特別出張鑑定所で、テオは一般の商人が持ち込んだ鉄製の古いブローチを鑑定する。
+        where: 工房通りの簡易鑑定所
+        who:
+          - テオ
+      - summary: そのブローチの裏面に施された微細な金属彫刻が、テオの持つ親の首飾りと同じ技法であり、同時に大鑑定院の創設者が用いていた独自の刻印技術と一致していることを確認する。
+        where: 工房通りの簡易鑑定所
+        who:
+          - テオ
+    world_change: 大鑑定院の創設技術とヴェスパー工房の源流に、共通の技術的ルーツが存在することを示す古い器物が民間に現れる。
+    leaves_open:
+      ja: 親の贋作技術が大鑑定院の歴史の深部とつながっている可能性。
+      en: The possibility that his parent's forgery techniques are connected to the deepest history of the Academy.
+  - number: 4
+    beat: 危機
+    world_date:
+      month: 8
+      day: 18
+    events:
+      - summary: 先輩鑑定士のラコが、真鍮の燭台を「傷のない真正の美術品」として鑑定登録を完了させようとしているところを、テオが目撃する。
+        where: 大鑑定院の第一鑑定室
+        who:
+          - テオ
+          - ラコ
+      - summary: ヴァレンはテオに対し、翌朝までに燭台の個別鑑定書を提出するよう命じ、その内容をもって推薦状の合否を決すると宣告する。
+        where: 大鑑定院・ヴァレンの執務室
+        who:
+          - テオ
+          - ヴァレン
+    world_change: null
+    leaves_open:
+      ja: 先輩の公式鑑定と矛盾せず、かつ師の過去の改竄を暴くか否かの選択。
+      en: The choice of whether to expose the master's past alteration without contradicting the senior's official appraisal.
+  - number: 5
+    beat: 決着
+    world_date:
+      month: 8
+      day: 25
+    events:
+      - summary: テオは「座金は逆打ちされているが器物自体は真正であり、過去に鑑定書が物理的に書き換えられた痕跡がある」と事実のみを記載した鑑定書を提出する。
+        where: 大鑑定院・ヴァレンの執務室
+        who:
+          - テオ
+          - ヴァレン
+      - summary: ヴァレンは無言で鑑定書を受理し、署名済みの推薦状をテオに手渡す。
+        where: 大鑑定院・ヴァレンの執務室
+        who:
+          - テオ
+          - ヴァレン
+      - summary: 翌日、大鑑定院の掲示板に貼り出された仮銘審査の一次課題一覧の中に、「ヴェスパー工房初期製と目される印章箱」の文字が記載される。
+        where: 大鑑定院のロビー
+        who:
+          - テオ
+    world_change: テオが仮銘審査の正式な受験資格を獲得する。
+    leaves_open:
+      ja: 仮銘審査の最初の課題として指定された、己の出自であるヴェスパー工房の品。
+      en: The item from his origin, the Vesper Workshop, designated as the first subject of the licensing exam.
+generation:
+  model: gemini-3.5-flash
+  prompt_version: season-v3
+  seed: season-2:guilds
+  narrative_moves:
+    - relationship_friction
+    - texture_without_payoff
+  generated_at: 2026-09-27T00:15:12.503Z

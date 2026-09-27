@@ -1,0 +1,118 @@
+season: 2
+era: convergence
+protagonist: sevran
+arc: convergence-four-seventeen
+year_in_world: 417
+title:
+  ja: 四時十七分の残響
+  en: The Echoes of 4:17
+shape:
+  ja: セヴランは日記に現れた不自然な見え消し線と、街の随所に現れるミルテの筆跡の関連を調べます。フムが未来の記録を暗唱し始め、大時計が一瞬だけ動く中で、セヴランは記録そのものが強制的に「四時十七分」へと書き換えられる現象に直面します。
+  en: Séverin investigates the connection between unnatural strikethroughs in his journal and Myrthe's handwriting appearing across the city. As Hum begins reciting future records and the grand clock briefly moves, Séverin faces a phenomenon where the records themselves are forcefully rewritten back to 4:17.
+episodes:
+  - number: 1
+    beat: 発端
+    world_date:
+      month: 8
+      day: 9
+    events:
+      - summary: セヴランは日記の束から、自身が引いた記憶のない二重線を見つける。「四時十七分、大時計前の石畳に歪みあり」と書かれた行が消され、その下に「四時十七分、ミルテが青いインクを零した」と上書きされている。
+        where: 記録院の廃墟
+        who:
+          - セヴラン
+      - summary: 同居する異形の存在フムが深夜、これまでにない穏やかな声で、存在しないはずの『霧の街の観測日誌（霧の月三日の項）』の記述を暗唱し始める。
+        where: 記録院の廃墟の書架の影
+        who:
+          - セヴラン
+          - フム
+    world_change: null
+    leaves_open:
+      ja: フムが暗唱した、まだ訪れていない「霧の月三日」の記録の真偽。
+      en: The authenticity of the unreached date, the 3rd of the Month of Mist, recited by Hum.
+  - number: 2
+    beat: 展開
+    world_date:
+      month: 8
+      day: 18
+    events:
+      - summary: セヴランは手持ちの黒インクが尽きかけたため、筆記用具を求めてアルヴィス広場周辺の瓦礫を捜索する。
+        where: アルヴィス広場周辺
+        who:
+          - セヴラン
+      - summary: 先週まで通行可能だった裏路地が裂け目の移動によって消失しており、現れた新たな瓦礫の壁に、ミルテの筆跡で「四時十七分、光が西から射す（要検証）」と書かれているのを発見する。
+        where: 動く裂け目の境界
+        who:
+          - セヴラン
+    world_change: null
+    leaves_open:
+      ja: 街のあちこちに現れるミルテの書き置きと、塞がれた道路の法則性。
+      en: The connection between Myrthe's notes appearing across the city and the newly blocked paths.
+  - number: 3
+    beat: 転機
+    world_date:
+      month: 8
+      day: 27
+    events:
+      - summary: 生存者の行商人コルが記録院の廃墟を訪れ、かつての交易許可証の写しを求める。セヴランが保管していた台帳を開くと、コルの名前が二重線で消され、上から「ミルテ」と書き換えられている。
+        where: 記録院の廃墟
+        who:
+          - セヴラン
+          - コル
+      - summary: コルの帰宅後、フムがセヴランの手元にある未記入の白紙のページを指差し、灯の月一日にセヴランが青いインク瓶を拾うという内容を暗唱する。
+        where: 記録院の廃墟
+        who:
+          - セヴラン
+          - フム
+    world_change: null
+    leaves_open:
+      ja: 過去の公的記録までもが書き換わり始めている現象と、フムが予言する青いインクの入手経路。
+      en: The alteration of past official records and the acquisition of the blue ink prophesied by Hum.
+  - number: 4
+    beat: 危機
+    world_date:
+      month: 9
+      day: 3
+    events:
+      - summary: フムが暗唱した「霧の月三日」、セヴランはアルヴィス広場に赴く。広場の中心で、溶けて止まっていたはずのアルヴィス大時計の針が一瞬だけ「四時十八分」へ動く。
+        where: アルヴィス広場
+        who:
+          - セヴラン
+      - summary: 大時計の駆動に伴い、背後の裂け目が急速に縮小して閉鎖直前の地下書庫跡が一部露出する。その隙間に、ミルテの青いインク瓶と「四時十七分、針は止まったのではない（未確認）」と刻まれた石碑が見えるが、同時に新たな裂け目の拡大により、石碑への接近が阻まれる。
+        where: 地下書庫の跡
+        who:
+          - セヴラン
+    world_change: null
+    leaves_open:
+      ja: 一瞬だけ動いた大時計の針と、地下書庫跡に取り残されたミルテの遺留品。
+      en: The grand clock's hand that briefly moved, and Myrthe's relics trapped in the closing archive.
+  - number: 5
+    beat: 決着
+    world_date:
+      month: 9
+      day: 12
+    events:
+      - summary: セヴランは地下書庫跡への侵入を断念し、記録院の廃墟へ戻る。彼は自身の鉛筆を使い、日記に「霧の月三日、大時計が四時十八分を指した」と書き留める。
+        where: 記録院の廃墟
+        who:
+          - セヴラン
+      - summary: フムは一切の暗唱を止め、本棚の影から動かなくなる。その周囲には、かすかに冷たい鉄の匂いを帯びた青いインクの香りが漂っている。
+        where: 記録院の廃墟の書架
+        who:
+          - セヴラン
+          - フム
+      - summary: セヴランが日記を見返すと、鉛筆で書いた「四時十八分」の記述の上に、引き立ての二重線が引かれ、その横に青いインクで「四時十七分」と上書きされている。
+        where: 記録院の廃墟
+        who:
+          - セヴラン
+    world_change: セヴランが記録した「四時十八分」の記述が、本人の意思に関わらず「四時十七分」へと修正される。
+    leaves_open:
+      ja: 鉛筆の記述を上書きした青いインクの出所と、暗唱を止めたフムの沈黙。
+      en: The origin of the blue ink that overwrote the pencil entry, and the sudden silence of Hum.
+generation:
+  model: gemini-3.5-flash
+  prompt_version: season-v3
+  seed: season-2:convergence
+  narrative_moves:
+    - asymmetric_depth
+    - external_driver
+  generated_at: 2026-09-27T00:15:42.936Z

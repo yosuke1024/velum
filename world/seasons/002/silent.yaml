@@ -1,0 +1,142 @@
+season: 2
+era: silent
+protagonist: riko
+arc: silent-northern-market
+year_in_world: 1175
+title:
+  ja: 揺れる値札と届かぬ権利
+  en: The Fluctuating Price Tag and the Distant Deed
+shape:
+  ja: 首飾りの価値を吊り上げて売るまいとするリコと、迫る頭金の期限、そして師ガロンの不穏な噂を描く。首飾りの一時的な紛失と回収を経て、ガロンが権利書を狙うオルバの一味と接触している光景に直面する。
+  en: Depicts Riko raising the price of her necklace to avoid selling it, the looming down payment deadline, and troubling rumors about her mentor Garron. After temporarily losing and recovering the necklace, she witnesses Garron in negotiations with Olba's faction.
+episodes:
+  - number: 1
+    beat: 発端
+    world_date:
+      month: 7
+      day: 24
+    events:
+      - summary: 収集家の男ロロが、青い石の首飾りを前回の提示額で買い取るため、北の市の裏路地に置かれたリコの壊れた荷車を訪れる。
+        where: 北の市の裏路地
+        who:
+          - リコ
+          - ロロ
+      - summary: リコは首飾りの値札をさらに高い額（頭金に届く額）に書き換えて提示し、ロロは断って立ち去る。
+        where: 北の市の裏路地
+        who:
+          - リコ
+          - ロロ
+      - summary: リコは大工のドボに、折れた荷車の右車輪の修理を依頼する。
+        where: 北の市の裏路地
+        who:
+          - リコ
+          - ドボ
+    world_change: null
+    leaves_open:
+      ja: 書き換えてさらに跳ね上がった首飾りの価格と、交渉が決裂した後の資金繰り。
+      en: The newly inflated price of the necklace and how to secure the funds after the failed negotiation.
+  - number: 2
+    beat: 展開
+    world_date:
+      month: 7
+      day: 26
+    events:
+      - summary: 少女ミオが荷車の前に現れ、値上げされた首飾りを長い時間見つめてから立ち去る。
+        where: 北の市の裏路地
+        who:
+          - リコ
+          - ミオ
+      - summary: 荷運びのテラがリコの荷車を訪れ、元師匠のガロンが「目覚めの棚」の古い図面を別人に売却しようとしているという噂を伝える。
+        where: 北の市の裏路地
+        who:
+          - リコ
+          - テラ
+      - summary: 以前、偽の鳥の骨のお守りを買った村人パルが、頭痛の快癒に対する追加の礼として、泥のついた古い鉄の鍵を荷車に置いていく。
+        where: 北の市の裏路地
+        who:
+          - リコ
+          - パル
+    world_change: null
+    leaves_open:
+      ja: ガロンの図面売却の真偽と、パルから手渡された古い鉄の鍵の用途。
+      en: The truth behind the rumors of Garron selling the drawings, and the purpose of the old iron key from Pal.
+  - number: 3
+    beat: 転機
+    world_date:
+      month: 7
+      day: 28
+    events:
+      - summary: 大工のドボによる荷車の車輪修理が完了し、再び移動が可能になる。
+        where: 北の市の裏路地
+        who:
+          - リコ
+          - ドボ
+      - summary: 質屋オルバの店頭に、「目覚めの棚」の頭金期限を「穂の月の5日」に延長する代わりに、必要な頭金自体を増額するとの新しい告知が貼り出される。
+        where: オルバの質屋の前
+        who:
+          - リコ
+      - summary: 市場の近くで、ガロンが倉庫から古い書類箱を運び出し、馬車に積み込んでいる様子をリコが目撃する。
+        where: 北の市の広場
+        who:
+          - リコ
+          - ガロン
+    world_change: 「目覚めの棚」の頭金期限が延長され、必要な額が増額された。
+    leaves_open:
+      ja: 延長された期限と引き換えに増額された頭金をどう工面するか。
+      en: How to raise the newly increased down payment before the extended deadline.
+  - number: 4
+    beat: 危機
+    world_date:
+      month: 7
+      day: 30
+    events:
+      - summary: ロロが、値上げされた額に相当する金貨袋を携えて再び荷車に現れ、首飾りの引き渡しを要求する。
+        where: 北の市の裏路地
+        who:
+          - リコ
+          - ロロ
+      - summary: リコが返答を保留している隙に、背後にいたミオが首飾りを掴み、裏路地の奥へ走り去る。
+        where: 北の市の裏路地
+        who:
+          - リコ
+          - ロロ
+          - ミオ
+      - summary: リコはミオを追いかけるが見失い、ガロンが管理する古い倉庫の裏口にたどり着く。
+        where: ガロンの倉庫の裏手
+        who:
+          - リコ
+    world_change: null
+    leaves_open:
+      ja: 盗まれた首飾りの行方と、ガロンの倉庫の前で立ち止まったリコの次の一手。
+      en: The whereabouts of the stolen necklace and Riko's next move in front of Garron's warehouse.
+  - number: 5
+    beat: 決着
+    world_date:
+      month: 8
+      day: 2
+    events:
+      - summary: 倉庫の裏口付近の地面で、リコは落とされた首飾りを発見して回収する。周囲にミオの姿はない。
+        where: ガロンの倉庫の裏手
+        who:
+          - リコ
+      - summary: 倉庫の窓から、ガロンがオルバの手下と「目覚めの棚」の図面の引き渡し価格について交渉している声をリコが聞く。
+        where: ガロンの倉庫の裏手
+        who:
+          - リコ
+          - ガロン
+      - summary: リコは荷車に戻り、無傷の首飾りを再び荷台に置く。オルバの提示した新期限まであと3日となる。
+        where: 北の市の裏路地
+        who:
+          - リコ
+    world_change: 首飾りがリコの手元に戻り、ガロンがオルバ側と図面の売却交渉を進めていることが明らかになる。
+    leaves_open:
+      ja: 残り3日となった期限までに、戻ってきた首飾りを売るか、それとも他の方法で頭金を作るかという決断。
+      en: The decision of whether to sell the returned necklace or find another way to secure the down payment with only three days remaining.
+generation:
+  model: gemini-3.5-flash
+  prompt_version: season-v3
+  seed: season-2:silent
+  narrative_moves:
+    - relationship_friction
+    - offstage_consequence
+  generated_at: 2026-09-27T00:16:57.061Z

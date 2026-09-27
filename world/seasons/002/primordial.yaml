@@ -1,0 +1,135 @@
+season: 2
+era: primordial
+protagonist: uta
+arc: primordial-star-festival
+year_in_world: null
+title:
+  ja: 原初の沈黙
+  en: The Primal Silence
+shape:
+  ja: ウタは「臨時の聴き手」としての地位を確立するため、ガルドから厳しい証明を求められる。嘘の神託による危機の回避と、その後に訪れた想定外の自然現象および「歌う石」の破損を通じて、継承を巡る不信は解消されないまま、新たな謎が残される。
+  en: Uta is pressed by Gard to prove her worth as a temporary Listener. Through a false oracle, an unexpected tribal threat, and the accidental shattering of the Singing Stone, the tension over her succession remains unresolved while introducing a new mystery.
+episodes:
+  - number: 1
+    beat: 発端
+    world_date:
+      month: 7
+      day: 18
+    events:
+      - summary: ウタは、前季に手に入れた古い骨の破片を、熱病から回復した若者ピノに預ける。
+        where: サナ氏族の野営地
+        who:
+          - ウタ
+          - ピノ
+      - summary: 狩人レンが鳴りの谷の境界付近で拾ったという、細かな幾何学模様が刻まれた古い獣骨の破片をウタに手渡す。
+        where: サナ氏族の野営地
+        who:
+          - ウタ
+          - レン
+      - summary: ウタはノノの遺品である骨櫛に耳を寄せるが、以前の謝罪の言葉を最後に、音は聞こえない。
+        where: サナ氏族の野営地
+        who:
+          - ウタ
+    world_change: null
+    leaves_open:
+      ja: レンが持ち帰った模様入りの骨片の出所と、完全に沈黙した骨櫛の行方。
+      en: The origin of the patterned bone fragment brought by Ren, and the completely silent bone comb.
+  - number: 2
+    beat: 展開
+    world_date:
+      month: 7
+      day: 26
+    events:
+      - summary: ガルドは冬に備えるための新たな猟場について、東か北のどちらの谷に進むべきか、ウタに骨櫛の「声」を聴くよう求める。
+        where: 長の天幕
+        who:
+          - ウタ
+          - ガルド
+      - summary: ウタは骨櫛から何の音も聴き取れず、かつて先代ノノが好んでいた「北の尾根」の方向を答えとして提示する。
+        where: 長の天幕
+        who:
+          - ウタ
+          - ガルド
+      - summary: ガルドの命令により、レンを含む狩猟組が北の尾根へ出発する。
+        where: サナ氏族の野営地
+        who:
+          - ガルド
+          - レン
+    world_change: サナ氏族の当面の移動方針が北の尾根に決定される。
+    leaves_open:
+      ja: ウタが自身の推測のみで告げた「北の尾根」での狩猟の成果。
+      en: The outcome of the hunt in the Northern Ridge, suggested solely by Uta's assumption.
+  - number: 3
+    beat: 転機
+    world_date:
+      month: 9
+      day: 4
+    events:
+      - summary: レンたち狩猟組が獲物を一頭も得られずに野営地へと帰還する。
+        where: サナ氏族の野営地
+        who:
+          - レン
+          - ウタ
+      - summary: レンは北の尾根の奥地で、好戦的なドル氏族のものと思われる、破棄されて間もない簡易天幕の跡を発見したことを報告する。
+        where: サナ氏族の野営地
+        who:
+          - レン
+          - ガルド
+    world_change: サナ氏族の周辺にドル氏族の偵察の痕跡が発見され、野営地全体の警戒が高まる。
+    leaves_open:
+      ja: 結果的に氏族を危機から救った形になったウタの神託への評価と、ガルドの疑念。
+      en: The evaluation of Uta's oracle which saved the clan by chance, and Gard's growing suspicion.
+  - number: 4
+    beat: 危機
+    world_date:
+      month: 9
+      day: 12
+    events:
+      - summary: ガルドはウタに対し、天幕にある「歌う石」を突きつけ、ドル氏族が襲撃してくる正確な時期を石の声から暴き出すよう命じる。失敗した場合は骨櫛を没収すると宣言する。
+        where: 長の天幕
+        who:
+          - ガルド
+          - ウタ
+      - summary: ウタは自分の天幕に戻り、歌う石と骨櫛を並べ、誰もいない静かな夜に一人で古い言葉を唱え続ける。
+        where: サナ氏族の野営地
+        who:
+          - ウタ
+    world_change: null
+    leaves_open:
+      ja: 翌朝までにウタが虚偽の神託をでっち上げるか、沈黙を貫いて骨櫛を渡すかの選択。
+      en: "Uta's choice by tomorrow morning: to fabricate a false oracle or to surrender the bone comb in silence."
+  - number: 5
+    beat: 決着
+    world_date:
+      month: 9
+      day: 13
+    events:
+      - summary: 朝、ウタが長の天幕に入る直前、斥候から「ドル氏族の移動部隊が迫っている」との知らせがもたらされ、野営地は即時の撤収作業に入る。
+        where: サナ氏族の野営地
+        who:
+          - ウタ
+          - ガルド
+      - summary: 混乱した撤収の最中、荷車から転落した「歌う石」が岩に激突して真っ二つに割れる。
+        where: サナ氏族の野営地
+        who:
+          - ウタ
+          - レン
+      - summary: 割れた石の空洞の内部から、人の手で薄く叩き伸ばされた真鍮に似た金属片が露出しているのをウタとレンが発見する。
+        where: サナ氏族の野営地
+        who:
+          - ウタ
+          - レン
+          - ガルド
+    world_change: サナ氏族は野営地を引き払い、南の水源地へと移動を開始する。歌う石の「声」の物理的な仕組みの一端が露出する。
+    leaves_open:
+      ja: 歌う石の内部に仕込まれていた金属片の由来と、それが偶然か先代ノノによる工作だったのかという謎。
+      en: The origin of the metal piece crafted inside the Singing Stone, and the question of whether it was a coincidence or Nono's design.
+generation:
+  model: gemini-3.5-flash
+  prompt_version: season-v3
+  seed: season-2:primordial
+  narrative_moves:
+    - texture_without_payoff
+    - offstage_consequence
+    - partial_resolution
+  generated_at: 2026-09-27T00:14:30.285Z

@@ -1,0 +1,127 @@
+season: 2
+era: fracture
+protagonist: kaya
+arc: fracture-before-the-snow
+year_in_world: 656
+title:
+  ja: 閉ざされた峠、重なる沈黙
+  en: The Blockaded Pass, Accumulating Silence
+shape:
+  ja: 冬の到来を前に、カヤは三つの遺品を届けるため古い峠道を進みます。本道の封鎖、遺族の拒絶、軍の捜索という困難を経て、彼女は母の待つハルナ村にたどり着きますが、そこには春まで外界から閉ざされる生活と、未解決の手紙が残されます。
+  en: Before winter arrives, Kaya travels the old pass to deliver three personal effects. Navigating the blockaded main road, a refusal from a bereaved family, and a military patrol, she reaches her mother's village of Haruna, only to be snowed in until spring with an unresolved letter.
+episodes:
+  - number: 1
+    beat: 発端
+    world_date:
+      month: 8
+      day: 11
+    events:
+      - summary: 回収人組合の詰所にて、第七号（カヤ）はハルナ村へ届ける「アルベルトの水筒」を含む3つの遺品の配送指示を受け取る。
+        where: 回収人組合の詰所
+        who:
+          - 第七号
+      - summary: 詰所に新しい回収人が入属し、名前を捨てて「第九号」となる儀式が執り行われる。
+        where: 回収人組合の詰所
+        who:
+          - 第七号
+          - 第九号
+    world_change: ハルナ村への遺品配送任務が決定し、組合に新しい回収人が加わった。
+    leaves_open:
+      ja: 雪が降る前にすべての遺品を届け、ハルナ村に到達できるか。
+      en: Whether all effects can be delivered to Haruna before the snow blocks the pass.
+  - number: 2
+    beat: 展開
+    world_date:
+      month: 8
+      day: 18
+    events:
+      - summary: 焼けた橋にて、第七号は敵側の回収人ダリと接触し、互いに回収した兵士の遺品を交換する。
+        where: 焼けた橋
+        who:
+          - 第七号
+          - ダリ
+      - summary: ダリから、同盟軍の軍事活動活発化に伴い本道が封鎖され、ハルナ村へは古い峠道へ迂回せねばならないという情報がもたらされる。
+        where: 焼けた橋
+        who:
+          - 第七号
+          - ダリ
+    world_change: 本道が封鎖され、ハルナ村への移動ルートが古い峠道に限定された。
+    leaves_open:
+      ja: 険しい古い峠道への迂回と、そこに残る弟の痕跡の有無。
+      en: The potential signs of her brother along the treacherous old pass.
+  - number: 3
+    beat: 転機
+    world_date:
+      month: 8
+      day: 28
+    events:
+      - summary: 古い峠道の集落にて、第七号は交換で受け取った遺品を届けるために遺族トアの家を訪れるが、トアは遺品の受け取りを拒否する。
+        where: 古い峠道の集落
+        who:
+          - 第七号
+          - トア
+      - summary: トアから、その遺品の持ち主が敵前逃亡の疑いで捜索されていたこと、およびその追跡部隊にノヤと同じ刻印の部隊が含まれていたことが語られる。
+        where: トアの家
+        who:
+          - 第七号
+          - トア
+    world_change: ひとつの遺品の受け取りが拒否され、第七号の手元に残された。
+    leaves_open:
+      ja: 受け取りを拒否された遺品の処理と、弟の部隊が関わったとされる追跡劇の事実関係。
+      en: The handling of the refused item and the reality of the pursuit involving her brother's unit.
+  - number: 4
+    beat: 危機
+    world_date:
+      month: 9
+      day: 5
+    events:
+      - summary: 古い峠道の避難所にて、第七号は2件目の遺品の受け渡しを完了する。
+        where: 峠の避難所
+        who:
+          - 第七号
+      - summary: 避難所に同盟軍の巡回隊が現れ、ノヤの認識札と同じ部隊刻印のある未開封の手紙の宛先について、ハルナ村の住民の名前を挙げて捜索を開始する。
+        where: 峠の避難所
+        who:
+          - 第七号
+          - 巡回隊指揮官
+      - summary: 第七号は手紙を外套の下に隠匿したまま、雪が降り始めた避難所を立ち去る。
+        where: 峠の避難所
+        who:
+          - 第七号
+    world_change: 同盟軍が特定のハルナ村住民を標的にした捜索を開始した。
+    leaves_open:
+      ja: 軍の目を逃れ、雪が激しくなる前にハルナ村へ手紙を持ち込めるか。
+      en: Whether the letter can be safely brought to Haruna under the heavy snowfall and military eyes.
+  - number: 5
+    beat: 決着
+    world_date:
+      month: 9
+      day: 15
+    events:
+      - summary: 第七号は雪の積もるハルナ村に到着し、実家にて母イサと再会する。
+        where: ハルナ村（イサの家）
+        who:
+          - 第七号
+          - イサ
+      - summary: イサの家に避難していた火災の被災遺族に対し、三度の確認を経てアルベルトの水筒を手渡す。
+        where: イサの家
+        who:
+          - 第七号
+          - 避難家族
+      - summary: 夜、本格的な積雪により峠道が完全に閉鎖され、第七号が春までハルナ村に留まることが確定する。母イサから「ノヤから便りは？」と問われ、第七号は言葉を濁す。
+        where: イサの家
+        who:
+          - 第七号
+          - イサ
+    world_change: 峠が雪で閉ざされ、第七号は春までハルナ村に孤立することとなった。
+    leaves_open:
+      ja: 袋の底に残された未開封の手紙の宛先を探すこと、そして母と同じ屋根の下で弟の死に関する嘘を維持すること。
+      en: Finding the recipient of the letter at the bottom of her bag while keeping her brother's lie under her mother's roof.
+generation:
+  model: gemini-3.5-flash
+  prompt_version: season-v3
+  seed: season-2:fracture
+  narrative_moves:
+    - offstage_consequence
+    - texture_without_payoff
+  generated_at: 2026-09-27T00:16:21.927Z
