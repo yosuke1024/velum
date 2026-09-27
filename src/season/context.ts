@@ -83,11 +83,24 @@ export function buildSeasonContext(
   const eraDef = eras.eras.find((e) => e.id === era);
   if (!eraDef) throw new Error(`時代 ${era} が eras.yaml にありません`);
 
-  const arcFile = readdirSync(worldPath('arcs'))
-    .filter((f) => f.endsWith('.yaml'))
-    .find((f) => f.startsWith(`${era}-`));
-  if (!arcFile) throw new Error(`時代 ${era} のアークがありません`);
-  const arc = readYaml(worldPath('arcs', arcFile), ArcFileSchema);
+  // 進行中（status: active）のアークをひとつ読む。片のついたアークは resolved のまま
+  // world/arcs/ に残る——公開記録なので消さない。季の境目でアークを更新しないと、
+  // 前の季で片のついた前提がもう一度演じられる（docs/seasons.md §9）。
+  const activeArcs = readdirSync(worldPath('arcs'))
+    .filter((f) => f.endsWith('.yaml') && f.startsWith(`${era}-`))
+    .sort()
+    .map((f) => readYaml(worldPath('arcs', f), ArcFileSchema))
+    .filter((candidate) => candidate.status === 'active');
+  if (activeArcs.length !== 1) {
+    throw new Error(
+      activeArcs.length === 0
+        ? `時代 ${era} に進行中（status: active）のアークがありません。` +
+          '前の季で片がついたなら、次の季の前提を world/arcs/ に置いてください。'
+        : `時代 ${era} に進行中のアークが ${activeArcs.length} 本あります` +
+          `（${activeArcs.map((candidate) => candidate.id).join(' / ')}）。ひとつにしてください。`,
+    );
+  }
+  const arc = activeArcs[0]!;
 
   const deck = readYaml(worldPath(`cards/${era}.yaml`), CardDeckFileSchema);
   // 5話ぶんの素材として、重複を許さずに引く。

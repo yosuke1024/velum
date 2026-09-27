@@ -1,0 +1,25 @@
+id: guilds-origin-unknown
+era: guilds
+protagonist: teo
+status: active
+name:
+  ja: 出自不明
+  en: Origin Unknown
+
+premise: |
+  推薦状は星の月の末日に間に合った。審査そのものはこれからで、課題の鑑定書で決まる。
+  その課題に、ヴェスパー工房の品が出る。規約第207条どおり「出自不明」と書けば嘘になり、
+  出自を書けば自分が何者かを書くことになる。窓辺に置かれた対の首飾りは、
+  兄がそれを先に知っていたことを示している。
+
+unresolved:
+  - id: how-to-write-vesper
+    question: ヴェスパー工房の品を、鑑定書にどう書くか。正しく書けば出自が疑われ、見逃せば鑑定士失格
+  - id: who-forged-the-ledger
+    question: 三十年前の鑑定原簿に、師匠の筆跡を真似て「逆打ち」を書き加えたのは誰か。何のために
+  - id: does-vallen-know
+    question: ヴァレンは改竄を知っているのか。知っていて「直感を捨てた眼」を求めたのか
+  - id: lowes-second-necklace
+    question: ロウはなぜ対の首飾りを窓辺に置いたのか。審査の課題を知っていたのか
+  - id: whose-sigil
+    question: 家名を名乗れないまま打つ銘は、誰の銘か

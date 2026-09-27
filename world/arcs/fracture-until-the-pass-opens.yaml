@@ -1,0 +1,25 @@
+id: fracture-until-the-pass-opens
+era: fracture
+protagonist: kaya
+status: active
+name:
+  ja: 峠が開くまで
+  en: Until the Pass Opens
+
+premise: |
+  早い雪で峠が閉じ、第七号はハルナ村——母の家に留まっている。
+  袋の底には、弟と同じ部隊刻印の未開封の手紙。宛先は読めないが、手紙は峠道でこの村へ向かっていた。
+  母は手紙の代わりに、毎日食卓で訊く。「ノヤから便りは？」
+  橋の向こうではダリが月に一度の交換を待ち、詰所には届けていない木札が溜まっていく。
+
+unresolved:
+  - id: who-the-letter-is-for
+    question: 弟と同じ部隊刻印の手紙は、この村の誰宛てか。敵軍とつながる家が、戦線から外れたはずの村にある
+  - id: the-lie-under-one-roof
+    question: 手紙の往き来なら守れた嘘を、同じ屋根の下で春まで守れるか
+  - id: why-enemy-uniform
+    question: なぜ弟は敵軍の軍装で死んでいたのか
+  - id: the-bridge-without-her
+    question: 橋に来ない回収人を、ダリはいつまで待つか。二人だけの協定は、会わない月を越えられるか
+  - id: when-the-pass-opens
+    question: 峠は本当に春まで開かないのか。早い雪は溶けることがあり、軍の封鎖は解けることがある
