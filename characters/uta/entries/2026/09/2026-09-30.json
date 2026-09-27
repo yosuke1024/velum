@@ -1,0 +1,26 @@
+{
+  "date": "2026-09-30",
+  "era": "primordial",
+  "protagonist": "uta",
+  "season": 2,
+  "episode": 1,
+  "beat": "発端",
+  "world_date": {
+    "year": null,
+    "month": 7,
+    "day": 18
+  },
+  "title": {
+    "ja": "幾何学の骨と沈黙の櫛",
+    "en": "The Patterned Bone and the Silent Comb"
+  },
+  "quote": {
+    "ja": "ノノの櫛は、何も言わない。ただ、ウタの耳が、自分の震えを聴いているだけだ。",
+    "en": "Nono's comb says nothing. Only Uta's own ears are listening to her own trembling."
+  },
+  "mood": {
+    "ja": "レンの優しさが心に染みるが、それに応える声を持たない自分がもどかしい。",
+    "en": "Ren's kindness warms me, yet I feel frustrated by my lack of voice to answer it."
+  },
+  "rare_expression_used": false
+}

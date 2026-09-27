@@ -36,8 +36,8 @@ people:
     relation:
       ja: 幼馴染の狩人
       en: A hunter, and her oldest friend
-    trust: 0.88
-    wariness: 0.07
+    trust: 0.9
+    wariness: 0.06
     summary:
       ja: |
         唯一、証明を求めずにウタを信じる狩人。

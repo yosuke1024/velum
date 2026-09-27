@@ -1,0 +1,31 @@
+{
+  "id": "2026-09-30-uta",
+  "date": "2026-09-30",
+  "character_id": "uta",
+  "era": "primordial",
+  "season": 2,
+  "episode": 1,
+  "world_date": {
+    "year": null,
+    "month": 7,
+    "day": 18
+  },
+  "title": {
+    "ja": "幾何学の骨と沈黙の櫛",
+    "en": "The Patterned Bone and the Silent Comb"
+  },
+  "excerpt": {
+    "ja": "ノノの櫛は、何も言わない。ただ、ウタの耳が、自分の震えを聴いているだけだ。",
+    "en": "Nono's comb says nothing. Only Uta's own ears are listening to her own trembling."
+  },
+  "mood": {
+    "ja": "レンの優しさが心に染みるが、それに応える声を持たない自分がもどかしい。",
+    "en": "Ren's kindness warms me, yet I feel frustrated by my lack of voice to answer it."
+  },
+  "path": "world/feed/entries/2026-09-30-uta.json",
+  "schema_version": 1,
+  "body": {
+    "ja": "星の月、夜の冷気が野営地を包む。\n\n熱病から起き上がったピノの、まだおぼつかない手。その手に、ウタは前季に見つけた古い骨の破片を握らせた。この骨は去りゆく熱の残りを吸い取り、体を芯から乾かす。……と、声が言っている。\n\nそして今日、レンが鳴りの谷の境界から新たな骨を持って帰ってきた。細かな幾何学模様が刻まれた、古い獣の骨だ。人の手が入りながらも、冷たい風の匂いがそのまま残っている。レンはこれを、ウタの役に立つかもしれないと、ただ静かに手渡してくれた。\n\nウタは、ノノの骨櫛に何度も耳を寄せる。あの星祭りの夜に「すまない」とささやいたのを最後に、櫛はただの骨の塊に戻ってしまった。\n\n夜、ひとり静かに唱える。\n声は言っていない。ウタがピノに健やかであってほしくて、ただの骨を預けたのだ。\n声は言っていない。レンがウタの沈黙を心配して、その骨を拾い集めてくれたのだ。\nノノの櫛は、何も言わない。ただ、ウタの耳が、自分の震えを聴いているだけだ。\n\n冬の祭りまで、あと三十の夜。",
+    "en": "The star moon shines, and the cold night air wraps around the camp.\n\nUta placed the old bone fragment found last season into Pino’s hands, which are still unsteady after recovering from the fever. This bone will absorb the remaining heat and dry the body from within. ...So the voice says.\n\nAnd today, Ren brought back a new bone from the boundary of the Clanging Valley. It is an old beast bone carved with fine geometric patterns. Though shaped by hands, the scent of the cold wind still remains upon it. Ren handed it to Uta quietly, thinking it might be of use.\n\nUta presses her ear to Nono’s bone comb again and again. Since it whispered \"I am sorry\" on the night of the Star Festival, the comb has returned to being nothing but a silent lump of bone.\n\nAt night, Uta chants alone in the quiet.\nThe voice did not say it. Uta simply gave Pino the bone, wishing for him to stay well.\nThe voice did not say it. Ren simply gathered the bone because he was worried about Uta's silence.\nNono's comb says nothing. Only Uta's own ears are listening to her own trembling.\n\nThirty nights remain until the Winter Festival."
+  }
+}
