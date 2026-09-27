@@ -1,0 +1,69 @@
+# Persona Snapshot をコンパイルする（手動）。
+#
+# 日次ワークフローは季の最終日に5人まとめてコンパイルして配る。ここはそれ以外の
+# とき——ゲートに落ちた人物のやり直し、欠けた日を補完したあとの作り直し——に、
+# 人物を指定して回すためのもの。ローカルに GEMINI_API_KEY が無くても回せる。
+#
+# 生成した Snapshot（--publish ならピンも）は「起動したブランチ」へコミットする。
+# main へは PR で入れる。Snapshot は追記のみなので、作り直しても前の版は消えない。
+#
+# 使い方: Actions → snapshot → Run workflow。characters に空白区切りで id
+# （省略すると5人全員）、season にその Snapshot が何季ぶんの人格か、publish で配るか。
+
+name: snapshot
+
+on:
+  workflow_dispatch:
+    inputs:
+      characters:
+        description: '対象の主人公 id（空白区切り。省略すると5人全員）'
+        required: false
+      season:
+        description: 'この Snapshot が何季ぶんの人格か（world/personas.json の season に残る）'
+        required: false
+      publish:
+        description: 'コンパイルしてそのまま配る（world/personas.json のピンを動かす）'
+        type: boolean
+        default: false
+
+concurrency:
+  group: snapshot
+  cancel-in-progress: false
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    # フォークからの実行で secrets を使う生成が走らないようにする（daily.yml と同じ）。
+    if: github.repository_owner == 'yosuke1024'
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+
+      - name: Compile the snapshots
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: >
+          npm run snapshot -- ${{ inputs.characters }}
+          ${{ inputs.season && format('--season={0}', inputs.season) || '' }}
+          ${{ inputs.publish && '--publish' || '' }}
+
+      - name: Validate the data
+        run: npm run validate
+
+      - name: Commit the snapshots
+        run: |
+          git config user.name  'velum'
+          git config user.email 'noreply@pixapps.ai'
+          git add characters/*/snapshots world/personas.json
+          if git diff --staged --quiet; then
+            echo "変更なし。"
+          else
+            git commit -m "snapshot: ${{ inputs.characters || 'all' }}"
+            git push
+          fi
