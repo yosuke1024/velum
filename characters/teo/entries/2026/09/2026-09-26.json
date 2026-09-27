@@ -1,0 +1,26 @@
+{
+  "date": "2026-09-26",
+  "era": "guilds",
+  "protagonist": "teo",
+  "season": 2,
+  "episode": 1,
+  "beat": "発端",
+  "world_date": {
+    "year": 375,
+    "month": 8,
+    "day": 1
+  },
+  "title": {
+    "ja": "青銅に刻まれた傷跡",
+    "en": "The Scar on the Bronze"
+  },
+  "quote": {
+    "ja": "金属は嘘をつかないが、インクはつく。",
+    "en": "The metal doesn't lie, but the ink does."
+  },
+  "mood": {
+    "ja": "緊張と分析",
+    "en": "Tense and analytical"
+  },
+  "rare_expression_used": false
+}

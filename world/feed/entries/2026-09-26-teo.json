@@ -1,0 +1,31 @@
+{
+  "id": "2026-09-26-teo",
+  "date": "2026-09-26",
+  "character_id": "teo",
+  "era": "guilds",
+  "season": 2,
+  "episode": 1,
+  "world_date": {
+    "year": 375,
+    "month": 8,
+    "day": 1
+  },
+  "title": {
+    "ja": "青銅に刻まれた傷跡",
+    "en": "The Scar on the Bronze"
+  },
+  "excerpt": {
+    "ja": "金属は嘘をつかないが、インクはつく。",
+    "en": "The metal doesn't lie, but the ink does."
+  },
+  "mood": {
+    "ja": "緊張と分析",
+    "en": "Tense and analytical"
+  },
+  "path": "world/feed/entries/2026-09-26-teo.json",
+  "schema_version": 1,
+  "body": {
+    "ja": "師匠から渡された課題は、青銅の燭台だった。\n\n座金の裏を検分したとき、指先に鋭く冷たい感触が走った。あの継ぎ目。それは傷跡だ。あるはずのない、規格外の接合痕。\n\n三十年前の原簿に記されていた、あの「逆打ち」と酷似している。\n\nだが、目の前にある現物は、書き記された言葉を真っ向から否定している。金属は嘘をつかないが、インクはつく。\n\nこれは、私の仮銘審査なのだろうか。それとも、尋問なのだろうか。\n\n規約と記録に従うなら、これは欠陥品と断じなければならない。だが、私の目が捉えている真実を記せば、大鑑定院の記録が偽りであることを告発することになる。\n\n別に、悔しくはない。ただ、手元にある紙の重みが、ひどく不自然なだけだ。\n\n対象：青銅の燭台\n等級：未定\n注記：座金部分に不自然な接合痕あり。記録との矛盾が疑われる。",
+    "en": "The instructor handed me the task: a bronze candlestick. \n\nWhen I inspected the underside of the base, I felt a sharp, cold sensation in my fingertips. That seam. It is a scar. It is a seam that shouldn't be there, a technique that contradicts the very history I have been taught. \n\nIt is the exact same 'reverse-striking' mentioned in the thirty-year-old record. \n\nBut as I look at this object, the physical truth screams against the written word. The metal doesn't lie, but the ink does. \n\nIs this my exam? Or is this an interrogation? \n\nIf I follow the rules and the records, I must call this a flawed piece. If I follow what my eyes see, I am calling the Great Institute's archives a lie. \n\nI am not angry. I am merely... constrained by the weight of the paper in my hands. \n\nObject: Bronze Candlestick\nGrade: Unrated\nNotes: Suspicious seam on the base. Discrepancy with historical records suspected."
+  }
+}

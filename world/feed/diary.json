@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-27T00:31:22.776Z",
+  "generated_at": "2026-09-27T12:01:17.228Z",
   "entries": [
     {
       "id": "2026-09-30-uta",
@@ -79,6 +79,32 @@
         "en": "A terrible sense of guilt for angering and driving away a customer, mixed with a clinging relief that the blue stone remains in my hand. I feel like I am standing in a swamp of self-contradiction."
       },
       "path": "world/feed/entries/2026-09-27-riko.json"
+    },
+    {
+      "id": "2026-09-26-teo",
+      "date": "2026-09-26",
+      "character_id": "teo",
+      "era": "guilds",
+      "season": 2,
+      "episode": 1,
+      "world_date": {
+        "year": 375,
+        "month": 8,
+        "day": 1
+      },
+      "title": {
+        "ja": "青銅に刻まれた傷跡",
+        "en": "The Scar on the Bronze"
+      },
+      "excerpt": {
+        "ja": "金属は嘘をつかないが、インクはつく。",
+        "en": "The metal doesn't lie, but the ink does."
+      },
+      "mood": {
+        "ja": "緊張と分析",
+        "en": "Tense and analytical"
+      },
+      "path": "world/feed/entries/2026-09-26-teo.json"
     },
     {
       "id": "2026-09-25-uta",
