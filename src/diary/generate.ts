@@ -1,4 +1,4 @@
-import { generateJson } from '../lib/gemini.js';
+import { generateJson } from '../lib/llm.js';
 import { formatWorldDate } from '../lib/calendar.js';
 import { charPath, diaryPath, entryPath, eventPath, failurePath } from '../lib/paths.js';
 import { writeYaml, writeJson, writeText } from '../lib/storage.js';
@@ -31,7 +31,7 @@ function frontMatter(fields: Record<string, string | number>): string {
  *
  * 日記は製品そのものであり、季の計画（出来事の設計）とは求める質が違う。
  * VELUM_DIARY_MODEL が設定されていればそれを使い、無ければ generateJson の既定
- * （VELUM_MODEL → DEFAULT_MODEL）に落ちる。daily.yml は repo variable から渡すので、
+ * （VELUM_MODEL → プロバイダの既定モデル）に落ちる。daily.yml は repo variable から渡すので、
  * 未設定なら空文字が来る——空は「未設定」として扱う。
  */
 export function diaryModel(): string | undefined {

@@ -5,7 +5,7 @@ import {
   TEXT_LIMITS,
   VIOLATION_POLICY,
 } from '../schemas/limits.js';
-import { jsonSchema } from '../lib/gemini.js';
+import { jsonSchema } from '../lib/llm.js';
 import type { DiaryContext } from './context.js';
 import { visibleRelationships } from './context.js';
 import { ja } from '../lib/bilingual.js';

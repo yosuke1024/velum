@@ -1,7 +1,7 @@
 # 季の計画を立てる（手動）。
 #
 # 次の季の計画は自動では立たない（docs/seasons.md §1, §9）。このワークフローも
-# 人が起動する。ローカルに GEMINI_API_KEY が無くても、repo secret で計画を
+# 人が起動する。ローカルに Cloudflare の鍵が無くても、repo secret で計画を
 # 生成できるようにするためのもの。
 #
 # 生成した計画は「起動したブランチ」へコミットするだけで、日次生成はここでは
@@ -48,7 +48,8 @@ jobs:
 
       - name: Plan the season
         env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: >
           npm run plan -- --season ${{ inputs.season }}
           ${{ inputs.era && format('--era {0}', inputs.era) || '' }}

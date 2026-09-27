@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { generateJson } from '../lib/gemini.js';
+import { generateJson } from '../lib/llm.js';
 import { seasonPath, worldPath } from '../lib/paths.js';
 import { writeYaml, readYaml } from '../lib/storage.js';
 import { linearDay, nextDay, type WorldClock } from '../lib/calendar.js';

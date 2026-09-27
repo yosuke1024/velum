@@ -1,5 +1,5 @@
 import type { SeasonContext } from './context.js';
-import { jsonSchema } from '../lib/gemini.js';
+import { jsonSchema } from '../lib/llm.js';
 import { BEATS, EPISODES_PER_SEASON } from '../schemas/season.js';
 import { ja } from '../lib/bilingual.js';
 import type { NarrativeMove } from './narrative-calibration.js';

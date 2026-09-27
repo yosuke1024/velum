@@ -2,7 +2,7 @@
 #
 # 日次ワークフローは季の最終日に5人まとめてコンパイルして配る。ここはそれ以外の
 # とき——ゲートに落ちた人物のやり直し、欠けた日を補完したあとの作り直し——に、
-# 人物を指定して回すためのもの。ローカルに GEMINI_API_KEY が無くても回せる。
+# 人物を指定して回すためのもの。ローカルに Cloudflare の鍵が無くても回せる。
 #
 # 生成した Snapshot（--publish ならピンも）は「起動したブランチ」へコミットする。
 # main へは PR で入れる。Snapshot は追記のみなので、作り直しても前の版は消えない。
@@ -47,7 +47,8 @@ jobs:
 
       - name: Compile the snapshots
         env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: >
           npm run snapshot -- ${{ inputs.characters }}
           ${{ inputs.season && format('--season={0}', inputs.season) || '' }}
