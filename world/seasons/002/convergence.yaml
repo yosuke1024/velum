@@ -7,8 +7,8 @@ title:
   ja: 四時十七分の残響
   en: The Echoes of 4:17
 shape:
-  ja: セヴランは日記に現れた不自然な見え消し線と、街の随所に現れるミルテの筆跡の関連を調べます。フムが未来の記録を暗唱し始め、大時計が一瞬だけ動く中で、セヴランは記録そのものが強制的に「四時十七分」へと書き換えられる現象に直面します。
-  en: Séverin investigates the connection between unnatural strikethroughs in his journal and Myrthe's handwriting appearing across the city. As Hum begins reciting future records and the grand clock briefly moves, Séverin faces a phenomenon where the records themselves are forcefully rewritten back to 4:17.
+  ja: セヴランは日記に現れた不自然な見え消し線と、街の随所に現れるミルテの筆跡の関連を調べる。フムが未来の記録を暗唱し始め、大時計が一瞬だけ動く中で、セヴランは記録そのものが強制的に「四時十七分」へと書き換えられる現象に直面する。
+  en: Sevran investigates the connection between unnatural strikethroughs in his journal and Milte's handwriting appearing across the city. As Hum begins reciting future records and the grand clock briefly moves, Sevran faces a phenomenon where the records themselves are forcefully rewritten back to 4:17.
 episodes:
   - number: 1
     beat: 発端
@@ -46,19 +46,19 @@ episodes:
     world_change: null
     leaves_open:
       ja: 街のあちこちに現れるミルテの書き置きと、塞がれた道路の法則性。
-      en: The connection between Myrthe's notes appearing across the city and the newly blocked paths.
+      en: The connection between Milte's notes appearing across the city and the newly blocked paths.
   - number: 3
     beat: 転機
     world_date:
       month: 8
       day: 27
     events:
-      - summary: 生存者の行商人コルが記録院の廃墟を訪れ、かつての交易許可証の写しを求める。セヴランが保管していた台帳を開くと、コルの名前が二重線で消され、上から「ミルテ」と書き換えられている。
+      - summary: 生存者の行商人コルネリが記録院の廃墟を訪れ、かつての交易許可証の写しを求める。セヴランが保管していた台帳を開くと、コルネリの名前が二重線で消され、上から「ミルテ」と書き換えられている。
         where: 記録院の廃墟
         who:
           - セヴラン
-          - コル
-      - summary: コルの帰宅後、フムがセヴランの手元にある未記入の白紙のページを指差し、灯の月一日にセヴランが青いインク瓶を拾うという内容を暗唱する。
+          - コルネリ
+      - summary: コルネリの帰宅後、フムがセヴランの手元にある未記入の白紙のページを指差し、灯の月一日にセヴランが青いインク瓶を拾うという内容を暗唱する。
         where: 記録院の廃墟
         who:
           - セヴラン
@@ -84,7 +84,7 @@ episodes:
     world_change: null
     leaves_open:
       ja: 一瞬だけ動いた大時計の針と、地下書庫跡に取り残されたミルテの遺留品。
-      en: The grand clock's hand that briefly moved, and Myrthe's relics trapped in the closing archive.
+      en: The grand clock's hand that briefly moved, and Milte's relics trapped in the closing archive.
   - number: 5
     beat: 決着
     world_date:

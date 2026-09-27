@@ -8,7 +8,7 @@ title:
   en: The Fluctuating Price Tag and the Distant Deed
 shape:
   ja: 首飾りの価値を吊り上げて売るまいとするリコと、迫る頭金の期限、そして師ガロンの不穏な噂を描く。首飾りの一時的な紛失と回収を経て、ガロンが権利書を狙うオルバの一味と接触している光景に直面する。
-  en: Depicts Riko raising the price of her necklace to avoid selling it, the looming down payment deadline, and troubling rumors about her mentor Garron. After temporarily losing and recovering the necklace, she witnesses Garron in negotiations with Olba's faction.
+  en: Depicts Riko raising the price of her necklace to avoid selling it, the looming down payment deadline, and troubling rumors about her mentor Garon. After temporarily losing and recovering the necklace, she witnesses Garon in negotiations with Olba's faction.
 episodes:
   - number: 1
     beat: 発端
@@ -59,7 +59,7 @@ episodes:
     world_change: null
     leaves_open:
       ja: ガロンの図面売却の真偽と、パルから手渡された古い鉄の鍵の用途。
-      en: The truth behind the rumors of Garron selling the drawings, and the purpose of the old iron key from Pal.
+      en: The truth behind the rumors of Garon selling the drawings, and the purpose of the old iron key from Pal.
   - number: 3
     beat: 転機
     world_date:
@@ -108,7 +108,7 @@ episodes:
     world_change: null
     leaves_open:
       ja: 盗まれた首飾りの行方と、ガロンの倉庫の前で立ち止まったリコの次の一手。
-      en: The whereabouts of the stolen necklace and Riko's next move in front of Garron's warehouse.
+      en: The whereabouts of the stolen necklace and Riko's next move in front of Garon's warehouse.
   - number: 5
     beat: 決着
     world_date:

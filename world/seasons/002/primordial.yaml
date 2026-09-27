@@ -8,7 +8,7 @@ title:
   en: The Primal Silence
 shape:
   ja: ウタは「臨時の聴き手」としての地位を確立するため、ガルドから厳しい証明を求められる。嘘の神託による危機の回避と、その後に訪れた想定外の自然現象および「歌う石」の破損を通じて、継承を巡る不信は解消されないまま、新たな謎が残される。
-  en: Uta is pressed by Gard to prove her worth as a temporary Listener. Through a false oracle, an unexpected tribal threat, and the accidental shattering of the Singing Stone, the tension over her succession remains unresolved while introducing a new mystery.
+  en: Uta is pressed by Gald to prove her worth as a temporary Listener. Through a false oracle, an unexpected tribal threat, and the accidental shattering of the Singing Stone, the tension over her succession remains unresolved while introducing a new mystery.
 episodes:
   - number: 1
     beat: 発端
@@ -78,7 +78,7 @@ episodes:
     world_change: サナ氏族の周辺にドル氏族の偵察の痕跡が発見され、野営地全体の警戒が高まる。
     leaves_open:
       ja: 結果的に氏族を危機から救った形になったウタの神託への評価と、ガルドの疑念。
-      en: The evaluation of Uta's oracle which saved the clan by chance, and Gard's growing suspicion.
+      en: The evaluation of Uta's oracle which saved the clan by chance, and Gald's growing suspicion.
   - number: 4
     beat: 危機
     world_date:
