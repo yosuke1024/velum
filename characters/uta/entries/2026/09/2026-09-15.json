@@ -1,0 +1,26 @@
+{
+  "date": "2026-09-15",
+  "era": "primordial",
+  "protagonist": "uta",
+  "season": 1,
+  "episode": 3,
+  "beat": "転機",
+  "world_date": {
+    "year": null,
+    "month": 7,
+    "day": 11
+  },
+  "title": {
+    "ja": "鳴りの谷の重み",
+    "en": "The Weight of the Silent Valley"
+  },
+  "quote": {
+    "ja": "声は言っていない。ただ、掌の中で冷たく、硬い塊があるだけだ。",
+    "en": "It is just a cold, hard weight in my palm."
+  },
+  "mood": {
+    "ja": "掌に食い込む、持ち帰った骨の冷たく尖った感触。",
+    "en": "The cold, jagged edges of the bone press hard into my palm."
+  },
+  "rare_expression_used": false
+}

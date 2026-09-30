@@ -20,6 +20,10 @@ on:
       date:
         description: '生成する日付（YYYY-MM-DD）。省略すると今日'
         required: false
+      backfill:
+        description: '破棄された過去の日を、歴史としてだけ補う（その日の朝の人物で書き、状態は動かさない。docs/diary.md §9）'
+        type: boolean
+        default: false
   schedule:
     # 21:00 UTC = 06:00 JST。刻む日付も JST で決める（src/lib/rotation.ts の today）。
     # UTC で日付を取ると毎回前日を刻み、初日が1日遅れて始まる。
@@ -54,7 +58,7 @@ jobs:
           # 季の計画とは求める質が違う。未設定なら VELUM_MODEL → 既定の Gemma（src/lib/workers-ai.ts）。
           # 使ったモデルは characters/<id>/events/ の generation.model に残る。
           VELUM_DIARY_MODEL: ${{ vars.VELUM_DIARY_MODEL }}
-        run: npm run day -- ${{ inputs.date }}
+        run: npm run day -- ${{ inputs.date }} ${{ inputs.backfill && '--backfill' || '' }}
 
       # 季の最終日（25日ごと）だけ、Persona Snapshot をコンパイルして配る。
       # 5人全員が第5話を書き終えたあとなので、この日より前に圧縮すると
@@ -64,8 +68,9 @@ jobs:
       # --if-season-end が日付から導出する。安全側はゲートに残る——ゲートに
       # 落ちた人物は Snapshot が書かれず、ピンも動かず、前の人格のままになる。
       # 手動で戻すときは world/personas.json の version を以前の番号へ書き換える。
+      # 過去の日を補ったときは回さない。補った日が季の最終日でも、人格はもう配ってある。
       - name: Compile and publish the personas at the end of a season
-        if: success()
+        if: success() && !inputs.backfill
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -94,6 +99,6 @@ jobs:
           if git diff --staged --quiet; then
             echo "変更なし。"
           else
-            git commit -m "world: ${{ inputs.date || '$(TZ=Asia/Tokyo date +%Y-%m-%d)' }}"
+            git commit -m "world: ${{ inputs.date || '$(TZ=Asia/Tokyo date +%Y-%m-%d)' }}${{ inputs.backfill && ' (backfill)' || '' }}"
             git push
           fi
