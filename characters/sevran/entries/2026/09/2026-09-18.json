@@ -1,0 +1,26 @@
+{
+  "date": "2026-09-18",
+  "era": "convergence",
+  "protagonist": "sevran",
+  "season": 1,
+  "episode": 4,
+  "beat": "危機",
+  "world_date": {
+    "year": 417,
+    "month": 7,
+    "day": 28
+  },
+  "title": {
+    "ja": "青いインクと消失した回廊",
+    "en": "The Blue Ink and the Vanished Corridor"
+  },
+  "quote": {
+    "ja": "「四時十七分、ここに裂け目、待て」",
+    "en": "\"4:17, rift here, wait.\""
+  },
+  "mood": {
+    "ja": "青いインクの、あの冷たい鉄のような匂いが指先にいつまでもこびりついている。",
+    "en": "The scent of cold iron from the blue ink lingers on my fingertips like a chill."
+  },
+  "rare_expression_used": false
+}

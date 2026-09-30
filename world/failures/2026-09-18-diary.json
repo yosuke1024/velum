@@ -9,5 +9,6 @@
   "violations": [
     "関係先 korneri が relationships.yaml に存在しない"
   ],
-  "recorded_at": "2026-09-17T23:26:32.380Z"
+  "recorded_at": "2026-09-17T23:26:32.380Z",
+  "backfilled_on": "2026-10-01"
 }
