@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-27T12:04:47.667Z",
+  "generated_at": "2026-09-30T21:44:40.001Z",
   "entries": [
     {
       "id": "2026-09-30-uta",
@@ -365,6 +365,32 @@
         "en": "Feeling the weight of the ink on the paper, while repeating the clauses of the regulations in my mind."
       },
       "path": "world/feed/entries/2026-09-16-teo.json"
+    },
+    {
+      "id": "2026-09-15-uta",
+      "date": "2026-09-15",
+      "character_id": "uta",
+      "era": "primordial",
+      "season": 1,
+      "episode": 3,
+      "world_date": {
+        "year": null,
+        "month": 7,
+        "day": 11
+      },
+      "title": {
+        "ja": "鳴りの谷の重み",
+        "en": "The Weight of the Silent Valley"
+      },
+      "excerpt": {
+        "ja": "声は言っていない。ただ、掌の中で冷たく、硬い塊があるだけだ。",
+        "en": "It is just a cold, hard weight in my palm."
+      },
+      "mood": {
+        "ja": "掌に食い込む、持ち帰った骨の冷たく尖った感触。",
+        "en": "The cold, jagged edges of the bone press hard into my palm."
+      },
+      "path": "world/feed/entries/2026-09-15-uta.json"
     },
     {
       "id": "2026-09-14-kaya",
