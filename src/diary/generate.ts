@@ -1,11 +1,13 @@
 import { generateJson } from '../lib/llm.js';
 import { formatWorldDate } from '../lib/calendar.js';
 import { charPath, diaryPath, entryPath, eventPath, failurePath } from '../lib/paths.js';
-import { writeYaml, writeJson, writeText } from '../lib/storage.js';
+import { writeYaml, writeJson, writeText, exists, readJson } from '../lib/storage.js';
+import { today } from '../lib/rotation.js';
 import { DiaryResponseSchema } from '../schemas/patch.js';
 import { DiaryEntrySchema, DiaryEventSchema } from '../schemas/diary.js';
 import { FailureSchema } from '../schemas/season.js';
 import { buildDiaryContext, type Day } from './context.js';
+import { loadCharacterAsOf, readEventsAround } from './as-of.js';
 import {
   buildDiarySystemPrompt,
   buildDiaryUserPrompt,
@@ -16,8 +18,8 @@ import { gate } from './gate.js';
 import { applyPatches, trimWorkingSets } from './apply.js';
 
 export type DiaryOutcome =
-  | { ok: true; title: string; truncated: string[] }
-  | { ok: false; violations: string[] };
+  | { ok: true; title: string; truncated: string[]; backfilled: boolean }
+  | { ok: false; violations: string[]; backfilled: boolean };
 
 function frontMatter(fields: Record<string, string | number>): string {
   const lines = Object.entries(fields).map(
@@ -45,10 +47,24 @@ export async function generateDiary(
   options: {
     /** 直近の日記に定型の崩れがあれば false。省略時は許可。 */
     rareExpressionAllowed?: boolean;
+    /**
+     * 破棄された過去の日を、歴史としてだけ補う（docs/diary.md §9）。
+     *
+     * 人物はその日の朝の状態で書き（src/diary/as-of.ts）、状態ファイル・関係・記憶・
+     * 人生の事実は一切書かない。書くのは日記・entries・events だけで、events には
+     * 適用していない印が付く。失敗記録は消さずに、補った日を書き足す。
+     */
+    backfill?: boolean;
   } = {},
 ): Promise<DiaryOutcome> {
   const rareExpressionAllowed = options.rareExpressionAllowed ?? true;
-  const context = buildDiaryContext(day, recentSummaries, rareExpressionAllowed);
+  const backfill = options.backfill ?? false;
+  const context = buildDiaryContext(
+    day,
+    recentSummaries,
+    rareExpressionAllowed,
+    backfill ? loadCharacterAsOf(day.turn.protagonist, day.date) : undefined,
+  );
   const { profile } = context;
   const { turn } = day;
 
@@ -68,6 +84,10 @@ export async function generateDiary(
   });
 
   if (!verdict.ok) {
+    // 補う試みが落ちたときは何も書かない。その日にはすでに元の失敗記録があり、
+    // 上書きすれば最初に破棄された理由が消える。やり直しは同じ手順をもう一度回す。
+    if (backfill) return { ok: false, violations: verdict.violations, backfilled: true };
+
     // 欠けた日は隠さない。状態ファイルにも日記にも何も書かず、失敗だけを残す。
     // 季の計画は消さないので、同じ日をやり直せば同じ出来事から書き直せる。
     writeJson(
@@ -84,7 +104,7 @@ export async function generateDiary(
         recorded_at: new Date().toISOString(),
       }),
     );
-    return { ok: false, violations: verdict.violations };
+    return { ok: false, violations: verdict.violations, backfilled: false };
   }
 
   const response = verdict.response;
@@ -101,10 +121,13 @@ export async function generateDiary(
 
   const id = profile.id;
 
-  writeYaml(charPath(id, 'current-state.yaml'), trimWorkingSets(result.state));
-  writeYaml(charPath(id, 'relationships.yaml'), result.relationships);
-  writeYaml(charPath(id, 'memories.yaml'), result.memories);
-  writeYaml(charPath(id, 'canon.yaml'), result.canon);
+  // 補うときは状態へ触れない。後の日がすでにその上に積まれている。
+  if (!backfill) {
+    writeYaml(charPath(id, 'current-state.yaml'), trimWorkingSets(result.state));
+    writeYaml(charPath(id, 'relationships.yaml'), result.relationships);
+    writeYaml(charPath(id, 'memories.yaml'), result.memories);
+    writeYaml(charPath(id, 'canon.yaml'), result.canon);
+  }
 
   const meta = {
     date: day.date,
@@ -156,8 +179,21 @@ export async function generateDiary(
         prompt_version: DIARY_PROMPT_VERSION,
         generated_at: new Date().toISOString(),
       },
+      ...(backfill && {
+        backfill: {
+          applied_to_state: false,
+          filled_on: today(),
+          state_as_of: readEventsAround(id, day.date).earlier.at(-1)?.date ?? null,
+        },
+      }),
     }),
   );
 
-  return { ok: true, title: response.title_ja, truncated: verdict.truncated };
+  // 失敗記録は消さない。一度破棄されたことも実験記録であり、補った日だけを書き足す。
+  if (backfill && exists(failurePath(day.date, 'diary'))) {
+    const failure = readJson(failurePath(day.date, 'diary'), FailureSchema);
+    writeJson(failurePath(day.date, 'diary'), { ...failure, backfilled_on: today() });
+  }
+
+  return { ok: true, title: response.title_ja, truncated: verdict.truncated, backfilled: backfill };
 }

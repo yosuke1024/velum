@@ -69,9 +69,11 @@ export function buildDiaryContext(
   day: Day,
   recentSummaries: string[] = [],
   rareExpressionAllowed = true,
+  /** 人物の材料。省略時はいまの状態ファイル。過去の日を補うときは src/diary/as-of.ts が渡す。 */
+  character: ReturnType<typeof loadCharacter> = loadCharacter(day.turn.protagonist),
 ): DiaryContext {
   return {
-    ...loadCharacter(day.turn.protagonist),
+    ...character,
     day,
     recentSummaries,
     rareExpressionAllowed,

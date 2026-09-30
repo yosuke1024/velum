@@ -114,6 +114,11 @@ export const FailureSchema = z.object({
   reason: z.string().min(1),
   violations: z.array(z.string()),
   recorded_at: z.string(),
+  /**
+   * この日をあとから歴史としてだけ補った日（JST）。失敗記録そのものは消さない——
+   * 一度破棄されたことも実験記録である（docs/diary.md §9）。
+   */
+  backfilled_on: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),
 });
 
 export type Failure = z.infer<typeof FailureSchema>;
