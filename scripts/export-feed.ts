@@ -17,9 +17,9 @@
  * 手書きのダミー日記（entries/ に置いた JSON）をそのまま使う。
  */
 
-import { readFileSync, existsSync, readdirSync, copyFileSync, mkdirSync } from 'node:fs';
+import { readFileSync, existsSync, readdirSync, copyFileSync, mkdirSync, rmSync } from 'node:fs';
 import { join, dirname } from 'node:path';
-import { ROOT, feedDir, feedPortraitPath } from '../src/lib/paths.js';
+import { ROOT, feedDir, feedPortraitPath, feedStorySeriesName } from '../src/lib/paths.js';
 import { writeJson } from '../src/lib/storage.js';
 import {
   buildCharactersFeed,
@@ -27,6 +27,7 @@ import {
   collectFeedEntryFiles,
   diaryFeedFrom,
 } from '../src/export/feed.js';
+import { collectStoryFeeds } from '../src/export/stories.js';
 import { FeedEntryFileSchema, type FeedEntryFile } from '../src/schemas/feed.js';
 import { CHARACTER_IDS } from '../src/schemas/world.js';
 
@@ -34,6 +35,12 @@ const fixtures = process.argv.slice(2).includes('--fixtures');
 
 /** fixture の根。この下に world/feed/ を镜す——アプリの base URL の根と同じ形。 */
 const FIXTURE_ROOT = join(ROOT, 'tests', 'fixtures', 'feed');
+
+/**
+ * Story のフィクスチャ素材。characters/<id>/stories/ と同じ構造を持つ別の根
+ * （tests/fixtures/stories/）で、本番の草稿とは混ざらない。
+ */
+const STORY_FIXTURE_ROOT = join(ROOT, 'tests', 'fixtures', 'stories');
 
 const outDir = fixtures ? join(FIXTURE_ROOT, 'world', 'feed') : feedDir();
 
@@ -84,6 +91,28 @@ if (fixtures) {
 
 results.push(['diary.json', writeStable(join(outDir, 'diary.json'), diaryFeedFrom(entryFiles, now))]);
 
+// ── stories/ ───────────────────────────────────────────────────
+// Character Story（docs/stories.md）。published の季だけが出る。index.json は
+// 公開が1本も無くても書く——アプリが 404 を「取得失敗」ではなく「まだ無い」と
+// 読めるようにするため。公開を取り下げた季のファイルは消す（index から外れた
+// ファイルが残ると、validate が孤児として落とす）。
+
+const stories = collectStoryFeeds(now, fixtures ? STORY_FIXTURE_ROOT : ROOT);
+const storiesDir = join(outDir, 'stories');
+results.push(['stories/index.json', writeStable(join(storiesDir, 'index.json'), stories.index)]);
+for (const series of stories.series) {
+  results.push([`stories/${feedStorySeriesName(series.id)}`, writeStable(join(storiesDir, feedStorySeriesName(series.id)), series)]);
+}
+if (existsSync(storiesDir)) {
+  const keep = new Set(['index.json', ...stories.series.map((s) => feedStorySeriesName(s.id))]);
+  for (const file of readdirSync(storiesDir).filter((f) => f.endsWith('.json'))) {
+    if (keep.has(file)) continue;
+    rmSync(join(storiesDir, file));
+    results.push([`stories/${file}`, 'written']);
+    console.log(`  公開を取り下げた季のファイルを消しました: stories/${file}`);
+  }
+}
+
 // ── portraits ──────────────────────────────────────────────────
 // 派生は scripts/derive-portraits.ts の仕事。ここでは在庫だけ確かめる。
 // fixture へは実物をそのまま複製する。
@@ -114,6 +143,9 @@ if (written.length) {
   console.log(`✓ ${label} は最新です。変更はありません。`);
 }
 console.log(`  日記 ${entryFiles.length}本${fixtures ? '（ダミー）' : ''}`);
+console.log(
+  `  Story ${stories.series.length}季（公開済みの話 ${stories.series.reduce((n, s) => n + s.episodes.length, 0)}本）${fixtures ? '（フィクスチャ）' : ''}`,
+);
 
 if (missing.length) {
   console.warn(`\n⚠ 肖像がありません: ${missing.join(', ')}`);

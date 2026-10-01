@@ -1,0 +1,11 @@
+# Journey Progress の既定の階段（docs/stories.md §5）。
+#
+# PixTale で同行者を選んで Scan に成功するごとに、その人物の Journey Progress が
+# 1 進む。Story の各話は manifest.yaml の required_progress に達したときに解放される。
+# ここはその既定値であり、`npm run story:plan` が新しい manifest を作るときに写す。
+# 話ごとの値は manifest.yaml で人間が直してよい。アプリにはこの数字を置かない——
+# feed（world/feed/stories/）が運ぶ。
+#
+# 第1話は 0（同行者を選んだ時点で読める）。序盤3話は早く解放し、人物を知ってから
+# 中盤へ進ませる。
+default_required_progress: [0, 2, 5, 9, 14, 20, 27, 35, 44, 54]

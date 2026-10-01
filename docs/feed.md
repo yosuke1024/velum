@@ -31,8 +31,13 @@ additive に足した。**フィールドの削除・改名はしない**——�
 | `diary.json` | 日記一覧（最新90件・新しい順） | 日次 cron | 200KB |
 | `entries/<date>-<id>.json` | 日記全文。発行後は不変 | 生成時1回 | 32KB |
 | `portraits/<id>.png` | 肖像 512×512 | シート変更時 | 200KB |
+| `stories/index.json` | Story の一覧（人物ごとの公開済みの季） | Story を published にしたとき | 16KB |
+| `stories/<story-id>.json` | 1季ぶんの Story 全話（本文込み） | 同上 | 256KB |
 
-書き出しは `npm run export:feed`（日次 cron の generate と validate の間）。
+Story feed は 2026-10-01 に**並列で追加**したもので、既存ファイルの schema_version は
+動かしていない。中身は [docs/stories.md](stories.md) §6。
+
+書き出しは `npm run export:feed`（日次 cron は 2026-10-01 に停止。いまは手で回す）。
 **内容が変わらない日はファイルが動かない**——`generated_at` だけの差は
 「変わった」と数えず、書かない。raw の ETag を無意味に揺らさないためである。
 

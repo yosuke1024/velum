@@ -24,6 +24,7 @@ JSON 内の `path` フィールドも同じ相対パスを指す。
 | `world/feed/characters.json` / `lore.json` / `portraits/*` | 実データ（`npm run export:feed -- --fixtures` が再生成） |
 | `world/feed/entries/*.json` | **手書きのダミー日記**（このディレクトリが素材の正） |
 | `world/feed/diary.json` | ダミー日記から自動生成 |
+| `world/feed/stories/*` | `tests/fixtures/stories/` のダミー Story（Riko 第1季、published 3話）から自動生成 |
 
 ダミー日記の日付はすべて **2026-09-01 より前**。実データの日記はその日以降に
 しか存在しないので、日付を見ればダミーだと分かる。本番の feed

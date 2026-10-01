@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-10-01T02:13:58.513Z",
+  "id": "riko-s01",
+  "character_id": "riko",
+  "season": 1,
+  "title": {
+    "ja": "売れないもの（フィクスチャ）",
+    "en": "Things I Can't Sell (fixture)"
+  },
+  "summary": {
+    "ja": "荷車ひとつの行商人が、売れない品と、買わない客と、会いに行けない師匠のあいだで過ごす数日。",
+    "en": "A few days in the life of a one-cart peddler, between the things that never sell, the customer who never buys, and the master she cannot visit."
+  },
+  "status": "published",
+  "path": "world/feed/stories/riko-s01.json",
+  "episodes": [
+    {
+      "id": "riko-s01-e01",
+      "order": 1,
+      "required_progress": 0,
+      "title": {
+        "ja": "ミオは何も買わない",
+        "en": "Mio Never Buys Anything"
+      },
+      "format": "first_person",
+      "summary": {
+        "ja": "市のたびに来る少女は、今日も売れない棚だけを見ていった。",
+        "en": "The girl who comes every market day looked, again, only at the shelf that never sells."
+      },
+      "body": {
+        "ja": "銅貨十一枚。今日の売上。\n\n市の隅で、またあの子が来ていた。フードを目深にかぶって、一番売れない棚の前に立って、何も買わずに帰る。三度目か、四度目か。うちの顧客管理部門は数えるのをやめた。顧客管理部門も、あたしだけど。\n\n「買わないなら、せめて何か言ってよ」と言いかけて、やめた。言ったら来なくなる気がした。\n\n首飾りの値札、今日も書き換えた。銅貨三十が、四十になった。",
+        "en": "Eleven copper. Today's takings.\n\nShe was there again, at the edge of the market. Hood pulled low, standing in front of the shelf that never sells, leaving without buying anything. Third time, or fourth. Our customer relations department has stopped counting. The customer relations department is also me.\n\nI almost said, \"If you're not buying, at least say something.\" I didn't. I had the feeling she would stop coming.\n\nI rewrote the tag on the necklace again today. Thirty copper became forty."
+      }
+    },
+    {
+      "id": "riko-s01-e02",
+      "order": 2,
+      "required_progress": 2,
+      "title": {
+        "ja": "金貨三枚",
+        "en": "Three Gold Coins"
+      },
+      "format": "scene",
+      "body": {
+        "ja": "金貨三枚。\n\n値切られた。半分にしろと言われた。あたしは笑顔のまま、値札を倍にした。\n\n客は怒って帰った。あたしも怒っていた。たぶん、客より。",
+        "en": "Three gold coins.\n\nHe haggled. Told me to cut it in half. I kept smiling and doubled the tag.\n\nHe left angry. So was I. More than he was, probably."
+      }
+    },
+    {
+      "id": "riko-s01-e03",
+      "order": 3,
+      "required_progress": 5,
+      "title": {
+        "ja": "偽物のお守り",
+        "en": "The Fake Charm"
+      },
+      "format": "dialogue",
+      "body": {
+        "ja": "「これ、あんたが売ったやつだろ」\n\n「鳥の骨のお守り。銅貨五枚。覚えてる」\n\n「娘の頭痛が治った」\n\n「……それは、うちの鑑定部の見解とは違う」\n\n「礼だ。受け取れ」\n\n塩漬けの肉を押しつけられた。返す言葉を探しているあいだに、男はいなくなっていた。",
+        "en": "\"This is the one you sold me, isn't it.\"\n\n\"Bird-bone charm. Five copper. I remember.\"\n\n\"My daughter's headaches stopped.\"\n\n\"...That is not the finding of our appraisal department.\"\n\n\"It's thanks. Take it.\"\n\nHe pushed a slab of salted meat into my hands. While I was looking for the words to give it back, he was gone."
+      }
+    }
+  ]
+}

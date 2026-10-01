@@ -1,0 +1,53 @@
+# Riko — Story 第1季の台帳（docs/stories.md）。
+#
+# 状態は draft。本文はまだ無い。作る順序は
+#   npm run story:plan  -- --character riko --season 1   （plan.yaml を生成。この台帳の title / status は保たれる）
+#   npm run story:write -- --character riko --season 1   （本文 e01〜e08 を生成。status は draft のまま）
+#   人間が読んで直し、話ごとに status を reviewed → published へ進める
+#   npm run export:feed                                   （published だけが world/feed/stories/ へ出る）
+#
+# required_progress は world/stories.yaml の既定の階段。話ごとにここで直してよい。
+# 第1話は 0——同行者を選んだ時点で読める。
+id: riko-s01
+character_id: riko
+season: 1
+title:
+  ja: 売れないもの
+  en: Things I Can't Sell
+status: draft
+episodes:
+  - id: riko-s01-e01
+    order: 1
+    required_progress: 0
+    status: draft
+    title:
+      ja: ミオは何も買わない
+      en: Mio Never Buys Anything
+  - id: riko-s01-e02
+    order: 2
+    required_progress: 2
+    status: draft
+  - id: riko-s01-e03
+    order: 3
+    required_progress: 5
+    status: draft
+  - id: riko-s01-e04
+    order: 4
+    required_progress: 9
+    status: draft
+  - id: riko-s01-e05
+    order: 5
+    required_progress: 14
+    status: draft
+  - id: riko-s01-e06
+    order: 6
+    required_progress: 20
+    status: draft
+  - id: riko-s01-e07
+    order: 7
+    required_progress: 27
+    status: draft
+  - id: riko-s01-e08
+    order: 8
+    required_progress: 35
+    status: draft

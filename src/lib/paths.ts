@@ -66,3 +66,36 @@ export const appraisalDir = () => worldPath('appraisal');
 
 export const appraisalPath = (version: number) =>
   join(appraisalDir(), `v${String(version).padStart(4, '0')}.json`);
+
+/**
+ * Character Story（docs/stories.md）。
+ *
+ *   characters/<id>/stories/s01/{plan.yaml, manifest.yaml, e01.ja.md, e01.en.md, ...}
+ *
+ * 日記（diaries/）とは別の層である。日記は日付で割るが、Story は季と話の番号で割る。
+ */
+export const storySeasonDirName = (season: number) => `s${String(season).padStart(2, '0')}`;
+export const storiesDir = (id: string) => charPath(id, 'stories');
+export const storyDir = (id: string, season: number) =>
+  join(storiesDir(id), storySeasonDirName(season));
+export const storyManifestPath = (id: string, season: number) =>
+  join(storyDir(id, season), 'manifest.yaml');
+export const storyPlanPath = (id: string, season: number) =>
+  join(storyDir(id, season), 'plan.yaml');
+export const storyEpisodeFileName = (order: number, lang: 'ja' | 'en') =>
+  `e${String(order).padStart(2, '0')}.${lang}.md`;
+export const storyEpisodePath = (id: string, season: number, order: number, lang: 'ja' | 'en') =>
+  join(storyDir(id, season), storyEpisodeFileName(order, lang));
+
+/** Journey Progress の既定の階段。story:plan が manifest へ写す。 */
+export const storiesConfigPath = () => worldPath('stories.yaml');
+
+/**
+ * Story feed。既存の feed と同じ契約面（world/feed/）の下に並列で足す。
+ * ここより下のパス構造も配布 URL そのものなので、動かさない。
+ */
+export const feedStoriesDir = () => feedPath('stories');
+export const feedStoriesIndexPath = () => feedPath('stories', 'index.json');
+export const feedStorySeriesName = (storyId: string) => `${storyId}.json`;
+export const feedStorySeriesPath = (storyId: string) =>
+  feedPath('stories', feedStorySeriesName(storyId));

@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-10-01T02:13:58.513Z",
+  "characters": {
+    "riko": {
+      "series": [
+        {
+          "id": "riko-s01",
+          "season": 1,
+          "title": {
+            "ja": "売れないもの（フィクスチャ）",
+            "en": "Things I Can't Sell (fixture)"
+          },
+          "path": "world/feed/stories/riko-s01.json",
+          "episode_count": 3
+        }
+      ]
+    }
+  }
+}

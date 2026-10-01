@@ -1,0 +1,51 @@
+# テスト用フィクスチャ。本番の characters/riko/stories/s01/ とは別物である。
+id: riko-s01
+character_id: riko
+season: 1
+title:
+  ja: 売れないもの（フィクスチャ）
+  en: Things I Can't Sell (fixture)
+summary:
+  ja: 荷車ひとつの行商人が、売れない品と、買わない客と、会いに行けない師匠のあいだで過ごす数日。
+  en: A few days in the life of a one-cart peddler, between the things that never sell, the customer who never buys, and the master she cannot visit.
+status: published
+episodes:
+  - id: riko-s01-e01
+    order: 1
+    required_progress: 0
+    status: published
+    format: first_person
+    title:
+      ja: ミオは何も買わない
+      en: Mio Never Buys Anything
+    summary:
+      ja: 市のたびに来る少女は、今日も売れない棚だけを見ていった。
+      en: The girl who comes every market day looked, again, only at the shelf that never sells.
+  - id: riko-s01-e02
+    order: 2
+    required_progress: 2
+    status: published
+    format: scene
+    title:
+      ja: 金貨三枚
+      en: Three Gold Coins
+  - id: riko-s01-e03
+    order: 3
+    required_progress: 5
+    status: published
+    format: dialogue
+    title:
+      ja: 偽物のお守り
+      en: The Fake Charm
+  - id: riko-s01-e04
+    order: 4
+    required_progress: 9
+    status: reviewed
+    format: letter
+    title:
+      ja: 届かない手紙
+      en: A Letter Not Sent
+  - id: riko-s01-e05
+    order: 5
+    required_progress: 14
+    status: draft

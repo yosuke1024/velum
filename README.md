@@ -1,14 +1,16 @@
 # Velum
 
-**世界観を持つAIではなく、その世界を生きたAIに語らせる。**
+**PixTale の5人の同行者に、人生を与える。**
 
-Velum は、5つの時代を持つ架空世界です。各時代にひとりずつ主人公がいて、毎日その日の出来事を経験し、日記を書き、記憶と価値観と人間関係を蓄積していきます。
+Velum は [PixTale](https://pixapps.ai/) の5人の同行者を育てる **Character Story Engine** です。AI によってキャラクターの物語を生成・構造化しますが、**自動生成したものをそのまま公開しません。** 人間が選び、編集し、公開した Story だけが PixTale へ配信されます。
 
-このリポジトリは、その全過程の公開記録です。世界設定も、日々の出来事も、日記も、人格が変化していく差分も、すべてここに残ります。**反復も、矛盾も、人格の崩壊も、人間による修正も、等しく実験記録として残します。**
+Story はカレンダーではなく、PixTale でその人物と旅をした分（**Journey Progress**）で順次解放されます。目指すのは「AI が毎日生きる世界」の技術デモではなく、**ユーザーが好きになる人物**です。
 
-育った人格は圧縮されて **Persona Snapshot** になり、[PixTale](https://pixapps.ai/) が写真から見つけた Echo を、その人固有の目で語るために使われます。
+> 面白い10話 > 面白くない100話
 
-> World と Diary は語り手を育てるために存在し、PixTale は育った語り手を利用します。
+このリポジトリは、その全過程の公開記録です。世界設定も、人物の芯も、Story の計画と本文も、そして **Season 1 の日記エンジンが毎日書いた日記**（2026-09-01〜、いまは Legacy）も、すべてここに残ります。**反復も、矛盾も、人間による修正も、方針の転換も、等しく実験記録として残します。**
+
+人物の芯は圧縮されて **Persona Snapshot** になり、PixTale が写真から見つけた Echo を、その人固有の目で語るために使われます。
 
 ---
 
@@ -19,6 +21,30 @@ Velum は、5つの時代を持つ架空世界です。各時代にひとりず�
 Velum という世界、そこに住む人物、彼らの日記、その中で語られる出来事——いずれも実在しません。日記の本文は AI（Cloudflare Workers AI 上の Gemma）が生成したものであり、人物の一人称で書かれていますが、そこに書かれた記憶・感情・意見は、実在の人物・団体・出来事とは一切関係ありません。
 
 登場人物は自分をフィクションだと認識していません。それは演出であって、主張ではありません。
+
+---
+
+## Character Story — 厳選して制作し、旅で解放する
+
+```text
+characters/<id>/stories/s01/
+  plan.yaml       季の計画。人間が読んで直す
+  manifest.yaml   公開する単位の台帳。unlock 条件（required_progress）と状態
+  e01.ja.md       本文（日本語）
+  e01.en.md       本文（英語）
+```
+
+Story は「世界で何が起きたか」ではなく、**この人物がどんな人なのか**を伝えるために作ります。Plot の中に Character を入れるのではなく、Character から Plot を発生させる。朝食、値切り、売った品を惜しくなる、遠くに誰かを見つけて隠れる——そういう回を積極的に入れます。形式も話ごとに選びます（一人称・三人称・会話・手紙・記録・回想・一場面）。
+
+```text
+draft  →  reviewed  →  published
+```
+
+**生成 ≠ 公開。** 状態は manifest.yaml が持ち、feed へ出るのは季と話の両方が `published` のものだけです。人間が読まずに公開される経路はありません。
+
+PixTale で同行者を選んで Scan に成功するごとに、その人物の Journey Progress が 1 進みます。各話は `required_progress`（既定の階段は `world/stories.yaml`: 0 / 2 / 5 / 9 / 14 / 20 / 27 / 35 …）に達したときに解放されます。第1話は 0——同行者を選んだ時点で読めます。
+
+最初は **Riko** を Pilot にします。詳細は [docs/stories.md](docs/stories.md)。
 
 ---
 
@@ -46,6 +72,14 @@ Velum という世界、そこに住む人物、彼らの日記、その中で�
 | カヤ | イサ | 母。手紙だけの関係 |
 | リコ | ガロン | 元師匠。没落した大目利き |
 | リコ | ミオ | 市のたびに来る、売れない品ばかり眺める少女 |
+
+---
+
+## Legacy Diary Engine（Season 1、自動実行は停止）
+
+ここから下の「ローテーション」「季」「仕組み」は、2026-09-01 から 2026-10-01 まで回した**日次の日記エンジン**の説明です。システムとしては成立しましたが、読者として読み返すと「人物を識別はできるが、好きにはならない」——その評価から Character Story へ移りました（[docs/stories.md](docs/stories.md) §1）。
+
+コードもデータも消していません。`npm run day` と `daily.yml` は手動（workflow_dispatch）からは回せますが、**cron は外してあります。** Season 1 の日記は `characters/*/diaries/` と `world/feed/diary.json` に Archive として残り、PixTale の主要導線からは外れます。
 
 ### 日記のローテーション
 
@@ -105,23 +139,26 @@ Velum という世界、そこに住む人物、彼らの日記、その中で�
 world/
   canon/        時代・場所・制度の固定事実。生成がこれと矛盾したら破棄する
                 （calendar.yaml — 12の月と五夜からなる365日の暦。全時代共通）
-  clocks.yaml   各時代の「いま」。季の計画が立つたびに進む
-  arcs/         進行中の物語アーク
-  threads/      未解決スレッドと、時代を跨ぐ5本の糸
-  cards/        イベントカード（季を組み立てるときの素材）
-  seasons/      季の計画。1人5話 × 5人 = 25日分。人間が読んで直せる
+  stories.yaml  Journey Progress の既定の階段（Story の unlock 条件の既定値）
   personas.json いま PixTale へ配っている版を指すピン（ペルソナ・世界・既定の同行者）
-  feed/         PixTale アプリが直接読む公開 feed（日記一覧・人物・時代・肖像）
+  feed/         PixTale アプリが直接読む公開 feed（人物・時代・肖像・Story・Legacy の日記一覧）
+    stories/    Story feed（index.json と <story-id>.json。published だけが出る）
   appraisal/    World Appraisal Snapshot（カード鑑定へ注入する世界の圧縮）
+  clocks.yaml   [Legacy] 各時代の「いま」。季の計画が立つたびに進む
+  arcs/         [Legacy] 進行中の物語アーク
+  threads/      未解決スレッドと、時代を跨ぐ5本の糸
+  cards/        [Legacy] イベントカード（季を組み立てるときの素材）
+  seasons/      [Legacy] 日記の季の計画。1人5話 × 5人 = 25日分
 
 characters/<id>/
   profile.yaml        固定層。人格の芯
   canon.yaml          追記のみの人生設定
-  current-state.yaml  日次で動く層
   relationships.yaml  周囲2人との関係
-  memories.yaml       長期記憶
-  diaries/            日記（ja / en）
+  stories/            Character Story（plan.yaml / manifest.yaml / eNN.{ja,en}.md）
   snapshots/          PixTale が使うバージョン付き Persona Snapshot
+  current-state.yaml  [Legacy] 日次で動く層
+  memories.yaml       [Legacy] 長期記憶
+  diaries/            [Legacy] Season 1 の日記（ja / en）。Archive
 
 src/          スキーマと生成パイプライン
 scripts/      CLI
@@ -135,10 +172,21 @@ tests/        スキーマ検証と、声の基準となるフィクスチャ
 ```bash
 npm install
 npm run validate            # 全データをスキーマと設計上の検収条件に照らす
-npm test                    # 上限とプロンプトの対応、構造ゲート、ローテーション
+npm test                    # スキーマ、構造ゲート、feed、Story の制作フロー
 
+npm run story:plan  -- --character riko --season 1   # 季を設計する（plan.yaml / manifest.yaml を draft で）
+npm run story:write -- --character riko --season 1   # 本文を書かせる（draft のまま）
+# 読む。直す。manifest.yaml の status を reviewed → published へ進める。
+npm run export:feed                                  # published だけが world/feed/stories/ へ出る
+```
+
+**生成と公開は別の操作です。** `story:write` が書いた本文は、manifest.yaml の status を人が進めるまで feed に出ません。`story:plan` は人間が manifest に書いた題・状態・unlock 条件を `--force` でも消しません。詳細は [docs/stories.md](docs/stories.md)。
+
+### Legacy: 日記エンジン
+
+```bash
 npm run plan -- --season 1  # 第1季（25日分）の出来事を組み立てる
-npm run day                 # 今日の日記を書かせる
+npm run day                 # 今日の日記を書かせる（cron は停止済み。手動でだけ回せる）
 ```
 
 順序があります。**先に季を計画し、それから日を回します。** 計画のない日を回そうとすると、何も書かずに失敗します——ここで黙って緑を返すと、世界が止まったことに誰も気づかないまま日が過ぎるためです。季の残りが最後の1周（5日）に入ると、`npm run day` が次の季の計画がまだ無いことを警告します。
@@ -163,9 +211,10 @@ npm run appraisal           # World Appraisal Snapshot をコンパイルする�
 npm run portraits           # 肖像 512×512 をシートから派生させる
 ```
 
-feed は日次ワークフローが自動で書き出します。World Appraisal は Persona と同じく
+feed は `npm run export:feed` で書き出します（Story を published にしたとき、プロフィールや
+canon を直したとき。日次 cron は止めてあります）。World Appraisal は Persona と同じく
 **季末にコンパイルし、人が読んでから配ります**。肖像はシートが変わったときだけ
-手で作り直します。詳細は [docs/feed.md](docs/feed.md)。
+手で作り直します。詳細は [docs/feed.md](docs/feed.md) と [docs/stories.md](docs/stories.md) §6。
 
 ### モデル
 
@@ -197,15 +246,18 @@ feed は日次ワークフローが自動で書き出します。World Appraisal
 このリポジトリと PixTale のあいだに、実行時の連携はありません。受け渡すのは**公開ファイルの一方向の取得だけ**です。面は3つあります。
 
 ```text
-velum: world/feed/                      → PixTale アプリが直接読む（日記・人物・時代・肖像）
+velum: world/feed/                      → PixTale アプリが直接読む（人物・時代・肖像・Legacy の日記）
+velum: world/feed/stories/              → 同上。Story（published だけ）。Journey Progress で解放
 velum: world/appraisal/v0001.json       ↘
 velum: characters/<id>/snapshots/v0007.json → PixTale Proxy がピン経由で取得し、
          ↑ どの版を読むかは world/personas.json     プロンプトへ注入してキャッシュ
 ```
 
+Story の解放はユーザーごとに進度が違うので、**Story 第1季では Base Persona を安定させ、Story による人格変化を Snapshot へ即時反映しません**（[docs/stories.md](docs/stories.md) §8）。Progress 連動の Snapshot は第二段階です。
+
 この設計のおかげで、こちらの生成が止まっても壊れても PixTale は動き続け、人格が不自然に変化したらバージョンを戻すだけで元に戻せます。
 
-**このリポジトリは人生の全記録であり、PixTale が使うのはその履歴から生成された Snapshot だけです。** ここで起きた個々の出来事が、PixTale で鑑定される個々のアイテムの正史になるわけではありません。
+**このリポジトリは人物の全記録であり、PixTale が使うのは公開済みの Story と、人物の芯から生成された Snapshot だけです。** ここで起きた個々の出来事が、PixTale で鑑定される個々のアイテムの正史になるわけではありません。
 
 ---
 

@@ -2,7 +2,7 @@
   "name": "velum",
   "version": "0.1.0",
   "private": true,
-  "description": "A fictional world whose five inhabitants keep diaries, accumulate memories, and grow into the narrators of PixTale.",
+  "description": "A fictional world whose five inhabitants become the companions of PixTale — a Character Story Engine, with the Season 1 diary engine kept as legacy.",
   "license": "MIT",
   "type": "module",
   "engines": {
@@ -16,6 +16,8 @@
     "plan": "tsx scripts/plan-season.ts",
     "snapshot": "tsx scripts/compile-snapshot.ts",
     "appraisal": "tsx scripts/compile-appraisal.ts",
+    "story:plan": "tsx scripts/story-plan.ts",
+    "story:write": "tsx scripts/story-write.ts",
     "export": "tsx scripts/export-site.ts",
     "export:feed": "tsx scripts/export-feed.ts",
     "portraits": "tsx scripts/derive-portraits.ts"

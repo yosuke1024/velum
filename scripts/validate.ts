@@ -13,6 +13,8 @@
  *  - feed（world/feed/）がスキーマ・サイズ上限に収まり、素材と食い違っていないか
  *  - World Appraisal Snapshot が追記のみで、ピンが実在するファイルを指しているか
  *  - 秘匿情報（secret_*・hidden_from_protagonist）が配布物に混入していないか
+ *  - Character Story（characters/<id>/stories/）の manifest が整合し、published の話に
+ *    本文（ja / en）があり、Story feed（world/feed/stories/）が素材と食い違っていないか
  */
 
 import { readFileSync, readdirSync, existsSync, statSync } from 'node:fs';
@@ -57,6 +59,16 @@ import {
   APPRAISAL_FILE,
   APPRAISAL_SIZE_LIMIT,
 } from '../src/schemas/appraisal.js';
+import {
+  StoryManifestSchema,
+  StoryPlanSchema,
+  StoriesConfigSchema,
+  FeedStoriesIndexSchema,
+  FeedStorySeriesSchema,
+  STORY_FEED_SIZE_LIMITS,
+  storySeasonDirNameOf,
+} from '../src/schemas/story.js';
+import { collectStoryFeeds, readStoryBody } from '../src/export/stories.js';
 import { linearDay } from '../src/lib/calendar.js';
 import { ja } from '../src/lib/bilingual.js';
 import { pngDimensions } from '../src/lib/png.js';
@@ -763,6 +775,173 @@ const pinned = ((): PersonaManifest | null => {
       if (!existsSync(path)) continue;
       for (const leak of secretLeaksIn(readFileSync(path, 'utf8'))) {
         fail(rel, `${leak.owner} の秘密が混入しています（${leak.segment.slice(0, 16)}…）`);
+      }
+    }
+  }
+}
+
+// ── characters/*/stories と world/feed/stories ──────────────────
+// Character Story（docs/stories.md）。生成 ≠ 公開——feed へ出るのは published だけ。
+// manifest はスキーマが不変条件（第1話は 0・階段は単調非減少・公開は先頭から連続）
+// を持つので、ここで見るのはファイルどうしの整合である。
+
+load(join(ROOT, 'world/stories.yaml'), StoriesConfigSchema, 'Journey Progress の既定の階段');
+
+for (const id of CHARACTER_IDS) {
+  const storiesRoot = join(ROOT, 'characters', id, 'stories');
+  if (!existsSync(storiesRoot)) continue;
+
+  for (const name of readdirSync(storiesRoot, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory())
+    .map((entry) => entry.name)
+    .sort()) {
+    const dir = join(storiesRoot, name);
+    const rel = `characters/${id}/stories/${name}`;
+    const manifestFile = join(dir, 'manifest.yaml');
+    if (!existsSync(manifestFile)) {
+      fail(rel, 'manifest.yaml がありません');
+      continue;
+    }
+
+    const manifest = load<{
+      id: string;
+      character_id: string;
+      season: number;
+      status: string;
+      episodes: Array<{ order: number; status: string; title?: unknown }>;
+    }>(manifestFile, StoryManifestSchema, 'Story の manifest');
+    if (!manifest) continue;
+
+    if (manifest.character_id !== id) {
+      fail(`${rel}/manifest.yaml`, `character_id が ${manifest.character_id} になっています（ディレクトリは ${id}）`);
+    }
+    if (storySeasonDirNameOf(manifest.season) !== name) {
+      fail(`${rel}/manifest.yaml`, `season が ${manifest.season} になっています（ディレクトリは ${name}）`);
+    }
+
+    // published の話は、本文が両言語ともあること。feed の束ね（src/export/stories.ts）も
+    // 止まるが、こちらで名指しする。
+    for (const episode of manifest.episodes) {
+      if (episode.status !== 'published') continue;
+      for (const lang of ['ja', 'en'] as const) {
+        if (!readStoryBody(dir, episode.order, lang)) {
+          fail(rel, `第${episode.order}話は published ですが本文（${lang}）がありません`);
+        }
+      }
+    }
+
+    // 本文があるのに manifest に無い話は、載せ忘れの可能性が高い。
+    const known = new Set(manifest.episodes.map((e) => e.order));
+    for (const file of readdirSync(dir)) {
+      const match = /^e(\d{2})\.(ja|en)\.md$/.exec(file);
+      if (match && !known.has(Number(match[1]))) {
+        fail(rel, `${file} に対応する話が manifest.yaml にありません`);
+      }
+    }
+
+    const planFile = join(dir, 'plan.yaml');
+    if (existsSync(planFile)) {
+      const plan = load<{ id: string }>(planFile, StoryPlanSchema, 'Story の計画');
+      if (plan && plan.id !== manifest.id) {
+        fail(`${rel}/plan.yaml`, `id が ${plan.id} になっています（manifest は ${manifest.id}）`);
+      }
+    }
+  }
+}
+
+{
+  const storiesFeedRoot = join(ROOT, 'world/feed/stories');
+  const indexFile = join(storiesFeedRoot, 'index.json');
+  if (!existsSync(indexFile)) {
+    fail('world/feed/stories/index.json', 'Story feed の index がありません。npm run export:feed で作ってください');
+  } else {
+    const drifted = (current: unknown, rebuilt: unknown): boolean =>
+      JSON.stringify({ ...(current as Record<string, unknown>), generated_at: null }) !==
+      JSON.stringify({ ...(rebuilt as Record<string, unknown>), generated_at: null });
+
+    let raw: unknown = null;
+    try {
+      raw = JSON.parse(readFileSync(indexFile, 'utf8'));
+    } catch (error) {
+      fail('world/feed/stories/index.json', `JSON を解析できません — ${(error as Error).message}`);
+    }
+    const index = raw ? FeedStoriesIndexSchema.safeParse(raw) : null;
+    if (index && !index.success) {
+      for (const issue of index.error.issues) {
+        fail('world/feed/stories/index.json', `${issue.path.length ? issue.path.join('.') : '(root)'} — ${issue.message}`);
+      }
+    }
+    if (index?.success) {
+      checked += 1;
+      const size = statSync(indexFile).size;
+      if (size > STORY_FEED_SIZE_LIMITS.index) {
+        fail('world/feed/stories/index.json', `${size} bytes あります（上限 ${STORY_FEED_SIZE_LIMITS.index}）`);
+      }
+
+      const listed = new Set<string>();
+      for (const [characterId, entry] of Object.entries(index.data.characters)) {
+        for (const series of entry.series) {
+          listed.add(series.path);
+          const path = join(ROOT, series.path);
+          if (!existsSync(path)) {
+            fail('world/feed/stories/index.json', `${series.id} が指す ${series.path} が存在しません`);
+            continue;
+          }
+          let seriesRaw: unknown;
+          try {
+            seriesRaw = JSON.parse(readFileSync(path, 'utf8'));
+          } catch (error) {
+            fail(series.path, `JSON を解析できません — ${(error as Error).message}`);
+            continue;
+          }
+          const parsed = FeedStorySeriesSchema.safeParse(seriesRaw);
+          checked += 1;
+          if (!parsed.success) {
+            for (const issue of parsed.error.issues) {
+              fail(series.path, `${issue.path.length ? issue.path.join('.') : '(root)'} — ${issue.message}`);
+            }
+            continue;
+          }
+          if (parsed.data.id !== series.id || parsed.data.character_id !== characterId) {
+            fail(series.path, `id / character_id が index と食い違っています`);
+          }
+          if (parsed.data.episodes.length !== series.episode_count) {
+            fail('world/feed/stories/index.json', `${series.id} の episode_count が ${series.episode_count} ですが、実際は ${parsed.data.episodes.length} 本です`);
+          }
+          const seriesSize = statSync(path).size;
+          if (seriesSize > STORY_FEED_SIZE_LIMITS.series) {
+            fail(series.path, `${seriesSize} bytes あります（上限 ${STORY_FEED_SIZE_LIMITS.series}）`);
+          }
+          for (const leak of secretLeaksIn(readFileSync(path, 'utf8'))) {
+            fail(series.path, `${leak.owner} の秘密が混入しています（${leak.segment.slice(0, 16)}…）`);
+          }
+        }
+      }
+
+      // index に無いファイルは、公開を取り下げた季の残骸。配布 URL に残り続けるので落とす。
+      for (const file of readdirSync(storiesFeedRoot).filter((f) => f.endsWith('.json') && f !== 'index.json')) {
+        if (!listed.has(`world/feed/stories/${file}`)) {
+          fail(`world/feed/stories/${file}`, 'index.json に載っていません。npm run export:feed で作り直してください');
+        }
+      }
+
+      // 素材との食い違い。manifest の status を進めて feed を作り直し忘れると、
+      // アプリは古い内容を配り続ける。
+      try {
+        const rebuilt = collectStoryFeeds('');
+        if (drifted(index.data, rebuilt.index)) {
+          fail('world/feed/stories/index.json', '素材と食い違っています。npm run export:feed で作り直してください');
+        }
+        for (const series of rebuilt.series) {
+          const path = join(ROOT, series.path);
+          if (!existsSync(path)) continue; // 上で落ちている
+          const current = JSON.parse(readFileSync(path, 'utf8')) as Record<string, unknown>;
+          if (drifted(current, series)) {
+            fail(series.path, '素材と食い違っています。npm run export:feed で作り直してください');
+          }
+        }
+      } catch (error) {
+        fail('world/feed/stories', `作り直しの照合に失敗しました — ${(error as Error).message}`);
       }
     }
   }
