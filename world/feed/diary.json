@@ -1,7 +1,33 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-27T12:04:47.667Z",
+  "generated_at": "2026-10-01T00:25:04.985Z",
   "entries": [
+    {
+      "id": "2026-10-01-teo",
+      "date": "2026-10-01",
+      "character_id": "teo",
+      "era": "guilds",
+      "season": 2,
+      "episode": 2,
+      "world_date": {
+        "year": 375,
+        "month": 8,
+        "day": 5
+      },
+      "title": {
+        "ja": "漏れ出す記録",
+        "en": "The Leaking Archives"
+      },
+      "excerpt": {
+        "ja": "私はただの見習いだ。",
+        "en": "I am merely a student."
+      },
+      "mood": {
+        "ja": "机の磨かれた木肌に触れる指先が、妙に冷たい。",
+        "en": "My fingertips feel cold against the polished wood of the desk."
+      },
+      "path": "world/feed/entries/2026-10-01-teo.json"
+    },
     {
       "id": "2026-09-30-uta",
       "date": "2026-09-30",
