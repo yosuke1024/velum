@@ -9,6 +9,9 @@
  * 受け渡すのはこのファイルだけで、向こうはこれを HTML へ描画する。
  * 見た目と導線は向こうの仕事、事実はこちらの仕事。
  *
+ * 束の `diary_engine` は、日記が止まっている（Season 1 / Archive）ことを伝える。
+ * サイトはこれで日記をアーカイブと表示し、鮮度のゲートを外せる。
+ *
  * **本人が知らないことは入らない**（src/export/bundle.ts）。
  */
 
@@ -30,6 +33,11 @@ console.log(
   `  時代 ${bundle.eras.length} / 人物 ${bundle.characters.length} / ` +
     `日記 ${bundle.entries.length}本（本文あり ${withBody}） / ` +
     `欠けた日 ${bundle.failures.length} / 季 ${bundle.seasons.length}`,
+);
+const { diary_engine: engine } = bundle;
+console.log(
+  `  日記エンジン: ${engine.status}（${engine.archived_on} 停止 / ` +
+    `最後の日記 ${engine.last_entry_date ?? 'なし'}）`,
 );
 if (bundle.entries.length === 0) {
   console.log(`  日記はまだ1本もありません。稼働開始は ${bundle.start_date}。`);

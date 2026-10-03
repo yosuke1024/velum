@@ -1,0 +1,59 @@
+# リコ 第1季の台帳（docs/stories.md §5）。Pilot。
+#
+# 状態は draft → reviewed → published。feed に出るのは季と話の両方が published のものだけ。
+# 本文（e01.ja.md / e01.en.md …）は story:write が draft で書き、人間が読んで直してから
+# status を進める。published の話は story:write が書き直さない。
+#
+# 題は Pilot 企画時の仮題。ここに書いた title / format / status / required_progress は
+# story:plan も story:write も上書きしない（manifest が優先する）。題の空いている話は、
+# 本文を書いたときに story:write が生成した題で埋める（docs/stories.md §10）。
+
+id: riko-s01
+character_id: riko
+season: 1
+title:
+  ja: 売れないもの
+  en: Things I Can't Sell
+status: draft
+episodes:
+  - id: riko-s01-e01
+    order: 1
+    required_progress: 0
+    status: draft
+    title:
+      ja: ミオは何も買わない
+      en: Mio Never Buys Anything
+  - id: riko-s01-e02
+    order: 2
+    required_progress: 2
+    status: draft
+    title:
+      ja: 金貨三枚
+      en: Three Gold Coins
+  - id: riko-s01-e03
+    order: 3
+    required_progress: 5
+    status: draft
+    title:
+      ja: 偽物のお守り
+      en: The Fake Charm
+  - id: riko-s01-e04
+    order: 4
+    required_progress: 9
+    status: draft
+  - id: riko-s01-e05
+    order: 5
+    required_progress: 14
+    status: draft
+  - id: riko-s01-e06
+    order: 6
+    required_progress: 20
+    status: draft
+  - id: riko-s01-e07
+    order: 7
+    required_progress: 27
+    status: draft
+  - id: riko-s01-e08
+    order: 8
+    required_progress: 35
+    status: draft

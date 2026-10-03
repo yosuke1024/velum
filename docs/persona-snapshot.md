@@ -5,6 +5,12 @@ World と Diary の履歴から、PixTale が使う圧縮済みペルソナを�
 **実装状況:** 実装済み（M3）。`src/compile/`、`npm run snapshot`。
 検収（§7）は日記が溜まってから行う——いま圧縮できるのは profile と canon だけである。
 
+**2026-10-03 の変更:** 日次生成を止めた（Character Story Engine への再設計、
+[stories.md](stories.md)）のに合わせて、**季末の自動コンパイル・配布を廃止した**（§4.8）。
+Persona Snapshot は PixTale が読む配布面として現役だが、配るのは人の手だけである。
+Story Season 1 のあいだは Base Persona を安定させ、Story による人格変化は Snapshot へ
+反映しない（§4.9）。以下の「日記」「季」は旧 Diary Engine（Legacy）のものを指す。
+
 ---
 
 ## 1. 何を圧縮するのか
@@ -121,31 +127,47 @@ PixTale: personas.json を短い TTL で取得
            → KV へ長い TTL でキャッシュ
 ```
 
-## 4.8 反映は季ごと
+## 4.8 配るのは人だけ（季末の自動配布は廃止）
 
-日記は毎日増えるが、配るのは**季の切れ目（25日ごと）**である。1日ごとに人格が動くと、PixTale 側から見れば同じ人物が毎日別人になる。25日で1話ぶんの人生が動く速さがちょうどよい。
+**以前**は、日記が毎日増えるのに対して、配るのは季の切れ目（25日ごと）だった。1日ごとに人格が動くと、PixTale 側から見れば同じ人物が毎日別人になるからである。季の最終日（第1季は 2026-09-25）に、日次ワークフローが日記を書いたあとコンパイルから配布（`--publish`）までを自動で走らせていた（2026-08-29 決定。全自動）。
 
-季の最終日（第1季は 2026-09-25）に、日次ワークフローが日記を書いたあとコンパイルまで走らせる。この日は5人全員が第5話を書き終えているので、ここより前に圧縮するとその季を生きていない人格ができる。
+**2026-10-03 に、この自動配布を廃止した。** 日次 cron を止めたのと同時に、`daily.yml` から Persona のコンパイル・配布の工程を取り除いた。`daily.yml` は手動のみの Legacy ワークフローで、**過去の日を手動で回しても `world/personas.json` は動かない。** 季末の日付で手動起動しても同じである（Persona の配布が、日記の生成に巻き込まれて動くことがない）。
+
+いま Persona Snapshot をコンパイル・配布する経路は2つだけで、どちらも人が起動する。
+
+- **`snapshot.yml`**（Actions → snapshot → Run workflow）。`characters` で人物、`season` で何季ぶんの人格か、**`publish` でそのまま配るか**を指定する。`publish` を付けなければコンパイルだけで、ピンは動かない
+- 手元の `npm run snapshot -- --publish`
 
 ```bash
 npm run snapshot                                # コンパイルする（配らない）
 npm run snapshot -- teo                         # ひとりだけ
 npm run snapshot -- teo --dry-run               # 何から圧縮するかだけ見る（生成しない）
 npm run snapshot -- --publish --season=2        # コンパイルして、そのまま配る
-npm run snapshot -- --if-season-end --date=...  # 季の最終日でなければ何もしない（日次から呼ばれる形）
+npm run snapshot -- --if-season-end --date=...  # 季の最終日でなければ何もしない（旧日次から呼ばれていた形。Legacy）
 ```
 
-**ワークフローは `--publish` 付きで走る**（2026-08-29 決定。全自動）。
-
-```yaml
-run: npm run snapshot -- --if-season-end --date=${{ inputs.date }} --publish
-```
-
-コンパイルから配布までが自動で進み、25日ごとに PixTale の人格が切り替わる。読んでから配る人間ゲートは置かない。安全側は構造に残る——ゲートに落ちた人物は Snapshot が書かれず、ピンも動かず、前の人格のままになる。配布後に戻すときは `world/personas.json` の version を以前の番号へ書き換える（Snapshot は追記のみなので消えていない）。
-
-季の切れ目に人が読む地点は別にある。次の季の計画（`world/seasons/002/` の5ファイル）は従来どおり人が読んで直す。
+安全側は構造に残る——ゲートに落ちた人物は Snapshot が書かれず、ピンも動かず、前の人格のままになる。配布後に戻すときは `world/personas.json` の version を以前の番号へ書き換える（Snapshot は追記のみなので消えていない）。**配るかどうかは、いま人が決める。**（自動で配っていた間は、読んでから配る人間ゲートを置いていなかった。）
 
 `npm run validate` は、Snapshot の**番号が 1 から飛ばずに並んでいるか**と、**personas.json が実在するファイルを指しているか**を見る。ここが食い違うと、こちらの CI が緑のまま向こうが 404 を踏む。
+
+## 4.9 Story Season 1 では Base Persona を安定させる
+
+Character Story（[stories.md](stories.md)）の第1季のあいだ、**Persona Snapshot の Base Persona は動かさない。** Story の中で人物が自信を持っても、ガロンと向き合っても、その変化を Snapshot の `dispositions` や `standing` へは反映しない。
+
+理由は、ユーザーごとに Journey Progress が違うことにある。Snapshot は全ユーザーへ同じ版が配られる（§4.7）。人格を Story に合わせて動かすと、第2話までしか読んでいないユーザーの手元で、第8話のあとの人物が Tale を語ることになる。読んだ話と人格が食い違えば、Story を読む動機（もっと一緒にいたい）を壊す。
+
+だから Story Season 1 のあいだは、次の運用にする。
+
+- 配布中の Snapshot（`world/personas.json` のピン）を、Story の都合では動かさない。ゲートに落ちた人物のやり直しなど別の理由で再コンパイルするときも、配るかどうかは人が決める（§4.8）
+- Story の生成プロンプトも、current-state / memories を読まない。Story は profile と canon から書く（Base Persona。[stories.md](stories.md) §11）。日記が積み上げた状態が Story へ、Story が Snapshot へ、どちらにも流れない
+
+### 第2段階の構想（この MVP には含めない）
+
+```text
+Journey Progress  →  Persona Stage  →  Snapshot Version（PixTale Proxy が選ぶ）
+```
+
+その人物の Journey Progress に応じて「段階（Persona Stage）」を決め、段階に対応する版の Snapshot を PixTale Proxy が選ぶ。Snapshot の版は追記のみで、ピンが版を指す現在の設計（§4.7）の延長にある。ただし、Progress をサーバへ保存しない方針（stories.md §15）との整合、版の数、段階の境目の置き方は決めていない。**MVP の非目標**である。
 
 ## 5. Tale コメントでの使われ方
 

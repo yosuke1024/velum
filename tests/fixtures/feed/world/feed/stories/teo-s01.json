@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-10-03T09:36:11.382Z",
+  "id": "teo-s01",
+  "character_id": "teo",
+  "season": 1,
+  "title": {
+    "ja": "規約の余白",
+    "en": "Margins of the Code"
+  },
+  "status": "published",
+  "path": "world/feed/stories/teo-s01.json",
+  "revision": "4180861ddd4f",
+  "episodes": [
+    {
+      "id": "teo-s01-e01",
+      "order": 1,
+      "required_progress": 0,
+      "title": {
+        "ja": "座金は逆だった",
+        "en": "The Washer Was Backwards"
+      },
+      "format": "first_person",
+      "body": {
+        "ja": "本日の記録。工房通りの真鍮商が持ち込んだ燭台を、先輩方が三人がかりで「黄金期の逸品」と判定していた。台座の座金が逆向きに打たれていることには、誰も触れなかった。\n\n私は指摘していない。規約第44条により、見習いの発言権は審査補助に限られる。別に悔しくはない。\n\n対象、真鍮の燭台。等級、保留。注記、座金は逆だ。",
+        "en": "Today's record. A brass merchant from Workshop Row brought in a candlestick, and three of the senior members spent an hour declaring it a \"masterpiece of the golden age.\" Nobody mentioned that the washer under the base had been struck in backwards.\n\nI did not point it out. Under Article 44, an apprentice's right to speak is limited to assisting the review. I am not bitter about it.\n\nSubject: brass candlestick. Grade: withheld. Remarks: the washer is backwards."
+      }
+    },
+    {
+      "id": "teo-s01-e02",
+      "order": 2,
+      "required_progress": 3,
+      "title": {
+        "ja": "推薦状の話",
+        "en": "About the Letter"
+      },
+      "format": "record",
+      "body": {
+        "ja": "明日は仮銘審査の要項が貼り出される。師匠は今日も、推薦状の話をしなかった。\n\n夕刻、廊下ですれ違った。会釈をした。師匠も会釈を返した。それだけだ。それだけだったので、私は廊下の端まで歩いてから、規約第31条を頭から終わりまで暗唱した。\n\n対象、師匠の沈黙。等級、評価の対象外。注記、明日も廊下は通る。",
+        "en": "Tomorrow the requirements for the provisional seal review will be posted. My master did not mention a letter of recommendation today either.\n\nIn the evening we passed in the corridor. I nodded. He nodded back. That was all, and because that was all, I walked to the end of the corridor and recited Article 31 from beginning to end.\n\nSubject: my master's silence. Grade: outside the scope of assessment. Remarks: I will walk the corridor again tomorrow."
+      }
+    }
+  ]
+}

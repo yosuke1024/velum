@@ -3,7 +3,7 @@ import { charPath } from '../../src/lib/paths.js';
 import { readYaml } from '../../src/lib/storage.js';
 import { ProfileSchema, RelationshipsSchema } from '../../src/schemas/character.js';
 import { CHARACTER_IDS, ERA_PROTAGONIST } from '../../src/schemas/world.js';
-import { buildBundle } from '../../src/export/bundle.js';
+import { buildBundle, lastEntryDate, DIARY_ENGINE_ARCHIVED_ON } from '../../src/export/bundle.js';
 
 const bundle = buildBundle('2026-08-23T00:00:00.000Z');
 const serialized = JSON.stringify(bundle);
@@ -151,5 +151,48 @@ describe('束の形', () => {
       }
       expect(character.voice.register).not.toContain('\n');
     }
+  });
+});
+
+/**
+ * 日次の日記生成は 2026-10-03 に止めた（Character Story Engine への再設計）。
+ * サイトはこの欄で日記を Season 1 のアーカイブと表示し、鮮度ゲートを外す。
+ * 外せないまま日記が増えなくなると、止めた2日後にサイト側の同期が赤くなる。
+ */
+describe('日記エンジンはアーカイブ済みだと束が伝える', () => {
+  it('status は archived で、止めた日を渡す', () => {
+    expect(bundle.diary_engine.status).toBe('archived');
+    expect(bundle.diary_engine.archived_on).toBe(DIARY_ENGINE_ARCHIVED_ON);
+    expect(DIARY_ENGINE_ARCHIVED_ON).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+  });
+
+  it('last_entry_date は束の日記の最新の日付（日記が無ければ null）', () => {
+    const dates = bundle.entries.map((e) => e.date).sort();
+    expect(bundle.diary_engine.last_entry_date).toBe(dates.at(-1) ?? null);
+  });
+
+  it('日記の最新の日付を取る（並び順に頼らない）', () => {
+    expect(lastEntryDate([])).toBeNull();
+    expect(lastEntryDate([{ date: '2026-09-02' }])).toBe('2026-09-02');
+    const shuffled = [{ date: '2026-09-03' }, { date: '2026-09-01' }, { date: '2026-09-02' }];
+    expect(lastEntryDate(shuffled)).toBe('2026-09-03');
+  });
+
+  it('既存の欄は動かさない（足しただけ）', () => {
+    // pixapps-landing が読んでいる欄。名前を変えたり消したりすると向こうの描画が壊れる。
+    expect(Object.keys(bundle).sort()).toEqual(
+      [
+        'characters',
+        'diary_engine',
+        'entries',
+        'eras',
+        'failures',
+        'generated_at',
+        'rotation',
+        'seasons',
+        'start_date',
+      ].sort(),
+    );
+    expect(Object.keys(bundle.diary_engine).sort()).toEqual(['archived_on', 'last_entry_date', 'status']);
   });
 });

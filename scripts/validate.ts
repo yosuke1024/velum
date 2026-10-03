@@ -11,8 +11,13 @@
  *  - Persona Snapshot が追記のみで、番号が飛んでいないか
  *  - 配っているペルソナが、実在する Snapshot を指しているか
  *  - feed（world/feed/）がスキーマ・サイズ上限に収まり、素材と食い違っていないか
+ *  - Character Story（characters/<id>/stories/）の台帳・計画・本文が規約に合うか
+ *    （状態の順序・第1話から連続の公開・本文の書式・両言語の揃い・周りの人の実在）
+ *  - Story feed（world/feed/stories/）が index と季ファイルで整合し、revision が内容と合い、
+ *    素材と食い違っていないか。world/stories.yaml（Journey Progress の既定）も検証する
  *  - World Appraisal Snapshot が追記のみで、ピンが実在するファイルを指しているか
  *  - 秘匿情報（secret_*・hidden_from_protagonist）が配布物に混入していないか
+ *    （JSON はデコードした文字列値でも照合する。Story の本文は draft も照合する）
  */
 
 import { readFileSync, readdirSync, existsSync, statSync } from 'node:fs';
@@ -60,13 +65,15 @@ import {
 import { linearDay } from '../src/lib/calendar.js';
 import { ja } from '../src/lib/bilingual.js';
 import { pngDimensions } from '../src/lib/png.js';
-import { secretLeaksIn } from '../src/lib/secrets.js';
+import { secretLeaksIn, secretLeaksInJson } from '../src/lib/secrets.js';
+import { sameIgnoringGeneratedAt } from '../src/lib/stable-json.js';
 import {
   buildCharactersFeed,
   buildLoreFeed,
   collectFeedEntryFiles,
   diaryFeedFrom,
 } from '../src/export/feed.js';
+import { checkStoriesConfig, checkStorySources, checkStoriesFeed } from '../src/story/check.js';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
 
@@ -457,6 +464,14 @@ for (const id of CHARACTER_IDS) {
   }
 }
 
+// ── characters/*/stories ───────────────────────────────────────
+// Character Story のソース（台帳・計画・本文）と、Journey Progress の既定値。
+// 本文はこの時点で公開リポジトリに載るので、draft にも秘密の照合を当てる。
+// 配布面（world/feed/stories/）は下の world/feed ブロックが見る。
+
+problems.push(...checkStoriesConfig(ROOT));
+problems.push(...checkStorySources(ROOT));
+
 // ── world/personas.json ────────────────────────────────────────
 // PixTale が最初に取りに来る1枚。ここが実在しないファイルを指すと、
 // こちらの CI が緑のまま向こうが 404 を踏む。
@@ -556,10 +571,9 @@ const pinned = ((): PersonaManifest | null => {
   if (!existsSync(feedRoot)) {
     fail('world/feed', 'feed がありません。npm run export:feed で作ってください');
   } else {
-    /** generated_at の違いは「変わった」と数えない（export の writeStable と同じ規約）。 */
+    /** generated_at の違いは「変わった」と数えない（export の writeStable と同じ物差し）。 */
     const drifted = (current: unknown, rebuilt: unknown): boolean =>
-      JSON.stringify({ ...(current as Record<string, unknown>), generated_at: null }) !==
-      JSON.stringify({ ...(rebuilt as Record<string, unknown>), generated_at: null });
+      !sameIgnoringGeneratedAt(current, rebuilt);
 
     const overSize = (rel: string, limit: number): void => {
       const size = statSync(join(ROOT, rel)).size;
@@ -723,8 +737,8 @@ const pinned = ((): PersonaManifest | null => {
     }
 
     // 素材との食い違い。プロフィールや canon を直して feed を作り直し忘れると、
-    // アプリは古い内容を配り続ける。日次 cron は export → validate の順なので、
-    // ここが赤いのは「手で直して、書き出していない」PR だけである。
+    // アプリは古い内容を配り続ける。書き出しは手で行い PR にコミットする運用なので、
+    // ここが赤いのは「素材を直して、書き出し忘れた」PR である（日次 cron は feed を触らない）。
     {
       try {
         const current = JSON.parse(readFileSync(join(feedRoot, 'characters.json'), 'utf8'));
@@ -741,8 +755,14 @@ const pinned = ((): PersonaManifest | null => {
       }
     }
 
+    // Story feed（world/feed/stories/）。index と季ファイルの整合・revision・
+    // 素材との食い違い・秘密の混入までここで見る（src/story/check.ts）。
+    problems.push(...checkStoriesFeed(join(feedRoot, 'stories'), ROOT));
+
     // 秘匿情報の混入検査。型が参照していないことに加えて、出来上がった
     // バイト列そのものを断片照合で見る（契約 §1.2 の除外規則）。
+    // JSON は生のテキストに加えてデコードした文字列値でも見る——本文中の改行は
+    // JSON では2文字になるので、折り返された秘密の一文が生のテキストでは素通りする。
     const distributed: string[] = [
       'world/feed/characters.json',
       'world/feed/lore.json',
@@ -761,7 +781,8 @@ const pinned = ((): PersonaManifest | null => {
     for (const rel of distributed) {
       const path = join(ROOT, rel);
       if (!existsSync(path)) continue;
-      for (const leak of secretLeaksIn(readFileSync(path, 'utf8'))) {
+      const text = readFileSync(path, 'utf8');
+      for (const leak of rel.endsWith('.json') ? secretLeaksInJson(text) : secretLeaksIn(text)) {
         fail(rel, `${leak.owner} の秘密が混入しています（${leak.segment.slice(0, 16)}…）`);
       }
     }

@@ -1,9 +1,13 @@
 #!/usr/bin/env tsx
 /**
- * その日の日記を書かせる。
+ * その日の日記を書かせる。**Legacy Diary Engine。**
  *
  *   npm run day                 今日（JST）
  *   npm run day -- 2026-09-01   日付を指定
+ *
+ * 日次の自動生成（cron）は 2026-10-03 に止めた（Character Story Engine への再設計。
+ * docs/stories.md）。これは Season 1 の再現・調査・アーカイブのために残してあるコードで、
+ * 動作は止める前と変えていない。日記は消さない（Experimental Diary Season 1 / Archive）。
  *
  * 出来事はここでは作らない。季の計画（world/seasons/）から、その日の話を取り出す。
  * 計画がなければ何もせずに終わる——先に npm run plan を実行すること。
@@ -92,6 +96,8 @@ function noticeIfSeasonRunningOut(date: string, season: number): void {
 }
 
 async function main(): Promise<void> {
+  console.log('[Legacy Diary Engine] 日次生成は 2026-10-03 に停止済み。再現・調査用（docs/stories.md）。');
+
   const turn = turnFor(date);
   console.log(
     `${date} — 第${turn.season}季 第${turn.episode}話 / ${turn.era} / ${turn.protagonist}`,

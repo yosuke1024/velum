@@ -1,8 +1,15 @@
 # 季（シーズン）— 出来事を前もって組み立てる
 
+> **Legacy Diary Engine（Season 1 / Archive）。** これは旧 Diary Engine の「季」で、1人5話 ×
+> 5人の25日分の計画である。**日次の自動生成は 2026-10-03 に止めた**（Character Story
+> Engine への再設計。[stories.md](stories.md)）。計画のコードと `world/seasons/` は、再現・
+> 調査・アーカイブのために残してあり、新しい季の計画を立てる予定はない。
+> **Story の「季」（人物ひとりの 8〜10 話の束、`characters/<id>/stories/s<NN>/`）とは
+> 別物。** こちらは日付を持つ25日の計画、あちらは日付を持たない物語の束である。
+
 1人につき5話、5人で25日分の出来事を、季の頭でまとめて計画する。
 
-**実装状況:** 実装済み。`src/season/`、`npm run plan`。
+**実装状況:** 実装済み（Legacy として保守のみ）。`src/season/`、`npm run plan`。
 
 ---
 

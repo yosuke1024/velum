@@ -1,0 +1,168 @@
+# Character Story の計画と本文の下書き（手動）。
+#
+# 生成 != 公開。このワークフローは**何も公開しない**。書くのは characters/<id>/stories/
+# の draft だけで（story:plan / story:write は status を draft にしか動かさない）、
+# feed（world/feed/stories/）には触れない。公開は人間が本文を読み、台帳（manifest.yaml）の
+# status を進め、export:feed を回して PR に入れる、という別の手順である。
+#
+# なぜ Actions で回すのか: Workers AI の鍵（CLOUDFLARE_ACCOUNT_ID / CLOUDFLARE_API_TOKEN）は
+# repo secret にしか無く、ローカルでは生成が回らない。ローカルでは --dry-run
+# （npm run story:plan -- --character riko --season 1 --dry-run）でプロンプトだけを確かめられる。
+#
+# 使い方: Actions → story → Run workflow。
+#   command    plan（季の計画を立てる）/ write（本文を下書きする）
+#   character  人物
+#   season     季（1 以上の整数）
+#   episode    write のとき、この1話だけ書く。省略すると本文の無い話すべて
+#   episodes   plan のとき、話数。省略すると world/stories.yaml の既定
+#   force      plan: 計画済みでも作り直す／write: --episode の話を書き直す
+#              （published の話は、force でも書き直さない）
+#
+# **作業ブランチを選んで起動すること。** 生成物は「起動したブランチ」へコミットされる。
+# main へ直接ではなく、作業ブランチで読み、直し、PR で main へ入れる。
+# なお workflow_dispatch は、このファイルがデフォルトブランチ（main）にあるときだけ
+# 起動できる（無いと 404）。このファイルを main に入れたあとで、作業ブランチを選んで回す。
+#
+# 無料枠は 1 日 10,000 neurons（src/lib/workers-ai.ts）。1話ごとに日本語版と英語版の2回を呼び、
+# 日記（1本 200 neurons 前後）より本文が長い。最初は episode を1話だけ指定して実測し、
+# 枠に収まると分かってから季ぜんぶを回すこと。ゲートに落ちた話は何も書かれず、
+# もう一度回せば本文の無い話だけを引き直す。
+
+name: story
+
+on:
+  workflow_dispatch:
+    inputs:
+      command:
+        description: 'plan（季の計画を立てる）/ write（本文を下書きする）'
+        type: choice
+        required: true
+        options:
+          - plan
+          - write
+      character:
+        description: '人物'
+        type: choice
+        required: true
+        options:
+          - uta
+          - teo
+          - sevran
+          - kaya
+          - riko
+      season:
+        description: '季（1以上の整数。s01 なら 1）'
+        required: true
+      episode:
+        description: 'write のとき、この1話だけ書く（話番号）。省略すると本文の無い話すべて'
+        required: false
+      episodes:
+        description: 'plan のとき、話数（1〜12）。省略すると world/stories.yaml の既定'
+        required: false
+      force:
+        description: 'plan: 計画済みでも作り直す／write: --episode の話を書き直す（published は書き直さない）'
+        type: boolean
+        default: false
+
+concurrency:
+  group: story
+  cancel-in-progress: false
+
+jobs:
+  story:
+    runs-on: ubuntu-latest
+    # フォークからの実行で secrets を使う生成が走らないようにする（daily.yml と同じ）。
+    if: github.repository_owner == 'yosuke1024'
+    permissions:
+      contents: write
+    steps:
+      # 入力は env で受け、シェルの中でだけ使う。${{ inputs.* }} を run の本文へ直に埋めると、
+      # 入力の文字列がそのままシェルとして解釈される（スクリプトインジェクション）。
+      - name: Check the inputs
+        id: check
+        env:
+          COMMAND: ${{ inputs.command }}
+          CHARACTER: ${{ inputs.character }}
+          SEASON: ${{ inputs.season }}
+          EPISODE: ${{ inputs.episode }}
+          EPISODES: ${{ inputs.episodes }}
+          REF_TYPE: ${{ github.ref_type }}
+        run: |
+          set -euo pipefail
+          fail() { echo "::error::$1"; exit 1; }
+
+          [ "$REF_TYPE" = 'branch' ] || fail 'ブランチを選んで起動してください（生成物は起動したブランチへコミットされます）。'
+          case "$COMMAND" in plan|write) ;; *) fail "command が不明です: $COMMAND" ;; esac
+          case "$CHARACTER" in uta|teo|sevran|kaya|riko) ;; *) fail "character が不明です: $CHARACTER" ;; esac
+
+          [[ "$SEASON" =~ ^[0-9]{1,2}$ ]] || fail "season は 1〜99 の整数で指定してください: $SEASON"
+          season=$((10#$SEASON))
+          [ "$season" -ge 1 ] || fail "season は 1 以上にしてください: $SEASON"
+          if [ -n "$EPISODE" ]; then
+            [[ "$EPISODE" =~ ^[0-9]{1,2}$ ]] || fail "episode は整数で指定してください: $EPISODE"
+          fi
+          if [ -n "$EPISODES" ]; then
+            [[ "$EPISODES" =~ ^[0-9]{1,2}$ ]] || fail "episodes は整数で指定してください: $EPISODES"
+          fi
+
+          {
+            echo "season=$season"
+            echo "label=$(printf 's%02d' "$season")"
+            echo "valid=true"
+          } >> "$GITHUB_OUTPUT"
+
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+
+      - name: Generate
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          # 物語の段だけ別のモデルへ振る（任意、repo variable）。未設定なら VELUM_MODEL → 既定の Gemma
+          # （src/lib/workers-ai.ts）。使ったモデルは manifest / plan.yaml の generation.model に残る。
+          VELUM_STORY_MODEL: ${{ vars.VELUM_STORY_MODEL }}
+          COMMAND: ${{ inputs.command }}
+          CHARACTER: ${{ inputs.character }}
+          SEASON: ${{ steps.check.outputs.season }}
+          EPISODE: ${{ inputs.episode }}
+          EPISODES: ${{ inputs.episodes }}
+          FORCE: ${{ inputs.force }}
+        run: |
+          set -euo pipefail
+          args=(--character "$CHARACTER" --season "$SEASON")
+          if [ -n "$EPISODE" ]; then args+=(--episode "$EPISODE"); fi
+          if [ -n "$EPISODES" ]; then args+=(--episodes "$EPISODES"); fi
+          if [ "$FORCE" = 'true' ]; then args+=(--force); fi
+          npm run "story:${COMMAND}" -- "${args[@]}"
+
+      # 生成した計画・台帳・本文が、検査（秘密の混入・台帳の不変条件・本文の書式）を通るかを、
+      # コミットする前に見る。
+      - name: Validate the data
+        if: always() && steps.check.outputs.valid == 'true'
+        run: npm run validate
+
+      # 一部の話がゲートに落ちて生成が失敗した場合も、書けた話は残す（落ちた話は何も書かれていない）。
+      # draft だけを、人物の stories/ から積む。ほかのファイルには触れない。
+      - name: Commit the drafts
+        if: always() && steps.check.outputs.valid == 'true'
+        env:
+          COMMAND: ${{ inputs.command }}
+          CHARACTER: ${{ inputs.character }}
+          LABEL: ${{ steps.check.outputs.label }}
+        run: |
+          git config user.name  'velum'
+          git config user.email 'noreply@pixapps.ai'
+          dir="characters/${CHARACTER}/stories"
+          if [ -d "$dir" ]; then
+            git add -A -- "$dir"
+          fi
+          if git diff --staged --quiet; then
+            echo "変更なし。"
+          else
+            git commit -m "story: ${COMMAND} ${CHARACTER} ${LABEL}"
+            git push
+          fi

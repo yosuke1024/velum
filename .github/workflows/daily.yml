@@ -1,42 +1,62 @@
-# 日次の生成。
+# Legacy Diary Engine — 日次の日記生成（手動のみ）。
 #
-# ギルド → 静寂 → 大収束 → 破砕 → 原初 の5日周期で、番の時代の主人公が日記を書く。
-# 出来事はここでは作らない。季の計画（world/seasons/）から、その日の話を取り出す。
+# 2026-10-03、Velum は Autonomous Diary Generator から Character Story Engine へ
+# 作り直された（docs/stories.md）。Season 1 の日記は人物を「識別できる」ところまでは
+# 届いたが、「好きになれる」ところまでは届かなかった。そこで毎朝の自動生成
+# （schedule の cron）を止め、人間が選び・直し・公開した Story だけを PixTale へ配る。
 #
-# 計画がない日は、何も書かずに失敗する。季の計画は npm run plan で立て、
-# 走らせる前に人間が読んで直す。自動では計画しない——それがこの構造の主目的なので。
+# このワークフローは Season 1 の再現・調査・アーカイブのために残している。
+# 日記は消さない（Experimental Diary Season 1 / Archive）。**cron は復活させない。**
+# 動かすのは人が workflow_dispatch で日付を指定したときだけで、date は必須。
 #
-# ここで黙って緑を返すほうが危ない。世界が止まったことに誰も気づかないまま
-# 日が過ぎる。季の終わりが近づいたら、まだ緑のうちに run-day が警告を出す。
-#
+# 仕組みは Season 1 のときのまま。ギルド → 静寂 → 大収束 → 破砕 → 原初 の5日周期で、
+# 番の時代の主人公が日記を書く。出来事はここでは作らず、季の計画（world/seasons/）から
+# その日の話を取り出す。計画がない日は、何も書かずに失敗する（黙って緑を返さない）。
 # 構造ゲートに違反した日は、状態ファイルを変更せずに失敗記録だけを残す。
-# 欠けた日は隠さない。季の計画は消さないので、同じ日をやり直せる。
+#
+# **Persona Snapshot はここでは配らない。** 季末の自動コンパイル・配布は cron と一緒に
+# 廃止した（2026-10-03）。過去の日を手動で回しても world/personas.json は動かない。
+# Persona の配布は snapshot.yml の publish 入力だけが行う（docs/persona-snapshot.md §4.8）。
 
-name: daily
+name: daily (legacy diary engine)
 
 on:
   workflow_dispatch:
     inputs:
       date:
-        description: '生成する日付（YYYY-MM-DD）。省略すると今日'
-        required: false
-  schedule:
-    # 21:00 UTC = 06:00 JST。刻む日付も JST で決める（src/lib/rotation.ts の today）。
-    # UTC で日付を取ると毎回前日を刻み、初日が1日遅れて始まる。
-    - cron: '0 21 * * *'
+        description: '生成する日付（YYYY-MM-DD）。必須'
+        required: true
 
 concurrency:
   group: daily
   cancel-in-progress: false
 
 jobs:
+  # 日付の形式を、鍵を使う生成より前に見る。入力は env 経由で渡し、
+  # run の本文へ ${{ }} で直接埋め込まない（シェルへの注入を避ける）。
+  check:
+    runs-on: ubuntu-latest
+    if: github.repository_owner == 'yosuke1024'
+    steps:
+      - name: Check the date
+        env:
+          DATE: ${{ inputs.date }}
+        run: |
+          if ! [[ "$DATE" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}$ ]] || [ "$(date -u -d "$DATE" +%F 2>/dev/null)" != "$DATE" ]; then
+            echo "::error::date は実在する日付を YYYY-MM-DD で指定してください: $DATE"
+            exit 1
+          fi
+
   generate:
+    needs: check
     runs-on: ubuntu-latest
     # フォークからの PR で secrets を使う生成が走らないようにする。
     # GitHub 標準の secrets 保護に加えて、ここでも明示的に絞る。
     if: github.repository_owner == 'yosuke1024'
     permissions:
       contents: write
+    env:
+      DATE: ${{ inputs.date }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -54,27 +74,11 @@ jobs:
           # 季の計画とは求める質が違う。未設定なら VELUM_MODEL → 既定の Gemma（src/lib/workers-ai.ts）。
           # 使ったモデルは characters/<id>/events/ の generation.model に残る。
           VELUM_DIARY_MODEL: ${{ vars.VELUM_DIARY_MODEL }}
-        run: npm run day -- ${{ inputs.date }}
+        run: npm run day -- "$DATE"
 
-      # 季の最終日（25日ごと）だけ、Persona Snapshot をコンパイルして配る。
-      # 5人全員が第5話を書き終えたあとなので、この日より前に圧縮すると
-      # その季を生きていない人格ができる。
-      #
-      # **コンパイルと publish を両方自動で行う**（2026-08-29 決定）。season は
-      # --if-season-end が日付から導出する。安全側はゲートに残る——ゲートに
-      # 落ちた人物は Snapshot が書かれず、ピンも動かず、前の人格のままになる。
-      # 手動で戻すときは world/personas.json の version を以前の番号へ書き換える。
-      - name: Compile and publish the personas at the end of a season
-        if: success()
-        env:
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-        run: npm run snapshot -- --if-season-end --date=${{ inputs.date }} --publish
-
-      # PixTale アプリが読む feed（world/feed/）を書き出す。
+      # 公開 feed（world/feed/）を書き出す。diary/world と stories の両方が対象。
       # 生成が失敗した日でも回す——feed は「書かれている日記の全部」の射影であり、
-      # 昨日までの分は今日も正しい。内容が変わらない日はファイルが動かないので、
-      # 変更のない日にコミットが増えることはない。
+      # 昨日までの分は今日も正しい。内容が変わらなければファイルは動かない。
       # 肖像はここでは作らない（シートが変わったときに npm run portraits で手動）。
       - name: Export the public feed
         if: always()
@@ -94,6 +98,6 @@ jobs:
           if git diff --staged --quiet; then
             echo "変更なし。"
           else
-            git commit -m "world: ${{ inputs.date || '$(TZ=Asia/Tokyo date +%Y-%m-%d)' }}"
+            git commit -m "world: $DATE"
             git push
           fi

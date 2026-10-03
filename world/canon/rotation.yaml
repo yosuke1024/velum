@@ -1,4 +1,8 @@
-# 日記のローテーション
+# 日記のローテーション（Legacy Diary Engine / Season 1 Archive）
+#
+# 日次の自動生成は 2026-10-03 に止めた（Character Story Engine への再設計。
+# docs/stories.md）。このファイルは Season 1 の日記の再現・読み方のために残してあり、
+# 値は動かさない（start_date を変えると、過去の全ての日が誰の番かが変わる）。
 #
 # 書くのは1日ひとり。5日周期で回る。
 # その時代の World Tick は、番の日にだけ進む。

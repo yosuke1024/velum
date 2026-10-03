@@ -6,13 +6,17 @@
  *   npm run snapshot -- teo             ひとりだけ
  *   npm run snapshot -- teo --dry-run   何から圧縮するかだけ見る（生成しない）
  *   npm run snapshot -- --publish       コンパイルして、そのまま配る
- *   npm run snapshot -- --if-season-end 季の最終日でなければ何もしない（日次から呼ばれる形）
+ *   npm run snapshot -- --if-season-end 季の最終日でなければ何もしない（Legacy。下記）
  *
  * **作ることと、配ることは別の操作である。**
  *
  * --publish を付けなければ world/personas.json は動かず、PixTale の出力は
- * 1文字も変わらない。付ければ変わる。日次ワークフローは季の最終日にこれを
- * --publish 付きで走らせ、コンパイルから配布まで自動で行う（2026-08-29 決定）。
+ * 1文字も変わらない。付ければ変わる。配るのは人だけで、snapshot.yml の publish 入力か、
+ * 手元の `npm run snapshot -- --publish` で行う（docs/persona-snapshot.md §4.8）。
+ *
+ * `--if-season-end` は Legacy。旧日次ワークフローが季の最終日に
+ * `--if-season-end --publish` で呼んでいた形で、2026-10-03 以降はどのワークフローも
+ * 呼ばない（互換のために残してある）。季末の自動配布は廃止した。
  *
  * 安全側はゲートに残る——ゲートに落ちた人物は Snapshot が書かれず、ピンも
  * 動かず、前の人格のままになる。戻すのは personas.json の version 書き換え1操作。
@@ -40,7 +44,8 @@ const date = dateArg || today();
 /**
  * 季の最終日でなければ、何もせずに終わる（成功として）。
  *
- * 日次ワークフローはこれを毎日呼ぶ。25日に1度だけ中身が動く。
+ * Legacy。旧日次ワークフローがこれを毎日呼び、25日に1度だけ中身が動いた
+ * （2026-10-03 以降、これを呼ぶワークフローは無い。互換のために残してある）。
  * 判定をワークフローの shell ではなくここへ置いてあるのは、
  * ローテーションの算術がすでに src/lib/rotation.ts にあり、テストもそこにあるからである。
  */
