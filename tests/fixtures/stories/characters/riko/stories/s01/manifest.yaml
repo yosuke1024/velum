@@ -1,0 +1,63 @@
+# フィクスチャ: リコ（ダミーの季）。PixTale の Stories UI を開発するための手書きの見本で、
+# 実際の第1季（characters/riko/stories/s01/）とは別物。内容も実際の物語ではない。
+#
+# 状態を一通り並べてある（published ×3 / reviewed ×1 / draft ×1）。feed に出るのは
+# published の話だけで、e04（reviewed）・e05（draft）は index にも季ファイルにも載らない。
+
+id: riko-s01
+character_id: riko
+season: 1
+title:
+  ja: 売れないもの
+  en: Things I Can't Sell
+summary:
+  ja: 荷車ひとつの行商人が、売れ残りの品と、毎日顔を出す少女と、値段のつけられないものについて。
+  en: A one-cart peddler, her unsold stock, a girl who turns up every day, and the things that won't take a price tag.
+status: published
+episodes:
+  - id: riko-s01-e01
+    order: 1
+    required_progress: 0
+    status: published
+    title:
+      ja: ミオは何も買わない
+      en: Mio Never Buys Anything
+    summary:
+      ja: 朝の市。何も買わない少女に、リコはパンを半分わけてやる。
+      en: Market morning. Riko splits her bread with a girl who never buys a thing.
+    format: first_person
+  - id: riko-s01-e02
+    order: 2
+    required_progress: 2
+    status: published
+    title:
+      ja: 金貨三枚
+      en: Three Gold Coins
+    format: dialogue
+  - id: riko-s01-e03
+    order: 3
+    required_progress: 5
+    status: published
+    title:
+      ja: 偽物のお守り
+      en: The Fake Charm
+    summary:
+      ja: 自作のお守りを買っていった老婆が、もう一度荷車の前に立つ。
+      en: The woman who bought one of Riko's homemade charms is back at the cart.
+    format: third_person
+  - id: riko-s01-e04
+    order: 4
+    required_progress: 9
+    status: reviewed
+    title:
+      ja: 樽の陰
+      en: Behind the Barrels
+    format: scene
+    generation:
+      model: fixture-dummy
+      prompt_version: fixture-v0
+      generated_at: '2026-09-20T00:00:00.000Z'
+  - id: riko-s01-e05
+    order: 5
+    required_progress: 14
+    status: draft

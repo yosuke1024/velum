@@ -47,6 +47,9 @@ export async function generateJson<S extends ZodTypeAny>(
 export const jsonSchema = {
   string: () => ({ type: 'string' }),
   number: () => ({ type: 'number' }),
+  integer: () => ({ type: 'integer' }),
+  /** 取りうる文字列を閉じる。Gemini / Workers AI のどちらにも、そのまま渡せる標準の形。 */
+  enum: (values: readonly string[]) => ({ type: 'string', enum: [...values] }),
   boolean: () => ({ type: 'boolean' }),
   array: (items: Record<string, unknown>) => ({ type: 'array', items }),
   object: (

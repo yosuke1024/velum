@@ -59,6 +59,35 @@ export const feedPortraitPath = (id: string) => feedPath('portraits', `${id}.png
 export const feedRelPath = (...parts: string[]) => ['world', 'feed', ...parts].join('/');
 
 /**
+ * Character Story のソース（docs/stories.md §3）。`root` は既定でリポジトリ root、
+ * フィクスチャ（tests/fixtures/stories/）を読むときだけ差し替える。
+ */
+const pad2 = (n: number) => String(n).padStart(2, '0');
+export const storiesDir = (id: string, root: string = ROOT) =>
+  join(root, 'characters', id, 'stories');
+export const storySeasonDir = (id: string, season: number, root: string = ROOT) =>
+  join(storiesDir(id, root), `s${pad2(season)}`);
+export const storyManifestPath = (id: string, season: number, root: string = ROOT) =>
+  join(storySeasonDir(id, season, root), 'manifest.yaml');
+export const storyPlanPath = (id: string, season: number, root: string = ROOT) =>
+  join(storySeasonDir(id, season, root), 'plan.yaml');
+export const storyBodyPath = (
+  id: string,
+  season: number,
+  order: number,
+  lang: 'ja' | 'en',
+  root: string = ROOT,
+) => join(storySeasonDir(id, season, root), `e${pad2(order)}.${lang}.md`);
+
+/** Journey Progress の既定の階段（アプリにハードコードしない数字の正）。 */
+export const storiesConfigPath = () => worldPath('stories.yaml');
+
+/** Story feed（world/feed/stories/）。diary feed と並列の配布面。 */
+export const feedStoriesDir = () => feedPath('stories');
+export const feedStoriesIndexPath = () => feedPath('stories', 'index.json');
+export const feedStoryPath = (seriesId: string) => feedPath('stories', `${seriesId}.json`);
+
+/**
  * World Appraisal Snapshot。追記のみで、既存バージョンは上書きしない。
  * PixTale プロキシはピン（world/personas.json の world）経由で読む。
  */

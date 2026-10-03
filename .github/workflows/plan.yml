@@ -1,4 +1,9 @@
-# 季の計画を立てる（手動）。
+# Legacy Diary Engine — 季の計画を立てる（手動）。
+#
+# これは旧 Diary Engine の季（world/seasons/、1人5話 × 5人の25日分）の計画で、
+# Character Story の季ではない。Story の計画は story.yml の plan コマンド
+# （docs/stories.md §10）。日次生成を止めた（2026-10-03）ので、この計画も
+# Season 1 の再現・調査のために残してあるだけで、新しい季を立てる予定はない。
 #
 # 次の季の計画は自動では立たない（docs/seasons.md §1, §9）。このワークフローも
 # 人が起動する。ローカルに Cloudflare の鍵が無くても、repo secret で計画を

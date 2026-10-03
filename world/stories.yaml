@@ -1,0 +1,15 @@
+# Character Story の既定値（docs/stories.md §5）。
+#
+# Journey Progress の階段。PixTale で同行者を選んで Scan に成功するごとに、その人物の
+# Progress が 1 進み、required_progress に達した話が解放される。
+#
+# 第1話は 0——同行者を選んだ時点で読める。まだ好きでもない人物のために
+# 「まず5回 Scan してください」と要求しても成立しない。序盤3話は早く解放し、
+# 人物を知ってから中盤へ進ませる。
+#
+# この数字はアプリにハードコードしない。story:plan が manifest.yaml の各話へ転記し、
+# feed が話ごとの値として運ぶ。話ごとに manifest で直してよい（単調非減少）。
+# 9 話目以降は 8 話目までの間隔（+6, +7, +8）を延長したもの。
+
+default_episode_count: 8
+default_required_progress: [0, 2, 5, 9, 14, 20, 27, 35, 44, 54, 65, 77]

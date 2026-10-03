@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-10-03T09:40:50.442Z",
+  "id": "riko-s01",
+  "character_id": "riko",
+  "season": 1,
+  "title": {
+    "ja": "売れないもの",
+    "en": "Things I Can't Sell"
+  },
+  "summary": {
+    "ja": "荷車ひとつの行商人が、売れ残りの品と、毎日顔を出す少女と、値段のつけられないものについて。",
+    "en": "A one-cart peddler, her unsold stock, a girl who turns up every day, and the things that won't take a price tag."
+  },
+  "status": "published",
+  "path": "world/feed/stories/riko-s01.json",
+  "revision": "46433d9f4a3f",
+  "episodes": [
+    {
+      "id": "riko-s01-e01",
+      "order": 1,
+      "required_progress": 0,
+      "title": {
+        "ja": "ミオは何も買わない",
+        "en": "Mio Never Buys Anything"
+      },
+      "summary": {
+        "ja": "朝の市。何も買わない少女に、リコはパンを半分わけてやる。",
+        "en": "Market morning. Riko splits her bread with a girl who never buys a thing."
+      },
+      "format": "first_person",
+      "body": {
+        "ja": "朝いちばんの市は、まだ霜の匂いがした。荷車の幌を上げたら、もうミオがいた。フードを目深にかぶって、荷車の前にしゃがんでいる。\n\n「おはよ。今日は手鏡が銅貨八枚、毛布が十二枚。見るだけなら無料」\n\nミオは返事のかわりに、荷車のいちばん奥の棚へ顔を向けた。いつもそう。何も買わないし、値段も聞かない。ただ片方の耳を、ちょっとだけ傾ける。\n\nうちの接客部門の規定では、買わない客は客じゃないから追い払うことになっている。接客部門も、あたしだけど。規定を作ったのもあたし。だから今日も追い払わない。\n\nパンを半分に割って、差し出してみた。ミオは少し迷ってから、受け取った。\n\n「……ありがとう」\n\nこの子がしゃべるのを聞いたのは、たぶん初めてだった。思ったより低い声で、びっくりして、あたしのほうが言葉に詰まった。商売人が言葉に詰まるなんて、仕入れ値より恥ずかしい。\n\n並んで朝ごはんを食べた。霜がとけて、市に人が増えるまでのあいだ。\n\n今朝のパン半分、銅貨一枚。ツケにしておく。",
+        "en": "First market of the morning still smelled like frost. I pulled back the canvas and there she was already, hood pulled low, crouched in front of the cart.\n\n\"Morning. Hand mirror's eight coppers today, blanket's twelve. Looking's free.\"\n\nMio didn't answer. She just turned her face toward the very back shelf, the way she always does. She never buys anything and she never asks a price. She just tips one ear, a little.\n\nUnder the Customer Service Department's policy, a person who doesn't buy isn't a customer, and non-customers get shooed off. The Customer Service Department is me, by the way. So is the person who wrote the policy. So today I didn't shoo.\n\nI tore my bread in half and held it out. Mio thought about it for a second, then took it.\n\n\"...Thank you.\"\n\nIt was the first time I'd ever heard her talk. Deeper than I expected, and I was so surprised that I was the one who ran out of words. A merchant at a loss for words is more embarrassing than a bad wholesale price.\n\nWe ate side by side while the frost melted and the market filled up.\n\nHalf a loaf of bread this morning: one copper. Putting it on her tab."
+      }
+    },
+    {
+      "id": "riko-s01-e02",
+      "order": 2,
+      "required_progress": 2,
+      "title": {
+        "ja": "金貨三枚",
+        "en": "Three Gold Coins"
+      },
+      "format": "dialogue",
+      "body": {
+        "ja": "「金貨三枚」\n\n「は？ この錆びたランプが？」\n\n「錆びじゃない。三百年ものの風格。うちの鑑定部の見解では——」\n\n「鑑定部って、お前ひとりだろう」\n\n「鑑定部長もあたし。部下もあたし。で、金貨三枚」\n\n男は笑って、銅貨を三枚、荷台にぱちんと置いた。\n\n「銅貨三枚だ。釣りはいらん。ガラクタに払う額じゃないがな」\n\nあたしはランプを手に取った。硝子の笠にひびが一本。見つけたときからある、いい筋のひびだ。\n\n「……いま、なんて言った」\n\n「だからガラクタだと——」\n\n「ガラクタって呼んでいいのは、あたしだけ。毎晩ここの灯芯を替えて、三百年、誰かが灯りを守ってきたの。あんたのその口で、軽く言わないで」\n\n「おい、おれは値切っただけで」\n\n「値切るのはいい。商売だもの。でも、物を笑うなら帰って」\n\n男は何か言いかけて、やめた。銅貨を拾って、背中を丸めて市の人混みに消えた。\n\n手が震えていた。腹が立つと手が震える。知らなかった。\n\n金貨三枚。まけない。一枚もまけない。",
+        "en": "\"Three gold coins.\"\n\n\"What? For this rusty lamp?\"\n\n\"It's not rust. It's three hundred years of character. Our Appraisal Department finds that--\"\n\n\"The Appraisal Department is just you.\"\n\n\"The department head is me. The staff is me. Three gold coins.\"\n\nHe laughed and slapped three coppers down on the cart bed.\n\n\"Three coppers. Keep the change. Not that junk is worth even that.\"\n\nI picked up the lamp. One crack across the glass shade, a good one. It was there the day I found it.\n\n\"...What did you just say?\"\n\n\"I said junk, that's what--\"\n\n\"I'm the only one who gets to call it junk. Somebody has changed this wick every night for three hundred years to keep a light going. Don't toss that around with that mouth of yours.\"\n\n\"Hey, all I did was haggle.\"\n\n\"Haggle all you want. That's business. But if you're laughing at the thing itself, go home.\"\n\nHe started to say something, then stopped. He scooped up his coppers and slid, shoulders hunched, into the crowd.\n\nMy hands were shaking. I get shaky when I'm angry. I never knew that.\n\nThree gold coins. Not a copper off. Not one."
+      }
+    },
+    {
+      "id": "riko-s01-e03",
+      "order": 3,
+      "required_progress": 5,
+      "title": {
+        "ja": "偽物のお守り",
+        "en": "The Fake Charm"
+      },
+      "summary": {
+        "ja": "自作のお守りを買っていった老婆が、もう一度荷車の前に立つ。",
+        "en": "The woman who bought one of Riko's homemade charms is back at the cart."
+      },
+      "format": "third_person",
+      "body": {
+        "ja": "その老婆は、市が閉まる少し前にやって来た。\n\nリコは顔を上げて、すぐに目をそらした。覚えがある。三日前、荷車の隅で埃をかぶっていた自作のお守りを、銅貨二枚で買っていった人だ。首に下げたお守りは、糸がほつれて、角がすり減っている。\n\n返品か、とリコは思った。返品は受けない。受けないけれど、この人には、たぶん受ける。\n\n「あの」と老婆は言った。「孫が熱を出した朝に、これを枕の下へ入れたんです」\n\n「はい」\n\n「下がりました」\n\nリコは黙った。そのお守りに、効き目なんてない。紙きれと糸くずと、気分で描いた渦巻きだ。作った本人が、いちばんよく知っている。\n\n「偽物なんです、それ」と、口が勝手に言った。\n\n老婆は少し笑って、お守りを両手で包んだ。\n\n「知っていますよ。でも、わたしには本物でした」\n\nそうして銅貨を一枚、荷台へ置いた。リコが何か言うより先に、老婆は背を向けた。\n\nお守りの値段は、銅貨二枚。老婆が置いていったのは、一枚。差額の一枚が何の代金なのか、リコはその夜、荷車の前でずっと考えていた。",
+        "en": "The old woman showed up shortly before the market closed.\n\nRiko looked up and then looked away fast. She remembered her. Three days ago, this woman had bought one of the homemade charms that had been gathering dust in the corner of the cart, for two coppers. Now it hung around her neck, the thread fraying, the corners worn down.\n\nA return, Riko thought. She didn't take returns. But for this one, maybe she would.\n\n\"Excuse me,\" the woman said. \"The morning my grandson had a fever, I put this under his pillow.\"\n\n\"Okay.\"\n\n\"It went down.\"\n\nRiko said nothing. That charm did nothing. Scrap paper, lint, and a spiral drawn on a whim. Nobody knew that better than the person who made it.\n\n\"It's a fake,\" her mouth said, on its own.\n\nThe woman smiled a little and wrapped the charm in both hands.\n\n\"I know. But it was real to me.\"\n\nThen she set a single copper on the cart and turned away before Riko could say anything.\n\nThe charm's price was two coppers. The woman had left one. What the missing copper was supposed to pay for, Riko sat by the cart that night and wondered."
+      }
+    }
+  ]
+}
