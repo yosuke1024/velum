@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-03",
+  "era": "convergence",
+  "protagonist": "sevran",
+  "season": 2,
+  "episode": 2,
+  "beat": "展開",
+  "world_date": {
+    "year": 417,
+    "month": 8,
+    "day": 18
+  },
+  "title": {
+    "ja": "新たな壁の筆跡",
+    "en": "Handwriting on a New Wall"
+  },
+  "quote": {
+    "ja": "その壁の表面に、ミルテの筆跡による記述を発見した。「四時十七分、光が西から射す（要検証）」。",
+    "en": "On this newly formed surface, I discovered a notation in Milte's handwriting: \"4:17 PM, light shines from the west (unconfirmed).\""
+  },
+  "mood": {
+    "ja": "ポケットの中の空になった瓶が、不自然なほど重く感じられる。",
+    "en": "The empty ink bottle in my pocket feels unnaturally heavy."
+  },
+  "rare_expression_used": false
+}
