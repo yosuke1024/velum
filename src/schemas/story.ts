@@ -48,7 +48,10 @@ export const STORY_FORMATS = [
 export const StoryFormat = z.enum(STORY_FORMATS);
 export type StoryFormat = z.infer<typeof StoryFormat>;
 
-/** 1季の話数。目安は 8〜10 話で、計画の既定は stories.yaml の default_episode_count。 */
+/**
+ * 1季の話数。話数は作品に合わせる（Astra の経路は採用した一作品を分けるので、水増ししない）。
+ * Legacy の story:plan の既定は stories.yaml の default_episode_count。
+ */
 export const STORY_EPISODE_LIMITS = { min: 1, max: 12 } as const;
 
 /** 季の ID は `<character>-s<NN>`、話の ID は `<character>-s<NN>-e<NN>`。 */

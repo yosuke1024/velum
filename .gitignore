@@ -10,3 +10,6 @@ coverage/
 .DS_Store
 .idea/
 .vscode/
+
+# Story の制作 run（story:draft / story:revise の原稿・実行記録）。公開リポジトリへ入れない
+.story-runs/

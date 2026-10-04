@@ -4,7 +4,9 @@ Velum を **Character Story Engine** にする。5人の同行者それぞれに
 
 **実装状況:** 2026-10-03 基盤実装（Velum 側）。ソース・状態・feed・export・validate・生成 CLI・フィクスチャまで。PixTale 側の Stories UI と Journey Progress は未実装（§12 の第2・3段階）。
 
-旧 Diary Engine（日次の自動生成）は [diary.md](diary.md)・[seasons.md](seasons.md) に Legacy として残る。そこでいう「季」は旧 25 日計画のことで、この文書の Story の季（人物ひとりの 8〜10 話の束）とは別物である。
+**制作の経路は [story-authoring.md](story-authoring.md) へ移った（2026-10-03）。** Astra（Codex CLI 経由の `gpt-6-astra`）が一つの完成した物語を書き、人間が採用してから数話へ分ける。この文書の台帳・状態・feed・export・validate はそのまま使う。§10・§11 の `story:plan` / `story:write`（話ごとに Gemma で下書き）は Legacy である。
+
+旧 Diary Engine（日次の自動生成）は [diary.md](diary.md)・[seasons.md](seasons.md) に Legacy として残る。そこでいう「季」は旧 25 日計画のことで、この文書の Story の季（人物ひとりの 1〜12 話の束）とは別物である。
 
 ---
 
@@ -25,7 +27,7 @@ Velum は Autonomous Diary Generator として始まった。5人の主人公が
 | 目的 | 人物の人生を毎日記録する | 読者が人物を好きになる |
 | 生成 | 毎朝の cron が自動で生成・自動で公開 | 手動。AI は下書きまで |
 | 公開 | 生成と同時 | 人間が選び、直し、status を進めたものだけ |
-| 単位 | 日記 1 本 = 1 日 | Character → Season → Episode（1季 8〜10 話） |
+| 単位 | 日記 1 本 = 1 日 | Character → Season → Episode（1季 1〜12 話） |
 | 形式 | 日記だけ | 話ごとに選ぶ（§8） |
 | 人物の変化 | 状態差分が Persona Snapshot へ流れる | Story では Base Persona を動かさない（§13） |
 
@@ -59,7 +61,7 @@ characters/<id>/stories/s<NN>/
 | 季（series） | `<character>-s<NN>` | `riko-s01` |
 | 話（episode） | `<series>-e<NN>` | `riko-s01-e01` |
 
-1季の話数は **1〜12**（スキーマの上限）。目安は **8〜10 話**で、計画の既定は `world/stories.yaml` の `default_episode_count`（8）。ID と order は `src/schemas/story.ts` の `storySeriesId` / `storyEpisodeId` が作る。
+1季の話数は **1〜12**（スキーマの上限）。話数は作品に合わせる——新しい経路では採用した一作品を分けるので、8〜10 話へ水増ししない。Legacy の `story:plan` の既定は `world/stories.yaml` の `default_episode_count`（8）。ID と order は `src/schemas/story.ts` の `storySeriesId` / `storyEpisodeId` が作る。
 
 ### 本文の書式
 
@@ -333,7 +335,9 @@ validate の方針は日記と同じで、**自動修復はしない。** 違反
 
 6つのうち、満たさないものが多い話は書き直す。直す単位は話で、直したら本文だけでなく、題・要約・英語版も同じ手で合わせる（直す単位は「話」であって「言語」ではない。古い訳は機械には見つけられない）。
 
-## 10. 制作フローと CLI
+## 10. 制作フローと CLI（Legacy）
+
+> **新しい制作経路は [story-authoring.md](story-authoring.md)（`story:doctor` / `story:draft` / `story:revise`）。** この節の `story:plan` → `story:write`（Workers AI の Gemma で話ごとに下書き・Actions でだけ生成）は Legacy として残してあるが、新しい制作の既定の手順ではない。
 
 ```text
 brief.md を書く（人）
@@ -414,7 +418,7 @@ generation: { model: ..., prompt_version: story-plan-v1, generated_at: ... }
 
 ### 入れないもの
 
-- **`secret_unknown_to_self` と `hidden_from_protagonist`**（本人が知らないことは入れない。Persona Snapshot・日記プロンプトと同じ規律）
+- **`secret_unknown_to_self` と `hidden_from_protagonist`**（本人が知らないことは入れない。Persona Snapshot・日記プロンプトと同じ規律）。これは Legacy の `story:plan` / `story:write` の規律で、Astra の経路は整合のため作者用の秘密を brief に含めて作者へ渡す（[story-authoring.md](story-authoring.md) §5）
 - 現在の状態（current-state）と記憶（memories）。Story は **Base Persona** から書く。日記が積み上げた状態は、Story に流れ込まない（§13）
 
 ## 12. Pilot と段階
@@ -426,7 +430,7 @@ generation: { model: ..., prompt_version: story-plan-v1, generated_at: ... }
 | 1 | **Velum foundation**（この PR）。ソース・状態・feed・export・validate・生成 CLI・フィクスチャ。`world/feed/stories/index.json` は空 |
 | 2 | **PixTale Stories UI。** feed を読んで一覧・本文を描く。フィクスチャ（§14）で先に作れる |
 | 3 | **Journey Progress。** Activity → Progress → Unlock。解放した話は端末に保存し、再ロックしない |
-| 4 | **リコ第1季の制作。** plan → write → 人間のレビュー → 直し → 公開 |
+| 4 | **リコ第1季の制作。** Astra の初稿 → 人間が読む → 必要なら Astra の改稿 → 採用 → 分割 → 人間のレビュー → 公開（[story-authoring.md](story-authoring.md)） |
 | 5 | **評価。** リコを 10〜20 回 Scan して使う。Season 1 の日記より愛着が上がったか。**それを確かめてから**、ウタ・テオ・セヴラン・カヤへ広げる |
 
 5人分を一括で生成しない。1人の季がうまくいくと確かめるまで、広げない。

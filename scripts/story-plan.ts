@@ -1,6 +1,10 @@
 #!/usr/bin/env tsx
 /**
- * 人物の1季ぶんの物語の計画を立てる（Character Story）。
+ * 【Legacy】人物の1季ぶんの物語の計画を立てる（Character Story）。
+ *
+ * これは旧経路（generateJson による構造化出力の plan → write）。新しい制作経路は
+ * `npm run story:draft`（Codex CLI の Astra が自由に書く。docs/story-authoring.md）。
+ * 旧経路は動作を変えずに残してあるが、新しい物語はまず story:draft で書く。
  *
  *   npm run story:plan -- --character riko --season 1
  *   npm run story:plan -- --character riko --season 1 --episodes 10

@@ -20,6 +20,9 @@
     "export:feed": "tsx scripts/export-feed.ts",
     "story:plan": "tsx scripts/story-plan.ts",
     "story:write": "tsx scripts/story-write.ts",
+    "story:doctor": "tsx scripts/story-doctor.ts",
+    "story:draft": "tsx scripts/story-draft.ts",
+    "story:revise": "tsx scripts/story-revise.ts",
     "portraits": "tsx scripts/derive-portraits.ts"
   },
   "dependencies": {

@@ -19,23 +19,26 @@ Velum は最初、**Autonomous Diary Generator** として始まりました。5
 ## Story がどう作られ、どう公開されるか
 
 ```text
-brief.md          人間の企画メモ（任意。この季で読者に残したいもの）
-   ↓ npm run story:plan
-plan.yaml         季の計画。人間が読んで直す
-   ↓ npm run story:write
-e01.ja.md / e01.en.md   AI の下書き（draft）
-   ↓ 人間が読んで、直す          status: draft → reviewed
+writing brief + 依頼文（authoring/）
+   ↓ npm run story:draft        Astra（Codex CLI 経由の gpt-6-astra）が一作品を書く
+完成原稿（.story-runs/。非公開）
+   ↓ 人間が読む。必要なら npm run story:revise（Astra が改稿する）
+   ↓ 採用した原稿を数話に分ける      （分割と配置は次の段階で実装）
+e01.ja.md / e01.en.md          manifest の draft
+   ↓ 人間が読む                  status: draft → reviewed
    ↓ 人間が公開を決める          status: reviewed → published
    ↓ npm run export:feed        手で回し、PR にコミットする
 world/feed/stories/            PixTale が読む
 ```
 
-- **生成 ≠ 公開。** 下書きは `draft` のまま公開されません。`reviewed` は「人間がこの本文を読んだ」の印で、`published` の話だけが feed に出ます。`story:write` は `published` に触れません。
-- **1季は 8〜10 話。** 1話ごとに「読者にこの人の何を知ってほしいか」を決め、事件の起伏ではなく人物から組み立てます。形式（一人称・手紙・会話・記録・回想…）は話ごとに選べます。
+- **完成した一作品を先に作り、採用してから分ける。** 最初の本文には話数・解放条件・各話の役割を要求しません。PixTale では分けた各話を、Scan に応じて少しずつ解放します（最初から全文を一気に読ませない）。
+- **生成 ≠ 公開。** 制作コマンドは manifest にも本文の配信にも触れません。`reviewed` は「人間がこの本文を読んだ」の印で、`published` の話だけが feed に出ます。
+- **本文は Astra が書き、Claude は代筆しない。** Claude Code は実行・保存・差分の表示を担います。失敗したら止まり、別のモデルや従量課金 API へは切り替えません。
+- **話数は作品に合わせる。** 1季は 1〜12 話（スキーマの上限）。8〜10 話へ水増ししません。形式（一人称・手紙・会話・記録・回想…）も作品が決めます。
 - **解放は Journey Progress で。** PixTale で同行者と Scan を重ねるほど、その人物の次の話が読めるようになります。必要な進捗は話ごとに manifest が持ち、アプリには数字を持たせません。
 - **cron はありません。** 毎日回る生成は止めました。export も PR の中で手で回します。
 
-詳細は [docs/stories.md](docs/stories.md)。
+制作は [docs/story-authoring.md](docs/story-authoring.md)、台帳・解放・feed は [docs/stories.md](docs/stories.md)。
 
 ---
 
@@ -45,7 +48,7 @@ world/feed/stories/            PixTale が読む
 
 Velum という世界、そこに住む人物、彼らの物語と日記、その中で語られる出来事——いずれも実在しません。
 
-- **Story** は AI（Cloudflare Workers AI 上の Gemma）が下書きし、**人間が選び、編集し、公開した**ものです。
+- **Story** は AI（ローカルの Codex CLI 経由の GPT-6 Astra）が書いた原稿を、**人間が読んで選び、公開した**ものです。まだ公開した Story はありません。
 - **Season 1 の日記**は AI が自動生成したもので、人間が選んで公開したものではありません。
 
 どちらも人物の一人称で書かれていますが、そこに書かれた記憶・感情・意見は、実在の人物・団体・出来事とは一切関係ありません。
@@ -95,7 +98,7 @@ characters/<id>/
   stories/            Character Story のソース
     s<NN>/            1季ぶん
       manifest.yaml     台帳。季と話の状態（draft / reviewed / published）・解放条件・題
-      plan.yaml         story:plan の出力。人間が直す
+      plan.yaml         story:plan（Legacy）の出力。人間が直す
       brief.md          人間の企画メモ（任意）
       e<NN>.ja.md       本文（日本語）
       e<NN>.en.md       本文（英語）
@@ -114,7 +117,10 @@ world/
   arcs/ threads/ cards/ seasons/ clocks.yaml failures/
                 Legacy Diary Engine の素材と記録
 
-src/          スキーマと生成・書き出しのパイプライン
+authoring/    Story を書くための入力（writer.yaml・writing brief・依頼文）。docs/story-authoring.md
+.story-runs/  制作の run（Astra の原稿と実行記録）。gitignore。公開しない
+
+src/          スキーマと生成・書き出しのパイプライン（src/story/authoring/ が Astra の制作経路）
 scripts/      CLI
 tests/        スキーマ検証とフィクスチャ（tests/fixtures/ に PixTale UI 開発用のダミー feed）
 docs/         仕様
@@ -129,7 +135,12 @@ npm install
 npm run validate        # 全データをスキーマと設計上の検収条件に照らす（CI が回す）
 npm test
 
-# Story の制作（生成は GitHub Actions だけ。鍵は repo secret にしかない）
+# Story の制作（ローカルの Codex CLI に ChatGPT でログインしておく。docs/story-authoring.md）
+npm run story:doctor                    # 推論しない疎通確認（--probe で Astra を1回だけ呼ぶ）
+npm run story:draft  -- --character riko --brief <brief.md> --request <request.txt> [--dry-run]
+npm run story:revise -- --run <run-id> --feedback <feedback.md> [--dry-run]
+
+# Legacy: 話ごとに Workers AI の Gemma で下書きする旧経路（生成は GitHub Actions だけ）
 npm run story:plan  -- --character riko --season 1 [--episodes 8] [--force] [--dry-run]
 npm run story:write -- --character riko --season 1 [--episode N [--force]] [--dry-run]
 
@@ -138,6 +149,8 @@ npm run export:feed                    # diary / world と stories を書き出�
 npm run export:feed -- --fixtures      # PixTale UI 開発用のダミー feed を作り直す
 ```
 
+- **`story:draft`** は Astra に一作品を書いてもらい、`.story-runs/<run-id>/` に原稿と実行記録を残します（gitignore。公開しない）。**`story:revise`** は指定した原稿の全文とフィードバックを渡す新しい run で、元の原稿は残ります。Claude Code からは `/velum-story`。
+- 以下の2つは **Legacy**（新しい制作の既定の手順ではありません）。
 - **`story:plan`** は `plan.yaml` を書き、`manifest.yaml` へ足りない話を足します（人間が直した status / required_progress / title / format は上書きしません。計画の format と working_title は manifest へ写しません）。`plan.yaml` は本文を書くまでの直せる計画で、manifest に title / format があればそちらが優先されます。
 - **`story:write`** は `e<NN>.ja.md` / `e<NN>.en.md` を `draft` で書きます。manifest に題の無い話には、書いた題を `manifest.yaml` へ入れます（plan と manifest の format / 題が食い違えば、生成の前に注意します）。`reviewed` の話を書き直すと `draft` へ戻ります（reviewed は「人間がこの本文を読んだ」の意味だから）。`--force` は `--episode` と組み合わせたときだけ使え、1話ずつ上書きします。`published` は `--force` でも書き直しません。
 - ワークフローは `.github/workflows/story.yml`（Actions → story → Run workflow）。下書きを起動したブランチへコミットするだけで、**公開はしません**。`main` に入っていないと起動できません。モデルを差し替えるときは repo variable `VELUM_STORY_MODEL`。
@@ -205,7 +218,7 @@ Velum は Autonomous Diary Generator として、5人の主人公が毎日その
 
 **1人につき5話、5人で25日分。** 出来事はその日に即興で作らず、季の頭でまとめて計画しました（`world/seasons/`）。計画は YAML で書き出され、人間が読んで直せます。**人物が世界へ反応するのは日ごと、世界が人物へ反応するのは季ごと**です。
 
-ここでいう「季」は、この旧 25 日計画のことです。Story の季（人物ひとりの 8〜10 話の束）とは別物です。
+ここでいう「季」は、この旧 25 日計画のことです。Story の季（人物ひとりの 1〜12 話の束）とは別物です。
 
 ### 仕組み
 

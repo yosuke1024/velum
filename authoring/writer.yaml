@@ -1,0 +1,29 @@
+# Story の執筆者（Astra）の呼び出し設定。新しい制作経路（story:doctor / story:draft / story:revise）は
+# ここだけを読む。旧経路の VELUM_MODEL / VELUM_STORY_MODEL / generateJson() の既定値は使わない。
+#
+# これは検証を始めるための初期値であって、ChatGPT Web と同じ推論予算・同じ文章になる保証ではない。
+# 詳細は docs/story-authoring.md。
+
+# ローカルの公式 Codex CLI を外部プロセスとして起動する。ほかのプロバイダは無い。
+provider: codex-cli
+model: gpt-6-astra
+# CLI が値を検証しないので、story:doctor / story:draft がモデルカタログ（codex debug models）と照合する。
+# 未対応の値を黙って別の値へ直さない。
+reasoning_effort: high
+# null は「CLI へ渡さない（CLI とモデルの既定に任せる）」。low / medium / high を書けば model_verbosity として渡す。
+verbosity: null
+# 失敗したら止まる。別モデル・従量課金 API・Workers AI・Gemini・Claude へは切り替えない。
+fallback: none
+# 公式 Codex CLI に保存済みの ChatGPT ログインだけを使う（forced_login_method="chatgpt"）。
+authentication: chatgpt
+# codex login がログインを保存した場所。--ignore-user-config はユーザー設定の cli_auth_credentials_store も
+# 読まなくなるので、この非機密の設定だけを明示して引き継ぐ。値は codex login status で確かめる。
+credentials_store: keyring
+# 執筆用の最小限の指示（Codex の組み込み指示を model_instructions_file で置き換える）。リポジトリ root からの相対。
+instructions: authoring/prompts/velum_story_project_instructions.txt
+# 1回の呼び出しの上限。短い API 向けの timeout を流用しない。自動再試行はしない（回数の設定も持たない）。
+timeout_minutes: 30
+cli:
+  command: codex
+  # Astra は 0.153.0 以降。実機で確認した版は docs/story-authoring.md に記録する。自動更新はしない。
+  min_version: 0.153.0

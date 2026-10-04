@@ -1,0 +1,97 @@
+[
+  {
+    "type": "message",
+    "id": "msg_01a102d2-53b9-7c12-bac4-57dcbf50564f",
+    "role": "developer",
+    "content": [
+      {
+        "type": "input_text",
+        "text": "<permissions instructions>\n…(truncated in fixture)"
+      },
+      {
+        "type": "input_text",
+        "text": "<collaboration_mode># Collaboration Mode: Default\n…(truncated in fixture)"
+      }
+    ],
+    "internal_chat_message_metadata_passthrough": {
+      "turn_id": "auto-compact-0",
+      "create_time": 1791048700.85739,
+      "content_item_kinds": [
+        "permissions.instructions",
+        "collaboration_mode.instructions"
+      ]
+    }
+  },
+  {
+    "type": "message",
+    "id": "msg_01a102d2-53b9-7c12-bac4-57ef94b178ed",
+    "role": "developer",
+    "content": [
+      {
+        "type": "input_text",
+        "text": "<multi_agent_role>You are `/root`, the primary agent in a team of agents collaborating to fulfill the user's goals.\n…(truncated in fixture)"
+      }
+    ],
+    "internal_chat_message_metadata_passthrough": {
+      "turn_id": "auto-compact-0",
+      "create_time": 1791048700.857391,
+      "content_item_kinds": [
+        "multi_agent.role_instructions"
+      ]
+    }
+  },
+  {
+    "type": "message",
+    "id": "msg_01a102d2-53b9-7c12-bac4-57f4c386871e",
+    "role": "developer",
+    "content": [
+      {
+        "type": "input_text",
+        "text": "<multi_agent_mode>Any earlier instruction enabling proactive multi-agent delegation no longer applies. Do not spawn sub-agents unless the user or applicable AGENTS.md/skill instructions explicitly ask for sub-agents, delegation, or parallel agent work.</multi_agent_mode>"
+      }
+    ],
+    "internal_chat_message_metadata_passthrough": {
+      "turn_id": "auto-compact-0",
+      "create_time": 1791048700.857391,
+      "content_item_kinds": [
+        "multi_agent.mode_instructions"
+      ]
+    }
+  },
+  {
+    "type": "message",
+    "id": "msg_01a102d2-53b9-7c12-bac4-580dca721993",
+    "role": "user",
+    "content": [
+      {
+        "type": "input_text",
+        "text": "<environment_context>\n…(truncated in fixture)"
+      }
+    ],
+    "internal_chat_message_metadata_passthrough": {
+      "turn_id": "auto-compact-0",
+      "create_time": 1791048700.857391,
+      "content_item_kinds": [
+        "environments.environment_context"
+      ]
+    }
+  },
+  {
+    "type": "message",
+    "id": "msg_01a102d2-53b9-7c12-bac4-5814fbc98930",
+    "role": "user",
+    "content": [
+      {
+        "type": "input_text",
+        "text": "VELUM-ISOLATION-PREVIEW"
+      }
+    ],
+    "internal_chat_message_metadata_passthrough": {
+      "turn_id": "auto-compact-0",
+      "create_time": 1791048700.857593,
+      "content_item_kinds": [
+        "user.text"
+      ]
+    }
+  }
+]
