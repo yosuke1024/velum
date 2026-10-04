@@ -48,6 +48,8 @@ export function storyUsage(mode: StoryArgsMode): string {
       ? '  --force     plan.yaml があっても作り直す'
       : '  --force     本文があっても書き直す（published の話は書き直さない）',
     '  --dry-run   プロンプトだけを出す（LLM を呼ばない・何も書かない）',
+    // 旧経路（generateJson・JSON スキーマの構造化出力）。新しい制作経路は Codex CLI の自由執筆。
+    '  Legacy: 新しい制作経路は npm run story:draft（docs/story-authoring.md）',
   ].join('\n');
 }
 
