@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-01",
+  "era": "guilds",
+  "protagonist": "teo",
+  "season": 2,
+  "episode": 2,
+  "beat": "展開",
+  "world_date": {
+    "year": 375,
+    "month": 8,
+    "day": 5
+  },
+  "title": {
+    "ja": "漏れ出す記録",
+    "en": "The Leaking Archives"
+  },
+  "quote": {
+    "ja": "私はただの見習いだ。",
+    "en": "I am merely a student."
+  },
+  "mood": {
+    "ja": "机の磨かれた木肌に触れる指先が、妙に冷たい。",
+    "en": "My fingertips feel cold against the polished wood of the desk."
+  },
+  "rare_expression_used": false
+}

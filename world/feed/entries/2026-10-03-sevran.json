@@ -1,0 +1,31 @@
+{
+  "id": "2026-10-03-sevran",
+  "date": "2026-10-03",
+  "character_id": "sevran",
+  "era": "convergence",
+  "season": 2,
+  "episode": 2,
+  "world_date": {
+    "year": 417,
+    "month": 8,
+    "day": 18
+  },
+  "title": {
+    "ja": "新たな壁の筆跡",
+    "en": "Handwriting on a New Wall"
+  },
+  "excerpt": {
+    "ja": "その壁の表面に、ミルテの筆跡による記述を発見した。「四時十七分、光が西から射す（要検証）」。",
+    "en": "On this newly formed surface, I discovered a notation in Milte's handwriting: \"4:17 PM, light shines from the west (unconfirmed).\""
+  },
+  "mood": {
+    "ja": "ポケットの中の空になった瓶が、不自然なほど重く感じられる。",
+    "en": "The empty ink bottle in my pocket feels unnaturally heavy."
+  },
+  "path": "world/feed/entries/2026-10-03-sevran.json",
+  "schema_version": 1,
+  "body": {
+    "ja": "手持ちの黒インクが底を突きかけている。筆記用具を確保するため、アルヴィス広場周辺の瓦礫の堆積地を捜索した。\n\n捜索の際、先週まで通行可能であった裏路地が、裂け目の移動に伴って消失していることを確認。代わって、新たな瓦礫の壁が形成されていた。\n\nその壁の表面に、ミルテの筆跡による記述を発見した。「四時十七分、光が西から射す（要検証）」。\n\nこの記述が示す光の方向と、記録されている都市の状態との整合性を再検証する必要がある。もし記述通りであれば、現在の歪みによって上書きされるべきはずの、特定の空間的方位が示されていることになる。しかし、一週間前には存在しなかった構造物に彼女の筆跡が残されているという事実は、物理的な堆積の因果律に齟齬があることを示唆している。\n\n明日は、新しいインクの確保を試みる。ポケットの中の空になった瓶が、不自然なほど重く感じられる。",
+    "en": "The black ink in my current supply is nearly exhausted. I ventured toward the ruins surrounding Alvis Square to scavenge for writing implements.\n\nWhile navigating the area, I observed that the back alley, which had been navigable as recently as last week, has completely disappeared due to the movement of a rift. In its place, a new wall of rubble has emerged.\n\nOn this newly formed surface, I discovered a notation in Milte's handwriting: \"4:17 PM, light shines from the west (unconfirmed).\"\n\nI must investigate the temporal alignment of this observation with the recorded state of the city. If the light's direction is indeed as written, it implies a specific spatial orientation that should have been superseded by the current distortions. However, the presence of her handwriting on a structure that did not exist a week ago suggests a discrepancy in the causality of physical accumulation. \n\nI will attempt to secure a new supply of ink tomorrow. The weight of the empty bottle in my pocket feels disproportionately heavy."
+  }
+}

@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { CharacterId, EraId, CHARACTER_IDS } from './world.js';
 import { Bilingual } from './bilingual.js';
+import { STORY_EPISODE_ID, STORY_SERIES_ID, StoryFormat } from './story.js';
 
 /**
  * Diary/World feed — PixTale アプリが raw GitHub で直接読む契約面。
@@ -24,6 +25,10 @@ export const FEED_SIZE_LIMITS = {
   diary: 200 * 1024,
   entry: 32 * 1024,
   portrait: 200 * 1024,
+  /** world/feed/stories/index.json（本文なし） */
+  storiesIndex: 64 * 1024,
+  /** world/feed/stories/<series-id>.json（1季ぶんの本文込み。日本語は1字3バイト） */
+  story: 256 * 1024,
 } as const;
 
 /** diary.json に載せる件数。最新90件・新しい順（契約 §1.1）。 */
@@ -147,6 +152,88 @@ export const FeedEntryFileSchema = FeedDiaryEntrySchema.extend({
   schema_version: z.literal(FEED_SCHEMA_VERSION),
   body: Bilingual,
 });
+
+// ── world/feed/stories/ ───────────────────────────────────────
+//
+// Character Story の配布面（docs/stories.md §6）。既存の diary feed と並列に足した
+// 新しいファイル群で、既存ファイルの形も schema_version も動かさない。
+//
+// 版は既存 feed と別の定数で持つ——将来 stories だけ版を上げても、日記・人物・
+// 時代のファイルが旧アプリで一斉に不採用になることがないように。
+//
+// **公開済み（季と話の両方が published）だけが載る。** 載った話の本文は raw GitHub
+// から誰でも読める。解放（required_progress）はアプリ側の UX であって秘匿ではない。
+
+export const STORIES_SCHEMA_VERSION = 1;
+
+/** 一覧に載せる話の軽い情報。ロックされた行の表示と解放判定は index だけで済む。 */
+export const FeedStoryEpisodeSummarySchema = z.object({
+  id: z.string().regex(STORY_EPISODE_ID),
+  order: z.number().int().min(1),
+  required_progress: z.number().int().min(0),
+  title: Bilingual,
+});
+
+export const FeedStorySeriesSummarySchema = z.object({
+  id: z.string().regex(STORY_SERIES_ID),
+  character_id: CharacterId,
+  season: z.number().int().min(1),
+  title: Bilingual,
+  summary: Bilingual.optional(),
+  /** 本文込みのファイル（base URL からの相対）。 */
+  path: z.string().min(1),
+  /**
+   * 季ファイルの内容の版（generated_at を除いた内容の sha256 先頭12桁）。
+   * アプリはキャッシュ済みの季ファイルとこれを比べ、違えば取り直す。
+   */
+  revision: z.string().regex(/^[0-9a-f]{12}$/),
+  /** 公開済みの話数（= episodes の長さ）。 */
+  episode_count: z.number().int().min(1),
+  episodes: z.array(FeedStoryEpisodeSummarySchema).min(1),
+});
+
+/**
+ * world/feed/stories/index.json — 人物ごとの公開済みの季。
+ * 公開が1本も無くても書く（`characters: {}`）。アプリが「取得失敗」と
+ * 「まだ無い」を区別できるように。
+ */
+export const FeedStoriesIndexSchema = z.object({
+  schema_version: z.literal(STORIES_SCHEMA_VERSION),
+  generated_at: z.string(),
+  characters: z.record(
+    CharacterId,
+    z.object({ series: z.array(FeedStorySeriesSummarySchema).min(1) }),
+  ),
+});
+
+export const FeedStoryEpisodeSchema = FeedStoryEpisodeSummarySchema.extend({
+  summary: Bilingual.optional(),
+  format: StoryFormat.optional(),
+  /** プレーンテキスト。段落は空行区切り。Markdown 装飾なし（diary の body と同じ規約）。 */
+  body: Bilingual,
+});
+
+/** world/feed/stories/<series-id>.json — 1季ぶんの公開済みの全話（本文込み）。 */
+export const FeedStorySeriesSchema = z.object({
+  schema_version: z.literal(STORIES_SCHEMA_VERSION),
+  generated_at: z.string(),
+  id: z.string().regex(STORY_SERIES_ID),
+  character_id: CharacterId,
+  season: z.number().int().min(1),
+  title: Bilingual,
+  summary: Bilingual.optional(),
+  /** feed に載る季は常に published。 */
+  status: z.literal('published'),
+  path: z.string().min(1),
+  revision: z.string().regex(/^[0-9a-f]{12}$/),
+  episodes: z.array(FeedStoryEpisodeSchema).min(1),
+});
+
+export type FeedStoryEpisodeSummary = z.infer<typeof FeedStoryEpisodeSummarySchema>;
+export type FeedStorySeriesSummary = z.infer<typeof FeedStorySeriesSummarySchema>;
+export type FeedStoriesIndex = z.infer<typeof FeedStoriesIndexSchema>;
+export type FeedStoryEpisode = z.infer<typeof FeedStoryEpisodeSchema>;
+export type FeedStorySeries = z.infer<typeof FeedStorySeriesSchema>;
 
 export type FeedPerson = z.infer<typeof FeedPersonSchema>;
 export type FeedCharacters = z.infer<typeof FeedCharactersSchema>;

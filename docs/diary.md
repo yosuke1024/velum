@@ -1,8 +1,15 @@
 # Diary / Persona Growth
 
+> **Legacy Diary Engine（Season 1 / Archive）。** これは Velum が Autonomous Diary Generator
+> だった時代の仕様で、**日次の自動生成は 2026-10-03 に止めた**（`daily.yml` の schedule を
+> 削除）。Season 1 の日記は人物を識別できるところまでは届いたが、好きになれるところ
+> までは届かなかったため、Velum は Character Story Engine へ移った（[stories.md](stories.md)）。
+> コードと日記は、再現・調査・アーカイブのために残してある。消さない。
+> ここでいう「季」は旧 25 日計画のことで、Story の季（人物ひとりの 8〜10 話の束）とは別物。
+
 季の計画から取り出したその日の出来事を人物がどう認識したかを生成し、人物状態を更新した上で日記を書く。
 
-**実装状況:** 実装済み。`src/diary/`、`npm run day`。
+**実装状況:** 実装済み（Legacy として保守のみ）。`src/diary/`、`npm run day`。
 
 ---
 

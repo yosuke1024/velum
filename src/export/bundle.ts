@@ -38,6 +38,22 @@ import { both } from '../lib/bilingual.js';
  */
 export type SiteBundle = ReturnType<typeof buildBundle>;
 
+/**
+ * 日次の日記生成（Diary Engine）を止めた日。
+ *
+ * 2026-10-03、Velum は Character Story Engine へ作り直され（docs/stories.md）、
+ * daily.yml の cron を止めた。この日より後に、日記は増えない。
+ */
+export const DIARY_ENGINE_ARCHIVED_ON = '2026-10-03';
+
+/** 束に入っている日記のうち、最も新しい日付。1本もなければ null。 */
+export function lastEntryDate(entries: ReadonlyArray<{ date: string }>): string | null {
+  return entries.reduce<string | null>(
+    (latest, entry) => (latest === null || entry.date > latest ? entry.date : latest),
+    null,
+  );
+}
+
 /** 日記本文の front matter は `key: <JSON>` の行で書かれている（src/diary/generate.ts）。 */
 function splitFrontMatter(markdown: string): { meta: Record<string, unknown>; body: string } {
   const match = /^---\n([\s\S]*?)\n---\n([\s\S]*)$/.exec(markdown);
@@ -275,5 +291,21 @@ export function buildBundle(now: string) {
     entries,
     failures: buildFailures(),
     seasons: buildSeasons(),
+    /**
+     * 日記エンジンの運転状態。**既存の欄は動かさず、あとから足した欄**である。
+     *
+     * 日記は止まっている（Experimental Diary Season 1 / Archive）。サイト
+     * （pixapps-landing）はこれを見て、日記を「Season 1 のアーカイブ」と表示し、
+     * 「最後の日記から2日で赤くなる」鮮度ゲートを外せる。この欄が無いままだと、
+     * 止めた2日後にサイト側の同期が「日記が古い」と判断して赤くなる——日記が増えないのは
+     * 障害ではなく、意図して止めたからである。
+     *
+     * `last_entry_date` は束に入っている日記の最新の日付で、日記が1本も無ければ null。
+     */
+    diary_engine: {
+      status: 'archived' as const,
+      archived_on: DIARY_ENGINE_ARCHIVED_ON,
+      last_entry_date: lastEntryDate(entries),
+    },
   };
 }

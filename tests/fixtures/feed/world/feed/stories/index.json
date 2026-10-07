@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-10-03T09:40:50.442Z",
+  "characters": {
+    "teo": {
+      "series": [
+        {
+          "id": "teo-s01",
+          "character_id": "teo",
+          "season": 1,
+          "title": {
+            "ja": "規約の余白",
+            "en": "Margins of the Code"
+          },
+          "path": "world/feed/stories/teo-s01.json",
+          "revision": "4180861ddd4f",
+          "episode_count": 2,
+          "episodes": [
+            {
+              "id": "teo-s01-e01",
+              "order": 1,
+              "required_progress": 0,
+              "title": {
+                "ja": "座金は逆だった",
+                "en": "The Washer Was Backwards"
+              }
+            },
+            {
+              "id": "teo-s01-e02",
+              "order": 2,
+              "required_progress": 3,
+              "title": {
+                "ja": "推薦状の話",
+                "en": "About the Letter"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "riko": {
+      "series": [
+        {
+          "id": "riko-s01",
+          "character_id": "riko",
+          "season": 1,
+          "title": {
+            "ja": "売れないもの",
+            "en": "Things I Can't Sell"
+          },
+          "summary": {
+            "ja": "荷車ひとつの行商人が、売れ残りの品と、毎日顔を出す少女と、値段のつけられないものについて。",
+            "en": "A one-cart peddler, her unsold stock, a girl who turns up every day, and the things that won't take a price tag."
+          },
+          "path": "world/feed/stories/riko-s01.json",
+          "revision": "46433d9f4a3f",
+          "episode_count": 3,
+          "episodes": [
+            {
+              "id": "riko-s01-e01",
+              "order": 1,
+              "required_progress": 0,
+              "title": {
+                "ja": "ミオは何も買わない",
+                "en": "Mio Never Buys Anything"
+              }
+            },
+            {
+              "id": "riko-s01-e02",
+              "order": 2,
+              "required_progress": 2,
+              "title": {
+                "ja": "金貨三枚",
+                "en": "Three Gold Coins"
+              }
+            },
+            {
+              "id": "riko-s01-e03",
+              "order": 3,
+              "required_progress": 5,
+              "title": {
+                "ja": "偽物のお守り",
+                "en": "The Fake Charm"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "id": "2026-10-01-teo",
+  "date": "2026-10-01",
+  "character_id": "teo",
+  "era": "guilds",
+  "season": 2,
+  "episode": 2,
+  "world_date": {
+    "year": 375,
+    "month": 8,
+    "day": 5
+  },
+  "title": {
+    "ja": "漏れ出す記録",
+    "en": "The Leaking Archives"
+  },
+  "excerpt": {
+    "ja": "私はただの見習いだ。",
+    "en": "I am merely a student."
+  },
+  "mood": {
+    "ja": "机の磨かれた木肌に触れる指先が、妙に冷たい。",
+    "en": "My fingertips feel cold against the polished wood of the desk."
+  },
+  "path": "world/feed/entries/2026-10-01-teo.json",
+  "schema_version": 1,
+  "body": {
+    "ja": "大市を控えた工房通りの喧騒は、今の私にはただの雑音でしかない。私の視界には、ロウが手にしたあの古びた木箱のことしかなかった。\n\nロウが見せたのは、ヴェスパー工房の初期の座金金型だった。大鑑定院がとうの昔に押収し、処分したはずの、あの機材だ。\n\n「大鑑定院が管理しているはずのものが、どうしてこんなところで転がっているんだろうな」\n\n問いかけは、糾弾ではなく、ただの確認のように響いた。けれど、その声は鋭く私の内側に刺さる。彼は知っているのだ。大鑑定院の「記録」と、私たちの工房が実際に残してきた「実態」との間に、どれほど深い裂け目があるのかを。\n\nもし、押収品がこれほど容易に外部へ流出しているのだとしたら。あるいは、管理の網の目をすり抜けて存在しているのだとしたら。その時、記された鑑定書の価値は、一体どこへ向かうのだろう。\n\n鞄の中の燭台の重みが、妙に生々しく感じられる。三十年前の原簿に記された「逆打ち」という欠陥。現物には存在しないはずの、インクの中にだけ存在する不名誉な傷跡。\n\nロウの目は、私を試している。真実の裏側に隠れていた頃の、あの幼い私を探しているかのように。\n\n私は何も答えなかった。答えられるはずがない。\n\n私はただの見習いだ。たとえ金属が別の物語を語っていたとしても、私はインクが定める規律に従わなければならない。",
+    "en": "The street was crowded with the preparations for the Great Market, but my eyes were only on the wooden box in his hands.\n\nLowe showed me a seat-base mold. An early piece from our workshop. The one that was supposed to have been seized and destroyed by the Academy decades ago.\n\n\"How is it that the Academy's 'lost' treasures are wandering the streets like this?\"\n\nHis voice wasn't an accusation, but a question meant to pierce. He knew. He knows that the gap between the Academy's official records and the physical reality of our workshop's output is widening.\n\nIf the Academy's archives can be so easily bypassed, or if the items themselves are leaking out through the cracks of their own bureaucracy, then what is the weight of a single 'official' certificate?\n\nI felt the weight of the candle holder in my bag. The 'reverse-striking' error recorded in the archives—an error that physically shouldn't exist in the object itself, yet exists perfectly in the ink. \n\nLowe’s eyes were searching mine, looking for the boy who used to hide behind the truth. I didn't answer him. I can't. Not yet.\n\nI am merely a student. A student who must follow the rules of the ink, even when the metal tells a different story."
+  }
+}

@@ -1,0 +1,27 @@
+# フィクスチャ: テオ（ダミーの季）。リコと並べて「2人ぶん」の一覧を確かめるための短い見本。
+# 実際の物語ではない。published が2話だけ。
+
+id: teo-s01
+character_id: teo
+season: 1
+title:
+  ja: 規約の余白
+  en: Margins of the Code
+status: published
+episodes:
+  - id: teo-s01-e01
+    order: 1
+    required_progress: 0
+    status: published
+    title:
+      ja: 座金は逆だった
+      en: The Washer Was Backwards
+    format: first_person
+  - id: teo-s01-e02
+    order: 2
+    required_progress: 3
+    status: published
+    title:
+      ja: 推薦状の話
+      en: About the Letter
+    format: record

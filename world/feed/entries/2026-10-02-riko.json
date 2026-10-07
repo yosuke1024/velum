@@ -1,0 +1,31 @@
+{
+  "id": "2026-10-02-riko",
+  "date": "2026-10-02",
+  "character_id": "riko",
+  "era": "silent",
+  "season": 2,
+  "episode": 2,
+  "world_date": {
+    "year": 1175,
+    "month": 7,
+    "day": 26
+  },
+  "title": {
+    "ja": "泥の鍵と、薄れゆく影",
+    "en": "A Muddy Key and Fading Shadows"
+  },
+  "excerpt": {
+    "ja": "ただの泥だらけの、使い道のなさそうな鉄屑だ。だけど、これには何かがある。",
+    "en": "It's just old iron, clogged with dirt, but it has this presence—like it’s waiting for a door that doesn't exist anymore."
+  },
+  "mood": {
+    "ja": "泥のついた鉄の鍵の重みが、指先に冷たく残っている。",
+    "en": "My fingertips feel cold and numb from the weight of the iron key."
+  },
+  "path": "world/feed/entries/2026-10-02-riko.json",
+  "schema_version": 1,
+  "body": {
+    "ja": "泥にまみれた、古びた鉄の鍵。重たい。せいぜい銅貨数枚の価値しかないだろうけど、掌（てのひら）にのせると、妙にずっしりとした感覚が残る。\n\n--- \n\nミオがあたしの荷車の前で、長いこと立ち止まっていた。あの青い石を、まるで死にゆく何かを眺めるような目で、ずっと、ずっと見つめて。何も言わなかったし、値段も聞かなかった。ただ、あの子の視線が突き刺さるようで、あたしは「ただの石だよ」なんて、口が裂けても言えなかった。もしあの子が、あたしを嘘つきだと思っているなら、それはきっと正解なんだろう。\n\nそれからテラが持ってきた噂。あれは、喉に刺さった小骨みたいに、嫌な感触がする。ガロンが「目覚めの棚」の古い図面を、誰かに売ろうとしているって？ もしあの人が、もうあきらめようとしているのなら、あたしがこんな泥水をすすってまで守ろうとしているものは、一体何なんだろう。\n\n最後に、パルが置いていったこの鍵。頭痛が治ったお礼なんて、そんな大層なものじゃない。ただの泥だらけの、使い道のなさそうな鉄屑だ。だけど、これには何かがある。もう存在しない扉を、ずっと待ち続けているような、そんな気配がする。\n\n値段：銅貨二枚。",
+    "en": "A rusty, mud-caked iron key left by Pal. It's heavy, probably worth nothing more than a few copper pieces, but it feels like a heavy weight in my palm.\n\n--- \n\nMio stood there for a long time, staring at that blue stone. She didn't say a word, she didn't ask for a price, she just looked as if she were watching something dying. I wanted to tell her it was just a stone, but the words died in my throat. If she thinks I'm a liar, then maybe I am.\n\nThen Terra came by with news that tastes like ash. Is the old man really trying to sell the 'Shelf' drawings to someone else? If he's giving up, then what am I even fighting for with all this scavenging?\n\nAnd now, this key. Pal left it on the cart like a tip, or a souvenir. It's just old iron, clogged with dirt, but it has this presence—like it’s waiting for a door that doesn't exist anymore. I can't decide if I should clean it or throw it back into the mud.\n\nPrice: 2 copper pieces."
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-02",
+  "era": "silent",
+  "protagonist": "riko",
+  "season": 2,
+  "episode": 2,
+  "beat": "展開",
+  "world_date": {
+    "year": 1175,
+    "month": 7,
+    "day": 26
+  },
+  "title": {
+    "ja": "泥の鍵と、薄れゆく影",
+    "en": "A Muddy Key and Fading Shadows"
+  },
+  "quote": {
+    "ja": "ただの泥だらけの、使い道のなさそうな鉄屑だ。だけど、これには何かがある。",
+    "en": "It's just old iron, clogged with dirt, but it has this presence—like it’s waiting for a door that doesn't exist anymore."
+  },
+  "mood": {
+    "ja": "泥のついた鉄の鍵の重みが、指先に冷たく残っている。",
+    "en": "My fingertips feel cold and numb from the weight of the iron key."
+  },
+  "rare_expression_used": false
+}

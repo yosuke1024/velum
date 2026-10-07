@@ -124,3 +124,29 @@ export const SNAPSHOT_SELECTION = {
   /** いま気にかかっていること・片づいていない考えの、それぞれの件数 */
   standing: 4,
 } as const;
+
+/**
+ * Character Story の生成（story:write）が返す本文・題の長さの上限。
+ *
+ * PATCH_LIMITS / SNAPSHOT_LIMITS と同じ規律で扱う——ゲート（src/story/gate.ts）と
+ * プロンプト（src/story/prompt.ts の storyBoundsLines）の両者がここを読み、
+ * tests/unit/story-prompt.test.ts がキーを走査して、プロンプトに書かれていない上限を検出する。
+ *
+ * 届く先は公開リポジトリの本文（draft）なので、切り詰め（truncate）はなく、
+ * 違反はすべてその話の破棄である。切り詰めれば、尻切れの本文が「それらしく見える形」で
+ * 人間のレビューへ流れる。
+ *
+ * これは生成ゲートの上限であって、人間が書いた話の上限ではない。人間が直した短い話や
+ * 長い話を落とす理由は無いので、validate はこの定数を見ない（形式だけを見る）。
+ */
+export const STORY_WRITE_LIMITS = {
+  /** 本文（日本語）の下限・上限（文字数） */
+  bodyJaMinChars: 600,
+  bodyJaMaxChars: 3500,
+  /** 本文（英語）の下限・上限（語数）。日本語より字数が伸びるので語で数える */
+  bodyEnMinWords: 150,
+  bodyEnMaxWords: 2000,
+  /** 題の上限（文字数）。下限は「空でない」だけ */
+  titleJaMaxChars: 24,
+  titleEnMaxChars: 60,
+} as const;
