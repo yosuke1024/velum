@@ -71,6 +71,22 @@ export const DiaryEventSchema = z.object({
     prompt_version: z.string(),
     generated_at: z.string(),
   }),
+  /**
+   * 破棄された日を、あとから歴史としてだけ補ったときに付く（docs/diary.md §9）。
+   *
+   * その場合の applied は、その日の朝の状態（src/diary/as-of.ts が復元したもの）に
+   * 対して日記が返した差分であって、**状態ファイルへは適用していない**。後の日が
+   * すでにその上に積まれているので、いまから足すと現在の人物が過去へ巻き戻る。
+   */
+  backfill: z
+    .object({
+      applied_to_state: z.literal(false),
+      /** 補った日（JST）。 */
+      filled_on: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+      /** 状態を復元した根拠。その日より前の最後の日記の日付（無ければ null）。 */
+      state_as_of: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).nullable(),
+    })
+    .optional(),
 });
 
 export type DiaryEvent = z.infer<typeof DiaryEventSchema>;

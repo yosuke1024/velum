@@ -11,6 +11,19 @@ import { visibleRelationships } from './context.js';
 import { ja } from '../lib/bilingual.js';
 
 /**
+ * diary-v8（2026-10-01）: 今日の出来事に出てくる第三者を名指しして、関係の更新先にできないと言う。
+ *
+ * v5 は「relationship_patches の id は周りの人の id だけ」と一般則で書いた。9/18 セヴラン
+ * （第1季第4話）の補完では、両方の出来事が行商人コルネリを中心に回っていたため、Gemma は
+ * 一般則を越えて corneli への関係更新を返し、同じ罠でもう一度落ちた。季の計画は第三者を
+ * よく出す（第2季だけでもゼヴ・ラト・ロロ・ドボ……）。出来事の who のうち「周りの人」でも
+ * 本人でもない名前を拾い、その人たちは本文に書くものだと名指しする。
+ *
+ * 列挙型でスキーマ側から id を縛る手は採らない。縛ると、コルネリへの印象がミルテや
+ * フムへの更新として黙って通る。破棄されるほうが、壊れていることが見える。
+ *
+ * ---
+ *
  * diary-v7（2026-09-27）: mood は一文で書く、と言う。
  *
  * Gemma の最初の日記（9/26 テオ）は mood_ja が「緊張と分析」だった。Gemini は
@@ -78,7 +91,7 @@ import { ja } from '../lib/bilingual.js';
  *    「感情を説明せず細部で見せる」という指示を守っていない。禁じ手を具体的に書き、
  *    代わりに何で見せるか（否定・数字・物・手の動き）を言う。
  */
-export const DIARY_PROMPT_VERSION = 'diary-v7';
+export const DIARY_PROMPT_VERSION = 'diary-v8';
 
 /**
  * ゲートが落とせる上限は、すべてここでプロンプトに書く。
@@ -366,6 +379,24 @@ export function buildDiarySystemPrompt(context: DiaryContext): string {
   return lines.join('\n');
 }
 
+/**
+ * 今日の出来事に出てくるが、「周りの人」にも本人にも当たらない人物。
+ *
+ * who は季の計画が書く自由な表記（「第七号（カヤ）」「同盟軍の憲兵」など）で、
+ * 周りの人の名前は肩書き付き（「ヴァレン大鑑定官」）のことがある。どちらかがもう
+ * 一方を含めば同じ人とみなして外し、残りをそのまま返す。
+ */
+export function outsidersToday(context: DiaryContext): string[] {
+  const known = [
+    context.profile.name.ja,
+    ...context.relationships.people.map((person) => person.name.ja),
+  ];
+  const names = context.day.episode.events.flatMap((event) => event.who);
+  return [...new Set(names)].filter(
+    (name) => !known.some((k) => name.includes(k) || k.includes(name)),
+  );
+}
+
 export function buildDiaryUserPrompt(context: DiaryContext): string {
   const { day, state, memories, canon } = context;
   const lines: string[] = [];
@@ -434,6 +465,13 @@ export function buildDiaryUserPrompt(context: DiaryContext): string {
   lines.push(
     'relationship_patches の id は、この一覧の id だけです。今日の出来事に他の人物が出てきても、本文に書くのは自由ですが、関係の更新先にはできません。',
   );
+  const outsiders = outsidersToday(context);
+  if (outsiders.length) {
+    lines.push(
+      `今日の出来事に出てくる${outsiders.map((name) => `「${name}」`).join('')}は、この一覧にいません。` +
+        'その人への印象や信頼は本文と perception に書き、relationship_patches には入れないこと（入れるとこの日は破棄される）。',
+    );
+  }
   lines.push('');
 
   lines.push('## あなたの人生の出来事');

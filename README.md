@@ -230,10 +230,11 @@ Velum は Autonomous Diary Generator として、5人の主人公が毎日その
 ```bash
 npm run plan -- --season 1                  # 季（25日分）の出来事を組み立てる
 npm run day -- 2026-09-05 [--dry-run]       # その日の日記を書かせる
+npm run day -- 2026-09-15 --backfill        # 後の日がすでにある過去の日を、歴史としてだけ補う
 npm run snapshot                            # Persona Snapshot をコンパイルする
 ```
 
-先に季を計画し、それから日を回します。計画のない日を回すと、何も書かずに失敗します。ワークフローは `daily.yml`（手動のみ・date 必須）と `plan.yml`。`daily.yml` は Persona Snapshot を配りません。
+先に季を計画し、それから日を回します。計画のない日を回すと、何も書かずに失敗します。ワークフローは `daily.yml`（手動のみ・date 必須。`backfill` 入力で補う）と `plan.yml`。`--backfill` はその日の朝の人物で書き、状態ファイルを動かさない（[docs/diary.md](docs/diary.md) §9）。`daily.yml` は Persona Snapshot を配りません。
 
 ### モデルと環境変数
 

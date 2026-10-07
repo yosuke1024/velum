@@ -26,6 +26,10 @@ on:
       date:
         description: '生成する日付（YYYY-MM-DD）。必須'
         required: true
+      backfill:
+        description: '破棄された過去の日を、歴史としてだけ補う（その日の朝の人物で書き、状態は動かさない。docs/diary.md §9）'
+        type: boolean
+        default: false
 
 concurrency:
   group: daily
@@ -57,6 +61,7 @@ jobs:
       contents: write
     env:
       DATE: ${{ inputs.date }}
+      BACKFILL: ${{ inputs.backfill }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -74,7 +79,12 @@ jobs:
           # 季の計画とは求める質が違う。未設定なら VELUM_MODEL → 既定の Gemma（src/lib/workers-ai.ts）。
           # 使ったモデルは characters/<id>/events/ の generation.model に残る。
           VELUM_DIARY_MODEL: ${{ vars.VELUM_DIARY_MODEL }}
-        run: npm run day -- "$DATE"
+        run: |
+          if [ "$BACKFILL" = 'true' ]; then
+            npm run day -- "$DATE" --backfill
+          else
+            npm run day -- "$DATE"
+          fi
 
       # 公開 feed（world/feed/）を書き出す。diary/world と stories の両方が対象。
       # 生成が失敗した日でも回す——feed は「書かれている日記の全部」の射影であり、
@@ -98,6 +108,10 @@ jobs:
           if git diff --staged --quiet; then
             echo "変更なし。"
           else
-            git commit -m "world: $DATE"
+            if [ "$BACKFILL" = 'true' ]; then
+              git commit -m "world: $DATE (backfill)"
+            else
+              git commit -m "world: $DATE"
+            fi
             git push
           fi

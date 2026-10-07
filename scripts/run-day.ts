@@ -4,6 +4,9 @@
  *
  *   npm run day                 今日（JST）
  *   npm run day -- 2026-09-01   日付を指定
+ *   npm run day -- 2026-09-18 --backfill
+ *                               破棄された過去の日を、歴史としてだけ補う（docs/diary.md §9）。
+ *                               その日の朝の人物で書き、状態ファイルは動かさない。
  *
  * 日次の自動生成（cron）は 2026-10-03 に止めた（Character Story Engine への再設計。
  * docs/stories.md）。これは Season 1 の再現・調査・アーカイブのために残してあるコードで、
@@ -24,11 +27,13 @@ import { ERA_IDS } from '../src/schemas/world.js';
 import { generateDiary } from '../src/diary/generate.js';
 import type { Day } from '../src/diary/context.js';
 import { ja, type MaybeBilingual } from '../src/lib/bilingual.js';
+import { fileDate } from '../src/diary/as-of.js';
 
 const args = process.argv.slice(2);
 const dateArg = args.find((a) => /^\d{4}-\d{2}-\d{2}$/.test(a));
 const date = dateArg ?? today();
 const dryRun = args.includes('--dry-run');
+const backfill = args.includes('--backfill');
 
 /** 要約として渡す直近の日記の本数。 */
 const SUMMARY_LIMIT = 4;
@@ -41,8 +46,14 @@ const SUMMARY_LIMIT = 4;
  * - 定型を崩してよいか。直近 RARE_EXPRESSION.cooldownEntries 本に崩れがあれば、
  *   今日は崩せない（docs/diary.md §8）。プロンプトとゲートが同じ値を読む。
  */
-function recentEntries(id: string): { summaries: string[]; rareExpressionAllowed: boolean } {
-  const files = listDatedFiles(charPath(id, 'entries'), '.json');
+function recentEntries(
+  id: string,
+  /** 過去の日を補うとき、その日より前の日記だけを数える。後の日の要約を渡せば、未来を知ったまま書く。 */
+  before?: string,
+): { summaries: string[]; rareExpressionAllowed: boolean } {
+  const files = listDatedFiles(charPath(id, 'entries'), '.json').filter(
+    (path) => !before || fileDate(path) < before,
+  );
   const window = Math.max(SUMMARY_LIMIT, RARE_EXPRESSION.cooldownEntries);
   const entries = files.slice(-window).map(
     (path) =>
@@ -110,6 +121,24 @@ async function main(): Promise<void> {
     return;
   }
 
+  // 補うのは「その日より後の日記がすでにある」日だけ。後が無ければ、いまの状態が
+  // その日の朝の状態そのものなので、普通に書けばよい（状態も進めるべきである）。
+  if (backfill) {
+    const later = listDatedFiles(charPath(turn.protagonist, 'entries'), '.json')
+      .map(fileDate)
+      .filter((d) => d > date);
+    if (later.length === 0) {
+      console.error(
+        `\n✗ ${turn.protagonist} には ${date} より後の日記がありません。` +
+          '補う必要はないので、--backfill を外して普通に書いてください。',
+      );
+      process.exit(1);
+    }
+    console.log(
+      `  補完: ${date} の朝の状態で書きます（後の日記 ${later.length} 本ぶんを戻す）。状態ファイルは動かしません。`,
+    );
+  }
+
   const planFile = seasonPath(turn.season, turn.era);
   if (!exists(planFile)) {
     console.error(
@@ -145,7 +174,8 @@ async function main(): Promise<void> {
     console.log(`    ・${event.where}: ${event.summary}`);
   }
 
-  noticeIfSeasonRunningOut(date, turn.season);
+  // 過去の日を補うときは、季の残りを数えても意味がない。
+  if (!backfill) noticeIfSeasonRunningOut(date, turn.season);
 
   if (dryRun) {
     console.log('\n  --dry-run のため、日記は生成しません。');
@@ -160,13 +190,24 @@ async function main(): Promise<void> {
     worldYear: plan.year_in_world,
     calendarLine: calendarLineFor(turn.era, plan.year_in_world, episode.world_date),
   };
-  const recent = recentEntries(turn.protagonist);
+  const recent = recentEntries(turn.protagonist, backfill ? date : undefined);
   if (!recent.rareExpressionAllowed) {
     console.log('  直近の日記に定型の崩れがあるため、今日は崩さない。');
   }
   const outcome = await generateDiary(day, recent.summaries, {
     rareExpressionAllowed: recent.rareExpressionAllowed,
+    backfill,
   });
+
+  if (!outcome.ok && outcome.backfilled) {
+    console.error('\n✗ 構造ゲートの違反により、補完を見送りました:');
+    for (const violation of outcome.violations) {
+      console.error(`    ${violation}`);
+    }
+    console.error('\n  何も書いていません。元の失敗記録はそのまま残っています。');
+    console.error('  同じ手順をもう一度回せば、同じ出来事から書き直せます。');
+    process.exit(1);
+  }
 
   if (!outcome.ok) {
     console.error('\n✗ 構造ゲートの違反により、この日を破棄しました:');
@@ -179,7 +220,7 @@ async function main(): Promise<void> {
     process.exit(1);
   }
 
-  console.log(`  日記:「${outcome.title}」`);
+  console.log(`  日記:「${outcome.title}」${outcome.backfilled ? '（補完・状態は不変）' : ''}`);
   for (const note of outcome.truncated) {
     console.log(`  切り詰め: ${note}`);
   }

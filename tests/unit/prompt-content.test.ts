@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { buildSeasonContext } from '../../src/season/context.js';
 import { buildSeasonUserPrompt, buildSeasonSystemPrompt } from '../../src/season/prompt.js';
 import { NARRATIVE_MOVES, selectNarrativeMoves } from '../../src/season/narrative-calibration.js';
-import { buildDiaryUserPrompt, buildDiarySystemPrompt } from '../../src/diary/prompt.js';
+import { buildDiaryUserPrompt, buildDiarySystemPrompt, outsidersToday } from '../../src/diary/prompt.js';
 import { loadCharacter, type Day } from '../../src/diary/context.js';
 import { EpisodeSchema, BEATS, EPISODES_PER_SEASON } from '../../src/schemas/season.js';
 import type { Turn } from '../../src/lib/rotation.js';
@@ -194,6 +194,39 @@ describe('日記のプロンプト', () => {
 
   it('第1話には持ち越しの節を出さない', () => {
     expect(buildDiaryUserPrompt(context)).not.toContain('持ち越していること');
+  });
+
+  it('出来事に出てくる第三者を名指しし、関係の更新先にできないと言う（diary-v8）', () => {
+    const withOutsiders = {
+      ...context,
+      day: {
+        ...day,
+        episode: {
+          ...day.episode,
+          events: [
+            { summary: '行商人が地図を持ち込む', where: '門前', who: ['テオ', 'ヴァレン', 'コルネリ'] },
+            { summary: '兄が現れる', where: '門前', who: ['ロウ', '先輩鑑定士', 'コルネリ'] },
+          ],
+        },
+      },
+    };
+    expect(outsidersToday(withOutsiders)).toEqual(['コルネリ', '先輩鑑定士']);
+    const prompt = buildDiaryUserPrompt(withOutsiders);
+    expect(prompt).toContain('「コルネリ」「先輩鑑定士」は、この一覧にいません');
+    // 本人と周りの人（肩書き付きの「ヴァレン大鑑定官」を「ヴァレン」と書いても）は名指ししない。
+    expect(prompt).not.toMatch(/「ヴァレン」|「ロウ」|「テオ」/);
+  });
+
+  it('第三者が出てこない日は、その一文を出さない', () => {
+    const alone = {
+      ...context,
+      day: {
+        ...day,
+        episode: { ...day.episode, events: [{ summary: '書庫で読む', where: '書庫', who: ['テオ'] }] },
+      },
+    };
+    expect(outsidersToday(alone)).toEqual([]);
+    expect(buildDiaryUserPrompt(alone)).not.toContain('この一覧にいません');
   });
 
   it('関係先の id を渡す（差分の宛先になるため）', () => {

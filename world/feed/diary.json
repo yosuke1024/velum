@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-03T00:13:06.965Z",
+  "generated_at": "2026-10-07T20:41:33.155Z",
   "entries": [
     {
       "id": "2026-10-03-sevran",
@@ -393,6 +393,32 @@
       "path": "world/feed/entries/2026-09-19-kaya.json"
     },
     {
+      "id": "2026-09-18-sevran",
+      "date": "2026-09-18",
+      "character_id": "sevran",
+      "era": "convergence",
+      "season": 1,
+      "episode": 4,
+      "world_date": {
+        "year": 417,
+        "month": 7,
+        "day": 28
+      },
+      "title": {
+        "ja": "青いインクと消失した回廊",
+        "en": "The Blue Ink and the Vanished Corridor"
+      },
+      "excerpt": {
+        "ja": "「四時十七分、ここに裂け目、待て」",
+        "en": "\"4:17, rift here, wait.\""
+      },
+      "mood": {
+        "ja": "青いインクの、あの冷たい鉄のような匂いが指先にいつまでもこびりついている。",
+        "en": "The scent of cold iron from the blue ink lingers on my fingertips like a chill."
+      },
+      "path": "world/feed/entries/2026-09-18-sevran.json"
+    },
+    {
       "id": "2026-09-17-riko",
       "date": "2026-09-17",
       "character_id": "riko",
@@ -443,6 +469,32 @@
         "en": "Feeling the weight of the ink on the paper, while repeating the clauses of the regulations in my mind."
       },
       "path": "world/feed/entries/2026-09-16-teo.json"
+    },
+    {
+      "id": "2026-09-15-uta",
+      "date": "2026-09-15",
+      "character_id": "uta",
+      "era": "primordial",
+      "season": 1,
+      "episode": 3,
+      "world_date": {
+        "year": null,
+        "month": 7,
+        "day": 11
+      },
+      "title": {
+        "ja": "鳴りの谷の重み",
+        "en": "The Weight of the Silent Valley"
+      },
+      "excerpt": {
+        "ja": "声は言っていない。ただ、掌の中で冷たく、硬い塊があるだけだ。",
+        "en": "It is just a cold, hard weight in my palm."
+      },
+      "mood": {
+        "ja": "掌に食い込む、持ち帰った骨の冷たく尖った感触。",
+        "en": "The cold, jagged edges of the bone press hard into my palm."
+      },
+      "path": "world/feed/entries/2026-09-15-uta.json"
     },
     {
       "id": "2026-09-14-kaya",

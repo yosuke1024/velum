@@ -174,12 +174,18 @@ function buildEntries() {
 
       // その日に人格がどう動いたか。日記の裏側として描画する。
       const eventPath = path.replace(`${'/entries/'}`, '/events/');
-      const applied = existsSync(eventPath)
-        ? DiaryEventSchema.parse(JSON.parse(readFileSync(eventPath, 'utf8'))).applied
+      const event = existsSync(eventPath)
+        ? DiaryEventSchema.parse(JSON.parse(readFileSync(eventPath, 'utf8')))
         : null;
+      // あとから歴史としてだけ補った日は、状態へ何も適用していない（docs/diary.md §9）。
+      // events/ に残る差分は「その日の朝に対して日記が返したもの」で、動いたものではない。
+      // 「この日、動いたもの」として描かせないよう、束には渡さない。
+      const applied = event && !event.backfill ? event.applied : null;
 
       entries.push({
         ...entry,
+        // 補った日だけに付く。サイトが「破棄された日を、あとで補った」と描けるように。
+        ...(event?.backfill && { backfilled_on: event.backfill.filled_on }),
         body: {
           ja: readDiaryBody(id, entry.date, 'ja'),
           en: readDiaryBody(id, entry.date, 'en'),

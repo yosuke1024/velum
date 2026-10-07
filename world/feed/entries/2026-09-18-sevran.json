@@ -1,0 +1,31 @@
+{
+  "id": "2026-09-18-sevran",
+  "date": "2026-09-18",
+  "character_id": "sevran",
+  "era": "convergence",
+  "season": 1,
+  "episode": 4,
+  "world_date": {
+    "year": 417,
+    "month": 7,
+    "day": 28
+  },
+  "title": {
+    "ja": "青いインクと消失した回廊",
+    "en": "The Blue Ink and the Vanished Corridor"
+  },
+  "excerpt": {
+    "ja": "「四時十七分、ここに裂け目、待て」",
+    "en": "\"4:17, rift here, wait.\""
+  },
+  "mood": {
+    "ja": "青いインクの、あの冷たい鉄のような匂いが指先にいつまでもこびりついている。",
+    "en": "The scent of cold iron from the blue ink lingers on my fingertips like a chill."
+  },
+  "path": "world/feed/entries/2026-09-18-sevran.json",
+  "schema_version": 1,
+  "body": {
+    "ja": "行商人のコルネリが、大時計裏の回廊が安全であるという記録の提示を求めて、記録院の廃墟を訪れた。[確認：コルネリ、記録院の記録]\n\n彼が持参した古い市街地図の裏面を確認したところ、生々しい青いインクで、ある記述が見つかった。「四時十七分、ここに裂け目、待て」。この筆跡は、間違いなくミルテのものだ。[確認：筆跡、ミルテ]\n\nしかし、現地の状況に変化が生じている。大時計裏の回廊は完全に消失しており、代わりに巨大な、蠢くような裂け目が発生している。これにより、コルネリの帰路は遮断された。[未確認：裂け目の性質]\n\n指先に、青いインクの、あの冷たい鉄のような匂いがいつまでもこびりついている。これがインク自体の成分によるものか、あるいは裂け目から漂う異界の残滓なのかは、現時点では判別不能である。もしこの筆跡が真実であるならば、彼女の遺した「待て」という指示は、現在の物理的な状況とどのように整合させるべきものなのか。",
+    "en": "The merchant Corneli visited the ruins of the Record Institute today, seeking confirmation of the safety of the corridor behind the Great Clock. [Verified: Corneli, Records of the Archive]\n\nUpon inspecting the old city map he brought, I discovered a notation on the reverse side. It was written in fresh, blue ink: \"4:17, rift here, wait.\" The handwriting is unmistakably Milte's. [Verified: Handwriting, Milte]\n\nHowever, the physical state of the site has changed. The corridor behind the Great Clock, which was theoretically accessible, has completely vanished. In its place, a massive, shifting rift has appeared, cutting off Corneli's path of return. [Unconfirmed: Nature of the rift]\n\nThe blue ink leaves a persistent scent of cold iron on my fingertips. I cannot determine if this scent is a property of the ink itself or a residue from the rift. If the handwriting is genuine, the \"wait\" command implies a temporal or spatial intent that has yet to be reconciled with the current state of the environment."
+  }
+}
